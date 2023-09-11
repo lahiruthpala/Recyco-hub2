@@ -1,0 +1,37 @@
+:root {
+  --dark-gray-dark-gray-2: rgba(37, 44, 50, 1);
+  --mid-gray-mid-gray-4: rgba(154, 166, 172, 1);
+  --black-white-white: rgba(255, 255, 255, 1);
+  --light-gray-light-gray-2: rgba(221, 226, 228, 1);
+  --light-gray-light-gray-3: rgba(229, 233, 235, 1);
+  --gray-500: rgba(102, 112, 133, 1);
+  --gray-900: rgba(16, 24, 40, 1);
+  --gray-2: rgba(79, 79, 79, 1);
+  --data-3: rgba(247, 101, 163, 1);
+  --data-4: rgba(22, 191, 214, 1);
+  --label-colorlightprimary: rgba(0, 0, 0, 1);
+  --UI-UI-text-14-reg-font-family: "Inter-Regular", Helvetica;
+  --UI-UI-text-14-reg-font-weight: 400;
+  --UI-UI-text-14-reg-font-size: 14px;
+  --UI-UI-text-14-reg-letter-spacing: -0.0840000033378601px;
+  --UI-UI-text-14-reg-line-height: 24px;
+  --UI-UI-text-14-reg-font-style: normal;
+  --text-xs-medium-font-family: "Inter-Medium", Helvetica;
+  --text-xs-medium-font-weight: 500;
+  --text-xs-medium-font-size: 12px;
+  --text-xs-medium-letter-spacing: 0px;
+  --text-xs-medium-line-height: 18px;
+  --text-xs-medium-font-style: normal;
+  --display-xs-medium-font-family: "Inter-Medium", Helvetica;
+  --display-xs-medium-font-weight: 500;
+  --display-xs-medium-font-size: 24px;
+  --display-xs-medium-letter-spacing: 0px;
+  --display-xs-medium-line-height: 32px;
+  --display-xs-medium-font-style: normal;
+  --product-font-family: "Inter-Regular", Helvetica;
+  --product-font-weight: 400;
+  --product-font-size: 12px;
+  --product-letter-spacing: 0px;
+  --product-line-height: normal;
+  --product-font-style: normal;
+}
