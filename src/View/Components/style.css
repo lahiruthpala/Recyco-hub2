@@ -1,0 +1,362 @@
+.table {
+  position: relative;
+  width: 1440px;
+  height: 735px;
+  background-color: #ffffff;
+}
+
+.table .element-hover-button-hover {
+  position: absolute;
+  width: 1280px;
+  height: 56px;
+  top: 212px;
+  left: 80px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table .text-wrapper {
+  width: 71px;
+  height: 29px;
+  top: 13px;
+  left: 40px;
+  color: #262626;
+  font-size: 18px;
+  letter-spacing: -0.36px;
+  line-height: 28.8px;
+  position: absolute;
+  font-family: "Sora", Helvetica;
+  font-weight: 600;
+}
+
+.table .more-circle {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 12px;
+  left: 1198px;
+}
+
+.table .div {
+  height: 26px;
+  top: 14px;
+  left: 149px;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 25.6px;
+  white-space: nowrap;
+  position: absolute;
+  font-family: "Sora", Helvetica;
+  font-weight: 600;
+}
+
+.table .text-wrapper-2 {
+  position: absolute;
+  height: 26px;
+  top: 14px;
+  left: 441px;
+  font-family: "Sora", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 25.6px;
+  white-space: nowrap;
+}
+
+.table .text-wrapper-3 {
+  position: absolute;
+  height: 26px;
+  top: 14px;
+  left: 654px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: -0.32px;
+  line-height: 25.6px;
+  white-space: nowrap;
+  font-family: "Sora", Helvetica;
+  font-size: 16px;
+}
+
+.table .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 32px;
+  position: absolute;
+  top: 7px;
+  left: 1065px;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: #e5e5e5;
+  all: unset;
+  box-sizing: border-box;
+}
+
+.table .text-wrapper-4 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Sora", Helvetica;
+  font-weight: 600;
+  color: #262626;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 22.4px;
+  white-space: nowrap;
+}
+
+.table .element-hover-button-hover-2 {
+  top: 300px;
+  position: absolute;
+  width: 1280px;
+  height: 56px;
+  left: 80px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table .element-hover-button-hover-3 {
+  top: 388px;
+  position: absolute;
+  width: 1280px;
+  height: 56px;
+  left: 80px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table .element-hover-button-hover-4 {
+  top: 476px;
+  position: absolute;
+  width: 1280px;
+  height: 56px;
+  left: 80px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table .element-hover-button-hover-5 {
+  top: 564px;
+  position: absolute;
+  width: 1280px;
+  height: 56px;
+  left: 80px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table .element-hover-button-hover-6 {
+  top: 652px;
+  position: absolute;
+  width: 1280px;
+  height: 56px;
+  left: 80px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table .seperator {
+  position: absolute;
+  width: 1200px;
+  height: 1px;
+  top: 179px;
+  left: 120px;
+  object-fit: cover;
+}
+
+.table .navbar {
+  position: absolute;
+  width: 1127px;
+  height: 22px;
+  top: 138px;
+  left: 120px;
+}
+
+.table .text-wrapper-5 {
+  position: absolute;
+  height: 22px;
+  top: 0;
+  left: 0;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #4c4c4c;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 22.4px;
+  white-space: nowrap;
+}
+
+.table .text-wrapper-6 {
+  position: absolute;
+  height: 22px;
+  top: 0;
+  left: 401px;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #4c4c4c;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 22.4px;
+  white-space: nowrap;
+}
+
+.table .text-wrapper-7 {
+  left: 616px;
+  position: absolute;
+  height: 22px;
+  top: 0;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #4c4c4c;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 22.4px;
+  white-space: nowrap;
+}
+
+.table .text-wrapper-8 {
+  left: 1027px;
+  position: absolute;
+  height: 22px;
+  top: 0;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #4c4c4c;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 22.4px;
+  white-space: nowrap;
+}
+
+.table .text-wrapper-9 {
+  position: absolute;
+  height: 22px;
+  top: 0;
+  left: 103px;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #4c4c4c;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 22.4px;
+  white-space: nowrap;
+}
+
+.table .pills {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  top: 55px;
+  left: 104px;
+  background-color: #ffffff;
+}
+
+.table .pill {
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #16c784;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  border-radius: 99px;
+  border: 1px solid;
+}
+
+.table .text-wrapper-10 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0;
+  line-height: normal;
+  font-family: "Sora", Helvetica;
+  font-size: 16px;
+}
+
+.table .div-wrapper {
+  position: relative;
+  flex: 0 0 auto;
+  border-color: #e5e5e5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  border-radius: 99px;
+  border: 1px solid;
+}
+
+.table .text-wrapper-11 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #262626;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.table .pill-2 {
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #ffffff;
+  border-color: #d9d9d9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  border-radius: 99px;
+  border: 1px solid;
+}
+
+.table .text-wrapper-12 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Sora", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.table .frame-wrapper {
+  position: absolute;
+  top: 55px;
+  left: 1150px;
+  border-color: #e5e5e5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  border-radius: 99px;
+  border: 1px solid;
+}
+
+.table .frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}

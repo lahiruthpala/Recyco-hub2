@@ -2,9 +2,9 @@
 return [
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'your_database_name',
-    'username'  => 'your_database_user',
-    'password'  => 'your_database_password',
+    'database'  => 'Recyco_HUB',
+    'username'  => 'lahiru',
+    'password'  => 'root',
     'charset'   => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'prefix'    => '',
