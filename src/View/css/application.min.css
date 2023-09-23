@@ -4921,7 +4921,6 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
     align-items: center;
     height: 64px;
     margin: 0;
-    gap: 10vw;
     padding: 0 20px 0 80px
 }
 
@@ -5029,7 +5028,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
 }
 
 .mdl-layout--fixed-drawer>.mdl-layout__content {
-    margin-left: 236px
+    margin-left: 0
 }
 
 .mdl-layout__container.has-scrolling-header .mdl-layout__content {
@@ -7507,7 +7506,7 @@ main {
 }
 
 .mdl-layout__header-row {
-    color: rgba(255, 255, 255, .8)
+    color: black;
 }
 
 .mdl-layout__header-row .avatar-dropdown {
@@ -7523,7 +7522,7 @@ main {
 }
 
 .mdl-layout__header-row .avatar-dropdown>span {
-    color: rgba(255, 255, 255, .5);
+    color: black;
     padding-right: 16px
 }
 
@@ -9737,7 +9736,7 @@ a {
     background-image: linear-gradient(transparent, transparent, transparent, transparent, transparent, rgba(0, 0, 0, .1), rgba(0, 0, 0, .2), rgba(0, 0, 0, .4)), url(../images/sao_paulo.jpg)
 }
 
-.ui-cards .mdl-cell:nth-last-of-type(2) .mdl-card__title {
+.partner_event {
     background-image: linear-gradient(transparent, transparent, transparent, transparent, transparent, rgba(0, 0, 0, .1), rgba(0, 0, 0, .2), rgba(0, 0, 0, .4)), url(../images/tokyo.jpg)
 }
 
