@@ -40,15 +40,8 @@
 
 <body>
     <div class="mdl-layout mdl-js-layout color--white is-small-screen login">
-        <header class="mdl-layout__header">
-            <div style="margin-left: 25vw;">
-                <div class="mdl-layout__header-row">
-                    <span class="login-secondary-text text-color--black">Home</span>
-                    <span class="login-secondary-text text-color--black">Article</Article></span>
-                    <span class="login-secondary-text text-color--black">Events</span>
-                    <span class="login-secondary-text text-color--black">About</span>
-                </div>
-            </div>
+        <header>
+            <?php $this->view('include/WebHeader')?>
         </header>
         <main class="mdl-layout__content">
             <form action="login.php" method="post">

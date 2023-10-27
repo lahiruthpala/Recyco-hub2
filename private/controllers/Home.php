@@ -1,14 +1,11 @@
 <?php
-
-/**
- * home controller
- */
 class Home extends Controller
 {
 	
 	function index()
 	{
 		// code...
-		$this->view('pickup table');
+		$this->view('Collector');
 	}
 }
+?>
