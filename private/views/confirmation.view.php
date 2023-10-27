@@ -69,7 +69,7 @@
         <div class="tick-circle">
             <svg class="tick-mark" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><path d="M4 38l17 17 40-40" fill="none" stroke="currentColor" stroke-width="8"/></svg>
         </div>
-        <p>Pickup Accepted</p>
+        <p>Pickup </p>
     </div>
 </body>
 </html>
