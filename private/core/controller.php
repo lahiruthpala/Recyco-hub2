@@ -18,4 +18,14 @@ class Controller
 			require ("../private/views/404.view.php");
 		}
 	}
+
+	public function load_model($modle){
+		if(file_exists("../private/models/" . $modle . ".model.php"))
+		{
+			require ("../private/models/" . $modle . ".model.php");
+			return new $modle();
+		}else{
+			require ("../private/views/404.view.php");
+		}
+	}
 }
