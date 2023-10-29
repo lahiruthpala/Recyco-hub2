@@ -16,12 +16,11 @@ class Database
 
     public function query($query, $data = array(), $data_type = "object")
     {
-
         $con = $this->connect();
         $stm = $con->prepare($query);
-
         if ($stm) {
             $check = $stm->execute($data);
+            // echo $check;
             if ($check) {
                 if ($data_type == "object") {
                     $data = $stm->fetchAll(PDO::FETCH_OBJ);
