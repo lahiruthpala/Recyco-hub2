@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 700px;
+            display: flex;
+            align-items: center;
+        }
+
+        .left-side {
+            width: 40%;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Center the image horizontally */
+            align-items: center; /* Center the image vertically */
+        }
+
+        .right-side {
+            width: 60%;
+            padding: 20px;
+        }
+
+        .tile {
+            margin-bottom: 20px;
+        }
+
+        .tile label {
+            font-weight: bold;
+        }
+
+        .tile input, .tile select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .tile button {
+            padding: 10px 20px;
+            background-color: #43c23f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img src="inventory.png" alt="Inventory Image" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="right-side">
+            <h2>Inventory Status</h2>
+            <div class="tile">
+                <label for="inventoryID">Inventory ID:</label>
+                <input type="text" id="inventoryID" name="inventoryID" required>
+            </div>
+            <div class="tile">
+                <label for="inventoryStatus">Inventory Status:</label>
+                <select id="inventoryStatus" name="inventoryStatus">
+                    <option value="Accepted">Accepted</option>
+                    <option value="Delivered">Delivered</option>
+                </select>
+            </div>
+            <div class="tile">
+                <button id="updateStatusButton">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const updateStatusButton = document.getElementById("updateStatusButton");
+
+        updateStatusButton.addEventListener("click", function () {
+            const inventoryID = document.getElementById("inventoryID").value;
+            const inventoryStatus = document.getElementById("inventoryStatus").value;
+            alert(`Inventory ID ${inventoryID} has been updated to status: ${inventoryStatus}`);
+        });
+    </script>
+</body>
+</html>
