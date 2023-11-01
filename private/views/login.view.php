@@ -3,10 +3,10 @@
 <body>
     <div class="mdl-layout mdl-js-layout color--white is-small-screen login">
         <header>
-            <?php $this->view('include/WebHeader') ?>
+            
         </header>
         <main class="mdl-layout__content">
-            <form action="login.php" method="post">
+            <form method="post">
                 <div class="mdl-card mdl-card__login mdl-shadow--2dp">
                     <div class="mdl-card__supporting-text color--white">
                         <div class="mdl-grid">
@@ -20,11 +20,11 @@
                             </div>
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="email" placeholder="" name="email" class="mdl-textfield__input">
+                                    <input type="email" placeholder="" name="Email" class="mdl-textfield__input">
                                     <label class="mdl-textfield__label" for="e-mail">Email</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="password" placeholder="" name="password" class="mdl-textfield__input">
+                                    <input type="password" placeholder="" name="pwd" class="mdl-textfield__input">
                                     <label class="mdl-textfield__label" for="password">Password</label>
                                 </div>
                                 <a href="forgot-password.html" class="login-link">Forgot password?</a>

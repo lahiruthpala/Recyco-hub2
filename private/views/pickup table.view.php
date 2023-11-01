@@ -131,7 +131,7 @@
     <!-- Include Font Awesome CSS -->
 
 
-
+    <?php $this->view('include/header') ?>
     <h1>Your Pickup Assignments</h1>
     <div id="table-container"></div>
     <table id="customers">
@@ -139,48 +139,30 @@
             <th>Pickup ID</th>
             <th></th>
         </tr>
+        <?php
+        if (is_array($rows) && !empty($rows)) {
+            foreach ($rows as $row) {
+                // Your table row generation code here
+                ?>
+                <tr>
+                    <td><i class="fas fa-truck-pickup"></i>&nbsp;<?=$row->pickupId?></td>
 
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp;P12345</td>
-
-            <td><button onclick="viewDetails('P12345')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12346</td>
-            <td><button onclick="viewDetails('P12346')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12345</td>
-            <td><button onclick="viewDetails('P12345')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12346</td>
-            <td><button onclick="viewDetails('P12346')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12345</td>
-            <td><button onclick="viewDetails('P12345')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12346</td>
-            <td><button onclick="viewDetails('P12346')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12345</td>
-            <td><button onclick="viewDetails('P12345')">View</button></td>
-        </tr>
-        <tr>
-            <td><i class="fas fa-truck-pickup"></i>&nbsp; P12346</td>
-            <td><button onclick="viewDetails('P12346')">View</button></td>
-        </tr>
-
+                    <td><button onclick="viewDetails('<?=$row->pickupId?>')">View</button></td>
+                </tr>
+                <?php
+            }
+        } else {
+            // If $rows is not an array or is empty
+            echo "No data available.";
+        }
+        ?>
     </table>
 
     <script>
         {
             function viewDetails(pickupId) {
                 // Redirect to pickup_details.html with the pickup ID as a query parameter
-                window.location.href = `<?=ROOT?>/collector/details?pickupID=${pickupId}`;
+                window.location.href = `<?= ROOT ?>/collector/details/${pickupId}`;
             }
         }
 

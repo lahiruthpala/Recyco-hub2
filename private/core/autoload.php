@@ -1,5 +1,6 @@
 <?php
 
+require "Auth.php";
 require "config.php";
 require "helper.php";
 require "database.php";

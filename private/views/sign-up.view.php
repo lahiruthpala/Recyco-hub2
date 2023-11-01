@@ -43,7 +43,7 @@
                                     <label class="mdl-textfield__label" for="password">Password</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input class="mdl-textfield__input" type="text" id="e-mail" name="email"
+                                    <input class="mdl-textfield__input" type="text" id="e-mail" name="Email"
                                         value="<?= get_var("email") ?>">
                                     <label class="mdl-textfield__label" for="e-mail">Email</label>
                                 </div>
