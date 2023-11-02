@@ -19,35 +19,33 @@ class Partner extends Controller
 
     function addNew($id = null)
     {
+        $errors = array();
         if ($id == null) {
-            $errors = array();
+            print_r($_POST);
+            die;
             if (count($_POST) > 0) {
                 $articles = $this->load_model('Articles');
                 $articles->insert($_POST);
                 $this->redirect("Partner/articles");
             }
             $this->view("Partner/newarticle");
-        }else{
-            $errors = array();
+        } else {
             if (count($_POST) > 0) {
                 $articles = $this->load_model('Articles');
-                $articles->update($_POST);
+                $articles->insert($_POST);
                 $this->redirect("Partner/articles");
             }
             $articles = $this->load_model('Articles');
-            $data = $articles->first('id', $id);
+            $data = $articles->first('Article_ID', $id);
+            $articles->delete($id, "Article_ID");
             $this->view("Partner/newarticle", ["article" => $data]);
         }
     }
 
-    function delete($id)
+    function ArticleDelete($id)
     {
-        $errors = array();
-        if (count($_POST) > 0) {
-            $articles = $this->load_model('Articles');
-            $articles->delete($_POST['id'], );
-            $this->redirect("Partner/articles");
-        }
-        $this->view("Partner/newarticle");
+        $article = $this->load_model('Articles');
+        $data = $article->findAll();
+        $this->view("Partner/articles", ["articles" => $data]);
     }
 }

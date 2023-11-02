@@ -36,14 +36,14 @@
                                 <div class="mdl-card__actions">
                                     <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"
                                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
-                                        href=target="_blank">
+                                        href="<?=ROOT?>/Partner/addNew/<?= $article->Article_ID?>">
                                         Edit
                                     </a>
-                                    <button type="submit" style="background-color: #16C784; border-radius: 20px;"
+                                    <a style="background-color: #16C784; border-radius: 20px;"
                                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
-                                        >
+                                        href="<?=ROOT?>/Partner/ArticleDelete/<?= $article->Article_ID?>">
                                         Delete
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -76,17 +76,6 @@
     <script src="js/widgets/table/table.min.js"></script>
     <script src="js/widgets/todo/todo.min.js"></script>
     <!-- endinject -->
-    <script>
-        function loadComponent2(component) {
-            console.log(component);
-            fetch('Table/' + component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
 
 </body>
 

@@ -14,20 +14,19 @@
                     <div class="mdl-card__supporting-text">
                         <form class="form form--basic" method="POST">
                             <div class="mdl-grid">
-
                                 <div
                                     class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="floating-last-name" placeholder="Title" name="Artical_Title">
+                                        <input class="mdl-textfield__input" type="text" id="floating-last-name" placeholder="Title" name="Artical_Title" value="<?= isset($article->Artical_Title) ? $article->Artical_Title : '' ?>">
                                         <label class="mdl-textfield__label" for="floating-last-name"></label>
                                     </div>
 
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="floating-e-mail" placeholder="Discription" name="Discription">
+                                        <input class="mdl-textfield__input" type="text" id="floating-e-mail" placeholder="Discription" name="Discription" value="<?= isset($article->Discription) ? $article->Discription : '' ?>">
                                         <label class="mdl-textfield__label" for="floating-e-mail"></label>
                                     </div>
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="floating-e-mail" placeholder="Content" name="Data">
+                                        <input class="mdl-textfield__input" type="text" id="floating-e-mail" placeholder="Content" name="Data" value="<?= isset($article->Data) ? $article->Data : '' ?>">
                                         <label class="mdl-textfield__label" for="floating-e-mail"></label>
                                     </div>
                                     <div class="mdl-card__actions">
