@@ -48,8 +48,8 @@
                         <td>$row[date]</td>
                         <td>$row[place]</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="/Recyco-HUB/edit.php">Edit</a>
-                            <a class="btn btn-danger btn-sm" href="/Recyco-HUB/edit.php">Delete</a>
+                            <a class="btn btn-primary btn-sm" href="/Recyco-HUB/edit items.php">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="/Recyco-HUB/delete items.php">Delete</a>
                         </td>
                     </tr>";
                 }
