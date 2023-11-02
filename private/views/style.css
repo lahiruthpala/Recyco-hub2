@@ -1,8 +1,11 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
-
+.body{
+    display: flex;
+}
 .main{
     width: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)20%), url(1.png);
@@ -107,7 +110,9 @@
 .btn:focus{
     outline: none;
 }
-
+.sbtn:focus{
+    outline: none;  
+}
 .srch:focus{
     outline: none;
 }
@@ -266,7 +271,7 @@
 .header{
     width:100%;
     height:100vh;
-    background-color: #72f383;
+    background-image: url(images/reguserbackground.png);
     background-position: center;
     background-size: cover;
 }
@@ -277,7 +282,7 @@
     top:0;
     left:0;
     padding: 30px 15px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(87, 162, 80, 0.948);
     backdrop-filter:blur(5px);
     display: flex;
     justify-content: space-between;
@@ -316,10 +321,11 @@
 }
 .reg-user-ul{
     font-family: Arial;
-    font-weight: 300;
-    font-style: italic;
+    font-weight: bold;
+    font-style:normal;
     list-style:none;
     padding:0 15px ;
+
 }
 .reg-user-ul li{
     margin: 30px 0;
@@ -328,6 +334,7 @@
     justify-content: center;
     cursor: pointer;
 }
+
 .reg-user-ul li img{
     width: 30px;
     margin-right: 0px;
@@ -336,6 +343,7 @@
     white-space: nowrap;
     display: none;
 }
+
 .side-nav:hover{
     width: 200px;
 }
@@ -362,3 +370,108 @@
 .side-nav:hover .reg-user-ul li{
     justify-content: flex-start;
 }
+.reg-user-ul li:hover, .active {
+    background: #a37f25d2;
+    transition:0.2s ;
+    border-radius: 5px;
+}
+
+.main--content{
+    position: relative;
+    background: #04ff00;
+    width: 100%;
+    padding: 1rem;
+    background-color: #000;
+    margin: 0px;
+}
+/* POPUP */
+.container{
+    width: 100%;
+    height: 100vh;
+    background: #fe8032;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sbtn{
+    padding: 10px 60px;
+    backdrop-filter:blur(5px);
+    border:0;
+    outline:none ;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius:30px;
+
+}
+.popup{
+    width: 400px;
+    background: #dcd16c;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+}
+.popup img{
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.popup h2{
+    font-size: 50px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+.popup p{
+    font-size: 20px;
+    margin: 0;
+    font-family: Arial;
+}
+
+.popup button{
+    width:100% ;
+    margin-top: 50px;
+    padding: 10px 0;
+    background:#6fd649 ;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+}
+.yesbutton, button{
+    width: 45%;
+    padding-right: 10px;
+    background: #6fd649;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    outline: none;
+    margin-right: 5px;
+}/*
+.nobutton{
+    width: 45%;
+    padding-left: 10px;
+    background: #6fd649;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    outline: none;
+    margin-left: 5px;
+}*/
