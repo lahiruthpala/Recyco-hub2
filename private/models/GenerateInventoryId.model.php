@@ -13,7 +13,7 @@ class GenerateInventoryId extends Model
     protected $allowedColumns = [
         'Batch_ID',
         'Description',
-        'User_ID'
+        'User_ID',
     ];
 
     protected $table = "inventory_batch";
@@ -33,7 +33,7 @@ class GenerateInventoryId extends Model
         return false;
     }
     public function Make_BatchID($data){
-        $data['Batch_ID'] = random_string(20);
+        $data['Batch_ID'] = random_string(6);
         return $data;
     }
     

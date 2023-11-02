@@ -19,7 +19,7 @@ class TableModel extends Model
     protected $table = "inventory";
 
     public function Make_Inventory_ID($data){
-        $data['Inventory_ID'] = random_string(60);
+        $data['Inventory_ID'] = random_string(6);
         return $data;
     }
 }

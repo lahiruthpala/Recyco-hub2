@@ -1,9 +1,9 @@
 <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
     <thead>
         <tr>
-            <th class="mdl-data-table__cell--non-numeric">#</th>
-            <th class="mdl-data-table__cell--non-numeric">Request ID</th>
-            <th class="mdl-data-table__cell--non-numeric">Arrival Date</th>
+            <th class="mdl-data-table__cell--non-numeric">Job_ID</th>
+            <th class="mdl-data-table__cell--non-numeric">Start_Date</th>
+            <th class="mdl-data-table__cell--non-numeric">Assign_Line</th>
             <th class="mdl-data-table__cell--non-numeric">Status</th>
         </tr>
     </thead>
@@ -14,14 +14,18 @@
                 // Your table row generation code here
                 ?>
                 <tr>
-                    <td class="mdl-data-table__cell--non-numeric"><?=$row->Inventory_ID?></td>
-                    <td class="mdl-data-table__cell--non-numeric"><?=$row->Weight?></td>
-                    <td class="mdl-data-table__cell--non-numeric"><?=$row->Type?></td>
-                    <td class="mdl-data-table__cell--non-numeric"><span class="label label--mini color--green"><?=$row->Status?></span>
+                    <td class="mdl-data-table__cell--non-numeric"><?= $row->Sorting_Job_ID ?></td>
+                    <td class="mdl-data-table__cell--non-numeric"><?= $row->Start_Date ?></td>
+                    <td class="mdl-data-table__cell--non-numeric"><?= $row->Line_No ?></td>
+                    <td class="mdl-data-table__cell--non-numeric"><span
+                            class="label label--mini color--green"><?= $row->Status ?></span>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric"><button
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                             style="border-radius: 99px;">View</button></td>
+                    <td class="mdl-data-table__cell--non-numeric"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                            style="border-radius: 99px;">Compleded</button></td>
                 </tr>
                 <?php
             }

@@ -13,37 +13,35 @@ class Model extends Database
 	}
 
 
-	public function where($column,$value)
+	public function where($column, $value)
 	{
 
 		$column = addslashes($column);
 		$query = "select * from $this->table where $column = :value";
-		return $this->query($query,[
-			'value'=>$value
+		return $this->query($query, [
+			'value' => $value
 		]);
 	}
 
-	public function first($column,$value)
+	public function first($column, $value)
 	{
 
 		$column = addslashes($column);
 		$query = "select * from $this->table where $column = :value";
-		$data = $this->query($query,[
-			'value'=>$value
+		$data = $this->query($query, [
+			'value' => $value
 		]);
 
 		//run functions after select
-		if(is_array($data)){
-			if(property_exists($this, 'afterSelect'))
-			{
-				foreach($this->afterSelect as $func)
-				{
+		if (is_array($data)) {
+			if (property_exists($this, 'afterSelect')) {
+				foreach ($this->afterSelect as $func) {
 					$data = $this->$func($data);
 				}
 			}
 		}
 
-		if(is_array($data)){
+		if (is_array($data)) {
 			$data = $data[0];
 		}
 		return $data;
@@ -57,57 +55,53 @@ class Model extends Database
 
 	public function insert($data)
 	{
+
 		//remove unwanted columns
-		if(property_exists($this, 'allowedColumns'))
-		{
-			foreach($data as $key => $column)
-			{
-				if(!in_array($key, $this->allowedColumns))
-				{
+		if (property_exists($this, 'allowedColumns')) {
+			foreach ($data as $key => $column) {
+				if (!in_array($key, $this->allowedColumns)) {
 					unset($data[$key]);
 				}
 			}
+
 		}
 
 		//run functions before insert
-		if(property_exists($this, 'beforeInsert'))
-		{
-			foreach($this->beforeInsert as $func)
-			{
+		if (property_exists($this, 'beforeInsert')) {
+			foreach ($this->beforeInsert as $func) {
 				$data = $this->$func($data);
 			}
 		}
+
 		$keys = array_keys($data);
 		$columns = implode(',', $keys);
 		$values = implode(',:', $keys);
-		$query = "INSERT INTO $this->table ($columns) VALUES (:$values)";
-		$this->query($query,$data);
-		var_dump($data);
-		print_r($query);
-		die;
+
+		$query = "insert into $this->table ($columns) values (:$values)";
+		$this->query($query, $data);
 		return $data;
 	}
-	public function update($id,$data)
+	public function update($id, $data)
 	{
 		$str = "";
 		foreach ($data as $key => $value) {
 			// code...
-			$str .= $key. "=:". $key.",";
+			$str .= $key . "=:" . $key . ",";
 		}
 
-		$str = trim($str,",");
- 
+		$str = trim($str, ",");
+
 		$data['id'] = $id;
 		$query = "update $this->table set $str where User_ID = :id";
 		// echo $query;
 
-		return $this->query($query,$data);
+		return $this->query($query, $data);
 	}
-	public function delete($id)
+	public function delete($id, $column)
 	{
-		$query = "delete from $this->table where User_ID = :id";
+		$query = "delete from $this->table where $column = :id";
 		$data['id'] = $id;
-		return $this->query($query,$data);
+		return $this->query($query, $data);
 	}
 }
 

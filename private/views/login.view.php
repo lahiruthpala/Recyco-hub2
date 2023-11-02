@@ -8,7 +8,7 @@
         <main class="mdl-layout__content">
             <form method="post">
                 <div class="mdl-card mdl-card__login mdl-shadow--2dp">
-                    <div class="mdl-card__supporting-text color--white">
+                    <div class="mdl-card__supporting-text color--dark-gray">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                 <span class="mdl-card__title-text text-color--smooth-gray">RecycoHUB</span>

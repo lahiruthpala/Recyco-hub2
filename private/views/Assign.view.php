@@ -69,20 +69,68 @@
                                     style="border-radius: 99px; margin-left: auto;"> Add New Stock</button>
                             </div>
                             <div class="mdl-card__title">
-                                <h1 id="tableTital" class="mdl-card__title-text">Pending Inventory</h1>
+                                <h1 id="tableTital" class="mdl-card__title-text">Assign</h1>
                             </div>
                             <div class="mdl-card__supporting-text no-padding">
-                                <section id="content"></section>
+                                <section id="content">
+                                    <div style="display: flex">
+                                        <div
+                                            class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
+                                            <div class="mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title">
+                                                    <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">
+                                                    <form class="form form--basic">
+                                                        <div class="mdl-grid">
+                                                            <div
+                                                                class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
+                                                                <div
+                                                                    class="profile-image color--smooth-gray profile-image--round">
+                                                                    <img src="images/Bobby.PNG">
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article">
+                                                                <div
+                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                                                    <input class="mdl-textfield__input" type="text"
+                                                                        value="Lakidu"
+                                                                        id="profile-floating-first-name">
+                                                                    <!-- <label class="mdl-textfield__label" for="profile-floating-first-name">First Name</label> -->
+                                                                </div>
+                                                                <div
+                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                                                    <input class="mdl-textfield__input" type="text"
+                                                                        value="ABC-4645" id="profile-floating-last-name">
+                                                                    <!-- <label class="mdl-textfield__label" for="profile-floating-last-name">Last Name</label> -->
+                                                                </div>
+                                                                <div
+                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                                                    <input class="mdl-textfield__input" type="text"
+                                                                        value="Colombo-5"
+                                                                        id="profile-floating-e-mail">
+                                                                    <!-- <label class="mdl-textfield__label" for="floating-e-mail">Email</label> -->
+                                                                </div>
+                                                                <div
+                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                                                    <input class="mdl-textfield__input" type="text"
+                                                                        value="Active"
+                                                                        id="profile-floating-e-mail">
+                                                                    <!-- <label class="mdl-textfield__label" for="floating-e-mail">Email</label> -->
+                                                                </div>
+                                                                <button
+                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
+                                                                    style="border-radius: 99px;">Assign</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
-                            <script>
-                                // Fetch the component separately and load it into the container
-                                fetch('Table/InventoryBatch')
-                                    .then(response => response.text())
-                                    .then(html => {
-                                        document.getElementById('content').innerHTML = html;
-                                    })
-                                    .catch(error => console.error('Error:', error));
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -110,30 +158,6 @@
     <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
     <script src="<?= ROOT ?>/js/sortingManage.js"></script>
     <script src="<?= ROOT ?>/js/GeneralManager.js"></script>
-    <script>
-        function loadComponent(component) {
-            console.log(component);
-            document.getElementById('tableTital').innerHTML = component.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-            fetch('Table/' + component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-    <script>
-        function loadComponent2(component) {
-            console.log(component);
-            fetch('Table/' + component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-    </script>
     <!-- endinject -->
 </body>
 

@@ -8,13 +8,13 @@ class collector extends Controller
 	}
 
     function table(){
-        $user = $this->load_model('CollectorModel');
+        $user = $this->load_model('PickUpRequestModel');
 		$data = $user->findAll();
-        $this->view('pickup table', ['data'=>$data]);
+        $this->view('pickup table', ['rows'=>$data]);
     }
 
     function details($id){
-        $user = $this->load_model('CollectorModel');
+        $user = $this->load_model('PickUpRequestModel');
 		$data = $user->first('pickupId', $id);
         $this->view('pickup details', ['pickup'=>$data]);
     }

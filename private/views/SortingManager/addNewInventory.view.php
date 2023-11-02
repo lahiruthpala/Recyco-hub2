@@ -8,7 +8,7 @@
                 <div class="mdl-card__supporting-text">
                     <form class="form form--basic">
                         <div class="mdl-grid">
-                            <?php if (count($errors) > 0): ?>
+                            <!-- <?php if (count($errors) > 0): ?>
                                 <div style="ml-10px" role="alert">
                                     <strong>Errors:</strong>
                                     <?php foreach ($errors as $error): ?>
@@ -16,23 +16,23 @@
                                         <?= $error ?>
                                     <?php endforeach; ?>
                                     <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                                        <!-- <span aria-hidden="true">&times;</span> -->
+                                        <span aria-hidden="true">&times;</span>
                                         <i class="material-icons">close</i>
                                     </span>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <div
                                 class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article">
                                 <h3 class="text-color--smooth-gray">Create new inventory ID</h3>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
                                     data-upgraded=",MaterialTextfield">
                                     <input class="mdl-textfield__input" type="text" id="floating-last-name"
-                                        name="Description">
-                                    <label class="mdl-textfield__label" for="floating-last-name">Note</label>
+                                        name="Description" placeholder="Note">
+                                    <label class="mdl-textfield__label" for="floating-last-name"></label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
                                     data-upgraded=",MaterialTextfield">
-                                    <input type="number" name="Size">
+                                    <input type="number" name="Size" style="background-color: gray; color: white;">
                                     <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
                                 </div>
                                 <button id="Generate" type="submit"
@@ -97,4 +97,4 @@
 <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
 <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
 <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
-<script src="<?= ROOT ?>/js/GeneralManager.js"
+<script src="<?= ROOT ?>/js/GeneralManager.js"></script>

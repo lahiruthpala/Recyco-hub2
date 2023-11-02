@@ -13,8 +13,7 @@
                 </div>
                 <div class="grid_7">
                     <div class="tel">
-                        <div><i class="fa fa-phone"></i>
-                        +1 959 603 6035</div>
+                        <div><i class="fa fa-phone"></i></div>
                     </div>
                     <ul class="social-links">
                         <li><a href="#" class="col1"><i class="fa fa-facebook"></i></a></li>
@@ -31,7 +30,11 @@
         <div class="container">
             <div class="row">
                 <div class="grid_4">
-                    <h1><a href="index.html"><img src="<?=ROOT?>/images/logo.png" alt=""></a></h1>
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; margin-right: auto; height: 60%;">
+                        <img src="<?= ROOT ?>/images/RecycoHub.png" style="height: 50%; border-radius: 99px; ">
+                        <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
+                    </div>
                 </div>
                 <div class="grid_8">
                     <nav>
@@ -47,15 +50,15 @@
                                         </ul>
                                     </li>
                                     <li><a href="#">Pellentesque</a></li>
-                               </ul>
+                                </ul>
                             </li>
                             <li><a href="index-1.html">About Us</a></li>
                             <li><a href="index-2.html">Recycling</a></li>
                             <li><a href="index-3.html">Services</a></li>
                             <li><a href="index-4.html">Environment</a></li>
                             <li><a href="index-5.html">Contacts</a></li>
-                            <li><a href="<?=ROOT?>/login">Login</a></li>
-                            <li><a href="<?=ROOT?>/Signup">SignUP</a></li>
+                            <li><a href="<?= ROOT ?>/login">Login</a></li>
+                            <li><a href="<?= ROOT ?>/Signup">SignUP</a></li>
                         </ul>
                     </nav>
                 </div>

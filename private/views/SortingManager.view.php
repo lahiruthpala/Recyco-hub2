@@ -55,13 +55,13 @@
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button id="stock"
+                                <button id="stock" onclick="loadComponent('CreateSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">New Sorting Job</Button>
-                                <button
+                                <button onclick="loadComponent('PendingSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Pending Sorting Jobs</Button>
-                                <button
+                                <button onclick="loadComponent('FinishedSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
                             </div>
@@ -73,7 +73,7 @@
                             </div>
                             <script>
                                 // Fetch the component separately and load it into the container
-                                fetch('Table')
+                                fetch('Table/SortingJobs')
                                     .then(response => response.text())
                                     .then(html => {
                                         document.getElementById('content').innerHTML = html;
@@ -106,6 +106,17 @@
     <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
     <script src="<?= ROOT ?>/js/sortingManage.js"></script>
+    <script>
+        function loadComponent(component) {
+            document.getElementById('tableTital').innerHTML = component.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+            fetch('Table/' + component)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('content').innerHTML = html;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
     <!-- endinject -->
 </body>
 

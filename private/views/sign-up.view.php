@@ -1,6 +1,83 @@
 <?php $this->view('include/head') ?>
-
+<head>
+	 <title>Home</title>
+	 <meta charset="utf-8">
+	 <meta name = "format-detection" content = "telephone=no" />
+	 <link rel="icon" href="<?= ROOT ?>/images/favicon.ico" type="image/x-icon">
+	 <link rel="shortcut icon" href="<?= ROOT ?>/images/favicon.ico" type="image/x-icon" />
+	 <link rel="stylesheet" href="<?= ROOT ?>/css/camera.css"> 
+	 <link rel="stylesheet" href="<?= ROOT ?>/css/style.css">
+	 <link rel="stylesheet" href="<?= ROOT ?>/css/font-awesome.css">
+	 <link href="<?= ROOT ?>/css/owl.carousel./css" rel="stylesheet">
+	 <script src="<?= ROOT ?>/js/jquery.js"></script>
+	 <script src="<?= ROOT ?>/js/jquery-migrate-1.2.1.js"></script>
+	 <script src="<?= ROOT ?>/js/jquery.easing.1.3.js"></script>
+	 <script src="<?= ROOT ?>/js/script.js"></script>
+	 <script src="<?= ROOT ?>/js/jquery.equalheights.js"></script>
+	 <script src="<?= ROOT ?>/js/jquery.ui.totop.js"></script>
+	 <script src="<?= ROOT ?>/js/owl.carousel.js"></script>      
+	 <script src="<?= ROOT ?>/js/superfish.js"></script>
+	 <script src="<?= ROOT ?>/js/jquery.mobilemenu.js"></script>
+	 <script src="<?= ROOT ?>/js/camera.js"></script>
+	 <!--[if (gt IE 9)|!(IE)]><!-->
+	 <script src="js/jquery.mobile.customized.min.js"></script>
+	 <!--<![endif]-->
+	 <!--[if lt IE 8]>
+		<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+		<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Asap:700' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
+	   <div style=' clear: both; text-align:center; position: relative;'>
+		 <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+		   <img src="http://storage.ie6countdown.com/assets/100/<?= ROOT ?>/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+		 </a>
+	  </div>
+	<![endif]-->
+	<!--[if lt IE 9]>
+		   <script src="js/html5shiv.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+	<![endif]-->
+		<script>
+			$(document).ready(function(){
+				jQuery('#camera_wrap').camera({
+					loader: true,
+					pagination: true,
+					minHeight: '200',
+					thumbnails: false,
+					height: '37.55208333333333%',
+					caption: true,
+					navigation: true,
+					fx:  'scrollBottom'
+				});
+				$("#owl").owlCarousel({
+					items : 7,
+					itemsDesktop : [1599,6],
+					itemsDesktopSmall : [1299, 5],
+					itemsTablet: [995, 4],
+					itemsTabletSmall: [767, 3],
+					itemsMobile : [479, 1],
+					lazyLoad : true,
+					pagination: false,
+					navigation : true
+				});
+				$("#owl1").owlCarousel({
+					items : 1,
+					itemsDesktop : [995,1],
+					itemsDesktopSmall : [767, 1],
+					itemsTablet: [700, 1],
+					itemsMobile : [479, 1],
+					lazyLoad : true,
+					pagination: true,
+					navigation : true
+				});
+				/*Back to Top*/
+				$().UItoTop({ easingType: 'easeOutQuart' });
+			 });
+		</script>
+	 </head>
 <body>
+<?php $this->view('include/WebHeader') ?>
     <div class="mdl-layout mdl-js-layout color--gray is-small-screen login">
         <main class="mdl-layout__content">
             <div class="mdl-card mdl-card__login mdl-shadow--2dp">

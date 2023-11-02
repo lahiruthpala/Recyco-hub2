@@ -47,7 +47,7 @@ class User extends Model
 
     public function make_UserID($data){
         do{
-            $data['User_ID'] = random_string(60);
+            $data['User_ID'] = random_string(6);
         }while(($this->where('User_ID',$data['User_ID'])));
         return $data;
     }

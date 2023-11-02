@@ -5,5 +5,5 @@
  */
 class CollectorModel extends Model
 {
-    protected $table = "pickup_request";
+    protected $table = "collector";
 }
