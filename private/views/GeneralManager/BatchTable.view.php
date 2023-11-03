@@ -29,16 +29,17 @@
 
                 <!-- Assuming you want to increment the ID for the buttons -->
                 <td class="mdl-data-table__cell--non-numeric">
-                    <button id="view<?= $id ?>"
+                    <button id="view<?= $id ?>" onclick="loadComponent('PendingInventory/<?= $row->Batch_ID ?>')"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                         style="border-radius: 99px;">View</button>
                 </td>
 
                 <td class="mdl-data-table__cell--non-numeric">
-                    <button id="Assign<?= $id ?>"
-                        onclick="window.location.href = 'http://localhost:8380/Recyco-hub2/private/views/Include/qrscaner/index.view.php'"
+                    <button
+                        onclick="window.location.href = 'http://localhost:8380/Recyco-hub2/private/views/Include/qrscaner/index.view.php?Batch_ID=<?= $row->Batch_ID ?>'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                         style="border-radius: 99px;">Assign</button>
+
                 </td>
 
                 <td class="mdl-data-table__cell--non-numeric">

@@ -66,14 +66,12 @@
                                     style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
                             </div>
                             <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">Pending Inventory</h1>
+                                <h1 class="mdl-card__title-text" id="tableTital">Sorting Jobs</h1>
                             </div>
-                            <div class="mdl-card__supporting-text no-padding">
-                                <section id="content"></section>
-                            </div>
+                            <section id="content"></section>
                             <script>
                                 // Fetch the component separately and load it into the container
-                                fetch('Table/SortingJobs')
+                                fetch('Table/PendingSortingJobs')
                                     .then(response => response.text())
                                     .then(html => {
                                         document.getElementById('content').innerHTML = html;
@@ -108,6 +106,7 @@
     <script src="<?= ROOT ?>/js/sortingManage.js"></script>
     <script>
         function loadComponent(component) {
+            console.log(component);
             document.getElementById('tableTital').innerHTML = component.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
             fetch('Table/' + component)
                 .then(response => response.text())

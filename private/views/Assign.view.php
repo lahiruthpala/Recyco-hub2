@@ -81,7 +81,8 @@
                                                     <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
                                                 </div>
                                                 <div class="mdl-card__supporting-text">
-                                                    <form class="form form--basic">
+                                                    <form class="form form--basic" action="<?= ROOT ?>/GeneralManager"
+                                                        method="POST">
                                                         <div class="mdl-grid">
                                                             <div
                                                                 class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
@@ -95,28 +96,26 @@
                                                                 <div
                                                                     class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                                                                     <input class="mdl-textfield__input" type="text"
-                                                                        value="Lakidu"
-                                                                        id="profile-floating-first-name">
+                                                                        value="Lakidu" id="profile-floating-first-name">
                                                                     <!-- <label class="mdl-textfield__label" for="profile-floating-first-name">First Name</label> -->
                                                                 </div>
                                                                 <div
                                                                     class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                                                                     <input class="mdl-textfield__input" type="text"
-                                                                        value="ABC-4645" id="profile-floating-last-name">
+                                                                        value="ABC-4645"
+                                                                        id="profile-floating-last-name">
                                                                     <!-- <label class="mdl-textfield__label" for="profile-floating-last-name">Last Name</label> -->
                                                                 </div>
                                                                 <div
                                                                     class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                                                                     <input class="mdl-textfield__input" type="text"
-                                                                        value="Colombo-5"
-                                                                        id="profile-floating-e-mail">
+                                                                        value="Colombo-5" id="profile-floating-e-mail">
                                                                     <!-- <label class="mdl-textfield__label" for="floating-e-mail">Email</label> -->
                                                                 </div>
                                                                 <div
                                                                     class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                                                                     <input class="mdl-textfield__input" type="text"
-                                                                        value="Active"
-                                                                        id="profile-floating-e-mail">
+                                                                        value="Active" id="profile-floating-e-mail">
                                                                     <!-- <label class="mdl-textfield__label" for="floating-e-mail">Email</label> -->
                                                                 </div>
                                                                 <button

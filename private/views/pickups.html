@@ -49,7 +49,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Arial+Rounded+MT+Bold" rel="stylesheet">
 	<style>
 		body {
@@ -85,7 +85,7 @@
 		.table {
 			border-collapse: separate;
 			font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
-			
+
 		}
 
 		.table-hover>tbody>tr:hover>td,
@@ -175,23 +175,22 @@
 			font-size: 0.875em;
 			line-height: 1.2;
 		}
+
 		button {
-          background-color:#04AA6D ;
-          color: white;
-          border: none;
-          padding: 6px 12px;
-          cursor: pointer;
-          border-radius: 4px;
-        }
+			background-color: #04AA6D;
+			color: white;
+			border: none;
+			padding: 6px 12px;
+			cursor: pointer;
+			border-radius: 4px;
+		}
+
 		/* Target all <td> elements within the table with class 'user-list' */
-.table.user-list tbody tr td {
-    font-family: "Arial Rounded MT Bold", "Arial", sans-serif;
-	
-	font-size: 16px;
-}
+		.table.user-list tbody tr td {
+			font-family: "Arial Rounded MT Bold", "Arial", sans-serif;
 
-
-
+			font-size: 16px;
+		}
 	</style>
 </head>
 
@@ -419,7 +418,7 @@
 									<th><span>Time</span></th>
 									<th class="text-center"><span>Status</span></th>
 									<th>&nbsp;</th>
-								
+
 								</tr>
 							</thead>
 							<tbody>
@@ -427,7 +426,7 @@
 									<td>
 										<i class="fas fa-truck-pickup fa-3x"></i>
 									</td>
-									<td >P1234</td>
+									<td>P1234</td>
 									<td>2023/08/08</td>
 									<td>12:30</td>
 									<td class="text-center">
@@ -525,15 +524,14 @@
 
 							</tbody>
 						</table>
-                        <script>
+						<script>
 							{
 								function viewDetails(pickupId) {
-										// Redirect to pickup_details.html with the pickup ID as a query parameter
-										window.location.href = `order.html?pickupID=${pickupId}`;
-									}
+									// Redirect to pickup_details.html with the pickup ID as a query parameter
+									window.location.href = `order.html?pickupID=${pickupId}`;
+								}
 							}
-							
-							</script>
+						</script>
 
 						<script data-cfasync="false"
 							src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

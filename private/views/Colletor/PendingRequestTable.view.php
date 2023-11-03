@@ -15,16 +15,16 @@
                 ?>
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <?= $row->Inventory_ID ?>
+                        <?= $row->pickupId?>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <?= $row->Weight ?>
+                        <?= $row->Weight?>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <?= $row->Type ?>
+                        <?= $row->waste_type?>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric"><span class="label label--mini color--green">
-                            <?= $row->Status ?>
+                            <?= $row->pickup_address?>
                         </span>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric"><button onclick="loadComponent('ViewInventory')"
@@ -32,10 +32,11 @@
                             style="border-radius: 99px;">View</button></td>
                     <td class="mdl-data-table__cell--non-numeric">
                         <button
-                            onclick="window.location.href = 'http://localhost:8380/Recyco-hub2/private/views/Include/qrscaner/index.view.php?Inventory_ID=<?= $row->Inventory_ID ?>'"
+                            onclick="window.location.href = 'http://localhost:8380/Recyco-hub2/private/views/Include/qrscaner/index.view.php'"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                            style="border-radius: 99px;">Assign</button>
-
+                            style="border-radius: 99px;">
+                            Assign
+                        </button>
                     </td>
 
                 </tr>

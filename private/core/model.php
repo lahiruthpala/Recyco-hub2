@@ -76,12 +76,11 @@ class Model extends Database
 		$keys = array_keys($data);
 		$columns = implode(',', $keys);
 		$values = implode(',:', $keys);
-
 		$query = "insert into $this->table ($columns) values (:$values)";
 		$this->query($query, $data);
 		return $data;
 	}
-	public function update($id, $data)
+	public function update($id, $data, $column)
 	{
 		$str = "";
 		foreach ($data as $key => $value) {
@@ -92,9 +91,8 @@ class Model extends Database
 		$str = trim($str, ",");
 
 		$data['id'] = $id;
-		$query = "update $this->table set $str where User_ID = :id";
+		$query = "update $this->table set $str where $column = :id";
 		// echo $query;
-
 		return $this->query($query, $data);
 	}
 	public function delete($id, $column)

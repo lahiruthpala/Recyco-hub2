@@ -74,7 +74,7 @@
     function redirect() {
       if (scanContents !== "") {
         var batchID = getParameterByName('Batch_ID');
-        var url = 'http://localhost:8380/Recyco-hub2/public/table/assign/' + batchID + '/' + scanContents;
+        var url = 'http://localhost:8380/Recyco-hub2/public/table/CreateSortingJobs/' +'/' + scanContents;
         window.location.href = url;
       } else {
         alert("Scan content is empty.");

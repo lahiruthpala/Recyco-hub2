@@ -10,7 +10,7 @@ class collector extends Controller
     function table(){
         $user = $this->load_model('PickUpRequestModel');
 		$data = $user->findAll();
-        $this->view('pickup table', ['rows'=>$data]);
+        $this->view('pickup_table', ['rows'=>$data]);
     }
 
     function details($id){
@@ -24,4 +24,10 @@ class collector extends Controller
     function declination(){
         $this->view('declination');
     }
+
+	function pendingpickups(){
+		$inventory = $this->load_model('PickUpRequestModel');
+		$data = $inventory->where('Status', 'Pending');
+		$this->view('Colletor/PendingRequestTable', ['rows'=>$data]);
+	}
 }

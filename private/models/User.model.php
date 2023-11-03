@@ -17,7 +17,6 @@ class User extends Model
         'UserName',
         'Email',
         'pwd',
-        'PhoneNo',
         'Address',
         'Role',
     ];

@@ -21,8 +21,6 @@ class Partner extends Controller
     {
         $errors = array();
         if ($id == null) {
-            print_r($_POST);
-            die;
             if (count($_POST) > 0) {
                 $articles = $this->load_model('Articles');
                 $articles->insert($_POST);
@@ -45,6 +43,45 @@ class Partner extends Controller
     function ArticleDelete($id)
     {
         $article = $this->load_model('Articles');
+        $article->delete($id, "Article_ID");
+        $data = $article->findAll();
+        $this->view("Partner/articles", ["articles" => $data]);
+    }
+
+    function Events()
+    {
+        $events = $this->load_model('Event');
+        $data = $events->findAll();
+        $this->view("Partner/events", ["articles" => $data]);
+    }
+
+    function addNewEvent($id = null)
+    {
+        $errors = array();
+        if ($id == null) {
+            if (count($_POST) > 0) {
+                $articles = $this->load_model('Event');
+                $articles->insert($_POST);
+                $this->redirect("Partner/events");
+            }
+            $this->view("Partner/newevent");
+        } else {
+            if (count($_POST) > 0) {
+                $articles = $this->load_model('Event');
+                $articles->insert($_POST);
+                $this->redirect("Partner/events");
+            }
+            $articles = $this->load_model('Event');
+            $data = $articles->first('Event_ID', $id);
+            $articles->delete($id, "Event_ID");
+            $this->view("Partner/newevent", ["article" => $data]);
+        }
+    }
+
+    function EventDelete($id)
+    {
+        $article = $this->load_model('Articles');
+        $article->delete($id, "Article_ID");
         $data = $article->findAll();
         $this->view("Partner/articles", ["articles" => $data]);
     }

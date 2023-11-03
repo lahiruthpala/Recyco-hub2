@@ -110,18 +110,18 @@
                                     <label class="mdl-textfield__label" for="name">UserName</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input class="mdl-textfield__input" type="text" id="pwd1" name="pwd1"
+                                    <input class="mdl-textfield__input" type="password" id="pwd1" name="pwd1"
                                         value="<?= get_var('pwd1') ?>">
                                     <label class="mdl-textfield__label" for="password">Password</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input class="mdl-textfield__input" type="text" id="pwd2" name="pwd2"
+                                    <input class="mdl-textfield__input" type="password" id="pwd2" name="pwd2"
                                         value="<?= get_var("pwd2") ?>">
                                     <label class="mdl-textfield__label" for="password">Password</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                                     <input class="mdl-textfield__input" type="text" id="e-mail" name="Email"
-                                        value="<?= get_var("email") ?>">
+                                        value="<?= get_var("Email") ?>">
                                     <label class="mdl-textfield__label" for="e-mail">Email</label>
                                 </div>
                                 <label

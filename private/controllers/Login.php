@@ -18,8 +18,18 @@ class Login extends Controller
 				$row = $row[0];
 				if (password_verify($_POST['pwd'], $row->pwd)) {
 					Auth::authenticate($row);
-					$this->redirect('sortingmanager');
-					return;
+					if (in_array(Auth::getRole(), ["sorting manager", "general manager"])){
+						$this->redirect('sortingmanager');
+						return;
+					}
+					if (in_array(Auth::getRole(), ["Partner"])){
+						$this->redirect('Partner');
+						return;
+					}
+					if (in_array(Auth::getRole(), ["customer"])){
+						$this->redirect('Home');
+						return;
+					}
 				}
 
 			}

@@ -3,11 +3,11 @@
 <body>
     <div class="mdl-layout mdl-js-layout color--white is-small-screen login">
         <header>
-            
+
         </header>
         <main class="mdl-layout__content">
             <form method="post">
-                <div class="mdl-card mdl-card__login mdl-shadow--2dp">
+                <div style="margin-top:100px" class="mdl-card mdl-card__login mdl-shadow--2dp">
                     <div class="mdl-card__supporting-text color--dark-gray">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
@@ -18,6 +18,18 @@
                                 <span class="login-secondary-text text-color--smoke">Enter fields to sign in to
                                     Recyco-HUB</span>
                             </div>
+                            <?php if (count($errors) > 0): ?>
+                                <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
+                                    <strong>Errors:</strong>
+                                    <?php foreach ($errors as $error): ?>
+                                        <br>
+                                        <?= $error ?>
+                                    <?php endforeach; ?>
+                                    <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </span>
+                                </div>
+                            <?php endif; ?>
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                                     <input type="email" placeholder="" name="Email" class="mdl-textfield__input">

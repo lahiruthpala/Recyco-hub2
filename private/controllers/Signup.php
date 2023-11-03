@@ -15,10 +15,8 @@ class Signup extends Controller
 				// $_POST['Date'] = date("Y-m-d H:i:s");
 				$_POST["Role"] = "customer";
 				$_POST["Address"] = "svdh656hd35";
-				$_POST["PhoneNo"] = "0112961220";
 				$_POST["pwd"] = $_POST["pwd1"];
 				$user->insert($_POST);
-				$user->
 				$this->redirect('login');
 			} else {
 				//errors
