@@ -18,7 +18,7 @@
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
                                 <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text">Inventory Breakdown</h2>
+                                    <h2 class="mdl-card__title-text">Sorted Items</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
                                     <div class="pie-chart__container">
@@ -30,7 +30,7 @@
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
                                 <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text">Inventory Breakdown</h2>
+                                    <h2 class="mdl-card__title-text">Current Utilization</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
                                     <div class="pie-chart__container">
@@ -42,7 +42,7 @@
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
                                 <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text">Inventory Breakdown</h2>
+                                    <h2 class="mdl-card__title-text">Sorting Efficiency</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
                                     <div class="pie-chart__container">
@@ -55,30 +55,29 @@
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button id="stock"
+                                <button id="stock" onclick="loadComponent('CreateSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
-                                <button
+                                    style="border-radius: 99px; margin-left: 1VW;">New Sorting Job</Button>
+                                <button onclick="loadComponent('PendingSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
-                                <button
+                                    style="border-radius: 99px; margin-left: 1VW;">Pending Sorting Jobs</Button>
+                                <button onclick="loadComponent('FinishedSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
-                                <button
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
-                                <button id="newstock"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: auto;"> Add New Stock</button>
+                                    style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
                             </div>
                             <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">Pending Inventory</h1>
+                                <h1 class="mdl-card__title-text" id="tableTital">Sorting Jobs</h1>
                             </div>
-                            <div class="mdl-card__supporting-text no-padding">
-                                <section id="content">
-                                    <!-- Dynamic content will be loaded here -->
-                                </section>
-                            </div>
+                            <section id="content"></section>
+                            <script>
+                                // Fetch the component separately and load it into the container
+                                fetch('Table/PendingSortingJobs')
+                                    .then(response => response.text())
+                                    .then(html => {
+                                        document.getElementById('content').innerHTML = html;
+                                    })
+                                    .catch(error => console.error('Error:', error));
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -105,6 +104,18 @@
     <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
     <script src="<?= ROOT ?>/js/sortingManage.js"></script>
+    <script>
+        function loadComponent(component) {
+            console.log(component);
+            document.getElementById('tableTital').innerHTML = component.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+            fetch('Table/' + component)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('content').innerHTML = html;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
     <!-- endinject -->
 </body>
 

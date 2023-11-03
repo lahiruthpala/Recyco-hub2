@@ -1,5 +1,16 @@
 <script>
-    alert("This is an inline JavaScript alert.");
+    document.getElementById('continue').addEventListener('click', function () {
+        // Use AJAX to load a new componen
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // Replace the content of the 'content' section with the new component
+                document.getElementById('content').innerHTML = this.responseText;
+            }
+        };
+        xhttp.open('GET', 'SortingManager/addNewInventory', true);
+        xhttp.send();
+    });
 </script>
 <div class="mdl-card mdl-card__login mdl-shadow--2dp">
     <div class="mdl-card__supporting-text color--dark-gray">

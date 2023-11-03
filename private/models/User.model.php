@@ -5,6 +5,7 @@
  */
 class User extends Model
 {
+    protected $primarykey = "=:UserID" ;
     protected $beforeInsert = [
         'hashPassword',
         'make_UserID',
@@ -12,10 +13,10 @@ class User extends Model
     ];
 
     protected $allowedColumns = [
+        'User_ID',
         'UserName',
         'Email',
         'pwd',
-        'PhoneNo',
         'Address',
         'Role',
     ];
@@ -31,7 +32,7 @@ class User extends Model
         if(strlen($DATA['pwd1']) < 6){
             $this->errors[] = 'Password must be at least 6 characters';
         }
-        if($this->where('email',$DATA['email'])){
+        if($this->where('Email',$DATA['Email'])){
             $this->errors[] = 'Email already exists';
         }
         if($this->where('UserName',$DATA['UserName'])){
@@ -44,9 +45,13 @@ class User extends Model
     }
 
     public function make_UserID($data){
+        do{
+            $data['User_ID'] = random_string(6);
+        }while(($this->where('User_ID',$data['User_ID'])));
         return $data;
     }
     public function hashPassword($data){
+        $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
         return $data;
     }
     public function OTP_verify($data){

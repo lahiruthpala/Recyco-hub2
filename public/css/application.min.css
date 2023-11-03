@@ -10047,7 +10047,7 @@ a {
 .getmdl-select .mdl-menu .mdl-menu__item,
 .mdl-textfield input,
 .mdl-textfield textarea {
-    color: black;
+    color: white;
     font-size: 16px;
     font-weight: 300
 }

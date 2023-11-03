@@ -3,12 +3,12 @@
 <body>
     <div class="mdl-layout mdl-js-layout color--white is-small-screen login">
         <header>
-            <?php $this->view('include/WebHeader') ?>
+
         </header>
         <main class="mdl-layout__content">
-            <form action="login.php" method="post">
-                <div class="mdl-card mdl-card__login mdl-shadow--2dp">
-                    <div class="mdl-card__supporting-text color--white">
+            <form method="post">
+                <div style="margin-top:100px" class="mdl-card mdl-card__login mdl-shadow--2dp">
+                    <div class="mdl-card__supporting-text color--dark-gray">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                 <span class="mdl-card__title-text text-color--smooth-gray">RecycoHUB</span>
@@ -18,13 +18,25 @@
                                 <span class="login-secondary-text text-color--smoke">Enter fields to sign in to
                                     Recyco-HUB</span>
                             </div>
+                            <?php if (count($errors) > 0): ?>
+                                <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
+                                    <strong>Errors:</strong>
+                                    <?php foreach ($errors as $error): ?>
+                                        <br>
+                                        <?= $error ?>
+                                    <?php endforeach; ?>
+                                    <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </span>
+                                </div>
+                            <?php endif; ?>
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="email" placeholder="" name="email" class="mdl-textfield__input">
+                                    <input type="email" placeholder="" name="Email" class="mdl-textfield__input">
                                     <label class="mdl-textfield__label" for="e-mail">Email</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="password" placeholder="" name="password" class="mdl-textfield__input">
+                                    <input type="password" placeholder="" name="pwd" class="mdl-textfield__input">
                                     <label class="mdl-textfield__label" for="password">Password</label>
                                 </div>
                                 <a href="forgot-password.html" class="login-link">Forgot password?</a>

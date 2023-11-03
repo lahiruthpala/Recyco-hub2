@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 600px; /* Increased width */
+      display: flex;
+    }
+
+    .left-side {
+      flex: 1; /* Take up 1/3 of the container width */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Center content vertically */
+      align-items: center; /* Center content horizontally */
+    }
+
+    .right-side {
+      flex: 2; /* Take up 2/3 of the container width */
+      padding: 20px;
+      text-align: left; /* Align the content to the left */
+    }
+
+    .delivery-image {
+      max-width: 100%;
+      height: 150px;
+    }
+
+    .customer-id {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .tile {
+      margin-bottom: 20px;
+    }
+
+    .tile label {
+      font-weight: bold;
+    }
+
+    .tile input,
+    .tile select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .tile button {
+      padding: 10px 0; /* Fixed height and auto width */
+      width: 100%; /* Width set to 100% */
+      background-color: #3cc038;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <img src="man.png" alt="Delivery Image" class="delivery-image">
+      <p class="collector-id">Customer ID: ABC12345</p> <!-- Add the Customer ID here -->
+    </div>
+    <div class="right-side">
+      <div class="tile">
+        <a href="completedpickups.html">
+          <button type="button" id="generateQRButton1">Completed Pickups</button>
+        </a>
+      </div>
+      <div class="tile">
+        <a href="rejectedpickups.html">
+          <button type="button" id="generateQRButton2">Rejected Pickups</button>
+        </a>
+      </div>
+      <div class="tile">
+        <a href="acceptedpickups.html">
+          <button type="button" id="generateQRButton3">Accepted Pickups</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
