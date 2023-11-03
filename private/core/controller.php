@@ -5,12 +5,11 @@
  */
 class Controller
 {
-	
 	public function view($view,$data = array())
 	{
 		extract($data);
 		// code...
-		echo $view;
+		// echo $view;
 		if(file_exists("../private/views/" . $view . ".view.php"))
 		{
 			require ("../private/views/" . $view . ".view.php");
@@ -27,5 +26,9 @@ class Controller
 		}else{
 			require ("../private/views/404.view.php");
 		}
+	}
+
+	public function redirect($link){
+		header("location: " . ROOT . "/" . trim($link, '/'));
 	}
 }
