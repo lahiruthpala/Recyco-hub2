@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/css/lib/getmdl-select.min.css">
     <link rel="stylesheet" href="<?= ROOT ?>/css/lib/nv.d3.min.css">
     <link rel="stylesheet" href="<?= ROOT ?>/css/application.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- endinject -->
 
 </head>

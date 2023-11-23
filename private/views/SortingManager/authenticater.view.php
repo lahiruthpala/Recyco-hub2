@@ -8,7 +8,7 @@
                 document.getElementById('content').innerHTML = this.responseText;
             }
         };
-        xhttp.open('GET', 'SortingManager/addNewInventory', true);
+        xhttp.open('GET', 'GeneralManager/addNewInventory', true);
         xhttp.send();
     });
 </script>

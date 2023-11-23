@@ -7,9 +7,7 @@ class User extends Model
 {
     protected $primarykey = "=:UserID" ;
     protected $beforeInsert = [
-        'hashPassword',
         'make_UserID',
-        'OTP_verify'
     ];
 
     protected $allowedColumns = [
@@ -48,13 +46,6 @@ class User extends Model
         do{
             $data['User_ID'] = random_string(6);
         }while(($this->where('User_ID',$data['User_ID'])));
-        return $data;
-    }
-    public function hashPassword($data){
-        $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
-        return $data;
-    }
-    public function OTP_verify($data){
         return $data;
     }
 }

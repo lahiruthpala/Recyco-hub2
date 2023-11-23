@@ -6925,7 +6925,7 @@ fieldset[disabled] .mdl-textfield .mdl-textfield__label {
 
     .mdl-cell--6-col,
     .mdl-cell--6-col-tablet.mdl-cell--6-col-tablet {
-        width: calc(50% - 32px)
+        width: calc(100% - 32px)
     }
 
     .mdl-grid--no-spacing>.mdl-cell--6-col,

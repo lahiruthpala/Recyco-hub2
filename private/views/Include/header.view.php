@@ -9,7 +9,7 @@
                     <a href = "<?=ROOT?>/Dashboard">Dashboard</a>
                     <a href = "<?=ROOT?>/GeneralManager">Inventory</a>
                     <a href = "<?=ROOT?>/SortingManager">Sorting Jobs</a>
-                    <a href = "<?=ROOT?>/Partner">Partnership</a>
+                    <a href = "<?=ROOT?>/GeneralManager/partnership">Partnership</a>
                     <a href = "<?=ROOT?>/collector">Collection</a>
                     <a href = "<?=ROOT?>/Dashboard">Store</a>
                 </div>

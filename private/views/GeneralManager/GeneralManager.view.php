@@ -52,19 +52,16 @@
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button onclick="loadComponent('InventoryBatch')"
+                                <button onclick="loadComponent('Table/InventoryBatch')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
-                                <button onclick="loadComponent('RawInventory')"
+                                <button onclick="loadComponent('Table/RawInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Raw Inventory</Button>
-                                <!-- <button id="newstock"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button> -->
-                                <button onclick="loadComponent('SortedInventory')"
+                                <button onclick="loadComponent('Table/SortedInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Sorted Inventory</Button>
-                                <button id="newstock"
+                                <button onclick="loadComponent('GeneralManager/Generate')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;"> Add New Stock</button>
                             </div>
@@ -108,13 +105,22 @@
     <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
-    <script src="<?= ROOT ?>/js/sortingManage.js"></script>
-    <script src="<?= ROOT ?>/js/GeneralManager.js"></script>
     <script>
         function loadComponent(component) {
             console.log(component);
-            document.getElementById('tableTital').innerHTML = component.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+            document.getElementById('tableTital').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
             fetch('Table/' + component)
+                .thena(response => response.text())
+                .then(html => {
+                    document.getElementById('content').innerHTML = html;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+    <script>
+        function loadComponent(component) {
+            console.log(component);
+            fetch(component)
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('content').innerHTML = html;
@@ -132,7 +138,6 @@
                 })
                 .catch(error => console.error('Error:', error));
         }
-    </script>
     </script>
     <!-- endinject -->
 </body>
