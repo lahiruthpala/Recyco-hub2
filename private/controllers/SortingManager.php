@@ -1,10 +1,26 @@
 <?php
 class SortingManager extends Controller
 {
-	
+
+	function verify(){
+		if(Auth::getRole() == "sorting manager"){
+			return true;
+		}else{
+			$this->redirect('login');
+		}
+	}
 	function index()
 	{
-		// code...
-		$this->view('SortingManager');
+		if($this->verify()){
+			$this->view('SortingManager/SortingManager');
+		}
+	}
+
+	function authenticate(){
+		$this->view("SortingManager/authenticater");
+	}
+
+	function table(){
+		$this->view("SortingManager/table");
 	}
 }

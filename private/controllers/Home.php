@@ -4,8 +4,7 @@ class Home extends Controller
 	
 	function index()
 	{
-		// code...
-		$this->view('Collector');
+		$this->view('webpage/home');
 	}
 }
 ?>

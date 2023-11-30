@@ -1,7 +1,6 @@
 <?php
 class Profile extends Controller
 {
-	
 	function index()
 	{
 		// code...

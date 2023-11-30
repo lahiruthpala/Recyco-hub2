@@ -6,12 +6,12 @@
                     <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
                 </div>
                 <div style="display: flex; margin-right:auto; gap:30px">
-                    <span>Dashboard</span>
-                    <span>Inventory</span>
-                    <span>Sorting Jobs</span>
-                    <span>Partnership</span>
-                    <span>Collection</span>
-                    <span>Store</span>
+                    <a href = "<?=ROOT?>/Dashboard">Dashboard</a>
+                    <a href = "<?=ROOT?>/GeneralManager">Inventory</a>
+                    <a href = "<?=ROOT?>/SortingManager">Sorting Jobs</a>
+                    <a href = "<?=ROOT?>/GeneralManager/partnership">Partnership</a>
+                    <a href = "<?=ROOT?>/collector">Collection</a>
+                    <a href = "<?=ROOT?>/Dashboard">Store</a>
                 </div>
                 <div></div>
                 <!-- Search-->
@@ -151,7 +151,7 @@
                 </ul>
 
                 <div class="avatar-dropdown" id="icon">
-                    <span>Luke</span>
+                    <span><?=Auth::getUserName()?></span>
                     <img src="<?=ROOT?>/images/Icon_header.png">
                 </div>
                 <!-- Account dropdawn-->
@@ -160,8 +160,8 @@
                     <li class="mdl-list__item mdl-list__item--two-line">
                         <span class="mdl-list__item-primary-content">
                             <span class="material-icons mdl-list__item-avatar"></span>
-                            <span>Luke</span>
-                            <span class="mdl-list__item-sub-title">Luke@skywalker.com</span>
+                            <span><?=Auth::getUserName()?></span>
+                            <span class="mdl-list__item-sub-title"><?=Auth::getEmail()?></span>
                         </span>
                     </li>
                     <li class="list__item--border-top"></li>
@@ -193,7 +193,7 @@
                             Settings
                         </span>
                     </li>
-                    <a href="login.html">
+                    <a href="<?=ROOT?>/Logout">
                         <li class="mdl-menu__item mdl-list__item">
                             <span class="mdl-list__item-primary-content">
                                 <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
@@ -216,7 +216,7 @@
                         Support
                     </a>
                     <li class="mdl-menu__item">
-                        F.A.Q.
+                        Log out
                     </li>
                 </ul>
             </div>

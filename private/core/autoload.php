@@ -1,7 +1,9 @@
 <?php
 
+require "Auth.php";
 require "config.php";
-require "controller.php";
-require "app.php";
+require "helper.php";
 require "database.php";
-?>
+require "controller.php";
+require "model.php";
+require "app.php";
