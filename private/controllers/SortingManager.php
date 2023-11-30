@@ -3,7 +3,7 @@ class SortingManager extends Controller
 {
 
 	function verify(){
-		if(Auth::getRole() == "sorting manager"){
+		if(Auth::getRole() == "SortingManager"){
 			return true;
 		}else{
 			$this->redirect('login');

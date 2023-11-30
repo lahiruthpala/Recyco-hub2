@@ -1,4 +1,7 @@
 <?php $this->view('include/head') ?>
+<?php require_once(APP_ROOT . "/controllers/GeneralManager.php");
+$generalmanager = new GeneralManager();
+?>
 
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
@@ -39,19 +42,19 @@
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button onclick="loadComponent('partnershipTable')"
+                                <button onclick="loadComponent('PartnerTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Partnerships</Button>
-                                <button onclick="loadComponent('Table/RawInventory')"
+                                <button onclick="loadComponent('EventsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Events</Button>
-                                <button onclick="loadComponent('Table/RawInventory')"
+                                <button onclick="loadComponent('ArticlesTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Articals</Button>
-                                <button onclick="loadComponent('Table/SortedInventory')"
+                                <button onclick="loadComponent('ComplaintsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Complaints</Button>
-                                <button onclick="loadComponent('GeneralManager/Generate')"
+                                <button onclick="loadComponent('NewPartnership')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;">New Partnerships</button>
                             </div>
@@ -78,107 +81,11 @@
                                     style="border-radius: 99px; margin-left: auto;"><i
                                         class="material-icons">keyboard_arrow_right</i></button>
                             </div>
-
-
-                            <div class="mdl-card__supporting-text no-padding">
-                                <section id="content">
-                                <table class="mdl-data-table mdl-js-data-table"
-                                        style="width: 100%; table-layout: fixed;">
-                                        <thead>
-                                            <tr>
-                                                <th class="mdl-data-table__cell--non-numeric">Partnership ID</th>
-                                                <th class="mdl-data-table__cell--non-numeric">Company Name</th>
-                                                <th class="mdl-data-table__cell--non-numeric"
-                                                    style="padding-left: 70px">Events</th>
-                                                <th class="mdl-data-table__cell--non-numeric"
-                                                    style="padding-left: 70px">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            if (is_array($rows) && !empty($rows)) {
-                                                foreach ($rows as $row) {
-                                                    $array = array_map('intval', explode(',', $row->Events));
-                                                    $result = '[' . implode(',', $array) . ']';
-                                                    ?>
-                                                    <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">
-                                                            <?= $row->Partner_ID ?? '' ?>
-                                                        </td>
-                                                        <td class="mdl-data-table__cell--non-numeric">
-                                                            <?= $row->Company_Name ?? '' ?>
-                                                        </td>
-                                                        <td class="mdl-data-table__cell--non-numeric">
-                                                            <canvas class="miniChart" width="130" height="40"
-                                                                data-chart-data="<?= $result ?>"></canvas>
-                                                        </td>
-                                                        <td class="mdl-data-table__cell--non-numeric"
-                                                            style="padding-left: 70px;">
-                                                            <span
-                                                                class="label label--mini <?php echo $row->Status === 'Active' ? 'color--green' : 'color--red'; ?>">
-                                                                <?= $row->Status ?? '' ?>
-                                                            </span>
-                                                        </td>
-
-                                                        <td class="mdl-data-table__cell--non-numeric">
-                                                            <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
-                                                                <!-- Replace 'your_id_value' with the actual ID -->
-                                                                <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                                                                    style="border-radius: 99px;">View</button>
-                                                            </form>
-
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            } else {
-                                                // If $rows is not an array or is empty
-                                                echo "No data available.";
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                    <script>
-                                        // Get all mini chart canvas elements
-                                        var miniChartElements = document.getElementsByClassName('miniChart');
-
-                                        // Loop through each mini chart element and create a mini line chart
-                                        for (var i = 0; i < miniChartElements.length; i++) {
-                                            var miniChartElement = miniChartElements[i];
-                                            var randomData = JSON.parse(miniChartElement.getAttribute('data-chart-data'));
-
-                                            // Create a mini line chart for the current company
-                                            new Chart(miniChartElement.getContext('2d'), {
-                                                type: 'line',
-                                                data: {
-                                                    labels: Array.from({ length: 10 }, (_, index) => ``),
-                                                    datasets: [{
-                                                        borderColor: 'rgb(75, 192, 192)',
-                                                        data: randomData,
-                                                    }]
-                                                },
-                                                options: {
-                                                    scales: {
-                                                        y: {
-                                                            beginAtZero: true
-                                                        }
-                                                    },
-                                                    plugins: {
-                                                        legend: {
-                                                            display: false,
-                                                        },
-                                                        title: {
-                                                            display: false,
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    </script>
-                                </section>
-                            </div>
+                            <?php $generalmanager->partnershipTable(); ?>
+                            <?php $generalmanager->partnerArticals(); ?>
+                            <?php $generalmanager->partnerEvents(); ?>
+                            <?php //$generalmanager->complaints(); ?>
+                            <?php $generalmanager->NewPartnership() ?>
                         </div>
                     </div>
                 </div>
@@ -187,52 +94,24 @@
         </main>
 
     </div>
+    
+    <script>
+        function loadComponent(component) {
+            document.getElementById('tableTitle').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+            var sections = document.getElementsByClassName('mdl-card__supporting-text no-padding');
+            // Hide all sections
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
 
-    <!-- inject:js -->
-    <script src="<?= ROOT ?>/js/d3.min.js"></script>
-    <script src="<?= ROOT ?>/js/getmdl-select.min.js"></script>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
-    <script src="<?= ROOT ?>/js/nv.d3.min.js"></script>
-    <script src="<?= ROOT ?>/js/layout/layout.min.js"></script>
-    <script src="<?= ROOT ?>/js/scroll/scroll.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/discreteBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/linePlusBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/stackedBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/employer-form/employer-form.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/line-chart/line-charts-nvd3.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/map/maps.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
+            var partnerTableSection = document.getElementById(component);
+            partnerTableSection.style.display = 'block';
+            console.log(sections);
+            console.log()
+        }
+    </script>
+    <script src="<?= ROOT ?>/js/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        function loadComponent(component) {
-            console.log(component);
-            document.getElementById('tableTital').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-            fetch('Table/' + component)
-                .thena(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-    <script>
-        function loadComponent(component) {
-            console.log(component);
-            fetch(component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-
-                const partnerScript =document.createElement("script");
-                partnerScript.setAttribute("src","<?= ROOT ?>/js/chart.js");
-                document.body.appendChild(partnerScript);
-        }
-    </script>
-    <!-- endinject -->
 </body>
 
 </html>
