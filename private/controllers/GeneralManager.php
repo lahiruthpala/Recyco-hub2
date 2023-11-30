@@ -3,7 +3,7 @@ class GeneralManager extends Controller
 {
     function verify()
     {
-        if (Auth::getRole() == "sorting manager") {
+        if (Auth::getRole() == "SortingManager") {
             return true;
         } else {
             $this->redirect('login');
@@ -45,27 +45,63 @@ class GeneralManager extends Controller
 
     function partnership()
     {
-        $PartnerModel = $this->load_model('PartnerModel');
-        $partners = $PartnerModel->findAll(1, 10, "Partner_ID");
-        $this->view('GeneralManager/Partnershipreview', ['rows' => $partners]);
+        $this->view('GeneralManager/Partnershipreview');
     }
 
     function partnershipTable()
     {
-        $PartnerModel = $this->load_model('PartnerModel');
-        $partners = $PartnerModel->findAll(1, 10, "Partner_ID");
+        $Partners = $this->load_model('PartnerModel');
+        $partners = $Partners->findAll(1, 10, "Partner_ID");
         $this->view('GeneralManager/Partner/PartnerTable', ['rows' => $partners]);
     }
 
     function partner()
     {
-        $PartnerModel = $this->load_model('PartnerModel');
-        $partner = $PartnerModel->first("Partner_ID", $_POST['id']);
-        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner]);
+        $partner = $this->load_model('PartnerModel');
+        $remarks = $this->load_model('Remarks');
+        $contact = $this->load_model('PartnerContact');
+        $partner = $partner->first("Partner_ID", $_POST['id']);
+        $remarks = $remarks->where("Partner_ID", $_POST['id']);
+        $contact = $contact->where("Partner_ID", $_POST['id']);
+        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks'=>$remarks, 'contact'=>$contact]);
     }
 
-    function info()
+    function partnerEvents()
     {
-        $this->view("GeneralManager/Partner/info");
+        $events = $this->load_model('Event');
+        $events = $events->findAll(1, 10, "Publish_Date");
+        $this->view('GeneralManager/Partner/Events', ['rows' => $events]);
+    }
+    function partnerArticals()
+    {
+        $articals = $this->load_model('Articles');
+        $articals = $articals->findAll(1, 10, "Submition_Date");
+        $this->view('GeneralManager/Partner/Articles', ['rows' => $articals]);
+    }
+
+    function complaints()
+    {
+        $events = $this->load_model('Event');
+        $events = $events->findAll(1, 10, "Submition_Date");
+        $this->view('GeneralManager/Partner/complaints', ['rows' => $events]);
+    }
+
+    function collector(){
+        $this->view('GeneralManager/Collector');
+    }
+
+    function NewPartnership(){
+        $NewPartnership = $this->load_model('PendingPartnership');
+        $NewPartnership = $NewPartnership->findAll(1, 10, "Application_Date");
+        $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
+    }
+
+    function PartnershipReview($id){
+        if($id == null){
+            return;
+        }
+        $NewPartnership = $this->load_model('PendingPartnership');
+        $NewPartnership = $NewPartnership->first("Application_ID", $id);
+        $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
     }
 }

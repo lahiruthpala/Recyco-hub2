@@ -15,13 +15,15 @@
                         <div class="mdl-grid">
                             <div
                                 class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="firstName" name="firstName" value="" required/>
+                                <input class="mdl-textfield__input" type="text" id="firstName" name="firstName" value=""
+                                    required />
                                 <label class="mdl-textfield__label" for="firstName">First name</label>
                             </div>
 
                             <div
                                 class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="LastName" name="LastName" value="" />
+                                <input class="mdl-textfield__input" type="text" id="LastName" name="LastName"
+                                    value="" />
                                 <label class="mdl-textfield__label" for="secondName">Last name</label>
                             </div>
                         </div>
@@ -31,11 +33,12 @@
                             <div
                                 class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
                                 <input class="mdl-textfield__input" value="" type="text" id="gender" readonly
-                                    tabIndex="-1" name="LastName"/>
+                                    tabIndex="-1" name="LastName" />
 
                                 <label class="mdl-textfield__label" for="gender">Gender</label>
 
-                                <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown" for="gender" name="gender">
+                                <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown" for="gender"
+                                    name="gender">
                                     <li class="mdl-menu__item">Male</li>
                                     <li class="mdl-menu__item">Female</li>
                                 </ul>
@@ -51,11 +54,11 @@
                         <h3>Contacts</h3>
 
                         <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--9-col input-group">
+                            <div class="mdl-cell mdl-cell--9-col input-group" style="display: flex;">
                                 <i class="material-icons pull-left">call</i>
-                                <div class="mdl-textfield mdl-js-textfield pull-left">
-                                    <input class="mdl-textfield__input" type="text" id="phone" name="phone" required
-                                        oninput="updateSubmitButton()">
+                                <h6 style="width:5%; margin-right:5%; margin-top: 8px;">+94</h6>
+                                <div class="mdl-textfield mdl-js-textfield pull-left" style="width:80%">
+                                    <input class="mdl-textfield__input" type="text" id="phone" name="phone" required>
                                     <label class="mdl-textfield__label" for="phone">Contact Number</label>
                                 </div>
                             </div>
@@ -67,7 +70,7 @@
 
                                 <div class="mdl-textfield mdl-js-textfield pull-left">
                                     <input class="mdl-textfield__input" type="text" id="Email"
-                                        value="lahiruthpala@gmail.com" readonly name="Email"/>
+                                        value="lahiruthpala@gmail.com" readonly name="Email" />
                                     <label class="mdl-textfield__label" for="email">Email</label>
                                 </div>
                             </div>
@@ -77,7 +80,7 @@
                             <div class="mdl-cell mdl-cell--9-col input-group">
                                 <i class="material-icons pull-left">place</i>
                                 <div class="mdl-textfield mdl-js-textfield pull-left">
-                                    <input class="mdl-textfield__input" type="text" id="address" name="address"/>
+                                    <input class="mdl-textfield__input" type="text" id="address" name="address" />
                                     <label class="mdl-textfield__label" for="address">Address</label>
                                 </div>
                             </div>
@@ -88,7 +91,8 @@
                         <h3>Special Notes</h3>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" rows="3" id="notes"name="notes"></textarea>
+                            <textarea class="mdl-textfield__input" type="text" rows="3" id="notes"
+                                name="notes"></textarea>
                             <label class="mdl-textfield__label" for="AboutMe"></label>
                         </div>
                     </div>

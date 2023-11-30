@@ -1,4 +1,5 @@
 <?php $this->view('include/head') ?>
+
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
         <header>
@@ -109,37 +110,29 @@
                                 <button onclick="loadComponent('info')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Info</Button>
-                                <button onclick="loadComponent('Table/RawInventory')"
+                                <button onclick="loadComponent('Articals')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Articals</Button>
-                                <button onclick="loadComponent('Table/SortedInventory')"
+                                <button onclick="loadComponent('Events')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Events</Button>
-                                <button onclick="loadComponent('GeneralManager/Generate')"
+                                <button onclick="loadComponent('Complaints')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;">Complaints</button>
                             </div>
                             <div class="mdl-card__title">
                                 <h1 id="tableTital" class="mdl-card__title-text">Info</h1>
                             </div>
-                            <div class="mdl-card__supporting-text no-padding">
-                                <section id="content"></section>
-                            </div>
-                            <!-- <script>
-                                // Fetch the component separately and load it into the container
-                                fetch('Table/InventoryBatch')
-                                    .then(response => response.text())
-                                    .then(html => {
-                                        document.getElementById('content').innerHTML = html;
-                                    })
-                                    .catch(error => console.error('Error:', error));
-                            </script> -->
+                            <?php
+                                $this->view("GeneralManager/Partner/info", ['partner' => $partner, 'remarks'=>$remarks, 'contact'=>$contact]);
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
+    </div>
 
-        </main>
+    </main>
 
     </div>
 
