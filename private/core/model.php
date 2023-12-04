@@ -47,15 +47,23 @@ class Model extends Database
 		return $data;
 	}
 
-	public function findAll()
+	public function findAll($pageNumber = 1, $pageSize = 10, $orderByColumn = 'id')
 	{
-		$query = "select * from $this->table";
+		$offset = ($pageNumber - 1) * $pageSize;
+		$query = "SELECT * FROM $this->table ORDER BY $orderByColumn LIMIT $pageSize OFFSET $offset";
 		return $this->query($query);
 	}
 
 	public function insert($data)
 	{
 
+		//run functions before insert
+		if (property_exists($this, 'beforeInsert')) {
+			foreach ($this->beforeInsert as $func) {
+				$data = $this->$func($data);
+			}
+		}
+		
 		//remove unwanted columns
 		if (property_exists($this, 'allowedColumns')) {
 			foreach ($data as $key => $column) {
@@ -64,13 +72,6 @@ class Model extends Database
 				}
 			}
 
-		}
-
-		//run functions before insert
-		if (property_exists($this, 'beforeInsert')) {
-			foreach ($this->beforeInsert as $func) {
-				$data = $this->$func($data);
-			}
 		}
 
 		$keys = array_keys($data);

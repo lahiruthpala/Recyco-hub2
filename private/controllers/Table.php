@@ -69,6 +69,7 @@ class Table extends Controller
 
 	function CreateSortingJobs($inventory = null)
 	{
+		$errors = array();
 		// $inventory = $this->load_model('SortingJobModel');
 		if ($inventory == null) {
 			$this->view('SortingManager/newsortingjob', ['inventories' => $inventory]);
@@ -81,10 +82,14 @@ class Table extends Controller
 					$articles->update($row, $arr, "Inventory_ID");
 				}
 				$articles = $this->load_model('SortingJobModel');
-				$articles->insert($_POST);
-				$this->redirect("SortingManager");
+				if (password_verify($_POST['pwd'], Auth::getpwd())){
+					$articles->insert($_POST);
+					$this->redirect("SortingManager");
+				}else{
+					$this->view('SortingManager/newsortingjob', ['errors' => $errors]);
+				}
 			}
-			$this->view('SortingManager/newsortingjob2', ['inventories' => $inventory]);
+			$this->view('SortingManager/newsortingjob', ['inventories' => $inventory]);
 		}
 	}
 	function qr()
