@@ -4,7 +4,11 @@ class collector extends Controller
 	function index()
 	{
 		// code...
-		$this->view('Collector');
+        $pickup = $this->load_model('PickUpRequestModel');
+        // Auth::getCollector_ID
+        $pickup = $pickup->where("Collector_ID", "25435");
+        
+        $this->view('Collector/collector',  ['rows'=>$pickup]);
 	}
 
     function table(){
@@ -16,11 +20,18 @@ class collector extends Controller
     function details($id){
         $user = $this->load_model('PickUpRequestModel');
 		$data = $user->first('pickupId', $id);
-        $this->view('pickup details', ['pickup'=>$data]);
+        $this->view('Collector/new', ['pickup'=>$data]);
     }
-    function confirmation(){
-        $this->view('confirmation');
+    public function inventory()
+    {
+        $pickup = $this->load_model('RawInvnetoryModel');
+        $pickup = $pickup->where("collectorId", "25435");
+       
+        $this->view('Collector/inventory', ['rows' => $pickup]);
     }
+    
+  
+    
     function declination(){
         $this->view('declination');
     }
@@ -30,4 +41,25 @@ class collector extends Controller
 		$data = $inventory->where('Status', 'Pending');
 		$this->view('Colletor/PendingRequestTable', ['rows'=>$data]);
 	}
+
+    function jobs($id, $type){
+        $pickup = $this->load_model('PickUpRequestModel');
+        $completionDate = $_POST['completion_date'] ?? date('Y-m-d');
+        // Auth::getCollector_ID
+        $arr = [];
+        $arr['Status'] = $type.'ed';
+        $arr['Completeddate'] = $completionDate;
+        $data = $pickup->Update($id, $arr, "pickupId");
+        $this->index();
+    }
+    function inven($id, $type){
+        $in = $this->load_model('RawInvnetoryModel');
+       
+        $arr = [];
+        $arr['Inventorystatus'] = $type;
+      
+        $data = $in->Update($id, $arr, "InventoryId");
+        $this->inventory();
+       
+    }
 }
