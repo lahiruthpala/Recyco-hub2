@@ -6,7 +6,6 @@
                 <th class="mdl-data-table__cell--non-numeric">Commpany_Name</th>
                 <th class="mdl-data-table__cell--non-numeric">Application Date</th>
                 <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
         <tbody>

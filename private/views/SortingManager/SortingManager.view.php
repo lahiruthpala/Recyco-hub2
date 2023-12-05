@@ -1,4 +1,6 @@
 <?php $this->view('include/head') ?>
+<?php require_once(APP_ROOT . "/controllers/SortingManager.php");
+$sortingManager = new SortingManager(); ?>
 
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
@@ -55,29 +57,24 @@
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button id="stock" onclick="loadComponent('CreateSortingJobs')"
+                                <button id="stock" onclick="loadComponent('newsortingjobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">New Sorting Job</Button>
-                                <button onclick="loadComponent('PendingSortingJobs')"
+                                <button onclick="loadComponent('SortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Pending Sorting Jobs</Button>
-                                <button onclick="loadComponent('FinishedSortingJobs')"
+                                <button onclick="loadComponent('SortedJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
                             </div>
                             <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text" id="tableTital">Sorting Jobs</h1>
+                                <h1 class="mdl-card__title-text" id="tableTitle">Sorting Jobs</h1>
                             </div>
-                            <section id="content"></section>
-                            <script>
-                                // Fetch the component separately and load it into the container
-                                fetch('Table/PendingSortingJobs')
-                                    .then(response => response.text())
-                                    .then(html => {
-                                        document.getElementById('content').innerHTML = html;
-                                    })
-                                    .catch(error => console.error('Error:', error));
-                            </script>
+                            <section id="content">
+                                <?php $sortingManager->CreateSortingJobs(); ?>
+                                <?php $sortingManager->PendingSortingJobs(); ?>
+                                <?php $sortingManager->SortedJobs(); ?>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -103,20 +100,22 @@
     <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
-    <script src="<?= ROOT ?>/js/sortingManage.js"></script>
     <script>
         function loadComponent(component) {
-            console.log(component);
-            document.getElementById('tableTital').innerHTML = component.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-            fetch('Table/' + component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
+            var sections = document.getElementsByClassName('mdl-card__supporting-text no-padding');
+            document.getElementById('tableTitle').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+            // Hide all sections
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+                if (isScannerActive) {
+                    scanner.stop();
+                }
+            }
+
+            var partnerTableSection = document.getElementById(component);
+            partnerTableSection.style.display = 'block';
         }
     </script>
-    <!-- endinject -->
 </body>
 
 </html>

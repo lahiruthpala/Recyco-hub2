@@ -8,7 +8,6 @@ class Login extends Controller
 	public function userHome()
 	{
         $allowedRoles = ["SortingManager", "generalmanager", "Partner", "customer"];
-        
         if (in_array(Auth::getRole(), $allowedRoles)) {
             $this->redirect(strtolower(Auth::getRole()));
             return;
