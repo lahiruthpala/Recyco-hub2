@@ -50,7 +50,7 @@ $generalmanager = new GeneralManager();
                                     style="border-radius: 99px; margin-left: 1VW;">Events</Button>
                                 <button onclick="loadComponent('ArticlesTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Articals</Button>
+                                    style="border-radius: 99px; margin-left: 1VW;">Articles</Button>
                                 <button onclick="loadComponent('ComplaintsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Complaints</Button>
@@ -82,7 +82,7 @@ $generalmanager = new GeneralManager();
                                         class="material-icons">keyboard_arrow_right</i></button>
                             </div>
                             <?php $generalmanager->partnershipTable(); ?>
-                            <?php $generalmanager->partnerArticals(); ?>
+                            <?php $generalmanager->partnerArticle(); ?>
                             <?php $generalmanager->partnerEvents(); ?>
                             <?php $generalmanager->complaints(); ?>
                             <?php $generalmanager->NewPartnership(); ?>

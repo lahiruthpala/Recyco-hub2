@@ -74,16 +74,16 @@ class GeneralManager extends Controller
         $events = $events->findAll(1, 10, "Publish_Date");
         $this->view('GeneralManager/Partner/Events', ['rows' => $events]);
     }
-    function partnerArticals()
+    function partnerArticle()
     {
-        $articals = $this->load_model('Articles');
-        $articals = $articals->findAll(1, 10, "Publish_Date");
-        $this->view('GeneralManager/Partner/Articles', ['rows' => $articals]);
+        $article = $this->load_model('Articles');
+        $article = $article->findAll(1, 10, "Publish_Date");
+        $this->view('GeneralManager/Partner/Articles', ['rows' => $article]);
     }
 
     function complaints()
     {
-        $events = $this->load_model('Event');
+        $events = $this->load_model('Complaints');
         $events = $events->findAll(1, 10, "Publish_Date");
         $this->view('GeneralManager/Partner/complaints', ['rows' => $events]);
     }
@@ -97,9 +97,6 @@ class GeneralManager extends Controller
     function NewPartnership(){
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->findAll(1, 10, "Application_Date");
-        // echo "dxsdddddddddd";
-        // show($NewPartnership);
-        // die;
         $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
     }
 
@@ -118,7 +115,8 @@ class GeneralManager extends Controller
     }
 
     function PendingPickups(){
-        $pickup = $this->load_model('pickup_request');
-        $data = $pickup->where("Status", "Delivered");
+        $pickup = $this->load_model('PickUpRequestModel');
+        $data = $pickup->findAll(1, 10, "time");
+        $this->view('GeneralManager/Collectors/PendingCollections', ['rows' => $data]);
     }
 }

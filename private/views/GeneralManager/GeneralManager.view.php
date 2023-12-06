@@ -71,7 +71,7 @@ $generalManager = new GeneralManager();
                                     style="border-radius: 99px; margin-left: auto;">Add New Stock</button>
                             </div>
                             <div class="mdl-card__title">
-                                <h1 id="tableTital" class="mdl-card__title-text">Pending Inventory</h1>
+                                <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>
                             </div>
                                 <?php
                                 $generalManager->Generate();

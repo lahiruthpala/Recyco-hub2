@@ -1,11 +1,10 @@
-<div class="mdl-card__supporting-text no-padding" id="PendingCollections" style="display: none;">
+<div class="mdl-card__supporting-text no-padding" id="ComplaintsTable" style="display: none;">
     <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Collector ID</th>
-                <th class="mdl-data-table__cell--non-numeric">Collector Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Assign Aria</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Performance</th>
+                <th class="mdl-data-table__cell--non-numeric">Partnership ID</th>
+                <th class="mdl-data-table__cell--non-numeric">Company Name</th>
+                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
                 <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
@@ -16,13 +15,13 @@
                     ?>
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->pickupId ?? '' ?>
+                            <?= $row->Partner_ID ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->weight  ?? '' ?>
+                            <?= $row->Company_Name ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Assigned_Area ?? '' ?>
+                            <canvas class="miniChart1" width="130" height="40" data-chart-data="<?= $result ?>"></canvas>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric" style="padding-left: 70px;">
                             <span
@@ -45,9 +44,11 @@
                     <?php
                 }
             } else {
+                // If $rows is not an array or is empty
                 echo "No data available.";
             }
             ?>
         </tbody>
     </table>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
