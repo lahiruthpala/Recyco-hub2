@@ -18,6 +18,7 @@ class Controller
 		}
 	}
 
+
 	public function load_model($model){
 		if(class_exists($model)){
 			return new $model();
@@ -28,6 +29,7 @@ class Controller
 			return new $model();
 		}else{
 			require ("../private/views/404.view.php");
+			
 		}
 	}
 
