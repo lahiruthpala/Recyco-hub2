@@ -1,4 +1,7 @@
 <?php $this->view('include/head') ?>
+<?php require_once(APP_ROOT . "/controllers/GeneralManager.php");
+$generalmanager = new GeneralManager();
+?>
 
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
@@ -40,7 +43,7 @@
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
                                 <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text"></h2>
+                                    <h2 class="mdl-card__title-text">Summary</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
                                     <div class="pie-chart__container">
@@ -54,32 +57,22 @@
                             <div class="mdl-layout__header-row">
                                 <button onclick="loadComponent('')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
+                                    style="border-radius: 99px; margin-left: 1VW;">Collectors</Button>
                                 <button onclick="loadComponent('')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Raw Inventory</Button>
+                                    style="border-radius: 99px; margin-left: 1VW;">Pending Collections</Button>
                                 <button onclick="loadComponent('')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Sorted Inventory</Button>
+                                    style="border-radius: 99px; margin-left: 1VW;">Collections</Button>
                                 <button onclick="loadComponent('')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: auto;"> Add New Stock</button>
+                                    style="border-radius: 99px; margin-left: auto;">Complaints</button>
                             </div>
                             <div class="mdl-card__title">
-                                <h1 id="tableTital" class="mdl-card__title-text">Collectors</h1>
+                                <h1 id="tableTitle" class="mdl-card__title-text">Collectors</h1>
                             </div>
-                            <div class="mdl-card__supporting-text no-padding">
-                                <section id="content"></section>
-                            </div>
-                            <script>
-                                // Fetch the component separately and load it into the container
-                                fetch('Table/InventoryBatch')
-                                    .then(response => response.text())
-                                    .then(html => {
-                                        document.getElementById('content').innerHTML = html;
-                                    })
-                                    .catch(error => console.error('Error:', error));
-                            </script>
+                                <?php $this->view('GeneralManager/Collectors/Collectors', ['collectors'=>$collectors]);
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -88,58 +81,9 @@
         </main>
 
     </div>
-
-    <!-- inject:js -->
-    <script src="<?= ROOT ?>/js/d3.min.js"></script>
-    <script src="<?= ROOT ?>/js/getmdl-select.min.js"></script>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
-    <script src="<?= ROOT ?>/js/nv.d3.min.js"></script>
-    <script src="<?= ROOT ?>/js/layout/layout.min.js"></script>
-    <script src="<?= ROOT ?>/js/scroll/scroll.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/discreteBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/linePlusBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/stackedBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/employer-form/employer-form.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/line-chart/line-charts-nvd3.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/map/maps.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
-    <script>
-        function loadComponent(component) {
-            console.log(component);
-            document.getElementById('tableTital').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-            fetch('Table/' + component)
-                .thena(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-    <script>
-        function loadComponent(component) {
-            console.log(component);
-            fetch(component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-    <script>
-        function loadComponent2(component) {
-            console.log(component);
-            fetch('Table/' + component)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('content').innerHTML = html;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-    <!-- endinject -->
+    <script src="<?=ROOT?>/js/loadcomponent.js"></script>
+    <script src="<?= ROOT ?>/js/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
