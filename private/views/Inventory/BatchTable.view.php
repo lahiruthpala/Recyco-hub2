@@ -36,7 +36,7 @@
                     </td>
 
                     <td class="mdl-data-table__cell--non-numeric">
-                        <button onclick="loadComponent('InventoryAssign')"
+                        <button onclick="loadComponent('InventoryAssign', '<?= $row->Batch_ID ?>')"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                             style="border-radius: 99px;">Assign</button>
                     </td>

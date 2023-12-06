@@ -26,7 +26,7 @@ class GeneralManager extends Controller
         $errors = array();
         if (count($_POST) > 0) {
             $batch = $this->load_model('GenerateInventoryId');
-            $inventory = $this->load_model('TableModel');
+            $inventory = $this->load_model('Inventory');
             if ($batch->validate($_POST)) {
                 $data = $batch->insert($_POST);
                 for ($i = 0; $i < $_POST['Size']; $i++) {
@@ -89,7 +89,9 @@ class GeneralManager extends Controller
     }
 
     function collector(){
-        $this->view('GeneralManager/Collector');
+        $collectorModel = $this->load_model('CollectorModel');
+        $collectors = $collectorModel->findAll(1, 10, "Collector_ID");
+        $this->view('GeneralManager/Collector', ['collectors'=>$collectors]);
     }
 
     function NewPartnership(){
@@ -108,5 +110,15 @@ class GeneralManager extends Controller
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->first("Application_ID", $id);
         $this->view('GeneralManager/Partner/Partershipreview', ['rows' => $NewPartnership]);
+    }
+
+    function collections(){
+        $collectionsModel = $this->load_model('Inventory');
+        $data = $this->where();
+    }
+
+    function PendingPickups(){
+        $pickup = $this->load_model('pickup_request');
+        $data = $pickup->where("Status", "Delivered");
     }
 }

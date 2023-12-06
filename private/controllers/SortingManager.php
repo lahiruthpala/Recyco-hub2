@@ -27,7 +27,7 @@ class SortingManager extends Controller
 	}
 	function SortedJobs()
 	{
-		$inventory = $this->load_model('TableModel');
+		$inventory = $this->load_model('Inventory');
 		$data = $inventory->where('Status', 'Sorted');
 		$this->view('SortingManager/SortedJobs', ['rows' => $data]);
 	}
@@ -38,7 +38,7 @@ class SortingManager extends Controller
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$inventory = explode(',', $_POST['inventory']);
 			if (password_verify($_POST['pwd'], Auth::getpwd())) {
-				$articles = $this->load_model('TableModel');
+				$articles = $this->load_model('Inventory');
 				$articles = $this->load_model('SortingJobModel');
 				foreach ($inventory as $row) {
 					$arr['Status'] = "Sorting";
@@ -58,7 +58,7 @@ class SortingManager extends Controller
 	function verifyInventory()
 	{
 		$id = $_POST['content'];
-		$inventory = $this->load_model('TableModel');
+		$inventory = $this->load_model('Inventory');
 		header('Content-Type: application/json');
 		if ($inventory->where("Inventory_ID", $id)) {
 			echo json_encode(['success' => true]);

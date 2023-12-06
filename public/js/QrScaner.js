@@ -24,7 +24,8 @@ function callVerifyInventory(content) {
     var xhr = new XMLHttpRequest();
 
     // Define the PHP file URL and the request method (POST in this example)
-    var url = '<?= ROOT ?>/SortingManager/verifyInventory';
+    var url = ROOT + "/SortingManager/verifyInventory";
+    console.log(url);
     var method = 'POST';
 
     // Set up the request
