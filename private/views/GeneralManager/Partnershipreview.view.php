@@ -84,8 +84,8 @@ $generalmanager = new GeneralManager();
                             <?php $generalmanager->partnershipTable(); ?>
                             <?php $generalmanager->partnerArticals(); ?>
                             <?php $generalmanager->partnerEvents(); ?>
-                            <?php //$generalmanager->complaints(); ?>
-                            <?php $generalmanager->NewPartnership() ?>
+                            <?php $generalmanager->complaints(); ?>
+                            <?php $generalmanager->NewPartnership(); ?>
                         </div>
                     </div>
                 </div>
@@ -94,22 +94,7 @@ $generalmanager = new GeneralManager();
         </main>
 
     </div>
-    
-    <script>
-        function loadComponent(component) {
-            document.getElementById('tableTitle').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-            var sections = document.getElementsByClassName('mdl-card__supporting-text no-padding');
-            // Hide all sections
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none';
-            }
-
-            var partnerTableSection = document.getElementById(component);
-            partnerTableSection.style.display = 'block';
-            console.log(sections);
-            console.log()
-        }
-    </script>
+    <script src="<?=ROOT?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>

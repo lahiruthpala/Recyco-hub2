@@ -1,10 +1,11 @@
-<div class="mdl-card__supporting-text no-padding" id="ComplaintsTable" style="display: none;">
+<div class="mdl-card__supporting-text no-padding" id="EventsTable" style="display: none;">
     <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Partnership ID</th>
+                <th class="mdl-data-table__cell--non-numeric">Event Name</th>
                 <th class="mdl-data-table__cell--non-numeric">Company Name</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
+                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Published Date</th>
+                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Event Date</th>
                 <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
@@ -15,17 +16,20 @@
                     ?>
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Partner_ID ?? '' ?>
+                            <?= $row->Event_Title?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Company_Name ?? '' ?>
+                            <?= $row->Company_Name ?? 'Company_abc' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <canvas class="miniChart1" width="130" height="40" data-chart-data="<?= $result ?>"></canvas>
+                            <?= $row->Publish_Date ?? '' ?>
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <?= $row->Event_Data ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric" style="padding-left: 70px;">
                             <span
-                                class="label label--mini <?php echo $row->Status === 'Active' ? 'color--green' : 'color--red'; ?>">
+                                class="label label--mini <?php echo $row->Status === 'UpComing' ? 'color--green' : 'color--red'; ?>">
                                 <?= $row->Status ?? '' ?>
                             </span>
                         </td>
@@ -51,4 +55,3 @@
         </tbody>
     </table>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -1,6 +1,7 @@
 <?php
 class collector extends Controller
 {
+
 	function index()
 	{
 		// code...
@@ -11,13 +12,16 @@ class collector extends Controller
         $this->view('Collector/collector',  ['rows'=>$pickup]);
 	}
 
-    function table(){
+
+    function table()
+    {
         $user = $this->load_model('PickUpRequestModel');
-		$data = $user->findAll();
-        $this->view('pickup_table', ['rows'=>$data]);
+        $data = $user->findAll();
+        $this->view('pickup_table', ['rows' => $data]);
     }
 
-    function details($id){
+    function details($id)
+    {
         $user = $this->load_model('PickUpRequestModel');
 		$data = $user->first('pickupId', $id);
         $this->view('Collector/new', ['pickup'=>$data]);
@@ -60,6 +64,22 @@ class collector extends Controller
       
         $data = $in->Update($id, $arr, "InventoryId");
         $this->inventory();
-       
+        $data = $user->first('pickupId', $id);
+        $this->view('pickup details', ['pickup' => $data]);
+    }
+    function confirmation()
+    {
+        $this->view('confirmation');
+    }
+    function declination()
+    {
+        $this->view('declination');
+    }
+
+    function pendingpickups()
+    {
+        $inventory = $this->load_model('PickUpRequestModel');
+        $data = $inventory->where('Status', 'Pending');
+        $this->view('Colletor/PendingRequestTable', ['rows' => $data]);
     }
 }

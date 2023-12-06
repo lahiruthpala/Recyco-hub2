@@ -1,6 +1,10 @@
 <?php
 class GeneralManager extends Controller
 {
+    function __construct(){
+        $this->verify();
+    }
+
     function verify()
     {
         if (Auth::getRole() == "SortingManager") {
@@ -12,11 +16,9 @@ class GeneralManager extends Controller
     function index()
     {
         // code...
-        if ($this->verify()) {
-            $this->view('GeneralManager/GeneralManager', [
-                'errors' => "",
-            ]);
-        }
+        $this->view('GeneralManager/GeneralManager', [
+            'errors' => "",
+        ]);
     }
 
     function Generate()
@@ -75,14 +77,14 @@ class GeneralManager extends Controller
     function partnerArticals()
     {
         $articals = $this->load_model('Articles');
-        $articals = $articals->findAll(1, 10, "Submition_Date");
+        $articals = $articals->findAll(1, 10, "Publish_Date");
         $this->view('GeneralManager/Partner/Articles', ['rows' => $articals]);
     }
 
     function complaints()
     {
         $events = $this->load_model('Event');
-        $events = $events->findAll(1, 10, "Submition_Date");
+        $events = $events->findAll(1, 10, "Publish_Date");
         $this->view('GeneralManager/Partner/complaints', ['rows' => $events]);
     }
 
@@ -93,6 +95,9 @@ class GeneralManager extends Controller
     function NewPartnership(){
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->findAll(1, 10, "Application_Date");
+        // echo "dxsdddddddddd";
+        // show($NewPartnership);
+        // die;
         $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
     }
 
@@ -102,6 +107,6 @@ class GeneralManager extends Controller
         }
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->first("Application_ID", $id);
-        $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
+        $this->view('GeneralManager/Partner/Partershipreview', ['rows' => $NewPartnership]);
     }
 }
