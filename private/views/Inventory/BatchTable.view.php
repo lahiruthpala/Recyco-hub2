@@ -30,9 +30,11 @@
 
                     <!-- Assuming you want to increment the ID for the buttons -->
                     <td class="mdl-data-table__cell--non-numeric">
-                        <button id="view<?= $id ?>" onclick="loadComponent('PendingInventory/<?= $row->Batch_ID ?>')"
+                        <a href="<?=ROOT?>/Inventory/progress">
+                        <button id="view<?= $id ?>"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                             style="border-radius: 99px;">View</button>
+                            <a>
                     </td>
 
                     <td class="mdl-data-table__cell--non-numeric">

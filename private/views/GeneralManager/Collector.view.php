@@ -83,6 +83,4 @@ $generalmanager = new GeneralManager();
     <script src="<?=ROOT?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
-
-</html>
+    <?php $this->view('include/footer') ?>

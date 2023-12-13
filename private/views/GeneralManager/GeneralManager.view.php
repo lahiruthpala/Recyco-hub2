@@ -89,5 +89,4 @@ $generalManager = new GeneralManager();
     </div>
     <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
-
-    </html>
+    <?php $this->view('include/footer') ?>

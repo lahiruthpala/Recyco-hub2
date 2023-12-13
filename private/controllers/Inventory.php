@@ -44,31 +44,32 @@ class Inventory extends Controller
     }
     function Assign()
     {
-        var_dump($_POST);
         if (count($_POST) > 0) {
-            var_dump($_POST);
-            die;
             $inventory = $this->load_model('GenerateInventoryId');
             $arr['Status'] = "Assigned";
             $data = $inventory->update($_POST, $arr, "Batch_ID");
-            $colletor = $this->load_model('CollectorModel');
-            $data = $colletor->first('Collector_ID', $_POST);
+            $collector = $this->load_model('CollectorModel');
+            $data = $collector->first('Collector_ID', $_POST);
         }
         $this->view("Inventory/InventoryAssign");
     }
 
     function collectordetails()
     {
-        $collecter = $this->load_model('CollectorModel');
+        $collector = $this->load_model('CollectorModel');
         if (count($_POST) > 0) {
-            $data = $collecter->first("Collector_ID", $_POST['id']);
+            $data = $collector->first("Collector_ID", $_POST['id']);
             if ($data) {
-                // If data is found, encode it into JSON format
                 echo json_encode(['success' => $data]);
             } else {
-                // If data is not found, you might want to handle this case accordingly
                 echo json_encode(['error' => 'Data not found']);
             }
         }
+    }
+
+    function progress(){
+        $inventory = $this->load_model('GenerateInventoryId');
+        $data = $inventory->findAll();
+        $this->view('Inventory/Progress', ['rows' => $data]);
     }
 }
