@@ -20,17 +20,4 @@ class Signup extends Controller
 			'errors' => $errors,
 		]);
 	}
-
-	function info()
-	{
-		$user = $this->load_model('User');
-		if (count($_POST) > 0) {
-			$otp = $this->load_model('OTP');
-			var_dump($_POST);
-			$otp->insert($_POST);
-			$this->view('otpVerify');
-			return;
-		}
-		$this->view('info');
-	}
 }

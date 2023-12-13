@@ -18,13 +18,18 @@ class Controller
 		}
 	}
 
-	public function load_model($modle){
-		if(file_exists("../private/models/" . $modle . ".model.php"))
+
+	public function load_model($model){
+		if(class_exists($model)){
+			return new $model();
+		}
+		if(file_exists("../private/models/" . $model . ".model.php"))
 		{
-			require ("../private/models/" . $modle . ".model.php");
-			return new $modle();
+			require ("../private/models/" . $model . ".model.php");
+			return new $model();
 		}else{
 			require ("../private/views/404.view.php");
+			
 		}
 	}
 
