@@ -50,7 +50,7 @@ class SortingManager extends Controller
 				$errors[] = "Wrong Password";
 			}
 		} else {
-			$errors[] = "Invalid Input";
+			//$errors[] = "Invalid Input";
 		}
 		$this->view('SortingManager/newsortingjob', ["errors" => $errors]);
 	}

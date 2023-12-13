@@ -83,45 +83,65 @@
                 </ul>
             </div>
         </div>
-        <div class="mdl-card mdl-shadow--3dp" style="margin-left:2VW">
-            <div class="mdl-card__title">
-                <h5 class="mdl-card__title-text text-color--white">Create new Automated Generations</h5>
+        <form action="<?= ROOT ?>/GeneralManager/SetGenerations" method="POST">
+            <div class="mdl-card mdl-shadow--3dp" style="margin-left:2VW">
+                <div class="mdl-card__title">
+                    <h5 class="mdl-card__title-text text-color--white">Create new Automated Generations</h5>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
+                        data-upgraded=",MaterialTextfield">
+                        <input class="mdl-textfield__input" type="text" id="floating-last-name" name="Description"
+                            placeholder="Title">
+                        <label class="mdl-textfield__label" for="floating-last-name"></label>
+                    </div>
+                    <div style="display: flex;">
+                        <div>
+                            <label>Size:</label>
+                            <input type="number" name="Size" style="background-color: gray; color: white;">
+                            <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
+                        </div>
+                        <div style="margin-left:2%;">
+                            <label for="Category">Select an option:</label>
+                            <select id="Category" name="Category" onchange="toggleDayDropdown()">
+                                <option value="daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <div id="day" style="margin-left:5%; display:none">
+                            <label for="date">Select a day:</label>
+                            <select id="dayDropdown" name="day">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                            </select>
+                        </div>
+                        <div style="margin-left:5%">
+                            <label>Time:</label>
+                            <input type="time" name="time" style="background-color: gray; color: white;">
+                            <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
+                        </div>
+                    </div>
+                    <button id="Generate" type="submit"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                        style="border-radius: 99px; margin-left: 1VW; margin-top: 1VW;">SET</Button>
+
+                </div>
             </div>
-            <div class="mdl-card__supporting-text">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
-                    data-upgraded=",MaterialTextfield">
-                    <input class="mdl-textfield__input" type="text" id="floating-last-name" name="Description"
-                        placeholder="Title">
-                    <label class="mdl-textfield__label" for="floating-last-name"></label>
-                </div>
-                <div style="display: flex;">
-                    <div>
-                        <label>Size:</label>
-                        <input type="number" name="Size" style="background-color: gray; color: white;">
-                        <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
-                    </div>
-                    <div style="margin-left:5%">
-                        <label>Time:</label>
-                        <input type="time" name="Size" style="background-color: gray; color: white;">
-                        <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
-                    </div>
-                    <div style="margin-left:5%">
-                        <label for="dropdown">Select an option:</label>
-                        <select id="dropdown" name="dropdown">
-                            <option value="option1">daily</option>
-                            <option value="option2">Weekly</option>
-                            <option value="option3">Monthly</option>
-                        </select>
-                        <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
-                    </div>
-                </div>
-                <button id="Generate" type="submit"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                    style="border-radius: 99px; margin-left: 1VW; margin-top: 1VW;">SET</Button>
-                <div>
-                    <h3 class="text-color--smooth-gray"></h3>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
+<script>
+    function toggleDayDropdown() {
+        var categoryDropdown = document.getElementById("Category");
+        var dayDropdown = document.getElementById("day");
+
+        if (categoryDropdown.value === "Weekly") {
+            dayDropdown.style.display = "block";
+        } else {
+            dayDropdown.style.display = "none";
+        }
+    }
+</script>
