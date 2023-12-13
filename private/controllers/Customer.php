@@ -5,6 +5,12 @@ class customer extends Controller
 	function index()
 	{
 		// code...
-		$this->view('customer');
+    
+       
+        $this->view('Customer/customer');
+    
+		
 	}
+	
+
 }

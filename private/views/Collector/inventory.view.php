@@ -27,6 +27,7 @@
                                         <tr>
                                             <th class="mdl-data-table__cell--non-numeric">Inventory ID</th>
                                             <th class="mdl-data-table__cell--non-numeric">Content</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Weight</th>
                                             <th class="mdl-data-table__cell--non-numeric">Status</th>
 
                                         </tr>
@@ -41,22 +42,25 @@
                             <?= $row->InventoryId?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->content?? '' ?>
+                            <?= $row->waste_type?? '' ?>
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <?= $row->weight?? '' ?>Kg
                         </td>
                        
                         <td class="mdl-data-table__cell--non-numeric">
                 <?php
                 $statusClass = ''; 
-                if ($row->Inventorystatus == 'Accepted') {
-                    $statusClass = 'color--light-blue'; 
-                } elseif ($row->Inventorystatus == 'Completed') {
+                if ($row->jobstatus == 'Accepted') {
                     $statusClass = 'color--green'; 
-                } elseif ($row->Inventorystatus == 'Rejected') {
+                } elseif ($row->jobstatus == 'Pending') {
+                    $statusClass = 'color--light-blue'; 
+                } elseif ($row->jobstatus == 'Rejected') {
                     $statusClass = 'color--red'; 
                 }
 
                 ?>
-                <span class="label label--mini <?= $statusClass ?>"><?= $row->Inventorystatus ?? '' ?></span>
+                <span class="label label--mini <?= $statusClass ?>"><?= $row->jobstatus ?? '' ?></span>
             </td>
                       
                       
@@ -65,30 +69,21 @@
             
                 <?php
               
-              if ($row->Inventorystatus == 'Assigned') {
+              if ($row->jobstatus == 'Pending') {
                 ?>
                     <td class="mdl-data-table__cell--non-numeric">
-                    <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Accepted" method="POST">
+                    <form action="<?= ROOT ?>/collector/form/<?= $row->InventoryId ?? '' ?>" method="POST">
    
-                    <input type="hidden" name="id" value="<?= $row->InventoryId ?? '' ?>">
+                    <input type="hidden" name="id" value="<?= $row->pickupId ?? '' ?>">
 
-  
-                  
-    
-
-                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px;">Accepted</button>
+                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px;">Proceed</button>
                       </form>
                   </td>
                   <td class="mdl-data-table__cell--non-numeric">
-                  <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Rejected" method="POST">
+                  <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Rejected/<?= $row->pickupId ?? '' ?>" method="POST">
    
-                    <input type="hidden" name="id" value="<?= $row->InventoryId ?? '' ?>">
-
-
- 
-
-
-                  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" style="border-radius: 99px;">Rejected</button>
+                    <input type="hidden" name="id" value="<?= $row->pickupId ?? '' ?>">
+                  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" style="border-radius: 99px;">Reject</button>
                    </form>
               </td>
 
@@ -97,26 +92,7 @@
                 ?>
             
 
-            <td class="mdl-data-table__cell--non-numeric">
-                <?php
-              
-              if ($row->Inventorystatus == 'Accepted') {
-                ?>
-                    <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Completed" method="POST">
-   
-                    <input type="hidden" name="id" value="<?= $row->InventoryId ?? '' ?>">
-
-  
-                  
-    
-
-                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px;">completed</button>
-                    </form>
-
-                <?php
-                }
-                ?>
-            </td>
+          
            
                     </tr>
                 <?php
