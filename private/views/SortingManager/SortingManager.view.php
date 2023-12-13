@@ -100,22 +100,7 @@ $sortingManager = new SortingManager(); ?>
     <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
     <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
-    <script>
-        function loadComponent(component) {
-            var sections = document.getElementsByClassName('mdl-card__supporting-text no-padding');
-            document.getElementById('tableTitle').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-            // Hide all sections
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none';
-                if (isScannerActive) {
-                    scanner.stop();
-                }
-            }
-
-            var partnerTableSection = document.getElementById(component);
-            partnerTableSection.style.display = 'block';
-        }
-    </script>
+    <script src="<?=ROOT?>/js/loadcomponent.js"></script>
 </body>
 
 </html>

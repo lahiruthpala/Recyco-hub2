@@ -1,4 +1,4 @@
-<div class="mdl-card__supporting-text no-padding" id="PartnerTable" style="display: block;">
+<div class="mdl-card__supporting-text no-padding" id="Collectors" style="display: block;">
     <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>

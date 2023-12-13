@@ -55,16 +55,13 @@ $generalmanager = new GeneralManager();
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button onclick="loadComponent('')"
+                                <button onclick="loadComponent('Collectors')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Collectors</Button>
-                                <button onclick="loadComponent('')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Collections</Button>
-                                <button onclick="loadComponent('')"
+                                <button onclick="loadComponent('PendingCollections')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Collections</Button>
-                                <button onclick="loadComponent('')"
+                                <button onclick="loadComponent('ComplaintsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;">Complaints</button>
                             </div>
@@ -72,6 +69,8 @@ $generalmanager = new GeneralManager();
                                 <h1 id="tableTitle" class="mdl-card__title-text">Collectors</h1>
                             </div>
                                 <?php $this->view('GeneralManager/Collectors/Collectors', ['collectors'=>$collectors]);
+                                $generalmanager->PendingPickups();
+                                $generalmanager->complaints();
                             ?>
                         </div>
                     </div>

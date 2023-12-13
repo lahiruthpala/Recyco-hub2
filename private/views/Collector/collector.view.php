@@ -1,11 +1,21 @@
 <?php $this->view('include/head') ?>
-<body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
-    <?php $this->view('include/header') ?>
-        <main class="mdl-layout__content">
+<link rel="stylesheet" href="<?= ROOT ?>/css/sidebar.css">
+<div class="nav-bar">
+    <div id="menuToggle" class="toggle-menu active">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</div>
 
-            <div class="mdl-grid mdl-grid--no-spacing dashboard">
-
+<div class="main">
+    <div id="sideMenu" class="side-menu">
+        <div class="mobile-search">
+            <form class="search-form">
+                <input autocomplete="off" class="search-input" placeholder="Search" type="search">
+                <button class="search-action" type="submit" value=""></button>
+            </form>
+        </div>
                 <div
                     class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
                    
@@ -17,7 +27,6 @@
                                 </div>
                                 <div class="mdl-card__supporting-text">
                                     <div class="pie-chart__container">
-                                        
                                     </div>
                                    
                                 </div>
@@ -125,16 +134,17 @@
                                     </tbody>
                                 </table>
                                
+
                             </div>
                         </div>
                     </div>
-                </div>
+
+                </main>
+
             </div>
 
-        </main>
-
+            <?php $this->view('include/footer') ?>
     </div>
-
-   
-    
 <?php $this->view('include/footer') ?>
+</div>
+<script src="<?= ROOT ?>/js/sidebar.js"></script>
