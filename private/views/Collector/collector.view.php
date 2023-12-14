@@ -56,9 +56,6 @@
                                             <th class="mdl-data-table__cell--non-numeric">Pickup ID</th>
                                             <th class="mdl-data-table__cell--non-numeric">Assigned Date</th>
                                             <th class="mdl-data-table__cell--non-numeric">Status</th>
-                                           
-                                            
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -118,8 +115,6 @@
                 <?php
                 }
                 ?>     
-            
-               
                     </tr>
 
                     <?php
