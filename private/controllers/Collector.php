@@ -1,10 +1,12 @@
 <?php
 class collector extends Controller
 {
+
 	function index()
 	{
 		// code...
         $pickup = $this->load_model('PickupModel');
+       
         // Auth::getCollector_ID
         $pickup = $pickup->where("collectorId", "25435");
        
@@ -22,34 +24,28 @@ class collector extends Controller
     function details($id)
     {
         $user = $this->load_model('PickUpRequestModel');
-
-=======
-        $data = $user->first('pickupId', $id);
-        $this->view('Collector/new', ['pickup' => $data]);
+		$data = $user->where('pickupId', $id);
+        $this->view('Collector/new', ['rows'=>$data]);
     }
+    
+
     public function inventory()
     {
         $pickup = $this->load_model('RawInvnetoryModel');
         $pickup = $pickup->where("collectorId", "25435");
-
+       
         $this->view('Collector/inventory', ['rows' => $pickup]);
     }
 
-    function declination()
-    {
-        $this->view('declination');
-    }
 
-    function pendingpickups()
-    {
-        $inventory = $this->load_model('PickUpRequestModel');
-        $data = $inventory->where('Status', 'Pending');
-        $this->view('Colletor/PendingRequestTable', ['rows' => $data]);
-    }
-
-    function jobs($id, $type)
-    {
+    function jobs($id, $type,$pid){
         $pickup = $this->load_model('PickUpRequestModel');
+        
+        $pickUpModel = $this->load_model('PickupModel');
+        $main = $pickUpModel->where('pickupId', $pid);
+
+    // Get pickup requests with the specified ID
+    $pickupRequests = $pickup->where('pickupId', $pid);
       
         // Auth::getCollector_ID
         $arr = [];
@@ -57,6 +53,31 @@ class collector extends Controller
        
         $data = $pickup->Update($id, $arr, "InventoryId");
         $allJobsPendingOrRejected = $pickup->areAllJobsPendingOrRejected($pid);
+        $pickupJobStatus = '';    
+        $allRejected = true;
+        foreach ($pickupRequests as $request) {
+            if ($request->jobstatus != 'Rejected') {
+                $allRejected = false;
+                break;
+            }
+        }
+        
+       $pickupJobStatus = ($allRejected) ? 'Rejected' :'Assigned';
+       
+        
+
+
+    
+        // Update the pickup job status based on the status of associated pickup requests
+       // $pickupJobStatus = ($allRejected) ? 'Rejected' : $main->Status; // Update 'some_other_status' as needed
+       //$pickupJobStatus = ($allRejected || !$main || !is_object($main)) ? 'Rejected' : $main->Status;
+
+        $array = [];
+        $array['Status'] = $pickupJobStatus;
+        // Update the status in the PickUpModel
+        $pickUpModel->update($pid,$array,"pickupId");
+       
+        
 
     // Load different views based on the condition
     if ($allJobsPendingOrRejected) {
@@ -121,11 +142,5 @@ class collector extends Controller
         $data = $user->first('InventoryId',$id);
         $this->view('Collector/form', ['data' => $data]);
     }
-        $arr['Status'] = $type . 'ed';
-        $arr['Completeddate'] = $completionDate;
-        $data = $pickup->Update($id, $arr, "pickupId");
-        $this->index();
-    }
-    
-
+  
 }
