@@ -102,5 +102,47 @@ class Model extends Database
 		$data['id'] = $id;
 		return $this->query($query, $data);
 	}
+
+	public function innerJoin($tables = [], $joinConditions = [], $data = [], $selectColumns = ['*'])
+    {
+        if (count($tables) < 1 && count($tables) == count($joinConditions)) {
+            return false; // Need atleast one more table than $this->table to use innerjoin
+        }
+
+        $query = "SELECT " . implode(", ", $selectColumns) . " FROM " . $this->table;
+        //adding inner joins
+        for ($i = 0; $i < count($tables); $i++) {
+
+            $query = $query . " INNER JOIN " . $tables[$i] . " ON ";
+
+            //adding join condition if mentioned, else add default
+            $query = $query . $joinConditions[$i] . " ";
+        }
+
+        //adding where conditions
+        if (!empty($data)) {
+            $keys = array_keys($data);
+            $query = $query . "WHERE ";
+            foreach ($keys as $key) {
+                $query .= $key . "=" . $data[$key] . " && ";
+            }
+
+            //remove the additional '&&' 
+            $query = trim($query, "&& ");
+        }
+        // show($query);
+        // show($data);
+        // die;
+
+        //since $data for where clause is expanded in here, no need to send the data to PDO
+        //didnt use $key:=$key
+        $res = $this->query($query, $data = []);
+
+        if (is_array($res)) {
+            return $res;
+        } else{
+			return false;
+		}
+	}
 }
 

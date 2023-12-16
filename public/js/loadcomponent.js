@@ -18,3 +18,8 @@ function loadComponent(component, id="") {
     partnerTableSection.style.display = 'block';
     console.log("Done")
 }
+
+function loadScreen(page, id = "") {
+    const url = `${ROOT}/${page}?id=${id}`;
+    window.location.href = url;
+}

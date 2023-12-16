@@ -268,8 +268,14 @@ html {
 .mdl-switch,
 .mdl-tabs__tab,
 a {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    text-decoration: none
+}
+
+a:hover{
+    color: green;
 }
 
 html {
@@ -641,14 +647,6 @@ ul {
 
 .mdl-typography--text-lowercase {
     text-transform: lowercase
-}
-
-.mdl-button,
-.mdl-layout__tab,
-.mdl-snackbar__action,
-.mdl-tabs__tab,
-.mdl-typography--text-uppercase {
-    text-transform: uppercase
 }
 
 .mdl-typography--text-capitalize {
@@ -3298,7 +3296,7 @@ input.mdl-button[type=submit] {
     z-index: 1;
     position: relative;
     background: #444;
-    border-radius: 2px;
+    border-radius: 20px;
     box-sizing: border-box
 }
 
@@ -4921,7 +4919,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
     align-items: center;
     height: 64px;
     margin: 0;
-    padding: 0 20px 0 80px
+    padding: 0 5% 0 5%;
 }
 
 .mdl-layout--no-drawer-button .mdl-layout__header-row {
@@ -7599,7 +7597,8 @@ main {
 }
 
 .mdl-card__title {
-    background-color: #333
+    background-color: #333;
+    border-radius: 20px 20px 0 0;
 }
 
 .mdl-card__supporting-text {
@@ -8175,7 +8174,8 @@ main {
 
 .mdl-button {
     font-weight: 400;
-    padding-top: 1px
+    padding-top: 1px;
+    border-radius: 99px;
 }
 
 .mdl-button .material-icons {
@@ -8245,7 +8245,9 @@ main {
 .mdl-button.button--colored-green:not([disabled]).mdl-button--raised,
 .mdl-button.button--colored-green:not([disabled]).mdl-button--raised:hover {
     background-color: #00d45a;
-    color: #fff
+    background-image: linear-gradient(to bottom right, #124d2e, #268252);
+    color: #fff;
+    margin: 1vw;
 }
 
 .mdl-button.button--colored-green:not([disabled]) {
@@ -8406,8 +8408,8 @@ main {
 
 a {
     font-size: 16px;
-    font-weight: 300;
-    color: #00bcd4;
+    font-weight: 500;
+    color: black;
     text-decoration: none
 }
 
@@ -8889,262 +8891,6 @@ a {
 .todo .mdl-card__actions {
     margin-top: 20px;
     background: rgba(255, 255, 255, .05)
-}
-
-.charts .chart1__container,
-.charts .chart2__container,
-.charts .discrete-bar-chart__container,
-.charts .pie-chart__container,
-.dashboard .chart1__container,
-.dashboard .chart2__container,
-.dashboard .discrete-bar-chart__container,
-.dashboard .pie-chart__container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 228px
-}
-
-.charts .discrete-bar-chart__container svg .nv-axis.nv-x text,
-.charts .discrete-bar-chart__container svg .nv-axis.nv-y .tick:nth-child(2n) text,
-.dashboard .discrete-bar-chart__container svg .nv-axis.nv-x text,
-.dashboard .discrete-bar-chart__container svg .nv-axis.nv-y .tick:nth-child(2n) text,
-.line-chart-1__container svg .nv-axis.nv-x text,
-.line-chart-1__container svg .nv-axis.nv-y text,
-.line-chart-2__container svg .nv-axis.nv-x text,
-.line-chart-2__container svg .nv-axis.nv-y text,
-.line-chart__container svg .nv-axis.nv-x text,
-.line-chart__container svg .nv-axis.nv-y text {
-    display: none
-}
-
-.charts .chart1__container svg,
-.charts .chart2__container svg,
-.charts .discrete-bar-chart__container svg,
-.charts .pie-chart__container svg,
-.dashboard .chart1__container svg,
-.dashboard .chart2__container svg,
-.dashboard .discrete-bar-chart__container svg,
-.dashboard .pie-chart__container svg {
-    min-height: 200px;
-    max-width: 180px
-}
-
-.charts .chart1__container svg .nvd3.nv-pie path,
-.charts .chart2__container svg .nvd3.nv-pie path,
-.charts .discrete-bar-chart__container svg .nvd3.nv-pie path,
-.charts .pie-chart__container svg .nvd3.nv-pie path,
-.dashboard .chart1__container svg .nvd3.nv-pie path,
-.dashboard .chart2__container svg .nvd3.nv-pie path,
-.dashboard .discrete-bar-chart__container svg .nvd3.nv-pie path,
-.dashboard .pie-chart__container svg .nvd3.nv-pie path {
-    fill-opacity: 1;
-    stroke-width: 0
-}
-
-.charts .chart1__container svg .nvd3.nv-pie .nv-pie-title,
-.charts .chart2__container svg .nvd3.nv-pie .nv-pie-title,
-.charts .discrete-bar-chart__container svg .nvd3.nv-pie .nv-pie-title,
-.charts .pie-chart__container svg .nvd3.nv-pie .nv-pie-title,
-.dashboard .chart1__container svg .nvd3.nv-pie .nv-pie-title,
-.dashboard .chart2__container svg .nvd3.nv-pie .nv-pie-title,
-.dashboard .discrete-bar-chart__container svg .nvd3.nv-pie .nv-pie-title,
-.dashboard .pie-chart__container svg .nvd3.nv-pie .nv-pie-title {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    fill: #fff;
-    font-weight: 300;
-    font-size: 22px !important
-}
-
-.charts .chart1__container .legend,
-.charts .chart2__container .legend,
-.charts .discrete-bar-chart__container .legend,
-.charts .pie-chart__container .legend,
-.dashboard .chart1__container .legend,
-.dashboard .chart2__container .legend,
-.dashboard .discrete-bar-chart__container .legend,
-.dashboard .pie-chart__container .legend {
-    max-width: 140px
-}
-
-.charts .chart1__container .nv-label text,
-.dashboard .chart1__container .nv-label text {
-    fill: #fff !important
-}
-
-.charts .discrete-bar-chart__container,
-.dashboard .discrete-bar-chart__container {
-    height: 100%
-}
-
-.charts .discrete-bar-chart__container svg,
-.dashboard .discrete-bar-chart__container svg {
-    height: 240px;
-    max-width: calc(100% - 140px)
-}
-
-.charts .discrete-bar-chart__container svg .nv-bar text,
-.dashboard .discrete-bar-chart__container svg .nv-bar text {
-    fill: #fff !important;
-    opacity: .9
-}
-
-.charts .line-plus-bar-chart__container svg,
-.charts .line-plus-bar-chart__container svg .nv-linePlusBar,
-.charts .stacked-bar-chart__container svg,
-.charts .stacked-bar-chart__container svg .nv-linePlusBar,
-.dashboard .line-plus-bar-chart__container svg,
-.dashboard .line-plus-bar-chart__container svg .nv-linePlusBar,
-.dashboard .stacked-bar-chart__container svg,
-.dashboard .stacked-bar-chart__container svg .nv-linePlusBar {
-    height: 250px
-}
-
-.charts .discrete-bar-chart__container .nv-controlsWrap .nv-legend-symbol,
-.charts .line-plus-bar-chart__container .nv-controlsWrap .nv-legend-symbol,
-.charts .stacked-bar-chart__container .nv-controlsWrap .nv-legend-symbol,
-.dashboard .discrete-bar-chart__container .nv-controlsWrap .nv-legend-symbol,
-.dashboard .line-plus-bar-chart__container .nv-controlsWrap .nv-legend-symbol,
-.dashboard .stacked-bar-chart__container .nv-controlsWrap .nv-legend-symbol {
-    fill: #00bcd4 !important;
-    stroke: #00bcd4 !important
-}
-
-.charts .discrete-bar-chart__container .nv-group,
-.charts .line-plus-bar-chart__container .nv-group,
-.charts .stacked-bar-chart__container .nv-group,
-.dashboard .discrete-bar-chart__container .nv-group,
-.dashboard .line-plus-bar-chart__container .nv-group,
-.dashboard .stacked-bar-chart__container .nv-group {
-    fill-opacity: .9 !important
-}
-
-.charts .discrete-bar-chart__container .nv-axis text,
-.charts .line-plus-bar-chart__container .nv-axis text,
-.charts .stacked-bar-chart__container .nv-axis text,
-.dashboard .discrete-bar-chart__container .nv-axis text,
-.dashboard .line-plus-bar-chart__container .nv-axis text,
-.dashboard .stacked-bar-chart__container .nv-axis text {
-    fill: #fff;
-    opacity: .5 !important
-}
-
-.charts .discrete-bar-chart__container .nv-axis .domain,
-.charts .discrete-bar-chart__container .nv-axis .nv-zeroLine,
-.charts .line-plus-bar-chart__container .nv-axis .domain,
-.charts .line-plus-bar-chart__container .nv-axis .nv-zeroLine,
-.charts .stacked-bar-chart__container .nv-axis .domain,
-.charts .stacked-bar-chart__container .nv-axis .nv-zeroLine,
-.dashboard .discrete-bar-chart__container .nv-axis .domain,
-.dashboard .discrete-bar-chart__container .nv-axis .nv-zeroLine,
-.dashboard .line-plus-bar-chart__container .nv-axis .domain,
-.dashboard .line-plus-bar-chart__container .nv-axis .nv-zeroLine,
-.dashboard .stacked-bar-chart__container .nv-axis .domain,
-.dashboard .stacked-bar-chart__container .nv-axis .nv-zeroLine {
-    stroke: #fff;
-    opacity: .5
-}
-
-.charts .discrete-bar-chart__container .nv-axis .tick line,
-.charts .line-plus-bar-chart__container .nv-axis .tick line,
-.charts .stacked-bar-chart__container .nv-axis .tick line,
-.dashboard .discrete-bar-chart__container .nv-axis .tick line,
-.dashboard .line-plus-bar-chart__container .nv-axis .tick line,
-.dashboard .stacked-bar-chart__container .nv-axis .tick line {
-    opacity: .1 !important
-}
-
-.charts .discrete-bar-chart__container .nv-legend-text,
-.charts .line-plus-bar-chart__container .nv-legend-text,
-.charts .stacked-bar-chart__container .nv-legend-text,
-.dashboard .discrete-bar-chart__container .nv-legend-text,
-.dashboard .line-plus-bar-chart__container .nv-legend-text,
-.dashboard .stacked-bar-chart__container .nv-legend-text {
-    opacity: .5
-}
-
-.charts .nvd3 text,
-.dashboard .nvd3 text {
-    font: 400 12px Arial;
-    fill: #fff !important
-}
-
-.legend .legend__item,
-.settings-dropdown .mdl-menu__item,
-.settings-dropdown a {
-    font-family: Roboto, Helvetica, Arial, sans-serif
-}
-
-.line-chart-1__container,
-.line-chart-2__container,
-.line-chart__container {
-    min-height: 280px
-}
-
-.line-chart-1__container svg,
-.line-chart-2__container svg,
-.line-chart__container svg {
-    height: 280px;
-    width: 100%
-}
-
-.line-chart-1__container svg .x-axis-label,
-.line-chart-1__container svg .y-axis-label,
-.line-chart-2__container svg .x-axis-label,
-.line-chart-2__container svg .y-axis-label,
-.line-chart__container svg .x-axis-label,
-.line-chart__container svg .y-axis-label {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    fill: rgba(255, 255, 255, .5)
-}
-
-.line-chart-1__container svg .nv-lineChart .nv-guideline,
-.line-chart-2__container svg .nv-lineChart .nv-guideline,
-.line-chart__container svg .nv-lineChart .nv-guideline {
-    stroke: rgba(255, 255, 255, .5);
-    stroke-width: .5px
-}
-
-.line-chart-1__container svg .nv-lineChart .tick,
-.line-chart-2__container svg .nv-lineChart .tick,
-.line-chart__container svg .nv-lineChart .tick {
-    opacity: .1 !important
-}
-
-.line-chart-1__container svg .nv-lineChart .tick.zero,
-.line-chart-2__container svg .nv-lineChart .tick.zero,
-.line-chart__container svg .nv-lineChart .tick.zero {
-    opacity: .5 !important
-}
-
-.line-chart-1__container svg .nv-lineChart .tick.zero line,
-.line-chart-2__container svg .nv-lineChart .tick.zero line,
-.line-chart__container svg .nv-lineChart .tick.zero line {
-    stroke-opacity: 1 !important
-}
-
-.line-chart-1__container svg .nv-lineChart .nv-y .domain,
-.line-chart-2__container svg .nv-lineChart .nv-y .domain,
-.line-chart__container svg .nv-lineChart .nv-y .domain {
-    stroke-opacity: 0 !important
-}
-
-.line-chart-1__container svg .nv-lineChart .nvd3.nv-scatter .nv-groups .nv-point.hover,
-.line-chart-2__container svg .nv-lineChart .nvd3.nv-scatter .nv-groups .nv-point.hover,
-.line-chart__container svg .nv-lineChart .nvd3.nv-scatter .nv-groups .nv-point.hover {
-    stroke-width: 5px
-}
-
-.line-chart-1__container .legend,
-.line-chart-2__container .legend,
-.line-chart__container .legend {
-    margin: 16px auto auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center
 }
 
 .legend .legend__item {
