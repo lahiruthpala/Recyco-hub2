@@ -67,9 +67,17 @@ class Inventory extends Controller
         }
     }
 
-    function progress(){
-        $inventory = $this->load_model('GenerateInventoryId');
-        $data = $inventory->findAll();
-        $this->view('Inventory/Progress', ['rows' => $data]);
+    function progress($table)
+    {
+        $id = 0;
+        $model = $this->load_model($table);
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+        } else {
+            echo "ID parameter is not set in the URL.";
+        }
+        $data = $model->first($table . "_ID", $id);
+        $data->pagetype = $table;
+        $this->view('Inventory/Progress', [$data]);
     }
 }

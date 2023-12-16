@@ -268,8 +268,14 @@ html {
 .mdl-switch,
 .mdl-tabs__tab,
 a {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    text-decoration: none
+}
+
+a:hover{
+    color: green;
 }
 
 html {
@@ -641,14 +647,6 @@ ul {
 
 .mdl-typography--text-lowercase {
     text-transform: lowercase
-}
-
-.mdl-button,
-.mdl-layout__tab,
-.mdl-snackbar__action,
-.mdl-tabs__tab,
-.mdl-typography--text-uppercase {
-    text-transform: uppercase
 }
 
 .mdl-typography--text-capitalize {
@@ -3298,7 +3296,7 @@ input.mdl-button[type=submit] {
     z-index: 1;
     position: relative;
     background: #444;
-    border-radius: 2px;
+    border-radius: 20px;
     box-sizing: border-box
 }
 
@@ -4921,7 +4919,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
     align-items: center;
     height: 64px;
     margin: 0;
-    padding: 0 20px 0 80px
+    padding: 0 5% 0 5%;
 }
 
 .mdl-layout--no-drawer-button .mdl-layout__header-row {
@@ -7599,7 +7597,8 @@ main {
 }
 
 .mdl-card__title {
-    background-color: #333
+    background-color: #333;
+    border-radius: 20px 20px 0 0;
 }
 
 .mdl-card__supporting-text {
@@ -8175,7 +8174,8 @@ main {
 
 .mdl-button {
     font-weight: 400;
-    padding-top: 1px
+    padding-top: 1px;
+    border-radius: 99px;
 }
 
 .mdl-button .material-icons {
@@ -8245,7 +8245,9 @@ main {
 .mdl-button.button--colored-green:not([disabled]).mdl-button--raised,
 .mdl-button.button--colored-green:not([disabled]).mdl-button--raised:hover {
     background-color: #00d45a;
-    color: #fff
+    background-image: linear-gradient(to bottom right, #124d2e, #268252);
+    color: #fff;
+    margin: 1vw;
 }
 
 .mdl-button.button--colored-green:not([disabled]) {
@@ -8406,8 +8408,8 @@ main {
 
 a {
     font-size: 16px;
-    font-weight: 300;
-    color: #00bcd4;
+    font-weight: 500;
+    color: black;
     text-decoration: none
 }
 

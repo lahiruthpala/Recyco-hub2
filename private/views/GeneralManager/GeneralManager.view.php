@@ -22,7 +22,7 @@ $generalManager = new GeneralManager();
                     <div style="width: 100%; display: flex; flex-direction: row;">
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
-                                <div class="mdl-card__title">
+                                <div class="mdl-card__title" style="align-items: center; justify-content: center;">
                                     <h2 class="mdl-card__title-text">Inventory Breakdown</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
@@ -33,7 +33,7 @@ $generalManager = new GeneralManager();
                         </div>
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
-                                <div class="mdl-card__title">
+                                <div class="mdl-card__title" style="align-items: center; justify-content: center;">
                                     <h2 class="mdl-card__title-text">Warehouse Capacity</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
@@ -44,8 +44,8 @@ $generalManager = new GeneralManager();
                         </div>
                         <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp pie-chart">
-                                <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text">Sorting rate</h2>
+                                <div class="mdl-card__title" style="align-items: center; justify-content: center;">
+                                    <h2 class="mdl-card__title-text">Sorting Rate</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
                                     <div class="pie-chart__container">
@@ -59,18 +59,18 @@ $generalManager = new GeneralManager();
                             <div class="mdl-layout__header-row">
                                 <button onclick="loadComponent('NewInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Inventory</Button>
-                                <button onclick="loadComponent('RawInventory')"
+                                    >Pending Inventory</Button>
+                                    <button onclick="loadComponent('RawInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Raw Inventory</Button>
+                                    >Raw Inventory</Button>
                                 <button onclick="loadComponent('SortedInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Sorted Inventory</Button>
+                                    >Sorted Inventory</Button>
                                 <button onclick="loadComponent('CreateInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: auto;">Add New Stock</button>
+                                    style="margin-left: auto;">Add New Stock</button>
                             </div>
-                            <div class="mdl-card__title">
+                            <div class="mdl-card__title" style="border-radius: 0;">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>
                             </div>
                                 <?php

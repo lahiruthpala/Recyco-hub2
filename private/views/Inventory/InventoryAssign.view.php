@@ -6,7 +6,7 @@
                     <div class="mdl-card__title">
                         <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
                     </div>
-                    <form class="form form--basic" action="<?= ROOT ?>/Inventory/Assign" method="POST">
+                    <form class="form form--basic" action="<?= ROOT ?>/Inventory/Assign" method="POST" style="margin: 20px 2px 20px 30px;">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
                                 <div class="profile-image color--smooth-gray profile-image--round">
@@ -16,6 +16,7 @@
                             <div
                                 class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                <h6>Batch_ID</h6>
                                     <input class="mdl-textfield__input" type="text" value="" name="BatchID"
                                         id="AssignBatchID" disabled>
                                 </div>

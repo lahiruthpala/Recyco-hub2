@@ -39,3 +39,23 @@
     <!-- endinject -->
 
 </head>
+<?php
+function limitString($inputString, $maxLength) {
+    if (strlen($inputString) > $maxLength) {
+        $trimmedString = substr($inputString, 0, $maxLength);
+        $trimmedString .= "...";
+
+        return $trimmedString;
+    } else {
+        return $inputString;
+    }
+}
+
+function statuscolor($status){
+    if($status == "New"){
+        return "green";
+    }else{
+        return "red";
+    }
+}
+?>

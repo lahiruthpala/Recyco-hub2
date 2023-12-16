@@ -9,9 +9,8 @@ class collector extends Controller
        
         // Auth::getCollector_ID
         $pickup = $pickup->where("collectorId", "25435");
-       
-        $this->view('Collector/collector',  ['rows'=>$pickup]);
-	}
+        $this->view('Collector/collector', ['rows' => $pickup]);
+    }
 
 
     function table()
@@ -26,6 +25,8 @@ class collector extends Controller
         $user = $this->load_model('PickUpRequestModel');
 		$data = $user->where('pickupId', $id);
         $this->view('Collector/new', ['rows'=>$data]);
+		$data = $user->where('pickupId', $id);
+        $this->view('Collector/new', ['rows'=>$data]);
     }
     
 
@@ -33,6 +34,7 @@ class collector extends Controller
     {
         $pickup = $this->load_model('RawInvnetoryModel');
         $pickup = $pickup->where("collectorId", "25435");
+       
        
         $this->view('Collector/inventory', ['rows' => $pickup]);
     }
@@ -50,7 +52,7 @@ class collector extends Controller
         // Auth::getCollector_ID
         $arr = [];
         $arr['jobstatus'] = $type;
-       
+
         $data = $pickup->Update($id, $arr, "InventoryId");
         $allJobsPendingOrRejected = $pickup->areAllJobsPendingOrRejected($pid);
         $pickupJobStatus = '';    
@@ -78,39 +80,41 @@ class collector extends Controller
         $this->details($pid);
     }
 
-       
-       
+
+
     }
     function start($id)
     {
         // Code...
         $user = $this->load_model('PickUpRequestModel');
-		$data = $user->where('pickupId', $id);
-       
-        $this->view('Collector/inventory', ['rows'=>$data]);
+        $data = $user->where('pickupId', $id);
+
+        $this->view('Collector/inventory', ['rows' => $data]);
     }
-     
-    function inven($id, $type,$pid){
+
+    function inven($id, $type, $pid)
+    {
         $in = $this->load_model('PickUpRequestModel');
-       
+
         $arr = [];
 
         $arr['jobstatus'] = $type;
-      
+
         $data = $in->Update($id, $arr, "InventoryId");
         $this->start($pid);
-       
+
     }
-    function store($id, $type,$pid){
+    function store($id, $type, $pid)
+    {
         $in = $this->load_model('PickUpRequestModel');
-       
+
         $arr = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Assuming you have the relevant validation and sanitation in place
             $wasteType = $_POST['wasteType'] ?? '';
             $weight = $_POST['weight'] ?? '';
             $InventoryId = $_POST['InventoryId'] ?? '';
-    
+
             // Update the database using the form values
             $arr = [
                 'jobstatus' => $type,
@@ -118,18 +122,18 @@ class collector extends Controller
                 'weight' => $weight,
                 'InventoryId' => $InventoryId
             ];
-        
-       
-      
-        $data = $in->Update($id, $arr, "InventoryId");
-        $this->start($pid);
-       
+
+
+
+            $data = $in->Update($id, $arr, "InventoryId");
+            $this->start($pid);
+
+        }
     }
-}
     function form($id)
     {
         $user = $this->load_model('PickUpRequestModel');
-        $data = $user->first('InventoryId',$id);
+        $data = $user->first('InventoryId', $id);
         $this->view('Collector/form', ['data' => $data]);
     }
   
