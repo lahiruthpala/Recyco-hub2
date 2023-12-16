@@ -17,12 +17,12 @@ body{
     min-height: 90vh;
 }
 .container{
-    width: 350px;
+    width: 350px; 
     display: flex;
     flex-direction: column;
     padding: 0 15px 0 15px;
 }
-span{ 
+span{
     color: #fff;
     font-size: small;
     display: flex;

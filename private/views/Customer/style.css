@@ -5,7 +5,10 @@ body {
     background-color: #d4d4d4;
     color: #070707;
 }
-
+#about{
+    height: 100vh;
+    background-image: url(images/ABOUT\ US.jpg);
+} 
 header {
     background-color: #4CAF50;
     padding: 20px;
@@ -17,7 +20,7 @@ header {
 
 .logo img {
     max-width: 100px; /* Adjust the size of your logo */
-} 
+}
 
 nav ul {
     list-style-type: none;

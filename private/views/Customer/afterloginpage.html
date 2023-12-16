@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Page</title>
+    <title>Recyco-Hub</title>
     <link rel="stylesheet" type="text/css" href="styleafterlogin.css">
 </head>
-<body>
-    
+<body>    
     <div class="button-container">
         <button onclick="buttonClicked(1)">Set pickup</button>
         <button onclick="buttonClicked(2)">Sorted items</button>
@@ -15,9 +14,11 @@
     </div>
     <script>
         function buttonClicked(buttonNumber) {
-            alert('Button ' + buttonNumber + ' clicked!');
+            var newPageUrl = "http://localhost:5500/private/views/Customer/pickup request.html" 
+            window.location.href = newPageUrl;
+            
         }
     </script>
 
-</body>
-</html> 
+</body> 
+</html>
