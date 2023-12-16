@@ -64,22 +64,12 @@ class collector extends Controller
         
        $pickupJobStatus = ($allRejected) ? 'Rejected' :'Assigned';
        
-        
-
-
-    
-        // Update the pickup job status based on the status of associated pickup requests
-       // $pickupJobStatus = ($allRejected) ? 'Rejected' : $main->Status; // Update 'some_other_status' as needed
-       //$pickupJobStatus = ($allRejected || !$main || !is_object($main)) ? 'Rejected' : $main->Status;
-
         $array = [];
         $array['Status'] = $pickupJobStatus;
         // Update the status in the PickUpModel
         $pickUpModel->update($pid,$array,"pickupId");
        
         
-
-    // Load different views based on the condition
     if ($allJobsPendingOrRejected) {
         // Load another view for the condition where all jobs are 'Pending' or 'Reject'
         $this->index(); 
