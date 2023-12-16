@@ -13,7 +13,7 @@
         <main class="mdl-layout__content">
 
             <div class="Progressbackground">
-                <h1 class="title">--ID-- Track</h1>
+                <h1 class="title"><?php $var = $data[0]->pagetype."_ID"; echo $data[0]->$var;?></h1>
 
                 <div class="bar__container">
                     <ul class="bar" id="bar">

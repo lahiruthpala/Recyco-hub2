@@ -1,4 +1,5 @@
 function loadComponent(component, id="") {
+    event.stopPropagation();
     console.log(component);
     document.getElementById('tableTitle').innerHTML = component.substring(component.lastIndexOf("/") + 1).replace(/([a-z0-9])([A-Z])/g, '$1 $2');
     var sections = document.getElementsByClassName('mdl-card__supporting-text no-padding');
