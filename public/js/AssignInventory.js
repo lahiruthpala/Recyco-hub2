@@ -31,7 +31,6 @@ function getinfo(content) {
     // Define the PHP file URL and the request method (POST in this example)
     var url = ROOT + '/Inventory/collectordetails';
     var method = 'POST';
-
     // Set up the request
     xhr.open(method, url, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
