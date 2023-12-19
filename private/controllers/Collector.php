@@ -136,5 +136,17 @@ class collector extends Controller
         $data = $user->first('InventoryId', $id);
         $this->view('Collector/form', ['data' => $data]);
     }
+
+    function profile()
+	{
+		// code...
+    
+       
+        $this->view('Collector/profile');
+    
+		
+	}
+	
+
   
 }
