@@ -26,8 +26,8 @@ class GeneralManager extends Controller
     {
         $errors = array();
         if (count($_POST) > 0) {
-            $batch = $this->load_model('GenerateInventoryId');
-            $inventory = $this->load_model('Inventory');
+            $batch = $this->load_model('Batch');
+            $inventory = $this->load_model('InventoryModel');
             if ($batch->validate($_POST)) {
                 $data = $batch->insert($_POST);
                 for ($i = 0; $i < $_POST['Size']; $i++) {
@@ -51,7 +51,7 @@ class GeneralManager extends Controller
         $errors = array();
         if (count($_POST) > 0) {
             $jobs = $this->load_model('AutomatedEvents');
-            var_dump($_POST);
+            //var_dump($_POST);
             $jobs->insert($_POST);
 
             // Convert day to a numeric representation (1 for Monday, 2 for Tuesday, etc.)
@@ -99,10 +99,14 @@ class GeneralManager extends Controller
         $partner = $this->load_model('PartnerModel');
         $remarks = $this->load_model('Remarks');
         $contact = $this->load_model('PartnerContact');
+        $article = $this->load_model('Articles');
+        $events = $this->load_model('Event');
         $partner = $partner->first("Partner_ID", $_POST['id']);
         $remarks = $remarks->where("Partner_ID", $_POST['id']);
         $contact = $contact->where("Partner_ID", $_POST['id']);
-        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact]);
+        $article = $article->where("Partner_ID", $_POST['id']);
+        $events = $events->where("Partner_ID", $_POST['id']);
+        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article'=>$article]);
     }
 
     function partnerEvents()
@@ -163,7 +167,7 @@ class GeneralManager extends Controller
 
     function collections()
     {
-        $collectionsModel = $this->load_model('Inventory');
+        $collectionsModel = $this->load_model('InventoryModel');
         //$data = $this->where();
     }
 

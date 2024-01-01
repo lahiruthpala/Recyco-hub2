@@ -17,55 +17,24 @@ $generalManager = new GeneralManager();
 
                 <div
                     class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-
-                    <!-- Pie chart-->
                     <div style="width: 100%; display: flex; flex-direction: row;">
-                        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-card mdl-shadow--2dp pie-chart">
-                                <div class="mdl-card__title" style="align-items: center; justify-content: center;">
-                                    <h2 class="mdl-card__title-text">Inventory Breakdown</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div class="pie-chart__container">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-card mdl-shadow--2dp pie-chart">
-                                <div class="mdl-card__title" style="align-items: center; justify-content: center;">
-                                    <h2 class="mdl-card__title-text">Warehouse Capacity</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div class="pie-chart__container">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-card mdl-shadow--2dp pie-chart">
-                                <div class="mdl-card__title" style="align-items: center; justify-content: center;">
-                                    <h2 class="mdl-card__title-text">Sorting Rate</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div class="pie-chart__container">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php $inventory->InventoryBreakdown(); 
+                        $inventory->WarehouseCapacity();
+                        $inventory->SortingRate()
+                        ?>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
                                 <button onclick="loadComponent('NewInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    >Pending Inventory</Button>
-                                    <button onclick="loadComponent('RawInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    >Raw Inventory</Button>
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Pending
+                                    Inventory</Button>
+                                <button onclick="loadComponent('RawInventory')"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Raw
+                                    Inventory</Button>
                                 <button onclick="loadComponent('SortedInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    >Sorted Inventory</Button>
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Sorted
+                                    Inventory</Button>
                                 <button onclick="loadComponent('CreateInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="margin-left: auto;">Add New Stock</button>
@@ -73,12 +42,12 @@ $generalManager = new GeneralManager();
                             <div class="mdl-card__title" style="border-radius: 0;">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>
                             </div>
-                                <?php
-                                $generalManager->Generate();
-                                $inventory->InventoryBatch();
-                                $inventory->SortedInventory();
-                                $inventory->RawInventory();
-                                $inventory->Assign() ?>
+                            <?php
+                            $generalManager->Generate();
+                            $inventory->InventoryBatch();
+                            $inventory->SortedInventory();
+                            $inventory->RawInventory();
+                            $inventory->Assign() ?>
                         </div>
                     </div>
                 </div>
@@ -89,4 +58,29 @@ $generalManager = new GeneralManager();
     </div>
     <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const data = {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+        const ctx = document.getElementById('InventoryBreakdown');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+        });
+    </script>
     <?php $this->view('include/footer') ?>

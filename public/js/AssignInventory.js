@@ -23,6 +23,12 @@ function getCollecter() {
         getinfo(content);
     });
 }
+
+function collectermanual(){
+    var content = document.getElementById('CollectorID').value;
+    getinfo(content);
+}
+
 // Function to call PHP function using AJAX
 function getinfo(content) {
     // Create an XMLHttpRequest object
@@ -34,7 +40,7 @@ function getinfo(content) {
     // Set up the request
     xhr.open(method, url, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    var data = 'id=' + encodeURIComponent(content);
+    var data = 'Collector_ID=' + encodeURIComponent(content);
 
     // Set up the callback function to handle the response
     xhr.onreadystatechange = function () {
@@ -55,12 +61,22 @@ function getinfo(content) {
 }
 
 function setdata(data){
-    var data = data.success;
-    //TODO
-    document.getElementById('CollecterName').value = "LAHIRU";
+    console.log(data);
+    var data = data.success[0];
+    console.log(data);
+    document.getElementById('CollecterName').value = data.FirstName + " " + data.LastName;
+    document.getElementById('VerifiedCollectorID').value = data.Collector_ID;
     document.getElementById('VehicleNumber').value = data.Vehicle_NO;
     document.getElementById('Area').value = data.Assigned_Area;
-    document.getElementById('Status').value = "Active";
+    document.getElementById('Status').value = data.Status;
     document.getElementById('CollecterImage').src = "images/Bobby.PNG"
     document.getElementById('Assignbutton').disabled = false;
+}
+
+function submitForm() {
+    // Run the script before submitting the form
+    generateQRCodesAndPrint();
+
+    // Return true to allow the form to be submitted
+    return true;
 }

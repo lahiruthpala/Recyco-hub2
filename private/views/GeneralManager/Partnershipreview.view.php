@@ -12,7 +12,18 @@ $generalmanager = new GeneralManager();
         <main class="mdl-layout__content">
 
             <div class="mdl-grid mdl-grid--no-spacing dashboard">
-                <?php $this->view('GeneralManager/Partner/Dashboardevents') ?>
+                <div>
+                    <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="max-width: calc(100vw - 32px);">
+                        <div class="mdl-card mdl-shadow--2dp line-chart" style="margin-right: 16px;">
+                            <div class="mdl-card__title">
+                                <button onclick="loadComponent('PartnerTable')"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    style="border-radius: 99px; margin: 0;">Partnerships</Button>
+                            </div>
+                            <?php $this->view('GeneralManager/Partner/Dashboardevents') ?>
+                        </div>
+                    </div>
+                </div>
                 <div
                     class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
 

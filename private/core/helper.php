@@ -44,10 +44,24 @@ function random_string($length)
     return $text;
 }
 
+function get_time($time)
+{
+
+	return date("g:i a",strtotime($time));
+}
+
 function get_date($date)
 {
 
 	return date("jS M, Y",strtotime($date));
+}
+
+function generateID($id){
+	$currentTime = time();
+    $randomCode = random_string(4);
+    $uniqueId = $id . $currentTime . $randomCode;
+
+    return $uniqueId;
 }
 
 function show($data)
@@ -55,4 +69,28 @@ function show($data)
 	echo "<pre>";
 	print_r($data);
 	echo "</pre>";
+}
+
+function statustoint($status) {
+    switch ($status) {
+        case "New":
+            return 0;
+        case "Assigned":
+            return 1;
+        case "Collected":
+            return 2;
+        case "In whorehouse":
+            return 3;
+        case "Sorting":
+            return 4;
+        case "Sorted":
+            return 5;
+        case "Ready To Sell":
+            return 6;
+        case "Sold":
+            return 7;
+        default:
+            // Handle unknown status
+            return -1;
+    }
 }

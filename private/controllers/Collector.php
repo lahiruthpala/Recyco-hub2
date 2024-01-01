@@ -2,6 +2,7 @@
 class collector extends Controller
 {
 
+    
 	function index()
 	{
 		// code...

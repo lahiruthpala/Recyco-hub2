@@ -3,7 +3,7 @@
 /**
  * User Model
  */
-class Inventory extends Model
+class InventoryModel extends Model
 {
     protected $beforeInsert = [
         'Make_Inventory_ID',
@@ -20,7 +20,7 @@ class Inventory extends Model
 
     public function Make_Inventory_ID($data)
     {
-        $data['Inventory_ID'] = random_string(6);
+        $data['Inventory_ID'] = generateID("Inven");
         return $data;
     }
 }

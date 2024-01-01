@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/css/lib/nv.d3.min.css">
     <link rel="stylesheet" href="<?= ROOT ?>/css/application.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>var ROOT = "http://localhost:8380/Recyco-hub2/public" </script>
     <!-- endinject -->
 
 </head>
