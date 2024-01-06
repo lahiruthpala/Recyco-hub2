@@ -1,12 +1,13 @@
 <?php $this->view('include/head') ?>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
-    <?php $this->view('include/header') ?>
+    <?php $this->view('include/collectorheader') ?>
         <main class="mdl-layout__content">
         <?php
         if (is_array($rows) && !empty($rows)) {
              $completedCount = 0;
              $rejectedCount = 0;
+             $acceptedcount=0;
 
     foreach ($rows as $row) {
         // Assuming 'Status' is the key for the status field in your $row array
@@ -16,6 +17,9 @@
             $completedCount++;
         } elseif ($row->Status === 'Rejected') {
             $rejectedCount++;
+        }
+        elseif ($row->Status === 'Accepted') {
+            $acceptedcount++;
         }
 
         // Other processing for each row, if needed
@@ -43,6 +47,8 @@
         <div style="display: flex; align-items: center;">
             <img src="<?= ROOT ?>/images/decline.png" alt="Success Image" style="width: 20%; height: auto;">
             <span style="margin-left: 10px;"><h4> <?php echo $rejectedCount; ?>&nbsp;Rejected Pickups</h4></span>
+          
+ 
         </div>
 
             </div>
@@ -51,7 +57,8 @@
             <img src="<?= ROOT ?>/images/growth.png" alt="Your Image" style="width: 30%; height: auto; margin-left:60px">
             <div style="display: flex; align-items: center;">
             <img src="<?= ROOT ?>/images/target.png" alt="Success Image" style="width: 20%; height: auto;  margin-left:40px">
-            <span style="margin-left: 10px;"><h4>  <?php echo (100-$completedCount); ?>&nbsp;left to 100 pickups</h4></span>
+            <span style="margin-left: 10px;"><h4>  <?php echo ($acceptedcount); ?>&nbsp;Accepted pickups left to complete</h4></span>
+            
         </div>
         </div>
     </div>
@@ -110,6 +117,12 @@
                 } elseif ($row->Status == 'Completed') {
                     $statusClass = 'color--green'; // Set class for Completed status
                 } 
+                elseif ($row->Status == 'Accepted') {
+                    $statusClass = 'color--green'; // Set class for Completed status
+                } 
+                elseif ($row->Status == 'Rejected') {
+                    $statusClass = 'color--red'; // Set class for Completed status
+                } 
 
                 ?>
                 <span class="label label--mini <?= $statusClass ?>"><?= $row->Status ?? '' ?></span>
@@ -123,28 +136,31 @@
               if ($row->Status == 'Assigned') {
                 ?>
                     <td class="mdl-data-table__cell--non-numeric">
-                   <form action="<?= ROOT ?>/collector/details/<?= $row->pickupId?? '' ?>" method="POST">
-                                <!-- Replace 'your_id_value' with the actual ID -->
-                                <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
-                                <button type="submit"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                                    style="border-radius: 99px;">View</button>
-                    </form>
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" href="<?= ROOT ?>/collector/statusupdate/<?= $row->pickupId ?>/Accepted" style="margin-right: 10px;">Accept</a>
+                    
               </td>
               <td class="mdl-data-table__cell--non-numeric">
-                   <form action="<?= ROOT ?>/collector/start/<?= $row->pickupId?? '' ?>" method="POST">
-                                <!-- Replace 'your_id_value' with the actual ID -->
-                                <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
-                                <button type="submit"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px;">Start</button>
-                    
-                                </form>
+              <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" href="<?= ROOT ?>/collector/statusupdate/<?= $row->pickupId ?>/Rejected" style="margin-right: 10px;">Reject</a>
+        
               </td>
 
                 <?php
                 }
-                ?>     
+                ?>
+                
+                <?php
+              
+              if ($row->Status == 'Accepted') {
+                ?>
+                    <td class="mdl-data-table__cell--non-numeric">
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" href="<?= ROOT ?>/collector/details/<?= $row->pickupId ?>" style="margin-right: 10px;">View</a>
+                    
+              </td>
+              
+
+                <?php
+                }
+                ?>
             
                
                     </tr>

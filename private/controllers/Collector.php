@@ -26,8 +26,7 @@ class collector extends Controller
         $user = $this->load_model('PickUpRequestModel');
 		$data = $user->where('pickupId', $id);
         $this->view('Collector/new', ['rows'=>$data]);
-		$data = $user->where('pickupId', $id);
-        $this->view('Collector/new', ['rows'=>$data]);
+		
     }
     
 
@@ -44,46 +43,32 @@ class collector extends Controller
     function jobs($id, $type,$pid){
         $pickup = $this->load_model('PickUpRequestModel');
         
-        $pickUpModel = $this->load_model('PickupModel');
-        $main = $pickUpModel->where('pickupId', $pid);
+       
 
     // Get pickup requests with the specified ID
-    $pickupRequests = $pickup->where('pickupId', $pid);
+    
       
         // Auth::getCollector_ID
         $arr = [];
         $arr['jobstatus'] = $type;
 
         $data = $pickup->Update($id, $arr, "InventoryId");
-        $allJobsPendingOrRejected = $pickup->areAllJobsPendingOrRejected($pid);
-        $pickupJobStatus = '';    
-        $allRejected = true;
-        foreach ($pickupRequests as $request) {
-            if ($request->jobstatus != 'Rejected') {
-                $allRejected = false;
-                break;
-            }
-        }
-        
-       $pickupJobStatus = ($allRejected) ? 'Rejected' :'Assigned';
-       
-        $array = [];
-        $array['Status'] = $pickupJobStatus;
-        // Update the status in the PickUpModel
-        $pickUpModel->update($pid,$array,"pickupId");
-       
-        
-    if ($allJobsPendingOrRejected) {
-        // Load another view for the condition where all jobs are 'Pending' or 'Reject'
-        $this->index(); 
-    } else {
-        // Load the regular details view
         $this->details($pid);
+       
+    
     }
 
+    function statusupdate($id, $type){
+        $pickup = $this->load_model('PickupModel');
 
+        $arr = [];
+        $arr['Status'] = $type;
+
+        $data = $pickup->Update($id, $arr, "pickupId");
+        $this->index();
 
     }
+        
     function start($id)
     {
         // Code...
@@ -127,7 +112,7 @@ class collector extends Controller
 
 
             $data = $in->Update($id, $arr, "InventoryId");
-            $this->start($pid);
+            $this->details($pid);
 
         }
     }
@@ -147,6 +132,16 @@ class collector extends Controller
     
 		
 	}
+    function profileedit()
+	{
+		// code...
+    
+       
+        $this->view('Collector/profile_edit');
+    
+		
+	}
+
 	
 
   

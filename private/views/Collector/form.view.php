@@ -10,6 +10,14 @@
                 </div>
 
                 <div class="mdl-card__supporting-text">
+                <?php
+                    
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                       
+                        header("Location: " . ROOT . "collector/index"); // Change "/redirect-page" to the appropriate URL
+                        exit(); 
+                    }
+                    ?>
                     <form action= "<?= ROOT ?>/collector/store/<?= $data->InventoryId ?? '' ?>/Accepted/<?= $data->pickupId ?? '' ?>" method="POST" class="form">
                         <div class="form__article">
                             <h3>Inventory Details</h3>
