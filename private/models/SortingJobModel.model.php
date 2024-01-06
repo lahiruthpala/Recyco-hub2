@@ -14,13 +14,14 @@ class SortingJobModel extends Model
         'Sorting_Job_ID',
         'Status',
         'Line_No',
+        "Description",
         'End_Date',
-        'User_ID'
+        'User_ID',
     ];
     protected $table = "sorting_job";
 
     public function Make_Sorting_Job_ID($data){
-        $data['Sorting_Job_ID'] = random_string(6);
+        $data['Sorting_Job_ID'] = generateID("Sort");;
         return $data;
     }
 

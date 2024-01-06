@@ -1,5 +1,5 @@
 <section id="cards">
-    <form class="form form--basic" action="<?= ROOT ?>/Inventory/Assign" method="POST"
+    <form class="form form--basic" method="POST"
         style="margin: 20px 2px 20px 30px;">
         <div>
             <div class="mdl-grid" style="justify-content: center;">

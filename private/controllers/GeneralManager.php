@@ -152,7 +152,7 @@ class GeneralManager extends Controller
     {
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->findAll(1, 10, "Application_Date");
-        $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
+        $this->view('GeneralManager/Partner/NewPartnershipTable', ['rows' => $NewPartnership]);
     }
 
     function PartnershipReview($id)
@@ -162,7 +162,7 @@ class GeneralManager extends Controller
         }
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->first("Application_ID", $id);
-        $this->view('GeneralManager/Partner/Partershipreview', ['rows' => $NewPartnership]);
+        $this->view('GeneralManager/Partner/NewPartershipreview', ['rows' => $NewPartnership]);
     }
 
     function collections()

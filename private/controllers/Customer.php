@@ -1,16 +1,14 @@
 <?php
-class customer extends Controller
+class Customer extends Controller
 {
-	
 	function index()
 	{
-		// code...
-    
-       
         $this->view('Customer/customer');
-    
-		
 	}
-	
+
+	function CreatePickups(){
+		$pickup = $this->load_model("PickUpRequestModel");
+		$data = $pickup->insert($_POST);
+	}
 
 }

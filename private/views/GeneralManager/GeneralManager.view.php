@@ -1,8 +1,10 @@
 <?php $this->view('include/head') ?>
 <?php require_once(APP_ROOT . "/controllers/Inventory.php");
 require_once(APP_ROOT . "/controllers/GeneralManager.php");
+require_once(APP_ROOT . "/controllers/Charts.php");
 $inventory = new Inventory();
 $generalManager = new GeneralManager();
+$charts = new Charts();
 ?>
 
 <body>
@@ -19,7 +21,7 @@ $generalManager = new GeneralManager();
                     class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
                     <div style="width: 100%; display: flex; flex-direction: row;">
                         <?php $inventory->InventoryBreakdown(); 
-                        $inventory->WarehouseCapacity();
+                        $charts->WarehouseCapacity();
                         $inventory->SortingRate()
                         ?>
                     </div>
@@ -59,28 +61,4 @@ $generalManager = new GeneralManager();
     <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const data = {
-            labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-            ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [300, 50, 100],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
-                ],
-                hoverOffset: 4
-            }]
-        };
-        const ctx = document.getElementById('InventoryBreakdown');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: data,
-        });
-    </script>
     <?php $this->view('include/footer') ?>

@@ -22,12 +22,12 @@ class SortingManager extends Controller
 	function PendingSortingJobs()
 	{
 		$jobs = $this->load_model('SortingJobModel');
-		$data = $jobs->findAll();
+		$data = $jobs->where('Status', "In_Progress");
 		$this->view('SortingManager/SortingJobs', ['rows' => $data]);
 	}
 	function SortedJobs()
 	{
-		$inventory = $this->load_model('InventoryModel');
+		$inventory = $this->load_model('SortingJobModel');
 		$data = $inventory->where('Status', 'Sorted');
 		$this->view('SortingManager/SortedJobs', ['rows' => $data]);
 	}
@@ -45,8 +45,10 @@ class SortingManager extends Controller
 					$Inventory_Model->update($row, $arr, "Inventory_ID");
 				}
 				$SortingJob_Model->insert($_POST);
+				message("Sorting jos successfully initiated");
 				$this->redirect("SortingManager");
 			} else {
+				die;
 				$errors[] = "Wrong Password";
 			}
 		} else {

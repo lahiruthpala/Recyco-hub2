@@ -20,6 +20,21 @@
     greenIntensity = 120; // Initial green intensity
     blueIntensity = 0;  // Initial blue intensity
 
+    function getRandomColor() {
+        // Increase color intensities (make them lighter)
+        redIntensity += 10;
+        greenIntensity += 10;
+        blueIntensity += 10;
+
+        // Ensure color intensities do not exceed 255
+        if (redIntensity > 255) redIntensity = 255;
+        if (greenIntensity > 255) greenIntensity = 255;
+        if (blueIntensity > 255) blueIntensity = 255;
+
+        // Return the updated color
+        return `rgb(${redIntensity}, ${greenIntensity}, ${blueIntensity})`;
+    }
+
     var temp = JSON.parse(document.getElementById("data2").textContent);
     console.log(temp);
     type = Array()
@@ -43,5 +58,15 @@
     new Chart(ctx2, {
         type: 'doughnut',
         data: data2,
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 255, 255)'
+                    }
+                }
+            }
+        }
     });
 </script>

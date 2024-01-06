@@ -57,5 +57,15 @@
     new Chart(ctx, {
         type: 'doughnut',
         data: data,
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'rgb(255, 255, 255)'
+                    }
+                }
+            }
+        }
     });
 </script>

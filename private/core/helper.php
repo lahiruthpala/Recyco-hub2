@@ -11,6 +11,33 @@ function get_var($key,$default = "")
 	return $default;
 }
 
+//popup message
+	//message[] consists of message and the type of message
+	//$msg=['this is the message','success']
+	//$msg=['this is the message','danger']
+	function message($msg = ['', 'success'], $erase = false)
+	{
+
+		if (!is_array($msg)) { //if the $msg is just a string, make it an array and give msg type as success
+			$msg = [$msg, 'success'];
+		}
+
+		if (!empty($msg[0])) {
+			$_SESSION['message'] = $msg;
+		} else {
+			if (!empty($_SESSION['message'])) {
+
+				$msg = $_SESSION['message'];
+				if ($erase) {
+					unset($_SESSION['message']);
+				}
+				return $msg;
+			}
+		}
+
+		 return false;
+	}
+
 function get_select($key,$value)
 {
 	if(isset($_POST[$key]))

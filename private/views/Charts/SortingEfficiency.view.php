@@ -45,7 +45,7 @@
     for (var i = 0; i < temp.length; i++) {
         weight.push(temp[i].total_weight);
     }
-    const data2 = {
+    const data3 = {
         labels: type,
         datasets: [{
             label: 'Inventory Breakdown',
@@ -54,8 +54,8 @@
             hoverOffset: 4
         }]
     };
-    const ctx2 = document.getElementById('SortingRate');
-    new Chart(ctx2, {
+    const ctx3 = document.getElementById('SortingRate');
+    new Chart(ctx3, {
         type: 'doughnut',
         data: data2,
     });

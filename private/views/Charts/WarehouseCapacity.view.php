@@ -6,7 +6,7 @@
         <div class="mdl-card__supporting-text">
             <div class="pie-chart__container">
                 <canvas id="WarehouseCapacity"></canvas>
-                <label id="data1" hidden>
+                <label id="WarehouseCapacityData" hidden>
                     <?php
                     echo json_encode($data[0]); ?>
                 </label>
@@ -16,32 +16,37 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-    redIntensity = 0;   // Initial red intensity
-    greenIntensity = 120; // Initial green intensity
-    blueIntensity = 0;  // Initial blue intensity
-
-    var temp = JSON.parse(document.getElementById("data1").textContent);
+    var temp = JSON.parse(document.getElementById("WarehouseCapacityData").textContent);
     console.log(temp);
-    type = Array()
-    weight = Array()
-    for (var i = 0; i < temp.length; i++) {
-        type.push(temp[i].Type);
-    }
+    type = Array("Current weight", "TotalWeight")
+    weight = Array(temp.TotalWeight, temp.capacity-temp.TotalWeight)
+    console.log(weight)
     for (var i = 0; i < temp.length; i++) {
         weight.push(temp[i].total_weight);
     }
-    const data1 = {
+    const WarehouseCapacity = {
         labels: type,
         datasets: [{
             label: 'Inventory Breakdown',
             data: weight,
-            backgroundColor: Array.from({ length: type.length }, () => getRandomColor()),
+            borderWidth: 0,
+            backgroundColor: ['green', 'rgb(102,102,102)'],
             hoverOffset: 4
         }]
     };
     const ctx1 = document.getElementById('WarehouseCapacity');
     new Chart(ctx1, {
         type: 'doughnut',
-        data: data1,
+        data: WarehouseCapacity,
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                    labels: {
+                        color: 'rgb(255, 255, 255)'
+                    }
+                }
+            }
+        }
     });
 </script>

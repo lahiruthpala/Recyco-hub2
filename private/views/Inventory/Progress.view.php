@@ -41,7 +41,7 @@
                         <h1 class="mdl-card__title-text" id="tableTitle"><?= $data[0]->Status ?></h1>
                     </div>
                     <section id="cards">
-                        <form class="form form--basic" action="<?= ROOT ?>/Inventory/Assign" method="POST"
+                        <form class="form form--basic" method="POST"
                             style="margin: 20px 2px 20px 30px;">
                             <div>
                                 <div class="mdl-grid" style="justify-content: center;">
@@ -79,7 +79,7 @@
                                                 <?= $data[0]->Collector_Name ?? "Not assigned"; ?>
                                             </h6>
                                         </div>
-                                        <button onclick="generateQRCodesAndPrint()"
+                                        <button type="button" onclick="generateQRCodesAndPrint()"
                                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                                             style="border-radius: 99px;" id="Assignbutton" readonly>Print</button>
                                     </div>
