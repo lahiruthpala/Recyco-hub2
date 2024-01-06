@@ -6,7 +6,9 @@
         <main class="mdl-layout__content">
     <div class="mdl-grid ui-cards">
         <?php
-        $count = 0;
+    
+        if (is_array($rows) && !empty($rows)) :
+        $count = 0; 
        
         foreach ($rows as $pickup):
             if ($count % 3 == 0 && $count > 0): // Start a new row after every three records, except for the first row
@@ -74,7 +76,7 @@
                             </a>
                         </div>
                         <div class="mdl-card__actions">
-                            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" href="<?= ROOT ?>/collector/jobs/<?= $pickup->InventoryId ?>/Pending/<?= $pickup->pickupId ?>" style="margin-right: 10px;">Accept</a>
+                            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" href="<?= ROOT ?>/collector/form/<?= $pickup->InventoryId ?? '' ?>" style="margin-right: 10px;">Accept</a>
                             <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" href="<?= ROOT ?>/collector/jobs/<?= $pickup->InventoryId ?>/Rejected/<?= $pickup->pickupId ?>">Reject</a>
                         </div>
                     <?php endif; ?>
@@ -84,7 +86,10 @@
             $count++;
         endforeach;
         ?>
-        </div> <!-- Close the last row -->
+        </div> 
+        <?php else: ?>
+    <p>No pickup jobs available.</p>
+<?php endif; ?>
     </div>
 </main>
 
