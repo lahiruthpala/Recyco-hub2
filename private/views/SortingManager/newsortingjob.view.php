@@ -1,6 +1,6 @@
 <div class="mdl-card__supporting-text no-padding" id="newsortingjobs" style="display:none">
     <form class="form form--basic" method="POST" action="<?= ROOT ?>/SortingManager/CreateSortingJobs"
-        id="newSortingJob">
+        id="newSortingJob" onsubmit="NewSortingJob(event)">
         <div class="mdl-grid">
             <div style="margin:5%; margin-bottom: 5%;">
                 <div style="display: flex; justify-content: center; align-items: center;">
@@ -19,35 +19,29 @@
                         <?php endif; ?>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                             <input class="mdl-textfield__input" type="text" id="floating-last-name"
-                                placeholder="Assign Line" name="Assign_line">
+                                placeholder="Assign Line" name="Line_No">
                             <label class="mdl-textfield__label" for="floating-last-name"></label>
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                            <input class="mdl-textfield__input" type="text" placeholder="Discription"
-                                name="Discription">
+                            <input class="mdl-textfield__input" type="text" placeholder="Description"
+                                name="Description">
                             <label class="mdl-textfield__label" for="floating-e-mail"></label>
                         </div>
-                        <div>
+                        <div >
                             <button style="background-color: #4c504e; border-radius: 20px; margin-left: 10px;"
                                 onclick="Addinventory()" type="button"
                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right">
                                 Add Inventory
                             </button>
+                            <button type="submit" style="border-radius: 20px; margin-top:0"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green pull-right">
+                                    Create</button>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size" style="display:none">
                             <input class="mdl-textfield__input" type="password" id="password" placeholder="Password"
                                 name="pwd">
                             <label class="mdl-textfield__label" for="password"></label>
-                        </div>
-                        <div class="mdl-card__actions">
-                            <a
-                                style="margin-left: 240px; background-color: #16C784; border-radius: 20px; margin-left: 10px;">
-                                <button type="submit" style="border-radius: 20px;"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green pull-right">
-                                    Create</button>
-                            </a>
-
                         </div>
                     </div>
                     <div>
@@ -77,4 +71,6 @@
         var ROOT = "<?=ROOT?>";
     </script>
     <script src="<?=ROOT?>/js/QrScaner.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?=ROOT?>/js/NewSortingJob.js"></script>
 </div >

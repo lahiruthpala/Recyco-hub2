@@ -8,6 +8,7 @@ class PartnerModel extends Model
     protected $beforeInsert = [
         'Make_PartnerID',
         'Add_User_ID',
+
     ];
 
     protected $allowedColumns = [

@@ -5,5 +5,5 @@
  */
 class RawInvnetoryModel extends Model
 {
-    protected $table = "raw_inventories";
+    protected $table = "collector_inventories";
 }

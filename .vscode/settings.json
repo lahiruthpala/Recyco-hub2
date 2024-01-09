@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
+        "collectordetails",
+        "Dashboardevents",
         "generalmanager",
         "loadcomponent",
         "Partnershipreview"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

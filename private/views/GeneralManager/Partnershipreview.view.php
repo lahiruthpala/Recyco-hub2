@@ -12,33 +12,21 @@ $generalmanager = new GeneralManager();
         <main class="mdl-layout__content">
 
             <div class="mdl-grid mdl-grid--no-spacing dashboard">
-
-                <div
-                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-                    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp">
+                <div>
+                    <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="max-width: calc(100vw - 32px);">
+                        <div class="mdl-card mdl-shadow--2dp line-chart" style="margin-right: 16px;">
                             <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Istanbul</h2>
+                                <button onclick="loadComponent('PartnerTable')"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    style="border-radius: 99px; margin: 0;">Partnerships</Button>
                             </div>
-                            <div class="mdl-card__supporting-text">
-                                <small>City in Turkey</small>
-                                Istanbul is a major city in Turkey that straddles Europe and Asia across the Bosphorus
-                                Strait.
-                                Its Old City reflects cultural influences of the many empires that once ruled here.
-                                In the Sultanahmet district, the open-air, Roman-era Hippodrome was for centuries the
-                                site of chariot races,
-                                and Egyptian obelisks also remain.
-                                The iconic Byzantine Hagia Sophia features a soaring 6th-century dome and rare Christian
-                                mosaics.
-                                <br><br>
-                                <b>Weather:</b> 12°C, Wind S at 13 km/h, 71% Humidity
-                                <br>
-                                <b>Local time:</b> Friday 4:00 PM
-                                <br>
-                                <b>Population:</b> 14.8 million (Dec 31, 2016)
-                            </div>
+                            <?php $this->view('GeneralManager/Partner/Dashboardevents') ?>
                         </div>
                     </div>
+                </div>
+                <div
+                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
@@ -82,7 +70,7 @@ $generalmanager = new GeneralManager();
                                         class="material-icons">keyboard_arrow_right</i></button>
                             </div>
                             <?php $generalmanager->partnershipTable(); ?>
-                            <?php $generalmanager->partnerArticle(); ?>
+                            <?php $generalmanager->TodayArticle(); ?>
                             <?php $generalmanager->partnerEvents(); ?>
                             <?php $generalmanager->complaints(); ?>
                             <?php $generalmanager->NewPartnership(); ?>
@@ -94,9 +82,7 @@ $generalmanager = new GeneralManager();
         </main>
 
     </div>
-    <script src="<?=ROOT?>/js/loadcomponent.js"></script>
+    <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
-
-</html>
+    <?php $this->view('include/footer') ?>
