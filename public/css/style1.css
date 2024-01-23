@@ -1,0 +1,184 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:rgb(210, 240, 199);
+    color: #070707;
+}
+#about{
+    height: 100vh;
+    /* background-image: url(images/ABOUT\ US.jpg); */
+} 
+header {
+    background-color: #399b8c;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 100px; /* Adjust the size of your logo */
+    border-radius: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #ddd;
+}
+
+#hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+#hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+#embeddedPage {
+    width: 100%;
+    height: 500px; /* Set the height as per your requirement */
+    border: 1px solid #ccc;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #189e1a;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+section {
+    margin: 40px 20px;
+    padding: 40px;
+    background-color:white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #000000;
+    font-size: 29px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#process {
+    text-align: center;
+    background-color: white;
+    padding: 40px 20px;
+    justify-content: space-between;
+}
+.processor-elements{
+    display: flex;
+    text-align: center;
+}
+.process-step {
+    /* display: inline-block; */
+    text-align: center;
+    margin: 0 20px;
+    flex: 1;
+}
+
+.process-step img {
+    max-width: 120px; /* Adjust the size of your icon */
+    margin-bottom: 10px;
+}
+.process-step span{
+    font-size: 20px;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+}
+.mainprocess-cycle-two-stages{
+    display: flex;
+    justify-content: space-between;
+}
+.row-element2{
+    width: 400px;
+    position: relative;
+}
+.left-moved-arrow{
+    width: 100%;
+    position: absolute;
+    left: -50%;
+    transform: translateX(-50%);
+}
+.arrow{
+    width: 160px;
+    height: 50px;
+    object-fit: cover;
+    /* object-position: center; */
+}
+#rotate270{
+    transform: rotate(270deg);
+    left: 10px;
+}
+#rotate180{
+    transform: rotate(180deg);
+}
+.row-element1{
+    display: inline-flex;
+    flex: 1;
+}
+.row-element1-column1{
+    width: 190px;
+    height: 130px;
+}
+.row-element1-column2{
+    padding: 0;
+    margin-top: 0;
+}
+#about {
+    text-align: center;
+    font-size: 50px;
+    border-image: auto;
+}

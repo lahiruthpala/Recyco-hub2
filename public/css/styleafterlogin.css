@@ -1,0 +1,69 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(/public/images/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: #f4f4f4; /* Optional background color */
+}
+
+.button-container {
+    position: fixed;
+    left: 45%; 
+    right: 10px;
+    padding: 70px;
+    display: flex;
+    width: 50%;
+}
+
+button {
+    /* position: fixed; */
+    /* flex: 1; */
+    padding: 30px 60px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0 30px;
+    background-color: #19691b; /* Button background color */
+    color: white; 
+    border: none;
+    border-radius: 20px;
+    box-shadow:0 4px 8px rgb(61, 60, 60);
+    cursor: pointer;
+    transition: color 0.5s ease;
+    transition: background-color 0.5s ease; /* Smooth transition on hover */
+}
+
+button:hover {
+    /* color: rgb(90, 89, 89); */
+    /* border: 1px solid black; */
+    box-shadow:0 4px 8px 2px rgb(47, 46, 46);
+    background-color: #219427; 
+}
+header {
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+}
+
+.links a {
+    color: #fff;
+    text-decoration: none;
+}
