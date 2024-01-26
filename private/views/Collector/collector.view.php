@@ -1,7 +1,7 @@
 <?php $this->view('include/head') ?>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
-    <?php $this->view('include/collectorheader') ?>
+    <?php $this->view('include/header') ?>
         <main class="mdl-layout__content">
         <?php
         if (is_array($rows) && !empty($rows)) {

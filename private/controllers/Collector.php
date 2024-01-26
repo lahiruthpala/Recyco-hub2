@@ -127,20 +127,62 @@ class collector extends Controller
 	{
 		// code...
     
+        $collector = $this->load_model('CollectorModel');
        
-        $this->view('Collector/profile');
+        // Auth::getCollector_ID
+        $data = $collector->first("collectorId", "25435");
+        $this->view('Collector/profile', ['row' => $data]);
+       
     
 		
 	}
-    function profileedit()
+    function profileedit($cId)
 	{
 		// code...
     
+        $collector = $this->load_model('CollectorModel');
        
-        $this->view('Collector/profile_edit');
+        // Auth::getCollector_ID
+        $data = $collector->first("collectorId", $cId);
+        $this->view('Collector/profile_edit', ['data' => $data]);
+       
     
 		
 	}
+    
+    public function updateProfile($id) {
+
+        $in = $this->load_model('CollectorModel');
+
+        $arr = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+           
+            $firstName = $_POST['fname'] ?? '';
+            $lastName = $_POST['lname'] ?? '';
+            $email= $_POST['email'] ?? '';
+            $contactNo = $_POST['contactNo'] ?? '';
+            $address= $_POST['address'] ?? '';
+            $vehicleNo= $_POST['vehicleNo'] ?? '';
+         
+            $arr = [
+                'firstname' => $firstName,
+                'lastname' => $lastName,
+                'email' => $email,
+                'contactNo' => $contactNo,
+                'address' => $address,
+                'vehicleNo' => $vehicleNo
+
+
+            ];
+
+
+           
+            $data = $in->Update($id, $arr, "collectorId");
+
+           $this->profile();
+           
+        }
+    }
 
 	
 
