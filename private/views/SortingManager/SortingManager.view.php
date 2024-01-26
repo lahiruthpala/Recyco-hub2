@@ -33,8 +33,8 @@ $sortingManager = new SortingManager(); ?>
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
                             </div>
-                            <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text" id="tableTitle" style="border-radius: 0;">Sorting Jobs</h1>
+                            <div class="mdl-card__title" style="border-radius: 0;">
+                                <h1 class="mdl-card__title-text" id="tableTitle">Sorting Jobs</h1>
                             </div>
                             <section id="content">
                                 <?php $sortingManager->CreateSortingJobs(); ?>

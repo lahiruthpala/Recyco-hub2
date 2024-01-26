@@ -39,6 +39,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>var ROOT = "http://localhost:8380/Recyco-hub2/public" </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <!-- endinject -->
 
 </head>

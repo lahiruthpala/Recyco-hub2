@@ -1,11 +1,5 @@
 {
-    "name": "your-username/project-name",
-    "description": "A short description of your project",
-    "type": "project",
-    "license": "MIT",
-    "require": {
-        "php": "^7.4",
-        "slim/slim": "^4.0",
-        "monolog/monolog": "^2.0"
+    "require-dev": {
+        "phing/phing": "^2.17"
     }
 }

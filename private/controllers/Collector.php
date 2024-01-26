@@ -184,7 +184,9 @@ class collector extends Controller
         }
     }
 
-	
+	function sendReminders(){
+        
+    }
 
   
 }

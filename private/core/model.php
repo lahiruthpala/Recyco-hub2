@@ -17,6 +17,7 @@ class Model extends Database
 	{
 
 		$column = addslashes($column);
+		//$query = "select * from $this->table WHERE id_column_name IN (id_value1, id_value2, id_value3,...);
 		$query = "select * from $this->table where $column = :value";
 		return $this->query($query, [
 			'value' => $value
@@ -63,7 +64,7 @@ class Model extends Database
 				$data = $this->$func($data);
 			}
 		}
-		
+
 		//remove unwanted columns
 		if (property_exists($this, 'allowedColumns')) {
 			foreach ($data as $key => $column) {

@@ -16,12 +16,8 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-    redIntensity = 0;   // Initial red intensity
-    greenIntensity = 120; // Initial green intensity
-    blueIntensity = 0;  // Initial blue intensity
-
     var temp = JSON.parse(document.getElementById("data1").textContent);
-    console.log(temp);
+    color = 0
     type = Array()
     weight = Array()
     for (var i = 0; i < temp.length; i++) {
@@ -35,7 +31,7 @@
         datasets: [{
             label: 'Inventory Breakdown',
             data: weight,
-            backgroundColor: Array.from({ length: type.length }, () => getRandomColor()),
+            backgroundColor: Array.from({ length: type.length }, () => getColor(color)),
             hoverOffset: 4
         }]
     };

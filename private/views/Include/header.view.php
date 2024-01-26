@@ -128,3 +128,30 @@
     </div>
 </header>
 <script src="<?= ROOT ?>/js/Notification.js"></script>
+<script>
+    const chartColors = [
+        '#1F8A1F',
+        '#2D882D',
+        '#2E8B57',
+        '#008B00',
+        '#006400',
+        '#228B22',
+        '#20B2AA',
+        '#008080',
+        '#3CB371',
+        '#32CD32',
+        '#00FF00',
+        '#ADFF2F',
+        '#7FFF00',
+        '#556B2F',
+        '#8FBC8F',
+        '#00FA9A',
+        '#2E8B57',
+        '#008000',
+        '#006400',
+        '#3CB371'
+    ];
+    function getColor(n) {
+        return chartColors[n%20]
+    }
+</script>

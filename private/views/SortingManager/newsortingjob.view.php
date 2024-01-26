@@ -29,11 +29,6 @@
                             <label class="mdl-textfield__label" for="floating-e-mail"></label>
                         </div>
                         <div >
-                            <button style="background-color: #4c504e; border-radius: 20px; margin-left: 10px;"
-                                onclick="Addinventory()" type="button"
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right">
-                                Add Inventory
-                            </button>
                             <button type="submit" style="border-radius: 20px; margin-top:0"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green pull-right">
                                     Create</button>
@@ -51,9 +46,26 @@
             <video id="preview" style="width: 23%;"></video>
             <div style="width: 30%; height: 30%; margin: 5%;"
                 class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                <div class="mdl-card mdl-shadow--2dp trending" style="margin: 0 0 20px 0;">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"> Inventories</h2>
+                        <button style="background-color: #4c504e; border-radius: 20px; margin-left: 10px;"
+                                onclick="Addinventory()" type="button"
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right">
+                                Add Inventory
+                            </button>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <ul class="mdl-list">
+                            <input id="inventorylist" name="inventory" value="" hidden>
+                            <li class="mdl-list__item" id="inventory">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="mdl-card mdl-shadow--2dp trending">
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Inventory</h2>
+                        <h2 class="mdl-card__title-text">Assign Inventories</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
                         <ul class="mdl-list">

@@ -22,7 +22,7 @@ $charts = new Charts();
                     <div style="width: 100%; display: flex; flex-direction: row;">
                         <?php $inventory->InventoryBreakdown(); 
                         $charts->WarehouseCapacity();
-                        $inventory->SortingRate()
+                        $charts->SortingRate()
                         ?>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">

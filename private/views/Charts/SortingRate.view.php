@@ -1,14 +1,14 @@
-<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-    <div class="mdl-card mdl-shadow--2dp pie-chart">
+<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="width: 45%;">
+    <div class="mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title" style="align-items: center; justify-content: center;">
             <h2 class="mdl-card__title-text">Sorting Rate</h2>
         </div>
         <div class="mdl-card__supporting-text">
             <div class="pie-chart__container">
                 <canvas id="SortingRate"></canvas>
-                <label id="data2" hidden>
+                <label id="SortingRate_data" hidden>
                     <?php
-                    echo json_encode($data[0]); ?>
+                    echo json_encode($data); ?>
                 </label>
             </div>
         </div>
@@ -16,57 +16,33 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-    redIntensity = 0;   // Initial red intensity
-    greenIntensity = 120; // Initial green intensity
-    blueIntensity = 0;  // Initial blue intensity
-
-    function getRandomColor() {
-        // Increase color intensities (make them lighter)
-        redIntensity += 10;
-        greenIntensity += 10;
-        blueIntensity += 10;
-
-        // Ensure color intensities do not exceed 255
-        if (redIntensity > 255) redIntensity = 255;
-        if (greenIntensity > 255) greenIntensity = 255;
-        if (blueIntensity > 255) blueIntensity = 255;
-
-        // Return the updated color
-        return `rgb(${redIntensity}, ${greenIntensity}, ${blueIntensity})`;
-    }
-
-    var temp = JSON.parse(document.getElementById("data2").textContent);
-    console.log(temp);
-    type = Array()
-    weight = Array()
+    color = 0;
+    var temp = JSON.parse(document.getElementById("SortingRate_data").textContent);
+    labels = Array()
+    Sorted_values = Array()
     for (var i = 0; i < temp.length; i++) {
-        type.push(temp[i].Type);
+        labels.push(temp[i].Date);
     }
     for (var i = 0; i < temp.length; i++) {
-        weight.push(temp[i].total_weight);
+        Sorted_values.push(temp[i].count);
     }
-    const data2 = {
-        labels: type,
+    console.log(labels)
+    const SortingRate_values = {
+        labels: labels,
         datasets: [{
-            label: 'Inventory Breakdown',
-            data: weight,
-            backgroundColor: Array.from({ length: type.length }, () => getRandomColor()),
-            hoverOffset: 4
+            label: 'Num of Sorting Job',
+            data: Sorted_values,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
         }]
     };
-    const ctx2 = document.getElementById('SortingRate');
-    new Chart(ctx2, {
-        type: 'doughnut',
-        data: data2,
-        options: {
-            plugins: {
-                legend: {
-                    display: true,
-                    labels: {
-                        color: 'rgb(255, 255, 255)'
-                    }
-                }
-            }
-        }
-    });
+
+    const SortingRateConfig = {
+        type: 'line',
+        data: SortingRate_values,
+    };
+
+    const chart = new Chart(document.getElementById('SortingRate'), SortingRateConfig);
+
 </script>

@@ -69,30 +69,6 @@ class Inventory extends Controller
         }
     }
 
-    function progress($table)
-    {
-        $id = 0;
-        $model = $this->load_model($table);
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-        } else {
-            echo "ID parameter is not set in the URL.";
-        }
-        $data = $model->first($table . "_ID", $id);
-        $inventory = $this->load_model('InventoryModel');
-        $inventory = $inventory->where("Batch_ID ", $id);
-        $data->pagetype = $table;
-        $data->statusint = statustoint($data->Status);
-        $user = $this->load_model('User');
-        if($data->Collector_ID != NULL){
-            $collector = $user->first("User_ID", $data->Collector_ID);
-            $data->Collector_Name = $collector->FirstName . " " . $collector->LastName;
-        }
-        $user = $user->first("User_ID", $data->User_ID);
-        $data->User_ID = $user->FirstName . " " . $user->LastName;
-        $this->view('Inventory/Progress', [$data, 'rows' => $inventory]);
-    }
-
     function BatchProgress(){
         $id = 0;
         $model = $this->load_model('Batch');
@@ -105,6 +81,7 @@ class Inventory extends Controller
         $inventory = $this->load_model('InventoryModel');
         $inventory = $inventory->where("Batch_ID ", $id);
         $data->pagetype = "Batch";
+        $data->statusint = statustoint($data->Status);
         $user = $this->load_model('User');
         if($data->Collector_ID != NULL){
             $collector = $user->first("User_ID", $data->Collector_ID);
@@ -112,7 +89,7 @@ class Inventory extends Controller
         }
         $user = $user->first("User_ID", $data->User_ID);
         $data->User_ID = $user->FirstName . " " . $user->LastName;
-        $this->view('Inventory/Progress', [$data, 'rows' => $inventory]);
+        $this->view('Inventory/BatchProgress', [$data, 'rows' => $inventory]);
     }
 
     function InventoryProgress(){
@@ -187,15 +164,5 @@ class Inventory extends Controller
         FROM inventory
         GROUP BY Type;",$data = []);
         $this->view('Charts/WarehouseCapacity', [$data]);
-    }
-
-    function SortingRate()
-    {
-        $inventory = $this->load_model('InventoryModel');
-        $data = $inventory->query("
-        SELECT Type, SUM(Weight) AS total_weight
-        FROM inventory
-        GROUP BY Type;",$data = []);
-        $this->view('Charts/SortingRate', [$data]);
     }
 }

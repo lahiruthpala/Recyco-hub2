@@ -1,4 +1,4 @@
-<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone"style="width: 27%;">
     <div class="mdl-card mdl-shadow--2dp pie-chart">
         <div class="mdl-card__title" style="align-items: center; justify-content: center;">
             <h2 class="mdl-card__title-text">Sorted Items</h2>
@@ -16,24 +16,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-    let redIntensity = 0;   // Initial red intensity
-    let greenIntensity = 120; // Initial green intensity
-    let blueIntensity = 0;  // Initial blue intensity
-
-    function getRandomColor() {
-        // Increase color intensities (make them lighter)
-        redIntensity += 10;
-        greenIntensity += 10;
-        blueIntensity += 10;
-
-        // Ensure color intensities do not exceed 255
-        if (redIntensity > 255) redIntensity = 255;
-        if (greenIntensity > 255) greenIntensity = 255;
-        if (blueIntensity > 255) blueIntensity = 255;
-
-        // Return the updated color
-        return `rgb(${redIntensity}, ${greenIntensity}, ${blueIntensity})`;
-    }
+    color = 0;
     var temp = JSON.parse(document.getElementById("data").textContent);
     console.log(temp);
     type = Array()
@@ -49,7 +32,7 @@
         datasets: [{
             label: 'Inventory Breakdown',
             data: weight,
-            backgroundColor: Array.from({ length: type.length }, () => getRandomColor()),
+            backgroundColor: Array.from({ length: type.length }, () => getColor(color)),
             hoverOffset: 4
         }]
     };
