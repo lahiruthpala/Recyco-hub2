@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Webpage Title</title>
+<<<<<<< Updated upstream
     <link rel="stylesheet" type="text/css" href="<?=ROOT ?>/css/lib/setpickup.css">
+=======
+    <!-- <link rel="stylesheet" type="text/css" href="setpickup.css"> -->
+    <link rel="stylesheet" href="<?= ROOT ?>/css/setpickup.css">
+>>>>>>> Stashed changes
 </head>
 <body> 
 
     <header>  
+<<<<<<< Updated upstream
         <img src="images/logo.jpg" alt="Your Logo">
+=======
+        <img src="/public/images/logo.jpg" alt="Your Logo">
+>>>>>>> Stashed changes
         <nav>
             <a href="#">Home</a>
             <a href="#">About</a>
@@ -32,7 +41,11 @@
         <br>
         <div class="firstsection2">
             <div class="image">
+<<<<<<< Updated upstream
                 <img src="images/garbage bag.jpg" alt="Image Description">
+=======
+                <img src="/public/images/garbage bag.jpg" alt="Image Description">
+>>>>>>> Stashed changes
             </div>
         </div>
     </section>
@@ -49,13 +62,21 @@
                 filling the relevant form.</p>
             </div>
             <div class="row1-column3">
+<<<<<<< Updated upstream
                 <img src="images/arrow.png" alt="arrow" class="arrowrow1">
+=======
+                <img src="/public/images/arrow.png" alt="arrow" class="arrowrow1">
+>>>>>>> Stashed changes
             </div>
         </div>
         
         <div class="row2"><br>
             <div class="row2-column1">
+<<<<<<< Updated upstream
                 <img class="garbagetruck" src="images/garbage truck.png" alt="garbage truck">
+=======
+                <img class="garbagetruck" src="/public/images/garbage truck.png" alt="garbage truck">
+>>>>>>> Stashed changes
             </div>
             <div class="row2-column2">
                 <p>We send our collection truck <br>
@@ -65,7 +86,11 @@
         </div>
         <div class="row3">
             <div class="column1">
+<<<<<<< Updated upstream
                 <img src="images/garbage bags.png" alt="garbage bag">
+=======
+                <img src="/public/images/garbage bags.png" alt="garbage bag">
+>>>>>>> Stashed changes
             </div>
             <div class="column2">
                 <p>

@@ -4,12 +4,11 @@
     font-family: 'Poppins', sans serif;
 }
 body{
-    background: rgb(84, 134, 84);
+    background: rgb(53, 61, 53);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    
 }
 .box{
     display: flex;

@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pickup Order</title>
+<<<<<<< Updated upstream
     <link rel="stylesheet" type="text/css" href="<?=ROOT ?>/css/lib/pickuprequeststyle.css">
 </head>
 <body> 
+=======
+    <!-- <link rel="stylesheet" type="text/css" href="pickuprequeststyle.css"> -->
+    <link rel="stylesheet" href="<?= ROOT ?>/css/pickuprequeststyle.css">
+</head>
+<body>  
+>>>>>>> Stashed changes
     <!-- <img src="images/pickup background.jpg"> -->
     <h2>Pickup Order Request</h2>
 

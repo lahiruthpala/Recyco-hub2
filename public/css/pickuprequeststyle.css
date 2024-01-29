@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     margin: 20px; 
-    background: url('/public/images/pickup\ background.jpg');
+    background: url('images/pickup\ background.jpg');
 }
 #map{ 
     height: 400px;

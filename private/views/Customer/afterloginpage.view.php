@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recyco-Hub</title>
     <!-- <link rel="stylesheet" type="text/css" href="styleafterlogin.css"> -->
+<<<<<<< Updated upstream
     
     <link rel="stylesheet" href="<?= ROOT ?>/css/lib/styleafterlogin.css">
 
+=======
+    <link rel="stylesheet" href="<?= ROOT ?>/css/styleafterlogin.css">
+>>>>>>> Stashed changes
 </head>
 <body>    
     <div class="button-container">
@@ -17,8 +21,14 @@
     </div>
     <script>
         function buttonClicked(buttonNumber) {
+<<<<<<< Updated upstream
             var newPageUrl = "http://localhost:8380/Recyco-hub2/private/views/Customer/pickup%20request.html"
             window.location.href = newPageUrl;
+=======
+            var newPageUrl = "http://localhost:5500/private/views/Customer/pickup request.html" 
+            window.location.href = newPageUrl;
+            
+>>>>>>> Stashed changes
         }
     </script>
 
