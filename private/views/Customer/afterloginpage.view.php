@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="styleafterlogin.css"> -->
 <<<<<<< Updated upstream
     
-    <link rel="stylesheet" href="<?= ROOT ?>/css/lib/styleafterlogin.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/css/styleafterlogin.css">
 
 =======
     <link rel="stylesheet" href="<?= ROOT ?>/css/styleafterlogin.css">

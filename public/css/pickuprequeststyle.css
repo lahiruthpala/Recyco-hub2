@@ -7,7 +7,11 @@ body {
     margin: 0;
     padding: 0;
     margin: 20px; 
-    background: url('images/pickup\ background.jpg');
+<<<<<<< Updated upstream
+    background: url('/public/images/pickup\ background.jpg');
+=======
+    background: url('/images/pickup\ background.jpg');
+>>>>>>> Stashed changes
 }
 #map{ 
     height: 400px;
