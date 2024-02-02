@@ -17,6 +17,7 @@ class Model extends Database
 	{
 
 		$column = addslashes($column);
+		//$query = "select * from $this->table WHERE id_column_name IN (id_value1, id_value2, id_value3,...);
 		$query = "select * from $this->table where $column = :value";
 		return $this->query($query, [
 			'value' => $value
@@ -47,14 +48,22 @@ class Model extends Database
 		return $data;
 	}
 
-	public function findAll()
+	public function findAll($pageNumber = 1, $pageSize = 10, $orderByColumn = 'id')
 	{
-		$query = "select * from $this->table";
+		$offset = ($pageNumber - 1) * $pageSize;
+		$query = "SELECT * FROM $this->table ORDER BY $orderByColumn LIMIT $pageSize OFFSET $offset";
 		return $this->query($query);
 	}
 
 	public function insert($data)
 	{
+
+		//run functions before insert
+		if (property_exists($this, 'beforeInsert')) {
+			foreach ($this->beforeInsert as $func) {
+				$data = $this->$func($data);
+			}
+		}
 
 		//remove unwanted columns
 		if (property_exists($this, 'allowedColumns')) {
@@ -64,13 +73,6 @@ class Model extends Database
 				}
 			}
 
-		}
-
-		//run functions before insert
-		if (property_exists($this, 'beforeInsert')) {
-			foreach ($this->beforeInsert as $func) {
-				$data = $this->$func($data);
-			}
 		}
 
 		$keys = array_keys($data);
@@ -99,6 +101,54 @@ class Model extends Database
 	{
 		$query = "delete from $this->table where $column = :id";
 		$data['id'] = $id;
+		return $this->query($query, $data);
+	}
+
+	public function innerJoin($tables = [], $joinConditions = [], $data = [], $selectColumns = ['*'])
+    {
+        if (count($tables) < 1 && count($tables) == count($joinConditions)) {
+            return false; // Need atleast one more table than $this->table to use innerjoin
+        }
+
+        $query = "SELECT " . implode(", ", $selectColumns) . " FROM " . $this->table;
+        //adding inner joins
+        for ($i = 0; $i < count($tables); $i++) {
+
+            $query = $query . " INNER JOIN " . $tables[$i] . " ON ";
+
+            //adding join condition if mentioned, else add default
+            $query = $query . $joinConditions[$i] . " ";
+        }
+		
+        //adding where conditions
+        if (!empty($data)) {
+            $keys = array_keys($data);
+            $query = $query . "WHERE ";
+            foreach ($keys as $key) {
+                $query .= $this->table . "." . $key . "='" . $data[$key] . "' && ";
+
+            }
+
+            //remove the additional '&&' 
+            $query = trim($query, "&& ");
+        }
+//        show($query);
+  //      show($data);
+    //    die;
+
+        //since $data for where clause is expanded in here, no need to send the data to PDO
+        //didnt use $key:=$key
+        $res = $this->query($query, $data = []);
+
+        if (is_array($res)) {
+            return $res;
+        } else{
+			return false;
+		}
+	}
+
+	public function custom($query, $data)
+	{
 		return $this->query($query, $data);
 	}
 }

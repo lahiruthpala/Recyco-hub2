@@ -6,7 +6,7 @@
         </header>
         <main class="mdl-layout__content">
             <div class="mdl-grid ui-cards">
-                <div class="mdl-layout__header-row" style="margin-top: 50px;">
+                <div class="mdl-layout__header-row" style="margin-top: 50px; background-color: black; width:100%">
                     <button id="stock" onclick="window.location.href = '<?=ROOT?>/Partner/addnew'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                         style="border-radius: 99px; margin-left: 1VW;">New Article</Button>

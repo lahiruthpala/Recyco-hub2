@@ -10,10 +10,14 @@ class Partner extends Controller
         $this->view("Partner/articles", ["articles" => $data]);
     }
 
-    function Articles()
+    function Articles($Pid=null)
     {
         $articles = $this->load_model('Articles');
-        $data = $articles->findAll();
+        if($Pid!=null){
+            $data = $articles->where("Partner_ID", $Pid);
+        }else{
+            $data = $articles->findAll();
+        }
         $this->view("Partner/articles", ["articles" => $data]);
     }
 
