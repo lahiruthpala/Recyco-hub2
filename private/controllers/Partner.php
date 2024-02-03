@@ -7,7 +7,7 @@ class Partner extends Controller
         // code...
         $articles = $this->load_model('Articles');
         $data = $articles->findAll();
-        $this->view("Partner/articles", ["articles" => $data]);
+        $this->view("Partner/Articles", ["articles" => $data]);
     }
 
     function Articles($Pid=null)

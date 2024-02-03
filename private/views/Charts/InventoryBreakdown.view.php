@@ -1,4 +1,4 @@
-<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="width: 20%;">
     <div class="mdl-card mdl-shadow--2dp pie-chart">
         <div class="mdl-card__title" style="align-items: center; justify-content: center;">
             <h2 class="mdl-card__title-text">Inventory Breakdown</h2>

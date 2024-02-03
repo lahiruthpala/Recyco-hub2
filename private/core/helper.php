@@ -97,25 +97,30 @@ function show($data)
 
 function statustoint($status)
 {
-	switch ($status) {
-		case "New" || "In_Progress":
+    switch ($status) {
+        case "New":
 			return 0;
-		case "Assigned" || "Sorted":
+        case "In_Progress":
+            return 0;
+        case "Assigned":
 			return 1;
-		case "Collected":
-			return 2;
-		case "In whorehouse":
-			return 3;
-		case "Sorting":
-			return 4;
-		case "Sorted":
-			return 5;
-		case "Ready To Sell":
-			return 6;
-		case "Sold":
-			return 7;
-		default:
-			// Handle unknown status
-			return -1;
-	}
+        case "Sorted":
+            return 1;
+        case "Collected":
+            return 2;
+        case "In whorehouse":
+            return 3;
+        case "Sorting":
+            return 4;
+        case "Sorted":
+            return 5;
+        case "Ready To Sell":
+            return 6;
+        case "Sold":
+            return 7;
+        default:
+            // Handle unknown status
+            return -1;
+    }
 }
+

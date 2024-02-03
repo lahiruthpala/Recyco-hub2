@@ -8,7 +8,8 @@ class GeneralManager extends Controller
 
     function verify()
     {
-        if (Auth::getRole() == "SortingManager") {
+        $allowedRoles = ["SortingManager", "generalmanager", "Admin"];
+        if (in_array(Auth::getRole(), $allowedRoles)) {
             return true;
         } else {
             $this->redirect('login');
