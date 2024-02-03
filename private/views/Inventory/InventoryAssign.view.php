@@ -3,7 +3,7 @@
         <div style="display: flex">
             <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone"
                 style="margin-left: 4.5vw;">
-                <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card mdl-shadow--2dp" style="height: auto;">
                     <div class="mdl-card__title">
                         <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
                     </div>
@@ -19,7 +19,6 @@
                             <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article"
                                 style="padding-left: 30px;">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <h6>Batch_ID</h6>
                                     <input class="mdl-textfield__input" type="text" value="" name="BatchID"
                                         id="AssignBatchID" readonly>
                                 </div>

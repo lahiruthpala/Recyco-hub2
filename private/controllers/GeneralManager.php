@@ -97,17 +97,22 @@ class GeneralManager extends Controller
 
     function partner()
     {
-        $partner = $this->load_model('PartnerModel');
         $remarks = $this->load_model('Remarks');
+        if (isset($_POST["Note"])){
+            $remarks->insert($_POST);
+        }
+        $partner = $this->load_model('PartnerModel');
         $contact = $this->load_model('PartnerContact');
         $article = $this->load_model('Articles');
         $events = $this->load_model('Event');
-        $partner = $partner->first("Partner_ID", $_POST['id']);
-        $remarks = $remarks->where("Partner_ID", $_POST['id']);
-        $contact = $contact->where("Partner_ID", $_POST['id']);
-        $article = $article->where("Partner_ID", $_POST['id']);
-        $events = $events->where("Partner_ID", $_POST['id']);
-        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article'=>$article]);
+        $complaints = $this->load_model('Complaints');
+        $partner = $partner->first("Partner_ID", $_POST['Partner_ID']);
+        $remarks = $remarks->where("Partner_ID", $_POST['Partner_ID']);
+        $contact = $contact->where("Partner_ID", $_POST['Partner_ID']);
+        $article = $article->where("Partner_ID", $_POST['Partner_ID']);
+        $events = $events->where("Partner_ID", $_POST['Partner_ID']);
+        $complaints = $complaints->where("Partner_ID", $_POST['Partner_ID']);
+        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article'=>$article, 'complaints'=>$complaints]);
     }
 
     function partnerEvents()
@@ -137,9 +142,9 @@ class GeneralManager extends Controller
 
     function complaints()
     {
-        $events = $this->load_model('Complaints');
-        $events = $events->findAll(1, 10, "Publish_Date");
-        $this->view('GeneralManager/Partner/complaints', ['rows' => $events]);
+        $complaints = $this->load_model('Complaints');
+        $complaints = $complaints->findAll(1, 10, "Date");
+        $this->view('GeneralManager/Partner/ComplaintsTable', ['rows' => $complaints]);
     }
 
     function collector()

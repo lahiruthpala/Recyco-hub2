@@ -42,7 +42,7 @@
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Buying Price -> </h6>
                                             <h6>
-                                                <?= $data[0]->Buying_Price; ?>
+                                                <?= $data[0]->Buying_Price ?? "No price  set yet."; ?>
                                             </h6>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Selling Price -> </h6>
                                             <h6>
-                                                <?= $data[0]->Selling_Price; ?>
+                                                <?= $data[0]->Selling_Price ?? "No price  set yet."; ?>
                                             </h6>
                                         </div>
                                     </div>
