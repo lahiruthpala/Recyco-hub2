@@ -179,18 +179,10 @@ class Inventory extends Controller
         $inventory = $this->load_model('InventoryModel');
         $data = $inventory->query("
         SELECT Type, SUM(Weight) AS total_weight
-        FROM inventory
-        GROUP BY Type;", $data = []);
+FROM inventory
+WHERE Type <> 'NEW'
+GROUP BY Type;
+", $data = []);
         $this->view('Charts/InventoryBreakdown', [$data]);
-    }
-
-    function WarehouseCapacity()
-    {
-        $inventory = $this->load_model('InventoryModel');
-        $data = $inventory->query("
-        SELECT Type, SUM(Weight) AS total_weight
-        FROM inventory
-        GROUP BY Type;", $data = []);
-        $this->view('Charts/WarehouseCapacity', [$data]);
     }
 }

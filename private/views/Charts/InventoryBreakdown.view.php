@@ -16,6 +16,30 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
+    const chartColors = [
+        '#006400',
+        '#228B22',
+        '#20B2AA',
+        '#008080',
+        '#3CB371',
+        '#32CD32',
+        '#00FF00',
+        '#ADFF2F',
+        '#7FFF00',
+        '#556B2F',
+        '#8FBC8F',
+        '#00FA9A',
+        '#2E8B57',
+        '#008000',
+        '#006400',
+        '#3CB371'
+    ];
+    function getColor(n) {
+        console.log(n);
+        color += 1;
+        return chartColors[n % 20]
+    }
+
     color = 0;
     var temp = JSON.parse(document.getElementById("data").textContent);
     console.log(temp);
@@ -44,7 +68,6 @@
             plugins: {
                 legend: {
                     display: true,
-                    position: 'right',
                     labels: {
                         color: 'rgb(255, 255, 255)'
                     }

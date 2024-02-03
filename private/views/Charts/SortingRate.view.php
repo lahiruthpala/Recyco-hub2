@@ -16,7 +16,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-    color = 0;
     var temp = JSON.parse(document.getElementById("SortingRate_data").textContent);
     labels = Array()
     Sorted_values = Array()
@@ -26,6 +25,7 @@
     for (var i = 0; i < temp.length; i++) {
         Sorted_values.push(temp[i].count);
     }
+    console.log(labels, Sorted_values);
     console.log(labels)
     const SortingRate_values = {
         labels: labels,
