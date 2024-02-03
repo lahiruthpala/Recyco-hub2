@@ -39,7 +39,7 @@ $charts = new Charts();
                                     Inventory</Button>
                                 <button onclick="loadComponent('CreateInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="margin-left: auto;">Add New Stock</button>
+                                    style="margin-left: auto;">Generate Inventory</button>
                             </div>
                             <div class="mdl-card__title" style="border-radius: 0;">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>

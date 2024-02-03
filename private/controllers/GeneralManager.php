@@ -49,6 +49,7 @@ class GeneralManager extends Controller
 
     function SetGenerations()
     {
+        var_dump($_POST);
         $errors = array();
         if (count($_POST) > 0) {
             $jobs = $this->load_model('AutomatedEvents');
@@ -65,11 +66,10 @@ class GeneralManager extends Controller
                 'Friday' => 5,
                 'Saturday' => 6,
             ];
-
             $dayOfWeek = $dayOfWeekMap[$_POST['day']];
 
             // Extract hours and minutes from the time
-            list($hours, $minutes) = explode(':', $_POST['time']);
+            list($hours, $minutes) = explode(':', $_POST['Time']);
 
             // Specify the cron schedule
             $cron_schedule = "$minutes $hours * * $dayOfWeek";
@@ -79,7 +79,7 @@ class GeneralManager extends Controller
 
             // Add the cron job
             //exec('(crontab -l ; echo "' . $cron_schedule . ' ' . $command . '") | crontab -');
-            
+            $this->redirect("Generalmanager");
         }
     }
 

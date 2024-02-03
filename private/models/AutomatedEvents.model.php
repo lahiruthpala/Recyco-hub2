@@ -16,7 +16,7 @@ class AutomatedEvents extends Model
     protected $table = "automated_inventory_generation";
 
     public function Make_Events_ID($data){
-        $data['ID'] = random_string(6);
+        $data['ID'] = generateID("Gen");
         return $data;
     }
 }
