@@ -1,11 +1,12 @@
-<div class="mdl-card__supporting-text no-padding" id="NewPartnership" style="display: none;">
+<div class="mdl-card__supporting-text no-padding" id="UserAccounts" style="display: block;">
     <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Company_ID</th>
-                <th class="mdl-data-table__cell--non-numeric">Commpany_Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Application Date</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
+                <th class="mdl-data-table__cell--non-numeric">User_Name/Emp_ID</th>
+                <th class="mdl-data-table__cell--non-numeric">First Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Last Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Role</th>
+                <th class="mdl-data-table__cell--non-numeric">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -15,13 +16,16 @@
                     ?>
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Company_ID ?? '' ?>
+                            <?= $row->UserName ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Company_Name ?? 'CompanyName' ?>
+                            <?= $row->FirstName ?? 'Company_abc' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Application_Date ?? '' ?>
+                            <?= $row->LastName ?? '' ?>
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <?= $row->Role ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric" style="padding-left: 70px;">
                             <span
@@ -31,14 +35,13 @@
                         </td>
 
                         <td class="mdl-data-table__cell--non-numeric">
-                            <form action="<?= ROOT ?>/GeneralManager/PartnershipReview/<?=$row->Application_ID?>" method="POST">
+                            <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
                                 <!-- Replace 'your_id_value' with the actual ID -->
                                 <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
                                 <button type="submit"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
                                     style="border-radius: 99px;">View</button>
                             </form>
-
                         </td>
                     </tr>
                     <?php

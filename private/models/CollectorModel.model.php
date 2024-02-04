@@ -5,5 +5,5 @@
  */
 class CollectorModel extends Model
 {
-    protected $table = "collector_details";
+    protected $table = "collector";
 }

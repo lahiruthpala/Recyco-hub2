@@ -25,12 +25,13 @@
                             data-upgraded=",MaterialTextfield">
                             <input class="mdl-textfield__input" type="text" id="floating-last-name" name="Description"
                                 placeholder="Note">
-                            <label class="mdl-textfield__label" for="floating-last-name"></label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
                             data-upgraded=",MaterialTextfield">
-                            <input type="number" name="Size" style="background-color: gray; color: white;">
-                            <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
+                            <div style="display: flex; flex-direction: column; align-items: left;">
+                                <label style="color: white;">Size:</label>
+                                <input type="number" name="Size" style="background-color: gray; color: white;max-width: 180px;"">
+                            </div>
                         </div>
                         <button id="Generate" type="submit"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
@@ -91,11 +92,10 @@
                 <div class="mdl-card__supporting-text">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
                         data-upgraded=",MaterialTextfield">
-                        <input class="mdl-textfield__input" type="text" id="floating-last-name" name="Description"
+                        <input class="mdl-textfield__input" type="text" name="Title"
                             placeholder="Title">
-                        <label class="mdl-textfield__label" for="floating-last-name"></label>
                     </div>
-                    <div style="display: flex;">
+                    <div style="display: flex;margin-top: 2vh;">
                         <div>
                             <label>Size:</label>
                             <input type="number" name="Size" style="background-color: gray; color: white;">
@@ -103,8 +103,8 @@
                         </div>
                         <div style="margin-left:2%;">
                             <label for="Category">Select an option:</label>
-                            <select id="Category" name="Category" onchange="toggleDayDropdown()">
-                                <option value="daily">Daily</option>
+                            <select id="Category" name="Repetition" onchange="toggleDayDropdown()">
+                                <option value="Daily">Daily</option>
                                 <option value="Weekly">Weekly</option>
                             </select>
                         </div>
@@ -120,13 +120,13 @@
                         </div>
                         <div style="margin-left:5%">
                             <label>Time:</label>
-                            <input type="time" name="time" style="background-color: gray; color: white;">
+                            <input type="time" name="Time" style="background-color: gray; color: white;">
                             <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
                         </div>
                     </div>
                     <button id="Generate" type="submit"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW; margin-top: 1VW;">SET</Button>
+                        style="border-radius: 99px; margin-left: 1VW; margin-top: 2VW;">SET</Button>
 
                 </div>
             </div>

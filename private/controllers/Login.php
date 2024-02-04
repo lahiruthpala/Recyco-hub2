@@ -7,9 +7,9 @@ class Login extends Controller
 {
 	public function userHome()
 	{
-        $allowedRoles = ["SortingManager", "generalmanager", "Partner", "customer", "collector"];
+        $allowedRoles = ["SortingManager", "generalmanager", "Partner", "customer", "collector", "Admin"];
         if (in_array(Auth::getRole(), $allowedRoles)) {
-            $this->redirect(strtolower(Auth::getRole()));
+            $this->redirect(Auth::getRole());
             return;
         }
 	}
@@ -62,7 +62,6 @@ class Login extends Controller
 	private function processRegularLogin($user, &$errors)
 	{
 		$row = $user->where('Email', $_POST['Email']);
-
 		if ($row) {
 			$row = $row[0];
 			if (password_verify($_POST['pwd'], $row->pwd)) {

@@ -16,12 +16,11 @@
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
         <div style="display: flex; margin-right:auto; gap:30px">
-            <a href="<?= ROOT ?>/Dashboard">Dashboard</a>
-            <a href="<?= ROOT ?>/GeneralManager">Inventory</a>
-            <a href="<?= ROOT ?>/SortingManager">Sorting Jobs</a>
-            <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
-            <a href="<?= ROOT ?>/GeneralManager/collector">Collection</a>
-            <a href="<?= ROOT ?>/Dashboard">Store</a>
+            <a href="<?= ROOT ?>/Admin/Dashboard" <?= setActiveTab(1)?> >Dashboard</a>
+            <a href="<?= ROOT ?>/Admin/AccountManagement" <?= setActiveTab(2)?> >Account Management</a>
+            <a href="<?= ROOT ?>/Admin/SortingCenter" <?= setActiveTab(3)?>>Sorting Center Management</a>
+            <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4)?>>Complaint Management</a>
+            <a href="<?= ROOT ?>/Dashboard" <?= setActiveTab(5)?>>Other</a>
         </div>
         <div></div>
         <!-- Search-->
@@ -128,3 +127,6 @@
     </div>
 </header>
 <script src="<?= ROOT ?>/js/Notification.js"></script>
+<script>
+    
+</script>

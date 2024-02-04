@@ -49,13 +49,11 @@ function getinfo(content) {
                 // Parse the response (assuming it's a JSON response)
                 var response = JSON.parse(xhr.responseText);
                 setdata(response)
-
             } else {
                 console.error('Error: ' + xhr.status);
             }
         }
     };
-
     // Send the request with the data
     xhr.send(data);
 }
@@ -63,11 +61,10 @@ function getinfo(content) {
 function setdata(data){
     console.log(data);
     var data = data.success[0];
-    console.log(data);
     document.getElementById('CollecterName').value = data.FirstName + " " + data.LastName;
     document.getElementById('VerifiedCollectorID').value = data.Collector_ID;
     document.getElementById('VehicleNumber').value = data.Vehicle_NO;
-    document.getElementById('Area').value = data.Assigned_Area;
+    document.getElementById('Area').value = data.sector_ID;
     document.getElementById('Status').value = data.Status;
     document.getElementById('CollecterImage').src = "images/Bobby.PNG"
     document.getElementById('Assignbutton').disabled = false;

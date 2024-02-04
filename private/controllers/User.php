@@ -9,6 +9,4 @@ class User extends Controller
             echo "false";
         }
     }
-
-    
 }

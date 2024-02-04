@@ -64,4 +64,15 @@ function statuscolor($status)
         return "red";
     }
 }
+function setActiveTab($a) {
+    
+    global $activeTab;
+    if ($activeTab == $a) {
+        return "style='color: green;'";
+    } else {
+        return "";
+    }
+}
 ?>
+
+
