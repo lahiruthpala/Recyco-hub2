@@ -22,13 +22,13 @@ class SortingManager extends Controller
 	function PendingSortingJobs()
 	{
 		$jobs = $this->load_model('SortingJobModel');
-		$data = $jobs->where('Status', "In_Progress");
+		$data = $jobs->where('Status', 'In_Progress');
 		$this->view('SortingManager/SortingJobs', ['rows' => $data]);
 	}
 	function SortedJobs()
 	{
-		$inventory = $this->load_model('SortingJobModel');
-		$data = $inventory->where('Status', 'Sorted');
+		$jobs = $this->load_model('SortingJobModel');
+		$data = $jobs->where('Status', 'Sorted');
 		$this->view('SortingManager/SortedJobs', ['rows' => $data]);
 	}
 
@@ -36,15 +36,17 @@ class SortingManager extends Controller
 	{
 		$errors = array();
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$inventory = explode(',', $_POST['inventory']);
+			$inventory = explode(',', substr($_POST['inventory'], 0, -1));
 			if (password_verify($_POST['pwd'], Auth::getpwd())) {
 				$Inventory_Model = $this->load_model('InventoryModel');
 				$SortingJob_Model = $this->load_model('SortingJobModel');
+				$_POST['Line_No'] = $_POST['Machine_ID'];
+				$data = $SortingJob_Model->insert($_POST);
 				foreach ($inventory as $row) {
 					$arr['Status'] = "Sorting";
+					$arr['Sorting_Job_ID'] = $data['Sorting_Job_ID'];
 					$Inventory_Model->update($row, $arr, "Inventory_ID");
 				}
-				$SortingJob_Model->insert($_POST);
 				message("Sorting jos successfully initiated");
 				$this->redirect("SortingManager");
 			} else {
@@ -53,7 +55,9 @@ class SortingManager extends Controller
 		} else {
 			//$errors[] = "Invalid Input";
 		}
-		$this->view('SortingManager/newsortingjob', ["errors" => $errors]);
+		$machinemodel = $this->load_model("MachineModel");
+		$machine = $machinemodel->findAll(1,10,"Machine_ID");
+		$this->view('SortingManager/newsortingjob', ["errors" => $errors, "Machines" => $machine]);
 	}
 
 	function verifyInventory()
@@ -61,8 +65,14 @@ class SortingManager extends Controller
 		$id = $_POST['content'];
 		$inventory = $this->load_model('InventoryModel');
 		header('Content-Type: application/json');
-		if ($inventory->where("Inventory_ID", $id)) {
-			echo json_encode(['success' => true]);
+		$inventory = $inventory->where("Inventory_ID", $id)[0];
+		if ($inventory) {
+			if($inventory->Status == "In whorehouse"){
+				echo json_encode(['success' => true]);
+			}
+			else{
+				echo json_encode(['success' => false]);
+			}
 		} else {
 			echo json_encode(['success' => false]);
 		}

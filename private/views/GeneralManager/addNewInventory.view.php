@@ -62,15 +62,10 @@
                                     <?= $event->Title ?>
                                 </span>
                                 <span class="mdl-list__item-secondary-action">
-                                    <label
-                                        class="mdl-switch switch--colored-light-blue mdl-js-switch mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded is-checked"
-                                        for="list-switch-1" data-upgraded=",MaterialSwitch,MaterialRipple">
+                                    <label for="list-switch-1" data-upgraded=",MaterialSwitch,MaterialRipple" class="mdl-switch switch--colored-light-blue mdl-js-switch mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded">
                                         <input type="checkbox" id="list-switch-1" class="mdl-switch__input" checked="">
                                         <div class="mdl-switch__track"></div>
-                                        <div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div><span
-                                            class="mdl-switch__ripple-container mdl-js-ripple-effect mdl-ripple--center"
-                                            data-upgraded=",MaterialRipple"><span class="mdl-ripple is-animating"
-                                                style="width: 137.765px; height: 137.765px; transform: translate(-50%, -50%) translate(24px, 24px);"></span></span>
+                                        <div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div><span class="mdl-switch__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=""><span class="mdl-ripple is-animating" style="width: 137.765px; height: 137.765px; transform: translate(-50%, -50%) translate(24px, 24px);"></span></span>
                                     </label>
                                 </span>
                             </li>

@@ -98,7 +98,7 @@ class GeneralManager extends Controller
     function partner()
     {
         $remarks = $this->load_model('Remarks');
-        if (isset($_POST["Note"])){
+        if (isset($_POST["Note"]) && $_POST["Note"] != ""){
             $remarks->insert($_POST);
         }
         $partner = $this->load_model('PartnerModel');

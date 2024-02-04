@@ -49,6 +49,5 @@
             echo "No data available.";
         }
         ?>
-
-    </table>.
+    </table>
 </div>

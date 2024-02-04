@@ -37,7 +37,7 @@
                 }
             } else {
                 // If $rows is not an array or is empty
-                echo "No data available.";
+                echo "Currently there is no sorting jobs in progress";
             }
             ?>
         </tbody>

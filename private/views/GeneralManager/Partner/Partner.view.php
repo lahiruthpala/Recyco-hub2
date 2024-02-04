@@ -142,7 +142,7 @@
                                         <div class="mdl-card mdl-shadow--2dp">
                                             <div class="mdl-card__title">
                                                 <div class="mdl-card__title-text">Add A Remark</div>
-                                                <button data-close-button class="close-button"
+                                                <button data-close-button class="close-button" type="button"
                                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                                     style="border-radius: 99px; margin-left: auto;">&times;</button>
                                             </div>

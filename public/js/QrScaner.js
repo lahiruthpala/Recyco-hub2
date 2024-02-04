@@ -21,6 +21,9 @@ function Addinventory() {
 // Function to call PHP function using AJAX
 function callVerifyInventory(content) {
     // Create an XMLHttpRequest object
+    if(CheckInventoryAlreadyAdded(content)){
+        return false;
+    }
     var xhr = new XMLHttpRequest();
 
     // Define the PHP file URL and the request method (POST in this example)
@@ -44,8 +47,8 @@ function callVerifyInventory(content) {
                 console.log(response);
                 if (response.success) {
                     // If successful, update the HTML element with the scanned content
-                    document.getElementById('inventorylist').value += "," + content;
-                    document.getElementById('inventory').innerHTML += "<span class='mdl-list__item-primary-content list__item-text'>" + content + "</span>";
+                    document.getElementById('inventorylist').value += content + ",";
+                    document.getElementById('inventory').innerHTML += "<li class='mdl-list__item' value=" + content + ">" + content + "</li>";
                 } else {
                     alert('Invalied QR code');
                 }
@@ -57,4 +60,17 @@ function callVerifyInventory(content) {
 
     // Send the request with the data
     xhr.send(data);
+}
+
+function CheckInventoryAlreadyAdded(id) {
+    console.log("--->>>>>>>>", id)
+    var inventoryList = document.getElementById('inventory');
+    var inventoryArray = Array.from(inventoryList.getElementsByTagName('li')).map(li => li.innerHTML);
+    console.log("--->>>>>>>>", inventoryArray)
+    if (inventoryArray.includes(String(id))) {
+        alert('ID already exists in inventory list');
+        return true;
+    } else {
+        return false;
+    }
 }

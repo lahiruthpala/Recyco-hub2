@@ -39,6 +39,8 @@ function NewSortingJob(e) {
                                     icon: "success"
                                 });
                                 setTimeout(function () {
+                                    var formData = new FormData(document.getElementById('newSortingJob'));
+                                    formData.append('inventory', document.getElementById("inventorylist").value);
                                     document.getElementById("newSortingJob").submit();
                                 }, 500);
                             } else {

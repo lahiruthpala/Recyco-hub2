@@ -29,26 +29,24 @@
             </div>
 
             <div style="margin-left: 20%;">
-                <div style="margin-left: 30px">
-                    <div style="display: flex; ">
-                        <h6>Position</h6>
-                        <h6 style="margin-left:8vw;margin-top: 0;margin-bottom: 0;">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select full-size"
-                                style="display: flex;">
-                                <input class="mdl-textfield__input" type="text" id="Position" readonly tabIndex="-1" />
-                                <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown" for="Position">
-                                    <li class="mdl-menu__item" onclick="SetForm('General Manager')">General Manager</li>
-                                    <li class="mdl-menu__item" onclick="SetForm('Sorting Manager')">Sorting Manager</li>
-                                    <li class="mdl-menu__item" onclick="SetForm('Selling Manager')">Selling Manager</li>
-                                    <li class="mdl-menu__item" onclick="SetForm('Collector')">Collector</li>
-                                </ul>
+                <div style="margin-left: 30px; display: flex;">
+                    <h6>Position</h6>
+                    <h6 style="margin-left:8vw;margin-top: 0;margin-bottom: 0;">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select full-size"
+                            style="display: flex;">
+                            <input class="mdl-textfield__input" type="text" id="Position" readonly tabIndex="-1" />
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu dark_dropdown" for="Position">
+                                <li class="mdl-menu__item" onclick="SetForm('General Manager')">General Manager</li>
+                                <li class="mdl-menu__item" onclick="SetForm('Sorting Manager')">Sorting Manager</li>
+                                <li class="mdl-menu__item" onclick="SetForm('Selling Manager')">Selling Manager</li>
+                                <li class="mdl-menu__item" onclick="SetForm('Collector')">Collector</li>
+                            </ul>
 
-                                <label for="Position">
-                                    <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
-                                </label>
-                            </div>
-                        </h6>
-                    </div>
+                            <label for="Position">
+                                <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+                            </label>
+                        </div>
+                    </h6>
                 </div>
 
                 <div style="margin-left: 30px">

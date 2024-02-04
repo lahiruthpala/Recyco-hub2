@@ -109,7 +109,7 @@
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Sorting Job -> </h6>
                                             <a class="ainblack"
-                                                href="<?= isset($data->Sorting_Job_ID) ? ROOT . '/ProfileInfo?id=' . $data->Sorting_Job_ID : 'javascript:void(0)'; ?>">
+                                                href="<?= isset($data->Sorting_Job_ID) ? ROOT . '/SortingManager/SortingJobProgress?id=' . $data->Sorting_Job_ID : 'javascript:void(0)'; ?>">
                                                 <h6>
                                                     <?= $data->Sorting_Job_ID ?? "Not assigned"; ?>
                                                 </h6>

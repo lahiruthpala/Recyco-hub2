@@ -1,11 +1,24 @@
 <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="width: 20%;">
-    <div class="mdl-card mdl-shadow--2dp pie-chart">
+    <div class="mdl-card mdl-shadow--2dp" style="height: auto;max-height: 300px;">
         <div class="mdl-card__title" style="align-items: center; justify-content: center;">
             <h2 class="mdl-card__title-text">Warehouse Capacity</h2>
         </div>
         <div class="mdl-card__supporting-text">
-            <div class="pie-chart__container">
-                
+            <div class="pie-chart__container" style="height: 120px;">
+                <canvas id="WarehouseCapacity"></canvas>
+                <label id="WarehouseCapacityData" hidden>
+                    <?php
+                    echo json_encode($data[0]); ?>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card mdl-shadow--2dp pie-chart" style="height: 210px; margin-top:20px;">
+        <div class="mdl-card__title" style="align-items: center; justify-content: center;">
+            <h2 class="mdl-card__title-text">Warehouse Capacity</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <div class="pie-chart__container" style="height: 120px;">
                 <canvas id="WarehouseCapacity"></canvas>
                 <label id="WarehouseCapacityData" hidden>
                     <?php
@@ -40,7 +53,10 @@
         type: 'doughnut',
         data: WarehouseCapacity,
         options: {
-            cutout: '70%', // Adjust the size of the inner cutout based on your design preference
+            cutout: '70%',
+            responsive: true, // Allow the chart to be responsive
+            maintainAspectRatio: false, // Prevent the chart from maintaining aspect ratio // Adjust the size of the inner cutout based on your design preference
+            height: 151,
             plugins: {
                 legend: {
                     display: false,
