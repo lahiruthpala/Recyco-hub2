@@ -6,7 +6,7 @@ class Partner extends Controller
     {
         // code...
         $articles = $this->load_model('Articles');
-        $data = $articles->findAll();
+        $data = $articles->findAll(1, 10, "Article_ID");
         $this->view("Partner/Articles", ["articles" => $data]);
     }
 
@@ -16,7 +16,7 @@ class Partner extends Controller
         if($Pid!=null){
             $data = $articles->where("Partner_ID", $Pid);
         }else{
-            $data = $articles->findAll();
+            $data = $articles->findAll(1, 10, "Article_ID");
         }
         $this->view("Partner/articles", ["articles" => $data]);
     }
@@ -55,7 +55,7 @@ class Partner extends Controller
     function Events()
     {
         $events = $this->load_model('Event');
-        $data = $events->findAll();
+        $data = $events->findAll(1, 10, "Event_ID");
         $this->view("Partner/events", ["articles" => $data]);
     }
 

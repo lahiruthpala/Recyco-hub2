@@ -6,17 +6,11 @@
         </header>
         <main class="mdl-layout__content">
             <div class="mdl-grid ui-cards">
-                <div class="mdl-layout__header-row" style="margin-top: 50px; background-color: black; width:100%">
+                <div class="mdl-card__title" style="width: calc(100% - 32px); margin: 16px; border-radius: 20px; display: flex;" >
+                    <h2 class="mdl-card__title-text" style="margin-left: 20px">Articals</h2>
                     <button id="stock" onclick="window.location.href = '<?=ROOT?>/Partner/addnew'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">New Article</Button>
-                    <button onclick="window.location.href = '<?=ROOT?>/Partner/Articles'"
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">Articles</Button>
-                </div>
-                <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                    <h3>Articles</Article>
-                    </h3>
+                        style="border-radius: 99px; margin: 0 0 0 84%"> + New Article</Button>
                 </div>
                 <?php
                 if (is_array($articles) && !empty($articles)) {
@@ -35,12 +29,12 @@
                                 </div>
                                 <div class="mdl-card__actions">
                                     <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"
-                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                         href="<?=ROOT?>/Partner/addNew/<?= $article->Article_ID?>">
                                         Edit
                                     </a>
                                     <a style="background-color: #16C784; border-radius: 20px;"
-                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                         href="<?=ROOT?>/Partner/ArticleDelete/<?= $article->Article_ID?>">
                                         Delete
                                     </a>

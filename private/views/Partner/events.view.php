@@ -7,26 +7,21 @@
         </header>
         <main class="mdl-layout__content">
             <div class="mdl-grid ui-cards">
-                <div class="mdl-layout__header-row" style="margin-top: 50px;">
-                    <button id="stock" onclick="window.location.href = '<?= ROOT ?>/Partner/addNewEvent'"
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">New Event</Button>
+                
+                <div class="mdl-card__title" style="width: calc(100% - 32px); margin: 16px; border-radius: 20px; display: flex;" >
+                    <h2 class="mdl-card__title-text" style="margin-left: 20px">Events</h2>
                     <button onclick="window.location.href = '<?= ROOT ?>/Partner/Articles'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">Events</Button>
+                        style="border-radius: 99px; margin: 0 0 0 50px;">Upcomming Events</Button>
                     <button onclick="window.location.href = '<?= ROOT ?>/Partner/Articles'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">Upcomming Events</Button>
-                    <button onclick="window.location.href = '<?= ROOT ?>/Partner/Articles'"
+                        style="border-radius: 99px; margin: 0 0 0 20px;">OnGoing Events</Button>
+                    <button id="stock" onclick="window.location.href = '<?=ROOT?>/Partner/addnew'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">OnGoing Events</Button>
-                    <button onclick="window.location.href = '<?= ROOT ?>/Partner/Articles'"
+                        style="border-radius: 99px; margin: 0 0 0 20px"> Finished Events</Button>
+                    <button id="stock" onclick="window.location.href = '<?=ROOT?>/Partner/addnew'"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                        style="border-radius: 99px; margin-left: 1VW;">Finished Events</Button>
-                </div>
-                <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                    <h3>Events</Article>
-                    </h3>
+                        style="border-radius: 99px; margin: 0 0 0 50%"> + New Events</Button>     
                 </div>
                 <?php
                 if (is_array($articles) && !empty($articles)) {
@@ -45,12 +40,12 @@
                                 </div>
                                 <div class="mdl-card__actions">
                                     <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"
-                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                         href="<?= ROOT ?>/Partner/addNew/<?= $article->Event_ID ?>">
                                         Edit
                                     </a>
                                     <a style="background-color: #16C784; border-radius: 20px;"
-                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                         href="<?= ROOT ?>/Partner/ArticleDelete/<?= $article->Event_ID ?>">
                                         Delete
                                     </a>
