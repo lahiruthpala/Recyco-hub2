@@ -7,8 +7,6 @@ class Customer extends Controller
 	}
 
 	function CreatePickups(){
-		$pickup = $this->load_model("PickUpRequestModel");
-		$data = $pickup->insert($_POST);
+		$this->view("/Customer/PickupRequest/Landingpage");
 	}
-
 }
