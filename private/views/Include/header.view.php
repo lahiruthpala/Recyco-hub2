@@ -15,13 +15,16 @@
             <img src="<?= ROOT ?>/images/RecycoHub.png" style="height: 80%; border-radius: 99px; ">
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
-        <div style="display: flex; margin-right:auto; gap:30px">
-            <a href="<?= ROOT ?>/Dashboard">Dashboard</a>
+        <div style="display: flex; margin-right:auto; gap:30px; justify-content: space-between;">
             <a href="<?= ROOT ?>/GeneralManager">Inventory</a>
             <a href="<?= ROOT ?>/SortingManager">Sorting Jobs</a>
-            <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
+            <?php if(Auth::getRole() == 'GeneralManager'): ?>
+                <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
+            <?php endif; ?>
             <a href="<?= ROOT ?>/GeneralManager/collector">Collection</a>
-            <a href="<?= ROOT ?>/Dashboard">Store</a>
+            <?php if(Auth::getRole() == 'GeneralManager'): ?>
+                <a href="<?= ROOT ?>/Store">Store</a>
+            <?php endif; ?>
         </div>
         <div></div>
         <!-- Search-->

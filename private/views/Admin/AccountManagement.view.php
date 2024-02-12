@@ -27,7 +27,7 @@ $admin = new Admin();
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Add New Account</Button>
                             </div>
                             <div class="mdl-card__title" style="border-radius: 0;">
-                                <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>
+                                <h1 id="tableTitle" class="mdl-card__title-text" style="margin-left:20px">User Accounts</h1>
                             </div>
                             <?php
                             $this->view("Admin/NewAccountCreation");

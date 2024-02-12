@@ -1,4 +1,4 @@
-function NewSortingJob(e) {
+function NewInventory(e, from) {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: "btn btn-success",
@@ -39,9 +39,7 @@ function NewSortingJob(e) {
                                     icon: "success"
                                 });
                                 setTimeout(function () {
-                                    var formData = new FormData(document.getElementById('newSortingJob'));
-                                    formData.append('inventory', document.getElementById("inventorylist").value);
-                                    document.getElementById("newSortingJob").submit();
+                                    document.getElementById(from).submit();
                                 }, 500);
                             } else {
                                 Swal.showValidationMessage("Wrong Password");

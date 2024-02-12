@@ -104,8 +104,6 @@ function statustoint($status)
             return 0;
         case "Assigned":
 			return 1;
-        case "Sorted":
-            return 1;
         case "Collected":
             return 2;
         case "In whorehouse":

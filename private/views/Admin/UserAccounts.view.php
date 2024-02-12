@@ -16,7 +16,7 @@
                     ?>
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->UserName ?? '' ?>
+                            <?= $row->User_ID ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
                             <?= $row->FirstName ?? 'Company_abc' ?>

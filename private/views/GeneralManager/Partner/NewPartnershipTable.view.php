@@ -13,7 +13,7 @@
             if (is_array($rows) && !empty($rows)) {
                 foreach ($rows as $row) {
                     ?>
-                    <tr>
+                    <tr onclick="loadScreen('/GeneralManager/PartnershipReview/<?=$row->Application_ID?>', '')">
                         <td class="mdl-data-table__cell--non-numeric">
                             <?= $row->Company_Name ?? 'CompanyName' ?>
                         </td>
@@ -25,17 +25,6 @@
                                 class="label label--mini <?php echo $row->Status === 'New' ? 'color--green' : 'color--red'; ?>">
                                 <?= $row->Status ?? '' ?>
                             </span>
-                        </td>
-
-                        <td class="mdl-data-table__cell--non-numeric">
-                            <form action="<?= ROOT ?>/GeneralManager/PartnershipReview/<?=$row->Application_ID?>" method="POST">
-                                <!-- Replace 'your_id_value' with the actual ID -->
-                                <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
-                                <button type="submit"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                                    style="border-radius: 99px;">View</button>
-                            </form>
-
                         </td>
                     </tr>
                     <?php

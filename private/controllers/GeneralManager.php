@@ -8,7 +8,7 @@ class GeneralManager extends Controller
 
     function verify()
     {
-        $allowedRoles = ["SortingManager", "generalmanager", "Admin"];
+        $allowedRoles = ["SortingManager", "GeneralManager", "Admin"];
         if (in_array(Auth::getRole(), $allowedRoles)) {
             return true;
         } else {
@@ -106,12 +106,12 @@ class GeneralManager extends Controller
         $article = $this->load_model('Articles');
         $events = $this->load_model('Event');
         $complaints = $this->load_model('Complaints');
-        $partner = $partner->first("Partner_ID", $_POST['Partner_ID']);
-        $remarks = $remarks->where("Partner_ID", $_POST['Partner_ID']);
-        $contact = $contact->where("Partner_ID", $_POST['Partner_ID']);
-        $article = $article->where("Partner_ID", $_POST['Partner_ID']);
-        $events = $events->where("Partner_ID", $_POST['Partner_ID']);
-        $complaints = $complaints->where("Partner_ID", $_POST['Partner_ID']);
+        $partner = $partner->first("Partner_ID", $_GET['id']);
+        $remarks = $remarks->where("Partner_ID", $_GET['id']);
+        $contact = $contact->where("Partner_ID", $_GET['id']);
+        $article = $article->where("Partner_ID", $_GET['id']);
+        $events = $events->where("Partner_ID", $_GET['id']);
+        $complaints = $complaints->where("Partner_ID", $_GET['id']);
         $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article'=>$article, 'complaints'=>$complaints]);
     }
 
@@ -124,7 +124,7 @@ class GeneralManager extends Controller
     function partnerArticle()
     {
         $article = $this->load_model('Articles');
-        $article = $article->findAll(1, 10, "Publish_Date");
+        $article = $article->findAll(1, 10, "Published_Date");
         $this->view('GeneralManager/Partner/Articles', ['rows' => $article]);
     }
 
@@ -150,7 +150,10 @@ class GeneralManager extends Controller
     function collector()
     {
         $collectorModel = $this->load_model('CollectorModel');
+        $userModel = $this->load_model('User');
         $collectors = $collectorModel->findAll(1, 10, "Collector_ID");
+        $data = $userModel->where('Role', 'Collector');
+        $collectors[0]->Collector_Name = $data[0]->FirstName . " " . $data[0]->LastName;
         $this->view('GeneralManager/Collector', ['collectors' => $collectors]);
     }
 
@@ -173,14 +176,15 @@ class GeneralManager extends Controller
 
     function collections()
     {
-        $collectionsModel = $this->load_model('InventoryModel');
-        //$data = $this->where();
+        $Pickups = $this->load_model('PickUpRequestModel');
+        $data = $Pickups->query("SELECT COUNT(*) AS Count, DATE(Completed_Date) AS Date FROM pickup_request WHERE Status != 'Completed' GROUP BY DATE(Completed_Date)");
+        $this->view('GeneralManager/Collectors/Collections', ['rows' => $data]);
     }
 
     function PendingPickups()
     {
-        $pickup = $this->load_model('PickUpRequestModel');
-        $data = $pickup->findAll(1, 10, "time");
+        $Pickups = $this->load_model('PickUpRequestModel');
+        $data = $Pickups->query("SELECT * FROM `pickup_request` WHERE Status <> 'Completed'");
         $this->view('GeneralManager/Collectors/PendingCollections', ['rows' => $data]);
     }
 }

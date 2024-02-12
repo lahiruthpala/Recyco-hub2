@@ -8,7 +8,7 @@ class Inventory extends Controller
 
     function verify()
     {
-        $allowedRoles = ["SortingManager", "generalmanager", "Admin"];
+        $allowedRoles = ["SortingManager", "GeneralManager", "Admin"];
         if (in_array(Auth::getRole(), $allowedRoles)) {
             return true;
         } else {

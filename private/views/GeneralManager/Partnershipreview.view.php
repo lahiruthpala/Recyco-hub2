@@ -46,12 +46,10 @@ $generalmanager = new GeneralManager();
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;">New Partnerships</button>
                             </div>
-                            <div class="mdl-card__title">
-                                <h1 id="tableTitle" class="mdl-card__title-text">Partnerships</h1>
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable"
-                                    style="margin-left: 50%; padding:0;">
-                                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search1"
-                                        style="top:0px;">
+                            <div class="mdl-card__title" style="padding: 0;border-radius: 0; display: flex; align-items: center;">
+                                <h1 id="tableTitle" class="mdl-card__title-text" style="margin: 20px 0 0 20px; text-align: left;">Partnerships</h1>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="margin-left: auto; padding:0;">
+                                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search1" style="top:0px;">
                                         <i class="material-icons">search</i>
                                     </label>
 
@@ -60,17 +58,11 @@ $generalmanager = new GeneralManager();
                                         <label class="mdl-textfield__label" for="search1">Enter your query...</label>
                                     </div>
                                 </div>
-                                <button onclick="loadComponent('GeneralManager/Generate')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: auto;"><i
-                                        class="material-icons">keyboard_arrow_left</i></button>
-                                <button onclick="loadComponent('GeneralManager/Generate')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: auto;"><i
-                                        class="material-icons">keyboard_arrow_right</i></button>
+                                <button onclick="loadComponent('GeneralManager/Generate')" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px; margin-left: auto;"><i class="material-icons">keyboard_arrow_left</i></button>
+                                <button onclick="loadComponent('GeneralManager/Generate')" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px; margin-left: auto;"><i class="material-icons">keyboard_arrow_right</i></button>
                             </div>
                             <?php $generalmanager->partnershipTable(); ?>
-                            <?php $generalmanager->TodayArticle(); ?>
+                            <?php $generalmanager->partnerArticle(); ?>
                             <?php $generalmanager->partnerEvents(); ?>
                             <?php $generalmanager->complaints(); ?>
                             <?php $generalmanager->NewPartnership(); ?>
