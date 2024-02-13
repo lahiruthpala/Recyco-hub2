@@ -7,6 +7,12 @@ class Customer extends Controller
 	}
 
 	function CreatePickups(){
-		$this->view("/Customer/PickupRequest/Landingpage");
+		$this->view("Customer/Setpickup");
+	}
+
+	function newrequest(){
+		var_dump($_POST['Catogory']);
+		var_dump($_GET);
+		die;
 	}
 }

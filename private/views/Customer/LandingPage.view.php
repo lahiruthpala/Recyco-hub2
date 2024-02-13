@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recyco-hub</title>
-    <link rel="stylesheet"  type="text/css" href="style1.css">
+    <link rel="stylesheet"  type="text/css" href="<?=ROOT?>/css/style1.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
    
 </head>

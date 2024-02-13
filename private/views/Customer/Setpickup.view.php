@@ -25,8 +25,12 @@
             </div>
             <br>
             <div class="buttons">
-                <button> Home</button>
+                <a href="<?=ROOT?>/Coustomer/newRequest?name='lahiru'"><button> Home</button></a>
+                <form method="POST" action='<?=ROOT?>/Customer/newRequest'>
+                <input value="Office" name="Catogory"hidden>
                 <button>Office</button>
+            </form>
+                
             </div>
         </div>
         <br>
