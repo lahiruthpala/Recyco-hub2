@@ -1,6 +1,6 @@
 <?php
 global $activeTab;
-$activeTab=2;
+$activeTab = 2;
 $this->view('include/head');
 require_once(APP_ROOT . "/controllers/Admin.php");
 $admin = new Admin();
@@ -22,17 +22,71 @@ $admin = new Admin();
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
                                 <button onclick="loadComponent('UserAccounts')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">User Accounts</Button>
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">User
+                                    Accounts</Button>
                                 <button onclick="loadComponent('UserAccountCreation')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Add New Account</Button>
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Add
+                                    New Account</Button>
                             </div>
-                            <div class="mdl-card__title" style="border-radius: 0;">
-                                <h1 id="tableTitle" class="mdl-card__title-text" style="margin-left:20px">User Accounts</h1>
+                            <div class="mdl-card__title" style="border-radius: 0;display: flex;justify-content: space-between;">
+                                <h1 id="tableTitle" class="mdl-card__title-text" style="margin-left:20px">User Accounts
+                                </h1>
+                                <div style="margin-right:30px" id="UserAccountSort" hidden>
+                                    <form method="POST" class="align-right" style="padding-left:10vw">
+                                        <select name="Role" onchange="this.form.submit()"
+                                            style="background-color: #333; color: #fff; border: none; padding: 5px; margin-right:50px">
+                                            <option value="ALL" <?php if (!isset($_POST['Role'])) {
+                                                echo 'selected';
+                                            } ?>>ALL
+                                            </option>
+                                            <option value="GeneralManager" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'GeneralManager') {
+                                                echo 'selected';
+                                            } ?>>General Manager
+                                            </option>
+                                            <option value="SortingManager" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'SortingManager') {
+                                                echo 'selected';
+                                            } ?>>Sorting Manager
+                                            </option>
+                                            <option value="SellingManager" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'SellingManager') {
+                                                echo 'selected';
+                                            } ?>>Selling Manager
+                                            </option>
+                                            <option value="Collector" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'Collector') {
+                                                echo 'selected';
+                                            } ?>>Collector</option>
+                                            <option value="Customer" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'Customer') {
+                                                echo 'selected';
+                                            } ?>>Customer</option>
+                                        </select>
+                                        <select name="Status" onchange="this.form.submit()"
+                                            style="background-color: #333; color: #fff; border: none; padding: 5px; margin-right:50px">
+                                            <option value="ALL" <?php if (!isset($_POST['Status'])) {
+                                                echo 'selected';
+                                            } ?>>
+                                                ALL</option>
+                                            <option value="Active" <?php if (isset($_POST['Status']) && $_POST['Status'] == 'Active') {
+                                                echo 'selected';
+                                            } ?>>Active</option>
+                                            <option value="InActive" <?php if (isset($_POST['Status']) && $_POST['Status'] == 'InActive') {
+                                                echo 'selected';
+                                            } ?>>In Active</option>
+                                        </select>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="padding: 0;">
+                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="UserSearch" style="top: 0;">
+                                                <i class="material-icons">search</i>
+                                            </label>
+
+                                            <div class="mdl-textfield__expandable-holder">
+                                                <input class="mdl-textfield__input" type="text" id="UserSearch" name="Name" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <?php
                             $this->view("Admin/NewAccountCreation");
                             $admin->GetAccountinfo()
-                            ?>
+                                ?>
                         </div>
                     </div>
                 </div>

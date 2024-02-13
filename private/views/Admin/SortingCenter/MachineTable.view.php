@@ -30,16 +30,6 @@
                                 <?= $row->Status ?? '' ?>
                             </span>
                         </td>
-
-                        <td class="mdl-data-table__cell--non-numeric">
-                            <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
-                                <!-- Replace 'your_id_value' with the actual ID -->
-                                <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
-                                <button type="submit"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                                    style="border-radius: 99px;">View</button>
-                            </form>
-                        </td>
                     </tr>
                     <?php
                 }

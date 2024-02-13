@@ -1,12 +1,13 @@
 <div style="display:none" id="popupnotification">
-    <?php if (message()): ?>
-        <div id="errors">
-            <?= message([], true)[0] ?>
-        </div>
-        <div id="success">
-
-        </div>
-    <?php endif; ?>
+    <div id="errors">
+        <?php
+        echo json_encode($Errors[0]); ?>
+    </div>
+    <div id="success">
+        <?php
+        var_dump($success);
+        echo json_encode($Success[0]); ?>
+    </div>
 </div>
 <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
@@ -18,11 +19,11 @@
         <div style="display: flex; margin-right:auto; gap:30px; justify-content: space-between;">
             <a href="<?= ROOT ?>/GeneralManager">Inventory</a>
             <a href="<?= ROOT ?>/SortingManager">Sorting Jobs</a>
-            <?php if(Auth::getRole() == 'GeneralManager'): ?>
+            <?php if (Auth::getRole() == 'GeneralManager'): ?>
                 <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
             <?php endif; ?>
             <a href="<?= ROOT ?>/GeneralManager/collector">Collection</a>
-            <?php if(Auth::getRole() == 'GeneralManager'): ?>
+            <?php if (Auth::getRole() == 'GeneralManager'): ?>
                 <a href="<?= ROOT ?>/Store">Store</a>
             <?php endif; ?>
         </div>

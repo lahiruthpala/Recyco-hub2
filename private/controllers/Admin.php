@@ -1,7 +1,6 @@
 <?php
 class Admin extends Controller
 {
-
     function __construct()
     {
         $this->verify();
@@ -34,7 +33,27 @@ class Admin extends Controller
     function GetAccountinfo()
     {
         $user = $this->load_model('User');
-        $data = $user->query("Select User_ID, FirstName, LastName, Role, Status  FROM reg_users where Role != 'Admin'");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $where = "Select User_ID, FirstName, LastName, Role, Status  FROM reg_users where Role != 'Admin' ";
+            foreach ($_POST as $key => $value) {
+                if ($value == 'ALL') {
+                    continue;
+                }
+                if ($key == 'Name') {
+                    if ($value == '') {
+                        continue;
+                    }
+                    $where .= "AND (FirstName = '" . $value . "' OR LastName = '" . $value . "')";
+                    continue;
+                }
+                $where .= "AND " . $key . " = '" . $value . "' ";
+            }
+            $data = $user->query($where);
+        } else {
+            $data = $user->query("Select User_ID, FirstName, LastName, Role, Status  FROM reg_users where Role != 'Admin'");
+            $this->success[] = "Your success message";
+
+        }
         $this->view("Admin/UserAccounts", ['rows' => $data]);
     }
 
@@ -78,7 +97,8 @@ class Admin extends Controller
         $this->view('Admin/AccountCreation');
     }
 
-    function AddMachine(){
+    function AddMachine()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var_dump($_POST);
             die;

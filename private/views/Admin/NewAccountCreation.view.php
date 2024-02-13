@@ -41,7 +41,7 @@
                     <div style="display: flex;">
                         <h6>User Last Name</h6>
                         <h6 style="margin-left:10vw;">
-                            <input type="text" placeholder="Enter the Last Name" id="LastName" name="LastName"
+                            <input type="Name" placeholder="Enter the Last Name" id="LastName" name="LastName"
                                 class="mdl-textfield__input">
                         </h6>
                     </div>
@@ -269,46 +269,19 @@
         toggleFormDisable();
     };
 
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
-<script src="/vendors/@form-validation/umd/bundle/popular.min.js"></script>
-<script src="/vendors/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
-<script src="/vendors/@form-validation/umd/plugin-tachyons/index.min.js"></script>
-<script src="/vendors/@form-validation/umd/formValidation.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function (e) {
-        FormValidation.formValidation(document.getElementById('CreateAccountForm'), {
-            fields: {
-                Vehicle_NO: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Vehicle number is required',
-                        },
-                        stringLength: {
-                            min: 6,
-                            max: 8,
-                            message: 'Must be a valid vehicle number',
-                        },
-                        regexp: {
-                            regexp: /^(?:[A-Z]{2}\d{4}|[A-Z]{3}\d{4})$/,
-                            message: 'Must be a valid vehicle number',
-                        },
-                    },
-                },
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                tachyons: new FormValidation.plugins.Tachyons(),
-                autoFocus: new FormValidation.plugins.AutoFocus(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh',
-                }),
-            },
-        });
+    document.getElementById("CreateAccountForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (validateForm()) {
+            this.submit();
+        }
     });
+
+    function validateForm() {
+        $inputs = document.querySelectorAll('#CreateAccountForm input');
+        foreach($inputs as $input) {
+            console.log($input);
+        }
+        return false;
+    }
+
 </script>

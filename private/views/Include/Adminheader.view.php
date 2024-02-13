@@ -1,12 +1,13 @@
 <div style="display:none" id="popupnotification">
-    <?php if (message()): ?>
-        <div id="errors">
-            <?= message([], true)[0] ?>
-        </div>
-        <div id="success">
-
-        </div>
-    <?php endif; ?>
+    <div id="errors">
+        <?php
+        echo json_encode($Errors[0]); ?>
+    </div>
+    <div id="success">
+        <?php
+        var_dump($Success);
+        echo json_encode($Success[0]); ?>
+    </div>
 </div>
 <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
