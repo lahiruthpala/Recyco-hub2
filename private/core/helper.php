@@ -1,10 +1,9 @@
-<?php 
+<?php
 
-function get_var($key,$default = "")
+function get_var($key, $default = "")
 {
 
-	if(isset($_POST[$key]))
-	{
+	if (isset($_POST[$key])) {
 		return $_POST[$key];
 	}
 
@@ -12,38 +11,36 @@ function get_var($key,$default = "")
 }
 
 //popup message
-	//message[] consists of message and the type of message
-	//$msg=['this is the message','success']
-	//$msg=['this is the message','danger']
-	function message($msg = ['', 'success'], $erase = false)
-	{
+//message[] consists of message and the type of message
+//$msg=['this is the message','success']
+//$msg=['this is the message','danger']
+function message($msg = ['', 'success'], $erase = false)
+{
 
-		if (!is_array($msg)) { //if the $msg is just a string, make it an array and give msg type as success
-			$msg = [$msg, 'success'];
-		}
-
-		if (!empty($msg[0])) {
-			$_SESSION['message'] = $msg;
-		} else {
-			if (!empty($_SESSION['message'])) {
-
-				$msg = $_SESSION['message'];
-				if ($erase) {
-					unset($_SESSION['message']);
-				}
-				return $msg;
-			}
-		}
-
-		 return false;
+	if (!is_array($msg)) { //if the $msg is just a string, make it an array and give msg type as success
+		$msg = [$msg, 'success'];
 	}
 
-function get_select($key,$value)
+	if (!empty($msg[0])) {
+		$_SESSION['message'] = $msg;
+	} else {
+		if (!empty($_SESSION['message'])) {
+
+			$msg = $_SESSION['message'];
+			if ($erase) {
+				unset($_SESSION['message']);
+			}
+			return $msg;
+		}
+	}
+
+	return false;
+}
+
+function get_select($key, $value)
 {
-	if(isset($_POST[$key]))
-	{
-		if($_POST[$key] == $value)
-		{
+	if (isset($_POST[$key])) {
+		if ($_POST[$key] == $value) {
 			return "selected";
 		}
 	}
@@ -58,37 +55,37 @@ function esc($var)
 
 function random_string($length)
 {
-    $array = array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
-    $text = "";
+	$array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+	$text = "";
 
-    for($x = 0; $x < $length; $x++)
-    {
+	for ($x = 0; $x < $length; $x++) {
 
-        $random = rand(0,61);
-        $text .= $array[$random];
-    }
+		$random = rand(0, 61);
+		$text .= $array[$random];
+	}
 
-    return $text;
+	return $text;
 }
 
 function get_time($time)
 {
 
-	return date("g:i a",strtotime($time));
+	return date("g:i a", strtotime($time));
 }
 
 function get_date($date)
 {
 
-	return date("jS M, Y",strtotime($date));
+	return date("jS M, Y", strtotime($date));
 }
 
-function generateID($id){
+function generateID($id)
+{
 	$currentTime = time();
-    $randomCode = random_string(4);
-    $uniqueId = $id . $currentTime . $randomCode;
+	$randomCode = random_string(4);
+	$uniqueId = $id . $currentTime . $randomCode;
 
-    return $uniqueId;
+	return $uniqueId;
 }
 
 function show($data)
@@ -98,12 +95,15 @@ function show($data)
 	echo "</pre>";
 }
 
-function statustoint($status) {
+function statustoint($status)
+{
     switch ($status) {
         case "New":
+			return 0;
+        case "In_Progress":
             return 0;
         case "Assigned":
-            return 1;
+			return 1;
         case "Collected":
             return 2;
         case "In whorehouse":
@@ -121,3 +121,4 @@ function statustoint($status) {
             return -1;
     }
 }
+

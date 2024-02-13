@@ -14,7 +14,7 @@
             $id = 1; // Initialize ID counter
             foreach ($rows as $row) {
                 ?>
-                <tr onclick="loadScreen('Inventory/progress/Batch', '<?= $row->Batch_ID ?>')">
+                <tr onclick="loadScreen('Inventory/BatchProgress', '<?= $row->Batch_ID ?>')">
                     <td class="mdl-data-table__cell--non-numeric" id="batch<?= $id ?>">
                         <?= $row->Batch_ID ?>
                     </td>
@@ -49,6 +49,5 @@
             echo "No data available.";
         }
         ?>
-
-    </table>.
+    </table>
 </div>

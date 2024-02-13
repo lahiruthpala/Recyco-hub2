@@ -10,35 +10,10 @@
             <?php $this->view('include/header') ?>
         </header>
         <main class="mdl-layout__content">
-            <div class="Progressbackground">
-                <div class="mdl-card__title">
-                    <h1 class="mdl-card__title-text">Current Progress</h1>
-                </div>
-
-                <div class="bar__container">
-                    <ul class="bar" id="bar">
-                        <li class="active">New</li>
-                        <li class="<?php if ($data[0]->statusint >= 1)
-                            echo 'active'; ?>">Assigned</li>
-                        <li class="<?php if ($data[0]->statusint >= 2)
-                            echo 'active'; ?>">Collected</li>
-                        <li class="<?php if ($data[0]->statusint >= 3)
-                            echo 'active'; ?>">In whorehouse</li>
-                        <li class="<?php if ($data[0]->statusint >= 4)
-                            echo 'active'; ?>">Sorting</li>
-                        <li class="<?php if ($data[0]->statusint >= 5)
-                            echo 'active'; ?>">Sorted</li>
-                        <li class="<?php if ($data[0]->statusint >= 6)
-                            echo 'active'; ?>">Ready To Sell</li>
-                        <li class="<?php if ($data[0]->statusint >= 7)
-                            echo 'active'; ?>">Sold</li>
-                    </ul>
-                </div>
-            </div>
             <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                 <div class="mdl-card mdl-shadow--2dp">
                     <div class="mdl-card__title">
-                        <h1 class="mdl-card__title-text" id="tableTitle"><?= $data[0]->Status ?></h1>
+                        <h1 class="mdl-card__title-text" id="tableTitle"><?= $data[0]->Type ?></h1>
                     </div>
                     <section id="cards">
                         <form class="form form--basic" method="POST"
@@ -47,41 +22,49 @@
                                 <div class="mdl-grid" style="justify-content: center;">
                                     <div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Batch_ID -> </h6>
+                                            <h6>Type -> </h6>
                                             <h6>
-                                                <?php $var = $data[0]->pagetype . "_ID";
-                                                echo $data[0]->$var; ?>
+                                                <?=$data[0]->Type;?>
                                             </h6>
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Created BY -> </h6>
+                                            <h6>Total Weight -> </h6>
                                             <h6>
-                                                <?= $data[0]->User_ID; ?>
+                                                <?= $data[0]->Weight; ?>
                                             </h6>
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Created Date -> </h6>
+                                            <h6>Location -> </h6>
                                             <h6>
-                                                <?= $data[0]->Date; ?>
+                                                <?= $data[0]->Location; ?>
+                                            </h6>
+                                        </div>
+                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                            <h6>Buying Price -> </h6>
+                                            <h6>
+                                                <?= $data[0]->Buying_Price ?? "No price  set yet."; ?>
                                             </h6>
                                         </div>
                                     </div>
                                     <div style="margin-left: 10vw;">
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Description -> </h6>
-                                            <h6>
-                                                <?= $data[0]->Description; ?>
+                                            <h6 style="max-width: 500px;">
+                                                <?= $data[0]->Description ?? "Inventory Type is not Identified"; ?>
                                             </h6>
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Assigned to -> </h6>
+                                            <h6>Status -> </h6>
                                             <h6>
-                                                <?= $data[0]->Collector_Name ?? "Not assigned"; ?>
+                                                <?= $data[0]->Status ?? "Not Accepting"; ?>
                                             </h6>
                                         </div>
-                                        <button type="button" onclick="generateQRCodesAndPrint()"
-                                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                                            style="border-radius: 99px;" id="Assignbutton" readonly>Print</button>
+                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                            <h6>Selling Price -> </h6>
+                                            <h6>
+                                                <?= $data[0]->Selling_Price ?? "No price  set yet."; ?>
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mdl-card__supporting-text no-padding" id="NewInventory"

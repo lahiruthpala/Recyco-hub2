@@ -1,4 +1,5 @@
 <?php $this->view('include/head') ?>
+
 <head>
     <link rel="stylesheet" href="<?= ROOT ?>/css/progress.css">
 </head>
@@ -16,12 +17,17 @@
 
                 <div class="bar__container">
                     <ul class="bar" id="bar">
-                    <li class="active">New</li>
-                        <li class="<?php if($data->statusint >= 1) echo 'active'; ?>">Assigned</li>
-                        <li class="<?php if($data->statusint >= 2) echo 'active'; ?>">Collected</li>
-                        <li class="<?php if($data->statusint >= 3) echo 'active'; ?>">In whorehouse</li>
-                        <li class="<?php if($data->statusint >= 4) echo 'active'; ?>">Sorting</li>
-                        <li class="<?php if($data->statusint >= 5) echo 'active'; ?>">Sorted</li>
+                        <li class="active">New</li>
+                        <li class="<?php if ($data->statusint >= 1)
+                            echo 'active'; ?>">Assigned</li>
+                        <li class="<?php if ($data->statusint >= 2)
+                            echo 'active'; ?>">Collected</li>
+                        <li class="<?php if ($data->statusint >= 3)
+                            echo 'active'; ?>">In whorehouse</li>
+                        <li class="<?php if ($data->statusint >= 4)
+                            echo 'active'; ?>">Sorting</li>
+                        <li class="<?php if ($data->statusint >= 5)
+                            echo 'active'; ?>">Sorted</li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +51,8 @@
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Batch ID -> </h6>
-                                            <a class="ainblack" href="<?= ROOT ?>/Inventory/progress/Batch?id=<?= $data->Batch_ID; ?>">
+                                            <a class="ainblack"
+                                                href="<?= ROOT ?>/Inventory/progress/Batch?id=<?= $data->Batch_ID; ?>">
                                                 <h6>
                                                     <?= $data->Batch_ID; ?>
                                                 </h6>
@@ -53,7 +60,8 @@
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Created BY -> </h6>
-                                            <a class="ainblack" href="<?= ROOT ?>/ProfileInfo?id=<?= $data->Creator_ID; ?>">
+                                            <a class="ainblack"
+                                                href="<?= ROOT ?>/ProfileInfo?id=<?= $data->Creator_ID; ?>">
                                                 <h6>
                                                     <?= $data->Creator_Name; ?>
                                                 </h6>
@@ -75,7 +83,8 @@
                                     <div style="margin-left: 10vw;">
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Assigned to -> </h6>
-                                            <a class="ainblack" href="<?= isset($data->Collector_ID) ? ROOT . '/ProfileInfo?id=' . $data->Collector_ID : 'javascript:void(0)'; ?>">
+                                            <a class="ainblack"
+                                                href="<?= isset($data->Collector_ID) ? ROOT . '/ProfileInfo?id=' . $data->Collector_ID : 'javascript:void(0)'; ?>">
                                                 <h6>
                                                     <?= $data->Collector_Name ?? "Not assigned"; ?>
                                                 </h6>
@@ -83,7 +92,8 @@
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Collected From -> </h6>
-                                            <a class="ainblack" href="<?= isset($data->Customer_ID) ? ROOT . '/ProfileInfo?id=' . $data->Customer_ID : 'javascript:void(0)'; ?>">
+                                            <a class="ainblack"
+                                                href="<?= isset($data->Customer_ID) ? ROOT . '/ProfileInfo?id=' . $data->Customer_ID : 'javascript:void(0)'; ?>">
                                                 <h6>
                                                     <?= $data->customer_Name ?? "Not assigned"; ?>
                                                 </h6>
@@ -98,7 +108,8 @@
                                         </div>
                                         <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
                                             <h6>Sorting Job -> </h6>
-                                            <a class="ainblack" href="<?= isset($data->Sorting_Job_ID) ? ROOT . '/ProfileInfo?id=' . $data->Sorting_Job_ID : 'javascript:void(0)'; ?>">
+                                            <a class="ainblack"
+                                                href="<?= isset($data->Sorting_Job_ID) ? ROOT . '/SortingManager/SortingJobProgress?id=' . $data->Sorting_Job_ID : 'javascript:void(0)'; ?>">
                                                 <h6>
                                                     <?= $data->Sorting_Job_ID ?? "Not assigned"; ?>
                                                 </h6>

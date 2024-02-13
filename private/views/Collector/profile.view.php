@@ -1,97 +1,169 @@
 <?php $this->view('include/head') ?>
 
-<body img src="images/Icon_header.png">
-    <header>
-        <?php $this->view('include/header') ?>
-    </header>
-    <div style="display: flex;  margin-left:300px">
-    <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
-    
-    <div class="mdl-card mdl-shadow--2dp" style="width:1000px;">
-    <div class="mdl-card__title" style="position: relative;">
-    <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
-    <button class="mdl-button mdl-js-button mdl-button--icon" style="position: absolute; top: 10px; right: 20px;">
-        <i class="material-icons">edit</i>
-    </button>
-</div>
+<body>
+
+    <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+            <?php $this->view('include/header') ?>
+            <main class="mdl-layout__content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+
+                        <?php if ($row): ?>
+                            <div class="mdl-card mdl-shadow--2dp" style="width:1000px ;margin-left: 250px;">
+                                <div class="mdl-card__title" style="position: relative;">
+                                    <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
+                                    <a href="<?= ROOT ?>/collector/profileedit/<?= $row->Collector_ID ?? '' ?>">
+                                        <button class="mdl-button"
+                                            style="position: absolute; top: 10px; right: 20px; background-color: green; color: white;">
+                                            edit
+                                        </button>
+
+                                    </a>
+
+                                </div>
 
 
-            <div class="mdl-card__supporting-text">
-                <form class="form form--basic">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
-                            <div class="profile-image color--smooth-gray profile-image--round">
-                            <img src="<?= ROOT ?>/images/login.png" alt="City Image" style="width: 100%; height: 100%; border-radius: 50%;">
+                                <div class="mdl-card__supporting-text">
+                                    <form class="form form--basic">
+                                        <div class="mdl-grid">
+                                            <div
+                                                class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
+                                                <div class="profile-image color--smooth-gray profile-image--rounds"
+                                                    style="margin-left: 40px;overflow: hidden; border-radius: 50%; width: 100px; height: 100px;">
+                                                    <img src="<?= ROOT ?>/images/login.png" alt="City Image"
+                                                        style="width: 100%; height: 100%; border-radius: 50%; ">
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article">
+                                                <div style="display: flex; justify-content: space-between;">
+
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                        style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                        <label class="mdl-textfield__label"
+                                                            for="profile-floating-first-name"
+                                                            style="color: white !important;">First Name</label>
+                                                        <br>
+                                                        <br>
+                                                        <span
+                                                            style="display: block; font-size: 100%; color: white !important;border-bottom: 1px solid white; padding-top: 1px ">
+                                                            <?= $row->firstname ?>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                        style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                        <label class="mdl-textfield__label"
+                                                            for="profile-floating-first-name"
+                                                            style="color: white !important;">Last Name</label>
+                                                        <br>
+                                                        <br>
+                                                        <span
+                                                            style="display: block; font-size: 100%; color: white !important;border-bottom: 1px solid white; padding-bottom: 1px ">
+                                                            <?= $row->lastname ?>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                    <br>
+                                                    <br>
+                                                    <label class="mdl-textfield__label" for="profile-floating-first-name"
+                                                        style="color: white !important;">Collector ID</label>
+                                                    <span
+                                                        style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px ">
+                                                        <?= $row->Collector_ID ?>
+                                                    </span>
+                                                </div>
+
+
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                    <label class="mdl-textfield__label" for="profile-floating-email"
+                                                        style="color: white !important; ">Email</label>
+                                                    <br>
+                                                    <br>
+                                                    <span
+                                                        style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px; ">
+                                                        <?= $row->Email ?>
+                                                    </span>
+                                                </div>
+
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block;">
+                                                    <label class="mdl-textfield__label" for="profile-floating-contact-no"
+                                                        style="color: white !important;  ">Contact Number</label>
+                                                    <br>
+                                                    <br>
+                                                    <span
+                                                        style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px; ">
+                                                        <?= $row->Phone ?>
+                                                    </span>
+                                                </div>
+
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                    <label class="mdl-textfield__label" for="profile-floating-email"
+                                                        style="color: white !important; ">Assigned Area</label>
+                                                    <br>
+                                                    <br>
+                                                    <span
+                                                        style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px; ">
+                                                        <?= $row->sector_ID ?>
+                                                    </span>
+                                                </div>
+
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block;">
+                                                    <label class="mdl-textfield__label" for="profile-floating-contact-no"
+                                                        style="color: white !important;  ">Vehicle Number</label>
+                                                    <br>
+                                                    <br>
+                                                    <span
+                                                        style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px; ">
+                                                        <?= $row->Vehicle_NO ?>
+                                                    </span>
+                                                </div>
+
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                    <label class="mdl-textfield__label" for="profile-floating-email"
+                                                        style="color: white !important; ">Address</label>
+                                                    <br>
+                                                    <br>
+                                                    <span
+                                                        style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px; ">
+                                                        <?= $row->Address ?>
+                                                    </span>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article">
-                        <div style="display: flex; justify-content: space-between;">
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                        <br>
-                        <br>
-                        <label class="mdl-textfield__label" for="profile-floating-first-name" style="color: white !important;">First Name</label>
-                        <span style="display: block; font-size: 100%; color: white !important; text-decoration: underline;">Your additional text goes here</span>
-                        </div>
-
-                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                        <br>
-                        <br>
-                       <label class="mdl-textfield__label" for="profile-floating-last-name" style="color: white !important;">Last Name</label>
-                       <span style="display: block; font-size: 100%; color: white !important; text-decoration: underline;">Your additional text goes here</span>
-                       </div>
-
-                      </div>
-
-
-                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                           <br>
-                           <br>
-                         <label class="mdl-textfield__label" for="profile-floating-first-name" style="color: white !important;">Collector ID</label>
-                          <span style="display: block; font-size: 100%; color: white; text-decoration: underline;">Your additional text goes here</span>
-                         </div>
-                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                           <br>
-                           <br>
-                         <label class="mdl-textfield__label" for="profile-floating-first-name" style="color: white !important;">Address</label>
-                          <span style="display: block; font-size: 100%; color:white; text-decoration: underline;">Your additional text goes here</span>
-                         </div> 
-
-                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size" style="width: 45%; display: inline-block; margin-right: 5%;">
-                          <label class="mdl-textfield__label" for="profile-floating-email"style="color: white !important;" >Email</label>
-                           <br>
-                           <br>
-                          <span style="display: block; font-size: 100%; color: white; text-decoration: underline;">Your additional text goes here</span>
-                         </div>
-
-                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size" style="width: 45%; display: inline-block;">
-                             <label class="mdl-textfield__label" for="profile-floating-contact-no"style="color: white !important;" >Contact No</label>
-                             <br>
-                             <br>
-                          <span style="display: block; font-size: 100%; color: white; text-decoration: underline;">Your additional text goes here</span>
-                          </div>
-
-                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                            <br>
-                            <br>
-                            <label class="mdl-textfield__label" for="profile-floating-first-name"style="color: white !important;" >Assigned Area</label>
-                             <span style="display: block; font-size: 100%; color: white; text-decoration: underline;">Your additional text goes here</span>
-                            </div>
-   
-
-
-                          
-                        </div>
+                        <?php else: ?>
+                            <p>No data found</p>
+                        <?php endif; ?>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
+                </div>
 
 
 
 
-<?php $this->view('include/footer') ?>
+
+
+                <?php $this->view('include/footer') ?>

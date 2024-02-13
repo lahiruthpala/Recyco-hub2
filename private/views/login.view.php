@@ -45,10 +45,10 @@
                                     <input type="password" placeholder="" id="pwd" name="pwd" class="mdl-textfield__input">
                                     <label class="mdl-textfield__label" for="password" id="pwderror">Password</label>
                                 </div>
-                                <a href="forgot-password.html" class="login-link">Forgot password?</a>
+                                <a href="<?=ROOT?>/login/ForgotPassword" class="login-link">Forgot password?</a>
                             </div>
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
-                                <a href="sign-up.html" class="login-link">Don't have account?</a>
+                                <a href="<?=ROOT?>/Signup" class="login-link">Don't have account?</a>
                                 <div class="mdl-layout-spacer"></div>
                                 <input type="submit" value="Login" name="login"
                                     class="mdl-button mdl-js-button mdl-button--raised color--light-blue">

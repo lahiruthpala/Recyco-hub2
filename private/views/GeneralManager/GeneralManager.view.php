@@ -22,7 +22,7 @@ $charts = new Charts();
                     <div style="width: 100%; display: flex; flex-direction: row;">
                         <?php $inventory->InventoryBreakdown(); 
                         $charts->WarehouseCapacity();
-                        $inventory->SortingRate()
+                        $charts->SortingRate()
                         ?>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
@@ -37,15 +37,19 @@ $charts = new Charts();
                                 <button onclick="loadComponent('SortedInventory')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Sorted
                                     Inventory</Button>
-                                <button onclick="loadComponent('CreateInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="margin-left: auto;">Add New Stock</button>
+                                <?php if(Auth::getRole() == 'GeneralManager'){
+                                    echo('<button onclick="loadComponent(\'CreateInventory\')"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                        style="margin-left: auto;">Generate Inventory</button>');
+                                }?>
                             </div>
                             <div class="mdl-card__title" style="border-radius: 0;">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>
                             </div>
                             <?php
-                            $generalManager->Generate();
+                            if((Auth::getRole() == 'GeneralManager')){
+                                $generalManager->Generate();
+                            }
                             $inventory->InventoryBatch();
                             $inventory->SortedInventory();
                             $inventory->RawInventory();

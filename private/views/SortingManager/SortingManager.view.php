@@ -23,7 +23,7 @@ $sortingManager = new SortingManager(); ?>
                     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--2dp">
                             <div class="mdl-layout__header-row">
-                                <button id="stock" onclick="loadComponent('newsortingjobs')"
+                                <button id="stock" onclick="loadComponent('NewSortingJobs')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">New Sorting Job</Button>
                                 <button onclick="loadComponent('SortingJobs')"
@@ -33,8 +33,8 @@ $sortingManager = new SortingManager(); ?>
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
                             </div>
-                            <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text" id="tableTitle" style="border-radius: 0;">Sorting Jobs</h1>
+                            <div class="mdl-card__title" style="border-radius: 0;">
+                                <h1 class="mdl-card__title-text" id="tableTitle">Sorting Jobs</h1>
                             </div>
                             <section id="content">
                                 <?php $sortingManager->CreateSortingJobs(); ?>

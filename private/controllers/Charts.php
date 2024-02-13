@@ -14,5 +14,12 @@
             $data[0] -> TotalWeight = $totalWeight[0] -> TotalWeight;
             $this->view('Charts/WarehouseCapacity', $data);
         }
+
+        function SortingRate(){
+            $data = array();
+            $Sorting_job_model = $this->load_model("SortingJobModel");
+            $data = $Sorting_job_model->query("SELECT DATE(Start_Date) as Date, COUNT(*) AS count FROM sorting_job WHERE Status = 'Sorted' GROUP BY DATE(Start_Date)");
+            $this->view("Charts/SortingRate" ,$data);
+        }
     }
 ?>

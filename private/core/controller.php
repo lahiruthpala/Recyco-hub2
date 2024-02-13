@@ -5,6 +5,8 @@
  */
 class Controller
 {
+	public $success = [];
+	public $errors = [];
 	public function view($view, $data = array())
 	{
 		extract($data);

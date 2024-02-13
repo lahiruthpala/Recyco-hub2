@@ -1,12 +1,13 @@
 <div style="display:none" id="popupnotification">
-    <?php if (message()): ?>
-        <div id="errors">
-            <?= message([], true)[0] ?>
-        </div>
-        <div id="success">
-
-        </div>
-    <?php endif; ?>
+    <div id="errors">
+        <?php
+        echo json_encode($Errors[0]); ?>
+    </div>
+    <div id="success">
+        <?php
+        var_dump($success);
+        echo json_encode($Success[0]); ?>
+    </div>
 </div>
 <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
@@ -15,13 +16,16 @@
             <img src="<?= ROOT ?>/images/RecycoHub.png" style="height: 80%; border-radius: 99px; ">
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
-        <div style="display: flex; margin-right:auto; gap:30px">
-            <a href="<?= ROOT ?>/Dashboard">Dashboard</a>
+        <div style="display: flex; margin-right:auto; gap:30px; justify-content: space-between;">
             <a href="<?= ROOT ?>/GeneralManager">Inventory</a>
             <a href="<?= ROOT ?>/SortingManager">Sorting Jobs</a>
-            <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
+            <?php if (Auth::getRole() == 'GeneralManager'): ?>
+                <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
+            <?php endif; ?>
             <a href="<?= ROOT ?>/GeneralManager/collector">Collection</a>
-            <a href="<?= ROOT ?>/Dashboard">Store</a>
+            <?php if (Auth::getRole() == 'GeneralManager'): ?>
+                <a href="<?= ROOT ?>/Store">Store</a>
+            <?php endif; ?>
         </div>
         <div></div>
         <!-- Search-->
@@ -72,10 +76,12 @@
             </li>
             <li class="list__item--border-top"></li>
             <li class="mdl-menu__item mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                    <i class="material-icons mdl-list__item-icon">account_circle</i>
-                    My account
-                </span>
+                <a href="<?= ROOT .'/' . Auth::getRole()?>/profile">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">account_circle</i>
+                        My account
+                    </span>
+                </a>
             </li>
             <li class="mdl-menu__item mdl-list__item">
                 <span class="mdl-list__item-primary-content">

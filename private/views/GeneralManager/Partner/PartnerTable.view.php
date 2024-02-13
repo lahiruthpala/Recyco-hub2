@@ -15,14 +15,14 @@
                     $array = array_map('intval', explode(',', $row->Events));
                     $result = '[' . implode(',', $array) . ']';
                     ?>
-                    <tr>
+                    <tr onclick="loadScreen('/GeneralManager/partner', '<?= $row->Partner_ID?>')">
                         <td class="mdl-data-table__cell--non-numeric">
                             <?= $row->Partner_ID ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
                             <?= $row->Company_Name ?? '' ?>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="mdl-data-table__cell--non-numeric" style="max-height:80px; padding:0">
                             <canvas class="miniChart" width="130" height="40" data-chart-data="<?= $result ?>"></canvas>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric" style="padding-left: 70px;">
@@ -30,17 +30,6 @@
                                 class="label label--mini <?php echo $row->Status === 'Active' ? 'color--green' : 'color--red'; ?>">
                                 <?= $row->Status ?? '' ?>
                             </span>
-                        </td>
-
-                        <td class="mdl-data-table__cell--non-numeric">
-                            <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
-                                <!-- Replace 'your_id_value' with the actual ID -->
-                                <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
-                                <button type="submit"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                                    style="border-radius: 99px;">View</button>
-                            </form>
-
                         </td>
                     </tr>
                     <?php
