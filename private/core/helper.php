@@ -16,7 +16,6 @@ function get_var($key, $default = "")
 //$msg=['this is the message','danger']
 function message($msg = ['', 'success'], $erase = false)
 {
-
 	if (!is_array($msg)) { //if the $msg is just a string, make it an array and give msg type as success
 		$msg = [$msg, 'success'];
 	}

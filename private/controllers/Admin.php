@@ -51,9 +51,8 @@ class Admin extends Controller
             $data = $user->query($where);
         } else {
             $data = $user->query("Select User_ID, FirstName, LastName, Role, Status  FROM reg_users where Role != 'Admin'");
-            $this->success[] = "Your success message";
-
         }
+        message(["Your success message", "success"]);
         $this->view("Admin/UserAccounts", ['rows' => $data]);
     }
 

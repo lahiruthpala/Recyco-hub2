@@ -31,7 +31,7 @@ $admin = new Admin();
                             <div class="mdl-card__title" style="border-radius: 0;display: flex;justify-content: space-between;">
                                 <h1 id="tableTitle" class="mdl-card__title-text" style="margin-left:20px">User Accounts
                                 </h1>
-                                <div style="margin-right:30px" id="UserAccountSort" hidden>
+                                <div style="margin-right:30px" id="UserAccountSort">
                                     <form method="POST" class="align-right" style="padding-left:10vw">
                                         <select name="Role" onchange="this.form.submit()"
                                             style="background-color: #333; color: #fff; border: none; padding: 5px; margin-right:50px">

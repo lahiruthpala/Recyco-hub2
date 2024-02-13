@@ -1,14 +1,3 @@
-<div style="display:none" id="popupnotification">
-    <div id="errors">
-        <?php
-        echo json_encode($Errors[0]); ?>
-    </div>
-    <div id="success">
-        <?php
-        var_dump($Success);
-        echo json_encode($Success[0]); ?>
-    </div>
-</div>
 <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
         <div
@@ -17,11 +6,11 @@
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
         <div style="display: flex; margin-right:auto; gap:30px">
-            <a href="<?= ROOT ?>/Admin/Dashboard" <?= setActiveTab(1)?> >Dashboard</a>
-            <a href="<?= ROOT ?>/Admin/AccountManagement" <?= setActiveTab(2)?> >Account Management</a>
-            <a href="<?= ROOT ?>/Admin/SortingCenter" <?= setActiveTab(3)?>>Sorting Center Management</a>
-            <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4)?>>Complaint Management</a>
-            <a href="<?= ROOT ?>/Dashboard" <?= setActiveTab(5)?>>Other</a>
+            <a href="<?= ROOT ?>/Admin/Dashboard" <?= setActiveTab(1) ?>>Dashboard</a>
+            <a href="<?= ROOT ?>/Admin/AccountManagement" <?= setActiveTab(2) ?>>Account Management</a>
+            <a href="<?= ROOT ?>/Admin/SortingCenter" <?= setActiveTab(3) ?>>Sorting Center Management</a>
+            <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4) ?>>Complaint Management</a>
+            <a href="<?= ROOT ?>/Dashboard" <?= setActiveTab(5) ?>>Other</a>
         </div>
         <div></div>
         <!-- Search-->
@@ -129,5 +118,5 @@
 </header>
 <script src="<?= ROOT ?>/js/Notification.js"></script>
 <script>
-    
+
 </script>

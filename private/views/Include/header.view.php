@@ -1,14 +1,3 @@
-<div style="display:none" id="popupnotification">
-    <div id="errors">
-        <?php
-        echo json_encode($Errors[0]); ?>
-    </div>
-    <div id="success">
-        <?php
-        var_dump($success);
-        echo json_encode($Success[0]); ?>
-    </div>
-</div>
 <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
         <div
@@ -76,7 +65,7 @@
             </li>
             <li class="list__item--border-top"></li>
             <li class="mdl-menu__item mdl-list__item">
-                <a href="<?= ROOT .'/' . Auth::getRole()?>/profile">
+                <a href="<?= ROOT . '/' . Auth::getRole() ?>/profile">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">account_circle</i>
                         My account
