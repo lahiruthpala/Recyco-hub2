@@ -7,8 +7,12 @@ class Customer extends Controller
 	}
 
 	function CreatePickups(){
-		$pickup = $this->load_model("PickUpRequestModel");
-		$data = $pickup->insert($_POST);
+		$this->view("Customer/Setpickup");
 	}
 
+	function newrequest(){
+		var_dump($_POST['Catogory']);
+		var_dump($_GET);
+		die;
+	}
 }
