@@ -52,7 +52,6 @@ class Admin extends Controller
         } else {
             $data = $user->query("Select User_ID, FirstName, LastName, Role, Status  FROM reg_users where Role != 'Admin'");
         }
-        message(["Your success message", "success"]);
         $this->view("Admin/UserAccounts", ['rows' => $data]);
     }
 
@@ -81,10 +80,10 @@ class Admin extends Controller
                             $_FILES['profileImage']['name'] = $UserData['User_ID'];
 
                             $destination = $file->uploadFile($_FILES['profileImage'], $folder);
-                            message('user Posted Successfully!');
+                            message(['User Added successfully','success']);
                             $this->redirect('Admin/AccountManagement');
                         } else { //didnt inserted to db
-                            message(['Error occurred while posting! Try again', "danger"]);
+                            message(['Error occurred while posting! Try again', "error"]);
                             $this->redirect('Admin/AccountManagement');
                         }
                     }
@@ -99,8 +98,6 @@ class Admin extends Controller
     function AddMachine()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
-            die;
             $machine = $this->load_model('MachineModel');
             if ($machine->validate($_POST)) {
                 $machine->insert($_POST);

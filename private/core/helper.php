@@ -16,15 +16,17 @@ function get_var($key, $default = "")
 //$msg=['this is the message','danger']
 function message($msg = ['', 'success'], $erase = false)
 {
-	if (!is_array($msg)) { //if the $msg is just a string, make it an array and give msg type as success
+	if (!is_array($msg)) {
 		$msg = [$msg, 'success'];
 	}
 
 	if (!empty($msg[0])) {
-		$_SESSION['message'] = $msg;
+		if (!isset($_SESSION['message'])) {
+			$_SESSION['message'] = [];
+		}
+		$_SESSION['message'][] = $msg;
 	} else {
 		if (!empty($_SESSION['message'])) {
-
 			$msg = $_SESSION['message'];
 			if ($erase) {
 				unset($_SESSION['message']);
@@ -32,7 +34,6 @@ function message($msg = ['', 'success'], $erase = false)
 			return $msg;
 		}
 	}
-
 	return false;
 }
 

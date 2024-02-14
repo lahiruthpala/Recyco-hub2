@@ -264,24 +264,4 @@
             }
         }
     }
-
-    window.onload = function () {
-        toggleFormDisable();
-    };
-
-    document.getElementById("CreateAccountForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        if (validateForm()) {
-            this.submit();
-        }
-    });
-
-    function validateForm() {
-        $inputs = document.querySelectorAll('#CreateAccountForm input');
-        foreach($inputs as $input) {
-            console.log($input);
-        }
-        return false;
-    }
-
 </script>
