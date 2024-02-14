@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/public/images/Background_login_internal.jpg');
+}
+
+header { 
+    background-color: #f5f0f0;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+ 
+header img {
+    height: 40px; /* Set the height of your logo */
+}
+
+nav {
+    display: flex;
+}
+
+nav a {
+    color: #111010;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.first{
+    /* display: flex; */
+    margin: 40px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.second{
+    margin: 40px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.description {
+    width: 50%;
+}
+
+.buttons {
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.buttons button {
+    flex: 1;
+    border-radius: 10px;
+    height: 90px;
+    margin: 10px;
+    padding: 10px;
+    background-color:#19691b;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.image {
+    border-radius: 10px;
+    margin: 10px;
+    max-width: 100%;
+    height: auto;
+}
+.second{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    gap: 3px;
+    height: 70px;
+    background-color: rgb(40, 38, 38);
+}
+.heading{
+    color: #fff;
+    text-align: center;
+    font-size: 60px;
+}
+.column2 {
+    flex: 1;
+    color: #fff;
+}
+.row1{
+    display: flex;
+    background-color: rgb(240, 227, 227);
+    width: 30px;
+}
+.row2{
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(38, 37, 37);
+    width: 950px;
+}
+.checklist{
+    max-width: 100%;
+    height: auto;
+}
+.garbagetruck{
+    width: 300px;
+}
+.row2-column2{
+    margin-left: 30px;
+    color: #fff;
+}
+.row1-column1{
+    flex: 1;
+}
+.row1-column2{
+    flex:1;
+}
+
+.row1-column1{
+    flex: 1;
+}
+.row1-column2{
+    color: #fff;
+}
+#arrowrow1{
+    rotate: (30deg);
+}

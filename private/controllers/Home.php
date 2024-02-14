@@ -4,7 +4,7 @@ class Home extends Controller
 	
 	function index()
 	{
-		$this->view('webpage/home');
+		$this->view('/Customer/LandingPage');
 	}
 }
 ?>
