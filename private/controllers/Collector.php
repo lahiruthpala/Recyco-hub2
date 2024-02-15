@@ -115,7 +115,8 @@ class collector extends Controller
                 'Status' => $type,
                 'waste_type' => $wasteType,
                 'weight' => $weight,
-                'InventoryId' => $InventoryId
+                'InventoryId' => $InventoryId,
+                'Completed_Date' => time(),
             ];
 
 
@@ -127,7 +128,7 @@ class collector extends Controller
     function form($id)
     {
         $user = $this->load_model('PickUpRequestModel');
-        $data = $user->first('InventoryId', $id);
+        $data = $user->first('Pickup_ID', $id);
         $this->view('Collector/form', ['data' => $data]);
     }
 

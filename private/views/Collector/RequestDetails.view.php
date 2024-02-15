@@ -41,6 +41,12 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="mdl-data-table__cell--non-numeric">Inventory_ID</td>
+                                                    <td style="text-align: left;">
+                                                        <?= $pickup->InventoryId ?? "Not yet Collected"; ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <td class="mdl-data-table__cell--non-numeric">Job status</td>
                                                     <td class="mdl-data-table__cell--non-numeric">
                                                         <?php
@@ -74,7 +80,12 @@
                                                         <?= $pickup->Requested_Date ?>
                                                     </td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td class="mdl-data-table__cell--non-numeric">Completed Date</td>
+                                                    <td style="text-align: left;">
+                                                        <?= $pickup->Completed_Date ?? "Not Completed";?>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -88,7 +99,7 @@
                                     <?php if ($pickup->Status == 'Assigned'): ?>
                                         <div class="mdl-card__actions">
                                             <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/form/<?= $pickup->InventoryId ?? '' ?>"
+                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>"
                                                 style="margin-right: 10px;">Accept</a>
                                             <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                                 href="<?= ROOT ?>/collector/jobs/<?= $pickup->InventoryId ?>/Rejected/<?= $pickup->Pickup_ID ?>">Reject</a>

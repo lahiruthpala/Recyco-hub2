@@ -1,8 +1,4 @@
 <?php
-
-/**
- * User Model
- */
 class Batch extends Model
 {
     protected $beforeInsert = [

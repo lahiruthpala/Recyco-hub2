@@ -84,7 +84,7 @@ class Inventory extends Controller
     {
         $collector = $this->load_model('CollectorModel');
         if (count($_POST) > 0) {
-            $data = $collector->innerJoin(array("reg_users"), array("reg_users.User_ID  = collector.User_ID"), $_POST);
+            $data = $collector->innerJoin(array("reg_users"), array("reg_users.User_ID  = collector_details.User_ID"), $_POST);
             if ($data) {
                 echo json_encode(['success' => $data]);
             } else {

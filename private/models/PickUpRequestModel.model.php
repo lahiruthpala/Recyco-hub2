@@ -7,14 +7,14 @@ class PickUpRequestModel extends Model
 {
     protected $beforeInsert = [
         'findCircleForLocation',
-        'GeneratePickupID',
+        'GeneratePickup_ID',
         'GetCustomer_ID'
     ];
 
     protected $table = "pickup_request";
 
     protected $allowedColumns = [
-        'pickupId',
+        'Pickup_ID',
         'weight',
         'Status',
         'pickup_address',
@@ -28,14 +28,14 @@ class PickUpRequestModel extends Model
         'Collector_ID',
     ];
 
-    public function areAllJobsPendingOrRejected($pickupId)
+    public function areAllJobsPendingOrRejected($Pickup_ID)
     {
         $query = "SELECT COUNT(*) AS total_jobs
                   FROM pickup_request
-                  WHERE pickupId = :pickupId
+                  WHERE Pickup_ID = :Pickup_ID
                   AND jobstatus NOT IN ('Pending', 'Rejected')";
 
-        $result = $this->query($query, ['pickupId' => $pickupId]);
+        $result = $this->query($query, ['Pickup_ID' => $Pickup_ID]);
 
         // If there are no jobs with status other than 'Pending' or 'Reject', return true
         return ($result[0]->total_jobs == 0);
@@ -79,8 +79,8 @@ class PickUpRequestModel extends Model
         return $data;
     }
 
-    function GeneratePickupID($data){
-        $data['pickupId'] = generateID("pick");
+    function GeneratePickup_ID($data){
+        $data['Pickup_ID'] = generateID("pick");
         return $data;
     }
 

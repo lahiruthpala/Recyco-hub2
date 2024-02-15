@@ -20,29 +20,21 @@
                     }
                     ?>
                     <form
-                        action="<?= ROOT ?>/collector/store/<?= $data->InventoryId ?? '' ?>/Accepted/<?= $data->Job_ID ?? '' ?>"
+                        action="<?= ROOT ?>/collector/store/<?= $data->Pickup_ID ?? '' ?>/Accepted/<?= $data->Job_ID ?? '' ?>"
                         method="POST" class="form">
                         <div class="form__article">
                             <h3>Inventory Details</h3>
                             <div class="mdl-grid">
                                 <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
                                     style="display: flex; align-items: center;">
-                                    <input class="mdl-textfield__input" type="text" id="inventoryId"
-                                        value=<?= $data->InventoryId ?> name="InventoryId">
-                                    <label class="mdl-textfield__label" for="inventoryId">Inventory ID</label>
-                                    <button
+                                    <input class="mdl-textfield__input" type="text" id="inventoryId" value=""
+                                        name="InventoryId" readonly>
+                                    <button type="button" onclick="getInvenId()"
                                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                         style="margin-left: 400px; ">scan</button>
                                 </div>
                             </div>
-
-
-
                             <div class="form__article">
-                                <h3></h3>
-
-
-
                                 <div class="mdl-grid">
                                     <div
                                         class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -59,10 +51,6 @@
                                             <label class="mdl-textfield__label" for="position">Weight</label>
                                         </div>
                                     </div>
-
-
-
-
                                     <div class="form__action">
                                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
                                             for="isInfoReliable">
@@ -77,12 +65,32 @@
                                         </button>
                                     </div>
                     </form>
+                    <video id="preview" style="padding: 100px; transform: scaleX(-1);max-width: 400px;max-height: 400px;""></video>
                 </div>
             </div>
         </main>
     </div>
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script>
+        let isScannerActive = false;
+        let scanner = new Instascan.Scanner({
+            video: document.getElementById('preview')
+        });
 
-    <!-- inject:js -->
-
-    <!-- endinject -->
+        function getInvenId() {
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                    scanner.start(cameras[0]);
+                    isScannerActive = true;
+                } else {
+                    console.error('No cameras found.');
+                }
+            }).catch(function (e) {
+                console.error(e);
+            });
+            scanner.addListener('scan', function (content) {
+                document.getElementById('inventoryId').value = content;
+            });
+        }
+    </script>
     <?php $this->view('include/footer') ?>

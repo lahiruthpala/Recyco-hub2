@@ -12,7 +12,6 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                
                 <a href="#"><img src="/images/RecycoHub.png" alt="logo"></a>
             </div>
             <ul class="links">
@@ -21,13 +20,12 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Blog</a></li>
             </ul>
-            <a href="login.html" class="button_login-button">Login</a>
-            <a href="signup.html" class="button_signup-button">Sign Up</a>
+            <a href="<?=ROOT?>/login" class="button_login-button">Login</a>
+            <a href="<?=ROOT?>/Signup" class="button_signup-button">Sign Up</a>
             <div class="toggle_btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
-        </div>  
-        
+        </div>
     </header>
     <div class="center-content">
         <h1>Welcome to Recyco-hub</h1>

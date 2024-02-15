@@ -24,6 +24,7 @@ function getCollecter() {
     });
 }
 
+//get the coloecter details by enterring the ID manually
 function collectermanual(){
     var content = document.getElementById('CollectorID').value;
     getinfo(content);
@@ -59,7 +60,7 @@ function getinfo(content) {
 }
 
 function setdata(data){
-    console.log(data);
+    console.log("--------->>>>>>>>",data);
     var data = data.success[0];
     document.getElementById('CollecterName').value = data.FirstName + " " + data.LastName;
     document.getElementById('VerifiedCollectorID').value = data.Collector_ID;

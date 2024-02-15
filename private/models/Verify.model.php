@@ -20,7 +20,7 @@ class Verify extends Model
     public function GenerateOTP($data)
     {
         if(isset($data['Role']) && $data['Role'] != 'Customer'){
-            $data['pwd'] = 'in'.random_string(8);
+            $data['code'] = 'in'.random_string(8);
         }else{
             $data['code'] = random_string(10);
         }
