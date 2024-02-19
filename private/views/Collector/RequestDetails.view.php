@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="mdl-card__actions">
                                         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green pull-right"
-                                            href="https://www.google.by/maps/place/London,+UK/data=!4m2!3m1!1s0x47d8a00baf21de75:0x52963a5addd52a99?sa=X&ved=0ahUKEwig76SihPfSAhVCCpoKHTuzBDsQ8gEIeTAN"
+                                            href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?=$pickup->latitude ?? ''?>,<?=$pickup->longitude ?? ''?>&travelmode=driving"
                                             target="_blank">
                                             Show on map
                                         </a>

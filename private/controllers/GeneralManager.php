@@ -183,8 +183,14 @@ class GeneralManager extends Controller
 
     function PendingPickups()
     {
-        $Pickups = $this->load_model('PickUpRequestModel');
-        $data = $Pickups->query("SELECT * FROM `pickup_request` WHERE Status <> 'Completed'");
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $Pickups = $this->load_model('PickUpRequestModel');
+            $data = $Pickups->query("SELECT * FROM pickup_request WHERE Collector_ID = '" . $_POST['Collector_ID'] . "' AND Status != 'Finished'");
+            echo(json_encode($data));
+            return;
+        }
+        $Pickups = $this->load_model('PickupJobs');
+        $data = $Pickups->query("SELECT * FROM pickup_jobs P JOIN collector_details C ON C.Collector_ID=p.Collector_ID WHERE p.Status <> 'Finished' ORDER BY p.Collector_ID");
         $this->view('GeneralManager/Collectors/PendingCollections', ['rows' => $data]);
     }
 }

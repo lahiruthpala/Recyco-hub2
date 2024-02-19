@@ -70,11 +70,15 @@ $generalmanager = new GeneralManager();
                             </div>
                             <div class="mdl-card__title">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Collectors</h1>
+                                <button onclick="loadComponent('Collect')"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    style="border-radius: 99px; margin: 0 25px 0 auto;">Collect</button>
                             </div>
                             <?php $this->view('GeneralManager/Collectors/Collectors', ['collectors' => $collectors]);
                             $generalmanager->PendingPickups();
                             $generalmanager->collections();
                             $generalmanager->complaints();
+                            $this->view('GeneralManager/Collectors/Collect');
                             ?>
                         </div>
                     </div>

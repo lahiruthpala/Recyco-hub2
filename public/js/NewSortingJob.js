@@ -18,7 +18,6 @@ function NewSortingJob(e) {
         showLoaderOnConfirm: true,
         preConfirm: async (pwd) => {
             try {
-                document.getElementById("password").value = pwd
                 var xhr = new XMLHttpRequest();
                 var url = ROOT + "/User/verify";
                 var method = 'POST';
@@ -39,9 +38,19 @@ function NewSortingJob(e) {
                                     icon: "success"
                                 });
                                 setTimeout(function () {
-                                    var formData = new FormData(document.getElementById('newSortingJob'));
-                                    formData.append('inventory', document.getElementById("inventorylist").value);
-                                    document.getElementById("newSortingJob").submit();
+                                    var form = document.getElementById('newSortingJob');
+                                    var inventoryInput = document.createElement('input');
+                                    inventoryInput.type = 'hidden';
+                                    inventoryInput.name = 'inventoryIds';
+                                    inventoryInput.value = inventoryIds.join(',');
+                                    form.appendChild(inventoryInput);
+                                    var pwdInput = document.createElement('input');
+                                    pwdInput.type = 'hidden';
+                                    pwdInput.name = 'pwd';
+                                    pwdInput.value = pwd;
+                                    console.log(pwdInput.value);
+                                    form.appendChild(pwdInput);
+                                    form.submit();
                                 }, 500);
                             } else {
                                 Swal.showValidationMessage("Wrong Password");

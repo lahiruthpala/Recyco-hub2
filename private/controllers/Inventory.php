@@ -185,4 +185,24 @@ GROUP BY Type;
 ", $data = []);
         $this->view('Charts/InventoryBreakdown', [$data]);
     }
+
+    function UpdateStatus()
+    {
+        if (count($_POST) > 0) {
+            $arr1['Status'] = 'Finished';
+            $arr2['Status'] = 'In_whorehouse';
+            $Job = $this->load_model('PickupJobs');
+            $pickupRequest = $this->load_model('PickUpRequestModel');
+            $inventory = $this->load_model('InventoryModel');
+            $InventoryIds = explode(",", $_POST["jobs"]);
+            foreach ($InventoryIds as $InventoryId) {
+                $pickupRequest->update($InventoryId, $arr1, "InventoryId");
+                $data = $pickupRequest->query("SELECT Job_ID FROM pickup_request WHERE InventoryId = '" . $InventoryId . "'")[0];
+                $data = $Job->update($data->Job_ID, $arr1, "Job_ID");
+                $data = $inventory->update($InventoryId, $arr2, "Inventory_ID");
+            }
+            message("Job Status Updated Successfully!");
+            $this->redirect("/GeneralManager");
+        }
+    }
 }

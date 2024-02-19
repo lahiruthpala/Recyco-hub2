@@ -18,6 +18,8 @@ class PickUpRequestModel extends Model
         'weight',
         'Status',
         'pickup_address',
+        'latitude',
+        'longitude',
         'waste_type',
         'Requested_Date',
         'Completed_Date',

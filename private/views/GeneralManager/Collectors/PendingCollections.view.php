@@ -2,10 +2,9 @@
     <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Collector ID</th>
-                <th class="mdl-data-table__cell--non-numeric">Collector Name</th>
+                <th class="mdl-data-table__cell--non-numeric">Job_ID</th>
                 <th class="mdl-data-table__cell--non-numeric">Assign Aria</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Performance</th>
+                <th class="mdl-data-table__cell--non-numeric">Date</th>
                 <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
@@ -16,13 +15,13 @@
                     ?>
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->pickupId ?? '' ?>
+                            <?= $row->Job_ID ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->weight  ?? '' ?>
+                            <?= $row->sector_ID  ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <?= $row->Assigned_Area ?? '' ?>
+                            <?= $row->Assigned_Date ?? '' ?>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric" style="padding-left: 70px;">
                             <span

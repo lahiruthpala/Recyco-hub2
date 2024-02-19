@@ -121,10 +121,10 @@
                                         ?>
                                         <tr>
                                             <td class="mdl-data-table__cell--non-numeric">
-                                                <?= $row->pickupId ?? '' ?>
+                                                <?= $row->Job_ID ?? '' ?>
                                             </td>
                                             <td class="mdl-data-table__cell--non-numeric">
-                                                <?= $row->AssignedDate ?? '' ?>
+                                                <?= $row->Assigned_Date ?? '' ?>
                                             </td>
 
 
@@ -156,13 +156,13 @@
                                                 ?>
                                                 <td class="mdl-data-table__cell--non-numeric">
                                                     <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                                        href="<?= ROOT ?>/collector/statusupdate/<?= $row->pickupId ?>/Accepted"
+                                                        href="<?= ROOT ?>/collector/statusupdate/<?= $row->Job_ID ?>/Accepted"
                                                         style="margin-right: 10px;">Accept</a>
 
                                                 </td>
                                                 <td class="mdl-data-table__cell--non-numeric">
                                                     <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                                        href="<?= ROOT ?>/collector/statusupdate/<?= $row->pickupId ?>/Rejected"
+                                                        href="<?= ROOT ?>/collector/statusupdate/<?= $row->Job_ID ?>/Rejected"
                                                         style="margin-right: 10px;">Reject</a>
 
                                                 </td>
@@ -177,7 +177,7 @@
                                                 ?>
                                                 <td class="mdl-data-table__cell--non-numeric">
                                                     <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                                        href="<?= ROOT ?>/collector/details/<?= $row->pickupId ?>"
+                                                        href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>"
                                                         style="margin-right: 10px;">View</a>
 
                                                 </td>

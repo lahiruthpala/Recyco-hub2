@@ -19,9 +19,9 @@ class collector extends Controller
     function index()
     {
         // code...
-        $pickup = $this->load_model('PickupModel');
+        $pickup = $this->load_model('PickupJobs');
         // Auth::getCollector_ID
-        $pickup = $pickup->where("collectorId", Auth::getUser_ID());
+        $pickup = $pickup->where("Collector_ID", Auth::getUser_ID());
         $this->view('Collector/collector', ['rows' => $pickup]);
     }
 
@@ -43,7 +43,7 @@ class collector extends Controller
     public function inventory()
     {
         $pickup = $this->load_model('RawInvnetoryModel');
-        $pickup = $pickup->where("collectorId", "25435");
+        $pickup = $pickup->where("Collector_ID", "25435");
 
 
         $this->view('Collector/inventory', ['rows' => $pickup]);
@@ -68,12 +68,12 @@ class collector extends Controller
 
     function statusupdate($id, $type)
     {
-        $pickup = $this->load_model('PickupModel');
+        $pickup = $this->load_model('PickupJobs');
 
         $arr = [];
         $arr['Status'] = $type;
 
-        $data = $pickup->Update($id, $arr, "pickupId");
+        $data = $pickup->Update($id, $arr, "Job_ID");
         $this->index();
 
     }
@@ -102,13 +102,16 @@ class collector extends Controller
     function store($id, $type, $pid)
     {
         $in = $this->load_model('PickUpRequestModel');
+        $inventory = $this->load_model('InventoryModel');
 
         $arr = [];
+        $invenarray = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Assuming you have the relevant validation and sanitation in place
             $wasteType = $_POST['wasteType'];
             $weight = $_POST['weight'];
             $InventoryId = $_POST['InventoryId'];
+            $current_timestamp = time();
 
             // Update the database using the form values
             $arr = [
@@ -116,12 +119,16 @@ class collector extends Controller
                 'waste_type' => $wasteType,
                 'weight' => $weight,
                 'InventoryId' => $InventoryId,
-                'Completed_Date' => time(),
+                'Completed_Date' => date('Y-m-d H:i:s', $current_timestamp),
             ];
-
-
-
-            $data = $in->Update($id, $arr, "InventoryId");
+            $invenarray = [
+                'Status' => 'Collected',
+                'Type' => $wasteType,
+                'Weight' => $weight,
+                ];
+            $data = $inventory->update($_POST['InventoryId'], $invenarray, "Inventory_ID");
+            $data = $in->update($id, $arr, "Pickup_ID");
+            message(['Successfully Updated the pickup request','success']);
             $this->redirect('collector/details/' . $pid);
         }
     }
@@ -158,7 +165,7 @@ class collector extends Controller
         $collector = $this->load_model('CollectorModel');
 
         // Auth::getCollector_ID
-        $data = $collector->first("collectorId", $cId);
+        $data = $collector->first("Collector_ID", $cId);
         $this->view('Collector/profile_edit', ['data' => $data]);
 
 
@@ -193,7 +200,7 @@ class collector extends Controller
 
 
 
-            $data = $in->Update($id, $arr, "collectorId");
+            $data = $in->Update($id, $arr, "Collector_ID");
 
             $this->profile();
 
@@ -205,5 +212,21 @@ class collector extends Controller
 
     }
 
-
+    function SetPickupJob()
+    {
+        $pickupRequest = $this->load_model('PickUpRequestModel');
+        $collectors = $pickupRequest->query("SELECT DISTINCT Collector_ID FROM pickup_request WHERE Status = 'Pending'");
+        $pickup = $this->load_model('PickupJobs');
+        if ($collectors != null) {
+            foreach ($collectors as $collector) {
+                $data = $pickup->insert((array) $collector);
+                var_dump($data);
+                $data = $pickupRequest->query("UPDATE pickup_request SET Status = 'Assigned', Job_ID ='" . $data['Job_ID'] . "' WHERE Collector_ID = '" . $data['Collector_ID'] . "' && " . " Status = 'Pending'");
+                var_dump($data);
+                die;
+            }
+        }else{
+            echo "No pending pickups";
+        }
+    }
 }

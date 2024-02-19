@@ -34,10 +34,10 @@ class SortingManager extends Controller
 
 	function CreateSortingJobs()
 	{
-		$errors = array();
+		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$inventory = explode(',', substr($_POST['inventory'], 0, -1));
-			if (password_verify($_POST['pwd'], Auth::getpwd())) {
+			$inventory = explode(',', $_POST['inventoryIds']);
+			if(password_verify($_POST['pwd'], Auth::getpwd())) {
 				$Inventory_Model = $this->load_model('InventoryModel');
 				$SortingJob_Model = $this->load_model('SortingJobModel');
 				$_POST['Line_No'] = $_POST['Machine_ID'];
@@ -47,17 +47,17 @@ class SortingManager extends Controller
 					$arr['Sorting_Job_ID'] = $data['Sorting_Job_ID'];
 					$Inventory_Model->update($row, $arr, "Inventory_ID");
 				}
-				message("Sorting jos successfully initiated");
+				message(["Sorting jos successfully initiated", "success"]);
 				$this->redirect("SortingManager");
 			} else {
-				$errors[] = "Wrong Password";
+				message(["Wrong password", "error"]);
 			}
+			$this->redirect("SortingManager");
 		} else {
-			//$errors[] = "Invalid Input";
+			$machinemodel = $this->load_model("MachineModel");
+			$machine = $machinemodel->findAll(1, 10, "Machine_ID");
+			$this->view('SortingManager/newsortingjob', ["Machines" => $machine]);
 		}
-		$machinemodel = $this->load_model("MachineModel");
-		$machine = $machinemodel->findAll(1,10,"Machine_ID");
-		$this->view('SortingManager/newsortingjob', ["errors" => $errors, "Machines" => $machine]);
 	}
 
 	function verifyInventory()
@@ -66,11 +66,10 @@ class SortingManager extends Controller
 		$inventory = $this->load_model('InventoryModel');
 		header('Content-Type: application/json');
 		$inventory = $inventory->where("Inventory_ID", $id)[0];
-		if ($inventory) {
-			if($inventory->Status == "In whorehouse"){
+		if ($inventory != null) {
+			if ($inventory->Status == "In_whorehouse") {
 				echo json_encode(['success' => true]);
-			}
-			else{
+			} else {
 				echo json_encode(['success' => false]);
 			}
 		} else {
@@ -122,8 +121,8 @@ class SortingManager extends Controller
 		$data->inventories = $inventories->where("Sorting_Job_ID", $id);
 		$data->statusint = statustoint($data->Status);
 		$inventory = $this->load_model('InventoryModel');
-        $inventory = $inventory->where("Sorting_Job_ID ", $id);
-		$this->view('SortingManager/SortingJobInfo', ['data' => $data, 'rows'=>$inventory]);
+		$inventory = $inventory->where("Sorting_Job_ID ", $id);
+		$this->view('SortingManager/SortingJobInfo', ['data' => $data, 'rows' => $inventory]);
 	}
 
 	//Get the data form esp32 module and calculate the credits and assign to the respect customers
@@ -146,7 +145,7 @@ class SortingManager extends Controller
 		//var_dump($query, $inClause, $prices);
 		$sum = 0;
 		$data = array(
-			'Inventory_ID'=>$_POST['Inventory_ID'],
+			'Inventory_ID' => $_POST['Inventory_ID'],
 			'Date' => date('Y-m-d H:i:s'),
 			'Items' => array()
 		);
@@ -155,7 +154,7 @@ class SortingManager extends Controller
 				"Weight" => $items[$price->Type_Name],
 				"Price" => $price->Price
 			);
-			$sum = $items[$price->Type_Name]*$price->Price;
+			$sum = $items[$price->Type_Name] * $price->Price;
 		}
 		$data = json_encode($data, true);
 		//var_dump($_POST, $sum, $data);

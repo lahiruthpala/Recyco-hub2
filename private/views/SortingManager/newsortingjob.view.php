@@ -5,18 +5,6 @@
             <div style="margin:5%; margin-bottom: 5%;">
                 <div style="display: flex; justify-content: center; align-items: center;">
                     <div>
-                        <?php if (count($errors) > 0): ?>
-                            <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
-                                <strong>Errors:</strong>
-                                <?php foreach ($errors as $error): ?>
-                                    <br>
-                                    <?= $error ?>
-                                <?php endforeach; ?>
-                                <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </span>
-                            </div>
-                        <?php endif; ?>
                         <div style="display: flex;">
                             <h6>Sorting Machine ID</h6>
                             <h6 style="margin-left:3vw;margin-top: 0;margin-bottom: 0;">
@@ -30,7 +18,8 @@
                                         if (is_array($Machines) && !empty($Machines)) {
                                             foreach ($Machines as $Machine) {
                                                 ?>
-                                                <li class="mdl-menu__item" onclick="SetForm('<?=$Machine->Machine_ID?>')"><?=$Machine->Machine_ID?></li>
+                                                <li class="mdl-menu__item" onclick="SetForm('<?= $Machine->Machine_ID ?>')">
+                                                    <?= $Machine->Machine_ID ?></li>
                                                 <?php
                                             }
                                         } else {
@@ -48,18 +37,11 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                             <input class="mdl-textfield__input" type="text" placeholder="Description"
                                 name="Description">
-                            <label class="mdl-textfield__label" for="floating-e-mail"></label>
                         </div>
                         <div>
                             <button type="submit" style="border-radius: 20px; margin-top:0"
                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green pull-right">
                                 Create</button>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
-                            style="display:none">
-                            <input class="mdl-textfield__input" type="password" id="password" placeholder="Password"
-                                name="pwd">
-                            <label class="mdl-textfield__label" for="password"></label>
                         </div>
                     </div>
                     <div>
@@ -94,17 +76,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= ROOT ?>/js/NewSortingJob.js"></script>
     <script>
-    function SetForm(form) {
-        document.getElementById("Machine_ID").value = form;
-    }
+        function SetForm(form) {
+            document.getElementById("Machine_ID").value = form;
+        }
 
-    function setAutomation(){
+        function setAutomation() {
 
-    }
+        }
 
-    function AutomationONOff(){
+        function AutomationONOff() {
 
-    }
+        }
 
-</script>
+    </script>
 </div>
