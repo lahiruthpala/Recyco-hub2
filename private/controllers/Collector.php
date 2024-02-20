@@ -183,6 +183,15 @@ class collector extends Controller
         }
     }
 
+    function dashboard()
+	{
+		// code...
+       
+        $this->view('Collector/c_dashboard');
+    }
+
+
+
 	
 
   
