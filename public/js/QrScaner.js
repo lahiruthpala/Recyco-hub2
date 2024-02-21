@@ -1,4 +1,5 @@
 let isScannerActive = false;
+let inventoryIds =[];
 let scanner = new Instascan.Scanner({
     video: document.getElementById('preview')
 });
@@ -21,6 +22,9 @@ function Addinventory() {
 // Function to call PHP function using AJAX
 function callVerifyInventory(content) {
     // Create an XMLHttpRequest object
+    if(CheckInventoryAlreadyAdded(content)){
+        return false;
+    }
     var xhr = new XMLHttpRequest();
 
     // Define the PHP file URL and the request method (POST in this example)
@@ -44,8 +48,8 @@ function callVerifyInventory(content) {
                 console.log(response);
                 if (response.success) {
                     // If successful, update the HTML element with the scanned content
-                    document.getElementById('inventorylist').value += "," + content;
-                    document.getElementById('inventory').innerHTML += "<span class='mdl-list__item-primary-content list__item-text'>" + content + "</span>";
+                    inventoryIds.push(content);
+                    document.getElementById('inventory').innerHTML += "<li class='mdl-list__item' value=" + content + ">" + content + "</li>";
                 } else {
                     alert('Invalied QR code');
                 }
@@ -57,4 +61,32 @@ function callVerifyInventory(content) {
 
     // Send the request with the data
     xhr.send(data);
+}
+
+function CheckInventoryAlreadyAdded(id) {
+    console.log("--->>>>>>>>", id)
+    var inventoryList = document.getElementById('inventory');
+    var inventoryArray = Array.from(inventoryList.getElementsByTagName('li')).map(li => li.innerHTML);
+    console.log("--->>>>>>>>", inventoryArray)
+    if (inventoryArray.includes(String(id))) {
+        alert('ID already exists in inventory list');
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function submitNewSortingJob(e){
+    e.preventDefault(); // Prevent form submission
+    console.log(inventoryIds);
+    // Append inventoryIds to the form
+    var form = document.getElementById('newSortingJob'); // Replace 'yourFormId' with the actual ID of your form
+    var inventoryInput = document.createElement('input');
+    inventoryInput.type = 'hidden';
+    inventoryInput.name = 'inventoryIds';
+    inventoryInput.value = inventoryIds.join(',');
+    form.appendChild(inventoryInput);
+    console.log('done');
+    // Submit the form
+    form.submit();
 }

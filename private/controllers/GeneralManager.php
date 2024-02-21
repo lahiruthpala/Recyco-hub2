@@ -8,7 +8,8 @@ class GeneralManager extends Controller
 
     function verify()
     {
-        if (Auth::getRole() == "SortingManager") {
+        $allowedRoles = ["SortingManager", "GeneralManager", "Admin"];
+        if (in_array(Auth::getRole(), $allowedRoles)) {
             return true;
         } else {
             $this->redirect('login');
@@ -26,8 +27,8 @@ class GeneralManager extends Controller
     {
         $errors = array();
         if (count($_POST) > 0) {
-            $batch = $this->load_model('GenerateInventoryId');
-            $inventory = $this->load_model('Inventory');
+            $batch = $this->load_model('Batch');
+            $inventory = $this->load_model('InventoryModel');
             if ($batch->validate($_POST)) {
                 $data = $batch->insert($_POST);
                 for ($i = 0; $i < $_POST['Size']; $i++) {
@@ -48,10 +49,11 @@ class GeneralManager extends Controller
 
     function SetGenerations()
     {
+        var_dump($_POST);
         $errors = array();
         if (count($_POST) > 0) {
             $jobs = $this->load_model('AutomatedEvents');
-            var_dump($_POST);
+            //var_dump($_POST);
             $jobs->insert($_POST);
 
             // Convert day to a numeric representation (1 for Monday, 2 for Tuesday, etc.)
@@ -64,11 +66,10 @@ class GeneralManager extends Controller
                 'Friday' => 5,
                 'Saturday' => 6,
             ];
-
             $dayOfWeek = $dayOfWeekMap[$_POST['day']];
 
             // Extract hours and minutes from the time
-            list($hours, $minutes) = explode(':', $_POST['time']);
+            list($hours, $minutes) = explode(':', $_POST['Time']);
 
             // Specify the cron schedule
             $cron_schedule = "$minutes $hours * * $dayOfWeek";
@@ -78,7 +79,7 @@ class GeneralManager extends Controller
 
             // Add the cron job
             //exec('(crontab -l ; echo "' . $cron_schedule . ' ' . $command . '") | crontab -');
-            
+            $this->redirect("Generalmanager");
         }
     }
 
@@ -96,13 +97,22 @@ class GeneralManager extends Controller
 
     function partner()
     {
-        $partner = $this->load_model('PartnerModel');
         $remarks = $this->load_model('Remarks');
+        if (isset($_POST["Note"]) && $_POST["Note"] != ""){
+            $remarks->insert($_POST);
+        }
+        $partner = $this->load_model('PartnerModel');
         $contact = $this->load_model('PartnerContact');
-        $partner = $partner->first("Partner_ID", $_POST['id']);
-        $remarks = $remarks->where("Partner_ID", $_POST['id']);
-        $contact = $contact->where("Partner_ID", $_POST['id']);
-        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact]);
+        $article = $this->load_model('Articles');
+        $events = $this->load_model('Event');
+        $complaints = $this->load_model('Complaints');
+        $partner = $partner->first("Partner_ID", $_GET['id']);
+        $remarks = $remarks->where("Partner_ID", $_GET['id']);
+        $contact = $contact->where("Partner_ID", $_GET['id']);
+        $article = $article->where("Partner_ID", $_GET['id']);
+        $events = $events->where("Partner_ID", $_GET['id']);
+        $complaints = $complaints->where("Partner_ID", $_GET['id']);
+        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article'=>$article, 'complaints'=>$complaints]);
     }
 
     function partnerEvents()
@@ -114,7 +124,7 @@ class GeneralManager extends Controller
     function partnerArticle()
     {
         $article = $this->load_model('Articles');
-        $article = $article->findAll(1, 10, "Publish_Date");
+        $article = $article->findAll(1, 10, "Published_Date");
         $this->view('GeneralManager/Partner/Articles', ['rows' => $article]);
     }
 
@@ -132,15 +142,18 @@ class GeneralManager extends Controller
 
     function complaints()
     {
-        $events = $this->load_model('Complaints');
-        $events = $events->findAll(1, 10, "Publish_Date");
-        $this->view('GeneralManager/Partner/complaints', ['rows' => $events]);
+        $complaints = $this->load_model('Complaints');
+        $complaints = $complaints->findAll(1, 10, "Date");
+        $this->view('GeneralManager/Partner/ComplaintsTable', ['rows' => $complaints]);
     }
 
     function collector()
     {
         $collectorModel = $this->load_model('CollectorModel');
+        $userModel = $this->load_model('User');
         $collectors = $collectorModel->findAll(1, 10, "Collector_ID");
+        $data = $userModel->where('Role', 'Collector');
+        $collectors[0]->Collector_Name = $data[0]->FirstName . " " . $data[0]->LastName;
         $this->view('GeneralManager/Collector', ['collectors' => $collectors]);
     }
 
@@ -148,7 +161,7 @@ class GeneralManager extends Controller
     {
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->findAll(1, 10, "Application_Date");
-        $this->view('GeneralManager/Partner/NewPartnership', ['rows' => $NewPartnership]);
+        $this->view('GeneralManager/Partner/NewPartnershipTable', ['rows' => $NewPartnership]);
     }
 
     function PartnershipReview($id)
@@ -158,19 +171,26 @@ class GeneralManager extends Controller
         }
         $NewPartnership = $this->load_model('PendingPartnership');
         $NewPartnership = $NewPartnership->first("Application_ID", $id);
-        $this->view('GeneralManager/Partner/Partershipreview', ['rows' => $NewPartnership]);
+        $this->view('GeneralManager/Partner/NewPartershipreview', ['rows' => $NewPartnership]);
     }
 
     function collections()
     {
-        $collectionsModel = $this->load_model('Inventory');
-        //$data = $this->where();
+        $Pickups = $this->load_model('PickUpRequestModel');
+        $data = $Pickups->query("SELECT COUNT(*) AS Count, DATE(Completed_Date) AS Date FROM pickup_request WHERE Status != 'Completed' GROUP BY DATE(Completed_Date)");
+        $this->view('GeneralManager/Collectors/Collections', ['rows' => $data]);
     }
 
     function PendingPickups()
     {
-        $pickup = $this->load_model('PickUpRequestModel');
-        $data = $pickup->findAll(1, 10, "time");
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $Pickups = $this->load_model('PickUpRequestModel');
+            $data = $Pickups->query("SELECT * FROM pickup_request WHERE Collector_ID = '" . $_POST['Collector_ID'] . "' AND Status != 'Finished'");
+            echo(json_encode($data));
+            return;
+        }
+        $Pickups = $this->load_model('PickupJobs');
+        $data = $Pickups->query("SELECT * FROM pickup_jobs P JOIN collector_details C ON C.Collector_ID=p.Collector_ID WHERE p.Status <> 'Finished' ORDER BY p.Collector_ID");
         $this->view('GeneralManager/Collectors/PendingCollections', ['rows' => $data]);
     }
 }

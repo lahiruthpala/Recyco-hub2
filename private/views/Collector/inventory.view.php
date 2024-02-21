@@ -74,15 +74,15 @@
                     <td class="mdl-data-table__cell--non-numeric">
                     <form action="<?= ROOT ?>/collector/form/<?= $row->InventoryId ?? '' ?>" method="POST">
    
-                    <input type="hidden" name="id" value="<?= $row->pickupId ?? '' ?>">
+                    <input type="hidden" name="id" value="<?= $row->Job_ID ?? '' ?>">
 
                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px;">Proceed</button>
                       </form>
                   </td>
                   <td class="mdl-data-table__cell--non-numeric">
-                  <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Rejected/<?= $row->pickupId ?? '' ?>" method="POST">
+                  <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Rejected/<?= $row->Job_ID ?? '' ?>" method="POST">
    
-                    <input type="hidden" name="id" value="<?= $row->pickupId ?? '' ?>">
+                    <input type="hidden" name="id" value="<?= $row->Job_ID ?? '' ?>">
                   <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" style="border-radius: 99px;">Reject</button>
                    </form>
               </td>

@@ -21,12 +21,6 @@
                     <td class="mdl-data-table__cell--non-numeric"><span
                             class="label label--mini color--green"><?= $row->Status ?? " "  ?></span>
                     </td>
-                    <td class="mdl-data-table__cell--non-numeric"><button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
-                            style="border-radius: 99px;">View</button></td>
-                    <td class="mdl-data-table__cell--non-numeric"><button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                            style="border-radius: 99px;">Compleded</button></td>
                 </tr>
                 <?php
             }

@@ -32,15 +32,18 @@
         type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="<?= ROOT ?>/css/lib/getmdl-select.min.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/css/lib/nv.d3.min.css">
     <link rel="stylesheet" href="<?= ROOT ?>/css/application.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>var ROOT = "http://localhost:8380/Recyco-hub2/public" </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <!-- endinject -->
 
 </head>
 <?php
-function limitString($inputString, $maxLength) {
+function limitString($inputString, $maxLength)
+{
     if (strlen($inputString) > $maxLength) {
         $trimmedString = substr($inputString, 0, $maxLength);
         $trimmedString .= "...";
@@ -51,11 +54,23 @@ function limitString($inputString, $maxLength) {
     }
 }
 
-function statuscolor($status){
-    if($status == "New"){
+function statuscolor($status)
+{
+    if ($status == "New") {
         return "green";
-    }else{
+    } else {
         return "red";
     }
 }
+function setActiveTab($a) {
+    
+    global $activeTab;
+    if ($activeTab == $a) {
+        return "style='color: green;'";
+    } else {
+        return "";
+    }
+}
 ?>
+
+

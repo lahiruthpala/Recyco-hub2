@@ -17,6 +17,7 @@ class Model extends Database
 	{
 
 		$column = addslashes($column);
+		//$query = "select * from $this->table WHERE id_column_name IN (id_value1, id_value2, id_value3,...);
 		$query = "select * from $this->table where $column = :value";
 		return $this->query($query, [
 			'value' => $value
@@ -63,7 +64,7 @@ class Model extends Database
 				$data = $this->$func($data);
 			}
 		}
-		
+
 		//remove unwanted columns
 		if (property_exists($this, 'allowedColumns')) {
 			foreach ($data as $key => $column) {
@@ -118,21 +119,22 @@ class Model extends Database
             //adding join condition if mentioned, else add default
             $query = $query . $joinConditions[$i] . " ";
         }
-
+		
         //adding where conditions
         if (!empty($data)) {
             $keys = array_keys($data);
             $query = $query . "WHERE ";
             foreach ($keys as $key) {
-                $query .= $key . "=" . $data[$key] . " && ";
+                $query .= $this->table . "." . $key . "='" . $data[$key] . "' && ";
+
             }
 
             //remove the additional '&&' 
             $query = trim($query, "&& ");
         }
-        // show($query);
-        // show($data);
-        // die;
+//        show($query);
+  //      show($data);
+    //    die;
 
         //since $data for where clause is expanded in here, no need to send the data to PDO
         //didnt use $key:=$key
@@ -143,6 +145,11 @@ class Model extends Database
         } else{
 			return false;
 		}
+	}
+
+	public function custom($query, $data)
+	{
+		return $this->query($query, $data);
 	}
 }
 

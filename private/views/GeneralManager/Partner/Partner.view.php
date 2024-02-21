@@ -1,5 +1,9 @@
 <?php $this->view('include/head') ?>
 
+<head>
+    <link href="<?= ROOT ?>/css/popup.css" rel="stylesheet">
+</head>
+
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
         <header>
@@ -12,13 +16,12 @@
 
                 <div
                     class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-                    <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone"
-                        style="height: 600px">
+                    <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
                         <div class="mdl-card mdl-shadow--2dp line-chart">
                             <div class="mdl-card__title">
                                 <h2 class="mdl-card__title-text">Simple Line Chart 1</h2>
                             </div>
-                            <canvas id="myChart" width="100%" height="100%"></canvas>
+                            <canvas id="myChart"></canvas>
                             <script>
                                 console.log("dsvsdvfsdvererve");
                                 console.log('<?= $partner->Events ?>');
@@ -110,23 +113,58 @@
                                 <button onclick="loadComponent('info')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Info</Button>
-                                <button onclick="loadComponent('Articals')"
+                                <button onclick="loadComponent('ArticlesTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Articals</Button>
-                                <button onclick="loadComponent('Events')"
+                                <button onclick="loadComponent('EventsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Events</Button>
-                                <button onclick="loadComponent('Complaints')"
+                                <button onclick="loadComponent('ComplaintsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;">Complaints</button>
                             </div>
-                            <div class="mdl-card__title">
+                            <div class="mdl-card__title" style="border-radius: 0;">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Info</h1>
                             </div>
                             <?php
-                                $this->view("GeneralManager/Partner/info", ['partner' => $partner, 'remarks'=>$remarks, 'contact'=>$contact]);
+                            $this->view("GeneralManager/Partner/info", ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact]);
+                            $this->view('GeneralManager/Partner/Articles', ['rows' => $article]);
+                            $this->view('GeneralManager/Partner/Events', ['rows' => $events]);
+                            $this->view('GeneralManager/Partner/ComplaintsTable', ['rows' => $complaints]);
                             ?>
                         </div>
+                        <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
+                            <div class="modal" id="modal">
+                                <div
+                                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+                                    <div
+                                        class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
+                                        <div class="mdl-card mdl-shadow--2dp">
+                                            <div class="mdl-card__title">
+                                                <div class="mdl-card__title-text">Add A Remark</div>
+                                                <button data-close-button class="close-button" type="button"
+                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                                    style="border-radius: 99px; margin-left: auto;">&times;</button>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded"
+                                                data-upgraded=",MaterialTextfield" style="margin: 10px 20px 10px 20px">
+                                                <div>
+                                                    <textarea class="mdl-textfield__input" type="text" rows="3"
+                                                        name="Note" spellcheck="false"></textarea>
+                                                    <input name="Partner_ID" value=<?= $partner->Partner_ID ?> hidden>
+                                                </div>
+                                            </div>
+                                            <button type="submit"
+                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
+                                                style="border-radius: 99px; margin: 0 20px 20px 20px">
+                                                Commit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="overlay"></div>
                     </div>
                 </div>
             </div>
@@ -136,9 +174,10 @@
 
     </div>
 
-    
+
     <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
+    <script src="<?= ROOT ?>/js/popup.js"></script>
 </body>
 
 </html>

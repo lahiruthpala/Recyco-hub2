@@ -11,7 +11,7 @@
 
                 <div class="mdl-card__supporting-text">
              
-                    <form action= "<?= ROOT ?>/collector/updateProfile/<?= $data->collectorId ?? '' ?>" method="POST" class="form">
+                    <form action= "<?= ROOT ?>/collector/updateProfile/<?= $data->Collector_ID ?? '' ?>" method="POST" class="form">
                         <div class="form__article">
                             <h3>Your Details</h3>
 

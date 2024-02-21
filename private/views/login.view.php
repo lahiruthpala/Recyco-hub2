@@ -6,7 +6,7 @@
 
         </header>
         <main class="mdl-layout__content">
-            <form method="post">
+            <form method="post" onsubmit="validateForm()">
                 <div style="margin-top:100px" class="mdl-card mdl-card__login mdl-shadow--2dp">
                     <div class="mdl-card__supporting-text color--dark-gray">
                         <div class="mdl-grid">
@@ -19,30 +19,36 @@
                                     Recyco-HUB</span>
                             </div>
                             <?php if (count($errors) > 0): ?>
-                                <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
+                                <div id="alert" class="mdl-textfield__error" role="alert">
                                     <strong>Errors:</strong>
-                                    <?php foreach ($errors as $error): ?>
-                                        <br>
-                                        <?= $error ?>
-                                    <?php endforeach; ?>
-                                    <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </span>
+                                    <div style="margin-left:10px">
+                                        <?php foreach ($errors as $error): ?>
+                                            <br>
+                                            <?= $error ?>
+                                        <?php endforeach; ?>
+                                        <span type="button" style="margin-left:10px" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </span>
+                                    </div>
                                 </div>
+                                <script>
+                                    document.getElementById('alert').style.visibility = "visible";
+                                </script>
                             <?php endif; ?>
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="email" placeholder="" name="Email" class="mdl-textfield__input">
+                                    <input type="email" placeholder="" id="Email" name="Email" class="mdl-textfield__input">
                                     <label class="mdl-textfield__label" for="e-mail">Email</label>
+                                    <div class="mdl-textfield__error" id="emailerror"></div>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="password" placeholder="" name="pwd" class="mdl-textfield__input">
-                                    <label class="mdl-textfield__label" for="password">Password</label>
+                                    <input type="password" placeholder="" id="pwd" name="pwd" class="mdl-textfield__input">
+                                    <label class="mdl-textfield__label" for="password" id="pwderror">Password</label>
                                 </div>
-                                <a href="forgot-password.html" class="login-link">Forgot password?</a>
+                                <a href="<?=ROOT?>/login/ForgotPassword" class="login-link">Forgot password?</a>
                             </div>
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
-                                <a href="sign-up.html" class="login-link">Don't have account?</a>
+                                <a href="<?=ROOT?>/Signup" class="login-link">Don't have account?</a>
                                 <div class="mdl-layout-spacer"></div>
                                 <input type="submit" value="Login" name="login"
                                     class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
@@ -53,26 +59,25 @@
             </form>
         </main>
     </div>
-
-    <!-- inject:js -->
-    <script src="<?= ROOT ?>/js/d3.min.js"></script>
-    <script src="<?= ROOT ?>/js/getmdl-select.min.js"></script>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
-    <script src="<?= ROOT ?>/js/nv.d3.min.js"></script>
-    <script src="<?= ROOT ?>/js/layout/layout.min.js"></script>
-    <script src="<?= ROOT ?>/js/scroll/scroll.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/discreteBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/linePlusBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/charts/stackedBarChart.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/employer-form/employer-form.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/line-chart/line-charts-nvd3.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/map/maps.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/table/table.min.js"></script>
-    <script src="<?= ROOT ?>/js/widgets/todo/todo.min.js"></script>
-    <script src="<?= ROOT ?>/js/sortingManage.js"></script>
-    <!-- endinject -->
-
-</body>
-
-</html>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('Email').value;
+            var emialerror = document.getElementById('emailerror').value;
+            var pwd = document.getElementById('pwd').value;
+            var pwderror = document.getElementById('pwderror').value;
+            if (email.trim() === '' || pwd.trim() === ''){
+                if(email.trim() === ''){
+                    emialerror.style.visibility = "visible"
+                    emialerror.innerHTML = "Enter a valid email"
+                }
+                if(pwd.trim() === ''){
+                    pwderror.style.visibility = "visible"
+                    pwderror.innerHTML = "Enter a valid password"
+                }
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+    <?php $this->view('include/footer') ?>

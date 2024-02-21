@@ -58,19 +58,27 @@ $generalmanager = new GeneralManager();
                                 <button onclick="loadComponent('Collectors')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Collectors</Button>
-                                <button onclick="loadComponent('PendingCollections')"
+                                <button onclick="loadComponent('Collections')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Collections</Button>
+                                <button onclick="loadComponent('PendingCollections')"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    style="border-radius: 99px; margin-left: 1VW;">Pending Collections</Button>
                                 <button onclick="loadComponent('ComplaintsTable')"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: auto;">Complaints</button>
                             </div>
                             <div class="mdl-card__title">
                                 <h1 id="tableTitle" class="mdl-card__title-text">Collectors</h1>
+                                <button onclick="loadComponent('Collect')"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    style="border-radius: 99px; margin: 0 25px 0 auto;">Collect</button>
                             </div>
-                                <?php $this->view('GeneralManager/Collectors/Collectors', ['collectors'=>$collectors]);
-                                $generalmanager->PendingPickups();
-                                $generalmanager->complaints();
+                            <?php $this->view('GeneralManager/Collectors/Collectors', ['collectors' => $collectors]);
+                            $generalmanager->PendingPickups();
+                            $generalmanager->collections();
+                            $generalmanager->complaints();
+                            $this->view('GeneralManager/Collectors/Collect');
                             ?>
                         </div>
                     </div>
@@ -80,7 +88,7 @@ $generalmanager = new GeneralManager();
         </main>
 
     </div>
-    <script src="<?=ROOT?>/js/loadcomponent.js"></script>
+    <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php $this->view('include/footer') ?>

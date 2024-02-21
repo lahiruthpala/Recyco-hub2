@@ -77,7 +77,6 @@
 		</script>
 	 </head>
 <body>
-<?php $this->view('include/WebHeader') ?>
     <div class="mdl-layout mdl-js-layout color--gray is-small-screen login">
         <main class="mdl-layout__content">
             <div class="mdl-card mdl-card__login mdl-shadow--2dp">

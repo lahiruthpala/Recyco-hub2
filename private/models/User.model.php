@@ -12,7 +12,8 @@ class User extends Model
 
     protected $allowedColumns = [
         'User_ID',
-        'UserName',
+        'FirstName',
+        'LastName',
         'Email',
         'pwd',
         'Address',
@@ -33,9 +34,6 @@ class User extends Model
         if($this->where('Email',$DATA['Email'])){
             $this->errors[] = 'Email already exists';
         }
-        if($this->where('UserName',$DATA['UserName'])){
-            $this->errors[] = 'Username already exists';
-        }
         if(count($this->errors) == 0){
             return true;
         }
@@ -44,7 +42,7 @@ class User extends Model
 
     public function make_UserID($data){
         do{
-            $data['User_ID'] = random_string(6);
+            $data['User_ID'] = generateID($data['Role']);
         }while(($this->where('User_ID',$data['User_ID'])));
         return $data;
     }
