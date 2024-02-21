@@ -18,13 +18,32 @@ class collector extends Controller
 
     function index()
     {
-        // code...
-        $pickup = $this->load_model('PickupJobs');
-        // Auth::getCollector_ID
-        $pickup = $pickup->where("Collector_ID", Auth::getUser_ID());
-        $this->view('Collector/collector', ['rows' => $pickup]);
+        $this->view('Collector/collector');
     }
 
+    function PendingJobs()
+    {
+        $pickup = $this->load_model('PickupJobs');
+        // Auth::getCollector_ID
+        $pickup = $pickup->query("SELECT * FROM pickup_jobs WHERE Collector_ID='" . Auth::getUser_ID() . "'AND Status='Assigned'");
+        $this->view('Collector/Jobs/PendingJobs', ['rows' => $pickup]);
+    }
+
+    function AcceptedJobs()
+    {
+        $pickup = $this->load_model('PickupJobs');
+        // Auth::getCollector_ID
+        $pickup = $pickup->query("SELECT * FROM pickup_jobs WHERE Collector_ID='" . Auth::getUser_ID() . "'AND Status='Accepted'");
+        $this->view('Collector/Jobs/AcceptedJobs', ['rows' => $pickup]);
+    }
+
+    function FinishedJobs()
+    {
+        $pickup = $this->load_model('PickupJobs');
+        // Auth::getCollector_ID
+        $pickup = $pickup->query("SELECT * FROM pickup_jobs WHERE Collector_ID='" . Auth::getUser_ID() . "'AND Status='Finished'");
+        $this->view('Collector/Jobs/FinishedJobs', ['rows' => $pickup]);
+    }
 
     function table()
     {

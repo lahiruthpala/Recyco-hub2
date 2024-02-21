@@ -5,107 +5,96 @@
 </head>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
         <header>
             <?php $this->view('include/header') ?>
         </header>
-        <main class="mdl-layout__content">
-            <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                <div class="mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h1 class="mdl-card__title-text" id="tableTitle"><?= $data[0]->Type ?></h1>
-                    </div>
-                    <section id="cards">
-                        <form class="form form--basic" method="POST"
-                            style="margin: 20px 2px 20px 30px;">
-                            <div>
-                                <div class="mdl-grid" style="justify-content: center;">
-                                    <div>
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Type -> </h6>
-                                            <h6>
-                                                <?=$data[0]->Type;?>
-                                            </h6>
-                                        </div>
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Total Weight -> </h6>
-                                            <h6>
-                                                <?= $data[0]->Weight; ?>
-                                            </h6>
-                                        </div>
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Location -> </h6>
-                                            <h6>
-                                                <?= $data[0]->Location; ?>
-                                            </h6>
-                                        </div>
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Buying Price -> </h6>
-                                            <h6>
-                                                <?= $data[0]->Buying_Price ?? "No price  set yet."; ?>
-                                            </h6>
-                                        </div>
+        <main class="layout__content">
+            <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
+                <div class="card__title">
+                    <h1 class="card__title-text" id="tableTitle">
+                        <?= $data[0]->Type ?>
+                    </h1>
+                </div>
+                <section id="cards" class="info">
+                    <form class="form form--basic" method="POST" style="margin: 20px 2px 20px 30px;">
+                        <div>
+                            <div class="grid" style="justify-content: center;">
+                                <div>
+                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                        <h6>Type -> </h6>
+                                        <h6>
+                                            <?= $data[0]->Type; ?>
+                                        </h6>
                                     </div>
-                                    <div style="margin-left: 10vw;">
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Description -> </h6>
-                                            <h6 style="max-width: 500px;">
-                                                <?= $data[0]->Description ?? "Inventory Type is not Identified"; ?>
-                                            </h6>
-                                        </div>
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Status -> </h6>
-                                            <h6>
-                                                <?= $data[0]->Status ?? "Not Accepting"; ?>
-                                            </h6>
-                                        </div>
-                                        <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                            <h6>Selling Price -> </h6>
-                                            <h6>
-                                                <?= $data[0]->Selling_Price ?? "No price  set yet."; ?>
-                                            </h6>
-                                        </div>
+                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                        <h6>Total Weight -> </h6>
+                                        <h6>
+                                            <?= $data[0]->Weight; ?>
+                                        </h6>
+                                    </div>
+                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                        <h6>Buying Price -> </h6>
+                                        <h6>
+                                            <?= $data[0]->Buying_Price ?? "No price  set yet."; ?>
+                                        </h6>
                                     </div>
                                 </div>
-                                <div class="mdl-card__supporting-text no-padding" id="NewInventory"
-                                    style="display: block;">
-                                    <table class="mdl-data-table mdl-js-data-table"
-                                        style="width: 100%; table-layout: fixed;">
-                                        <thead>
-                                            <tr style="background-color: #333;width: 100%;">
-                                                <th class="mdl-data-table__cell--non-numeric">Inventory_ID</th>
-                                                <th class="mdl-data-table__cell--non-numeric" style="text-align: center;" >Status</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        if (is_array($rows) && !empty($rows)) {
-                                            $id = 1; // Initialize ID counter
-                                            foreach ($rows as $row) {
-                                                ?>
-                                                <tr
-                                                    onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
-                                                    <td class="mdl-data-table__cell--non-numeric" name="Inventory_ID"
-                                                        id="batch<?= $id ?>">
-                                                        <?= $row->Inventory_ID ?>
-                                                    </td>
-                                                    <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">
-                                                        <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
-                                                            <?= $row->Status ?>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                                $id++; // Increment ID for the next row
-                                            }
-                                        } else {
-                                            echo "No data available.";
-                                        }
-                                        ?>
-                                    </table>
+                                <div style="margin-left: 10vw;">
+                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                        <h6>Description -> </h6>
+                                        <h6 style="max-width: 500px;">
+                                            <?= $data[0]->Description ?? "Inventory Type is not Identified"; ?>
+                                        </h6>
+                                    </div>
+                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                        <h6>Status -> </h6>
+                                        <h6>
+                                            <?= $data[0]->Status ?? "Not Accepting"; ?>
+                                        </h6>
+                                    </div>
+                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                        <h6>Selling Price -> </h6>
+                                        <h6>
+                                            <?= $data[0]->Selling_Price ?? "No price  set yet."; ?>
+                                        </h6>
+                                    </div>
                                 </div>
                             </div>
-                </div>
-                </form>
+                            <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
+                                <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
+                                    <thead>
+                                        <th class="data-table__cell--header">Inventory_ID</th>
+                                        <th class="data-table__cell--header">Status</th>
+                                    </thead>
+                                    <?php
+                                    if (is_array($rows) && !empty($rows)) {
+                                        $id = 1; // Initialize ID counter
+                                        foreach ($rows as $row) {
+                                            ?>
+                                            <tr
+                                                onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
+                                                <td class="data-table__cell--non-numeric" name="Inventory_ID"
+                                                    id="batch<?= $id ?>">
+                                                    <?= $row->Inventory_ID ?>
+                                                </td>
+                                                <td class="data-table__cell--non-numeric">
+                                                    <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
+                                                        <?= $row->Status ?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            $id++; // Increment ID for the next row
+                                        }
+                                    } else {
+                                        echo "No data available.";
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
                 </section>
             </div>
     </div>

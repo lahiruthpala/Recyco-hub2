@@ -49,7 +49,7 @@ function callVerifyInventory(content) {
                 if (response.success) {
                     // If successful, update the HTML element with the scanned content
                     inventoryIds.push(content);
-                    document.getElementById('inventory').innerHTML += "<li class='mdl-list__item' value=" + content + ">" + content + "</li>";
+                    document.getElementById('inventory').innerHTML += "<li class='list__item' value=" + content + ">" + content + "</li>";
                 } else {
                     alert('Invalied QR code');
                 }

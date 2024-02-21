@@ -1,11 +1,11 @@
-<div class="mdl-card__supporting-text no-padding" id="PartnerTable" style="display: block;">
-    <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
+<div class="card__supporting-text no-padding" id="PartnerTable" style="display: block;width: 100%;">
+    <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Partnership ID</th>
-                <th class="mdl-data-table__cell--non-numeric">Company Name</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
-                <th class="mdl-data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
+                <th class="data-table__cell--non-numeric">Partnership ID</th>
+                <th class="data-table__cell--non-numeric">Company Name</th>
+                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
+                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -16,16 +16,16 @@
                     $result = '[' . implode(',', $array) . ']';
                     ?>
                     <tr onclick="loadScreen('/GeneralManager/partner', '<?= $row->Partner_ID?>')">
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->Partner_ID ?? '' ?>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->Company_Name ?? '' ?>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric" style="max-height:80px; padding:0">
+                        <td class="data-table__cell--non-numeric" style="max-height:80px; padding:0">
                             <canvas class="miniChart" width="130" height="40" data-chart-data="<?= $result ?>"></canvas>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric" style="padding-left: 70px;">
+                        <td class="data-table__cell--non-numeric" style="padding-left: 70px;">
                             <span
                                 class="label label--mini <?php echo $row->Status === 'Active' ? 'color--green' : 'color--red'; ?>">
                                 <?= $row->Status ?? '' ?>

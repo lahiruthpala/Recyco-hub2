@@ -1,9 +1,9 @@
-<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="width: 20%;">
-    <div class="mdl-card mdl-shadow--2dp" style="height: auto;max-height: 300px;">
-        <div class="mdl-card__title" style="align-items: center; justify-content: center;">
-            <h2 class="mdl-card__title-text">Warehouse Capacity</h2>
+<div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone" style="width: 20%;">
+    <div class="card shadow--2dp" style="height: auto;max-height: 300px;">
+        <div class="card__title" style="align-items: center; justify-content: center;">
+            <h2 class="card__title-text">Warehouse Capacity</h2>
         </div>
-        <div class="mdl-card__supporting-text">
+        <div class="card__supporting-text">
             <div class="pie-chart__container" style="height: 120px;">
                 <canvas id="WarehouseCapacity"></canvas>
                 <label id="WarehouseCapacityData" hidden>
@@ -13,11 +13,11 @@
             </div>
         </div>
     </div>
-    <div class="mdl-card mdl-shadow--2dp pie-chart" style="height: 210px; margin-top:20px;">
-        <div class="mdl-card__title" style="align-items: center; justify-content: center;">
-            <h2 class="mdl-card__title-text">Warehouse Capacity</h2>
+    <div class="card shadow--2dp pie-chart" style="height: 210px; margin-top:20px;">
+        <div class="card__title" style="align-items: center; justify-content: center;">
+            <h2 class="card__title-text">Warehouse Capacity</h2>
         </div>
-        <div class="mdl-card__supporting-text">
+        <div class="card__supporting-text">
             <div class="pie-chart__container" style="height: 120px;">
                 <canvas id="WarehouseCapacity"></canvas>
                 <label id="WarehouseCapacityData" hidden>

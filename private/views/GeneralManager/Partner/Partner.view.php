@@ -5,21 +5,21 @@
 </head>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
         <header>
             <?php $this->view('include/header') ?>
         </header>
 
-        <main class="mdl-layout__content">
+        <main class="layout__content">
 
-            <div class="mdl-grid mdl-grid--no-spacing dashboard">
+            <div class="grid grid--no-spacing dashboard">
 
                 <div
-                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-                    <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp line-chart">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Simple Line Chart 1</h2>
+                    >
+                    <div class="cell cell--6-col-desktop cell--6-col-tablet cell--12-col-phone">
+                        <div class="card shadow--2dp" style="background-color: #444;">
+                            <div class="card__title">
+                                <h2 class="card__title-text">Simple Line Chart 1</h2>
                             </div>
                             <canvas id="myChart"></canvas>
                             <script>
@@ -107,24 +107,21 @@
                             </script>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-layout__header-row">
-                                <button onclick="loadComponent('info')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Info</Button>
-                                <button onclick="loadComponent('ArticlesTable')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Articals</Button>
-                                <button onclick="loadComponent('EventsTable')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Events</Button>
-                                <button onclick="loadComponent('ComplaintsTable')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: auto;">Complaints</button>
-                            </div>
-                            <div class="mdl-card__title" style="border-radius: 0;">
-                                <h1 id="tableTitle" class="mdl-card__title-text">Info</h1>
+                    <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
+                        <div class="card shadow--2dp">
+                            <div id="buttonToggle" class="buttonToggle">
+                                <button onclick="loadComponent('info')" id="info_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-green"
+                                    style="margin: 4px 10px 4px 4px;">Info</Button>
+                                <button onclick="loadComponent('ArticlesTable')" id="ArticlesTable_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke"
+                                    style="margin: 4px 10px 4px 4px;">Articals</Button>
+                                <button onclick="loadComponent('EventsTable')" id ="EventsTable_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke"
+                                    style="margin: 4px 10px 4px 4px;">Events</Button>
+                                <button onclick="loadComponent('ComplaintsTable')" id="ComplaintsTable_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke"
+                                    style="margin: 4px 10px 4px 4px;">Complaints</button>
                             </div>
                             <?php
                             $this->view("GeneralManager/Partner/info", ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact]);
@@ -136,26 +133,26 @@
                         <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
                             <div class="modal" id="modal">
                                 <div
-                                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+                                    >
                                     <div
-                                        class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
-                                        <div class="mdl-card mdl-shadow--2dp">
-                                            <div class="mdl-card__title">
-                                                <div class="mdl-card__title-text">Add A Remark</div>
+                                        class="cell cell--6-col-desktop cell--6-col-tablet cell--12-col-phone">
+                                        <div class="card shadow--2dp">
+                                            <div class="card__title">
+                                                <div class="card__title-text">Add A Remark</div>
                                                 <button data-close-button class="close-button" type="button"
-                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                                    class="button js-button button--raised js-ripple-effect button--colored-green"
                                                     style="border-radius: 99px; margin-left: auto;">&times;</button>
                                             </div>
-                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded"
+                                            <div class="textfield js-textfield textfield--floating-label is-upgraded"
                                                 data-upgraded=",MaterialTextfield" style="margin: 10px 20px 10px 20px">
                                                 <div>
-                                                    <textarea class="mdl-textfield__input" type="text" rows="3"
+                                                    <textarea class="textfield__input" type="text" rows="3"
                                                         name="Note" spellcheck="false"></textarea>
                                                     <input name="Partner_ID" value=<?= $partner->Partner_ID ?> hidden>
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal"
+                                                class="button js-button button--raised js-ripple-effect button--colored-teal"
                                                 style="border-radius: 99px; margin: 0 20px 20px 20px">
                                                 Commit
                                             </button>

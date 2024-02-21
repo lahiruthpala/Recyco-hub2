@@ -40,23 +40,22 @@ class Inventory extends Controller
     function RawInventory()
     {
         $batch = $this->load_model('InventoryModel');
-        $data = $batch->query("SELECT Type, SUM(Weight) Weight, Location FROM inventory WHERE Status = 'In whorehouse' GROUP BY Type, Location;");
+        $data = $batch->query("SELECT Type, SUM(Weight) Weight FROM inventory WHERE Status = 'In_whorehouse' GROUP BY Type;");
         $this->view('Inventory/RawInventory', ['rows' => $data]);
     }
 
     function RawInventoryInfo()
     {
-        if (isset($_GET['Type'], $_GET['Location'])) {
+        if (isset($_GET['Type'])) {
             $type = $_GET['Type'];
-            $location = $_GET['Location'];
         } else {
             echo "parameters are not set";
         }
         $batch = $this->load_model('InventoryModel');
         $inven_type = $this->load_model("InventoryTypes");
         $inven_type = $inven_type->where("Type_Name", $type);
-        $inventory = $batch->query("SELECT * FROM inventory WHERE Type='$type' AND  Location='$location' ORDER BY Batch_ID DESC");
-        $data = $batch->query("SELECT Type, SUM(Weight) Weight, Location FROM inventory WHERE Type='$type' AND  Location='$location' GROUP BY Type, Location;");
+        $inventory = $batch->query("SELECT * FROM inventory WHERE Type='$type' ORDER BY Batch_ID DESC");
+        $data = $batch->query("SELECT Type, SUM(Weight) Weight FROM inventory WHERE Type='$type' GROUP BY Type");
         if (isset($inven_type) && $inven_type != null) {
             $data[0]->Description = $inven_type[0]->Description;
             $data[0]->Buying_Price = $inven_type[0]->Buying_Price;

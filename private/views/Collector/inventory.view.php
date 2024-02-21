@@ -1,34 +1,34 @@
 <?php $this->view('include/head') ?>
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
     <?php $this->view('include/header') ?>
-        <main class="mdl-layout__content">
-<div class="mdl-grid mdl-grid--no-spacing dashboard">
+        <main class="layout__content">
+<div class="grid grid--no-spacing dashboard">
 
                 <div
-                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+                    >
 
                    
                  
                     
                     
-                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone" style="margin-top: 100px;">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-layout__header-row">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                    <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone" style="margin-top: 100px;">
+                        <div class="card shadow--2dp">
+                            <div class="layout__header-row">
+                            <button class="button js-button button--raised js-ripple-effect button--colored-green"
         style="border-radius: 99px; margin-left: 1vw; width: 400px;">Assigned Inventories</button>
 
                                     
                             </div>
                           
-                            <div class="mdl-card__supporting-text no-padding">
-                                <table class="mdl-data-table mdl-js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
+                            <div class="card__supporting-text no-padding">
+                                <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
                                     <thead>
                                         <tr>
-                                            <th class="mdl-data-table__cell--non-numeric">Inventory ID</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Content</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Weight</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Status</th>
+                                            <th class="data-table__cell--non-numeric">Inventory ID</th>
+                                            <th class="data-table__cell--non-numeric">Content</th>
+                                            <th class="data-table__cell--non-numeric">Weight</th>
+                                            <th class="data-table__cell--non-numeric">Status</th>
 
                                         </tr>
                                     </thead>
@@ -38,17 +38,17 @@
                 foreach ($rows as $row) {
                     ?>
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->InventoryId?? '' ?>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->waste_type?? '' ?>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->weight?? '' ?>Kg
                         </td>
                        
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                 <?php
                 $statusClass = ''; 
                 if ($row->jobstatus == 'Accepted') {
@@ -71,19 +71,19 @@
               
               if ($row->jobstatus == 'Pending') {
                 ?>
-                    <td class="mdl-data-table__cell--non-numeric">
+                    <td class="data-table__cell--non-numeric">
                     <form action="<?= ROOT ?>/collector/form/<?= $row->InventoryId ?? '' ?>" method="POST">
    
                     <input type="hidden" name="id" value="<?= $row->Job_ID ?? '' ?>">
 
-                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green" style="border-radius: 99px;">Proceed</button>
+                     <button type="submit" class="button js-button button--raised js-ripple-effect button--colored-green" style="border-radius: 99px;">Proceed</button>
                       </form>
                   </td>
-                  <td class="mdl-data-table__cell--non-numeric">
+                  <td class="data-table__cell--non-numeric">
                   <form action="<?= ROOT ?>/collector/inven/<?= $row->InventoryId ?? '' ?>/Rejected/<?= $row->Job_ID ?? '' ?>" method="POST">
    
                     <input type="hidden" name="id" value="<?= $row->Job_ID ?? '' ?>">
-                  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" style="border-radius: 99px;">Reject</button>
+                  <button type="submit" class="button js-button button--raised js-ripple-effect button--colored-red" style="border-radius: 99px;">Reject</button>
                    </form>
               </td>
 

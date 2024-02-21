@@ -1,49 +1,49 @@
 <?php $this->view('include/head') ?>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
+    <div class="layout js-layout layout--fixed-header">
+        <header class="layout__header">
             <?php $this->view('include/partnerheader') ?>
         </header>
-        <main class="mdl-layout__content">
-            <div class="mdl-cell mdl-cell--7-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
-                <div class="mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h5 class="mdl-card__title-text text-color--white">Create New Article</h5>
+        <main class="layout__content">
+            <div class="cell cell--7-col-desktop cell--7-col-tablet cell--4-col-phone">
+                <div class="card shadow--2dp">
+                    <div class="card__title">
+                        <h5 class="card__title-text text-color--white">Create New Article</h5>
                     </div>
-                    <div class="mdl-card__supporting-text">
+                    <div class="card__supporting-text">
                         <form class="form form--basic" method="POST">
-                            <div class="mdl-grid">
+                            <div class="grid">
                                 <div
-                                    class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="floating-last-name" placeholder="Title" name="Artical_Title" value="<?= isset($article->Artical_Title) ? $article->Artical_Title : '' ?>">
-                                        <label class="mdl-textfield__label" for="floating-last-name"></label>
+                                    class="cell cell--6-col-desktop cell--6-col-tablet cell--4-col-phone form__article">
+                                    <div class="textfield js-textfield textfield--floating-label full-size">
+                                        <input class="textfield__input" type="text" id="floating-last-name" placeholder="Title" name="Artical_Title" value="<?= isset($article->Artical_Title) ? $article->Artical_Title : '' ?>">
+                                        <label class="textfield__label" for="floating-last-name"></label>
                                     </div>
 
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="floating-e-mail" placeholder="Discription" name="Discription" value="<?= isset($article->Discription) ? $article->Discription : '' ?>">
-                                        <label class="mdl-textfield__label" for="floating-e-mail"></label>
+                                    <div class="textfield js-textfield textfield--floating-label full-size">
+                                        <input class="textfield__input" type="text" id="floating-e-mail" placeholder="Discription" name="Discription" value="<?= isset($article->Discription) ? $article->Discription : '' ?>">
+                                        <label class="textfield__label" for="floating-e-mail"></label>
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="floating-e-mail" placeholder="Content" name="Data" value="<?= isset($article->Data) ? $article->Data : '' ?>">
-                                        <label class="mdl-textfield__label" for="floating-e-mail"></label>
+                                    <div class="textfield js-textfield textfield--floating-label full-size">
+                                        <input class="textfield__input" type="text" id="floating-e-mail" placeholder="Content" name="Data" value="<?= isset($article->Data) ? $article->Data : '' ?>">
+                                        <label class="textfield__label" for="floating-e-mail"></label>
                                     </div>
-                                    <div class="mdl-card__actions">
+                                    <div class="card__actions">
                                         <a style="background-color: #4c504e; border-radius: 20px; margin-left: 10px;"
-                                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-light-blue pull-right"
+                                            class="button js-button button--raised js-ripple-effect button--colored-light-blue pull-right"
                                             href=target="_blank">
                                             upload
                                         </a>
 
                                     </div>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="password" placeholder="Password">
-                                        <label class="mdl-textfield__label" for="password"></label>
+                                    <div class="textfield js-textfield textfield--floating-label full-size">
+                                        <input class="textfield__input" type="text" id="password" placeholder="Password">
+                                        <label class="textfield__label" for="password"></label>
                                     </div>
-                                    <div class="mdl-card__actions">
+                                    <div class="card__actions">
                                         <a style="margin-left: 240px; background-color: #16C784; border-radius: 20px; margin-left: 10px;">
-                                            <button type="submit" type=style="border-radius: 20px;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green pull-right">
+                                            <button type="submit" type=style="border-radius: 20px;" class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                             Create</button>
                                         </a>
 

@@ -1,11 +1,11 @@
-<div class="mdl-card__supporting-text no-padding" id="CreateInventory" style="display: none;" >
+<div class="card__supporting-text no-padding" id="CreateInventory" style="display: none;" >
     <div style="display: flex;">
         <form style="width: 30VW; margin-left:2VW;" action="<?= ROOT ?>/GeneralManager/Generate" method="POST" id="NewInventoryCreation">
-            <div class="mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title">
-                    <h5 class="mdl-card__title-text text-color--white">Create new inventory ID</h5>
+            <div class="card shadow--2dp">
+                <div class="card__title">
+                    <h5 class="card__title-text text-color--white">Create new inventory ID</h5>
                 </div>
-                <div class="mdl-grid">
+                <div class="grid">
                     <!-- <?php if (count($errors) > 0): ?>
                                 <div style="ml-10px" role="alert">
                                     <strong>Errors:</strong>
@@ -20,13 +20,13 @@
                                 </div>
                             <?php endif; ?> -->
                     <div
-                        class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
+                        class="cell cell--6-col-desktop cell--6-col-tablet cell--4-col-phone form__article">
+                        <div class="textfield js-textfield textfield--floating-label full-size is-upgraded"
                             data-upgraded=",MaterialTextfield">
-                            <input class="mdl-textfield__input" type="text" id="floating-last-name" name="Description"
+                            <input class="textfield__input" type="text" id="floating-last-name" name="Description"
                                 placeholder="Note">
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
+                        <div class="textfield js-textfield textfield--floating-label full-size is-upgraded"
                             data-upgraded=",MaterialTextfield">
                             <div style="display: flex; flex-direction: column; align-items: left;">
                                 <label style="color: white;">Size:</label>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <button id=" Generate" type="submit" onclick="NewInventory(event, 'NewInventoryCreation')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    class="button js-button button--raised js-ripple-effect button--colored-green"
                                     style="border-radius: 99px; margin-left: 1VW;">Generate</Button>
                                 <div>
                                     <h3 class="text-color--smooth-gray"></h3>
@@ -44,34 +44,34 @@
                         </div>
                     </div>
         </form>
-        <div class="mdl-card mdl-shadow--2dp" style="margin-left:2VW">
-            <div class="mdl-card__title">
-                <h5 class="mdl-card__title-text text-color--white">Currently Automated Generations</h5>
+        <div class="card shadow--2dp" style="margin-left:2VW">
+            <div class="card__title">
+                <h5 class="card__title-text text-color--white">Currently Automated Generations</h5>
             </div>
-            <div class="mdl-card__supporting-text">
-                <ul class="mdl-list">
+            <div class="card__supporting-text">
+                <ul class="list">
                     <?php
                     if (is_array($events) && !empty($events)) {
                         $id = 1; // Initialize ID counter
                         foreach ($events as $event) {
                             ?>
-                            <li class="mdl-list__item">
-                                <span class="mdl-list__item-primary-content">
-                                    <div class="mdl-list__item-avatar">
+                            <li class="list__item">
+                                <span class="list__item-primary-content">
+                                    <div class="list__item-avatar">
                                         <img width="100%" src="<?= ROOT ?>/images/watch_white.svg">
                                     </div>
                                     <?= $event->Title ?>
                                 </span>
-                                <span class="mdl-list__item-secondary-action">
+                                <span class="list__item-secondary-action">
                                     <label for="<?=$event->ID?>" data-upgraded=",MaterialSwitch,MaterialRipple" onchange="toggleAutomation(<?=$event->ID?>)"
-                                        onchange=class="mdl-switch switch--colored-light-blue mdl-js-switch mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded">
-                                        <input type="checkbox" id="<?=$event->ID?>" class="mdl-switch__input" checked="">
-                                        <div class="mdl-switch__track"></div>
-                                        <div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div>
+                                        onchange=class="switch switch--colored-light-blue js-switch js-ripple-effect js-ripple-effect--ignore-events is-upgraded">
+                                        <input type="checkbox" id="<?=$event->ID?>" class="switch__input" checked="">
+                                        <div class="switch__track"></div>
+                                        <div class="switch__thumb"><span class="switch__focus-helper"></span></div>
                                         <span
-                                            class="mdl-switch__ripple-container mdl-js-ripple-effect mdl-ripple--center is-checked"
+                                            class="switch__ripple-container js-ripple-effect ripple--center is-checked"
                                             data-upgraded="">
-                                            <span class="mdl-ripple is-animating"
+                                            <span class="ripple is-animating"
                                                 style="width: 137.765px; height: 137.765px; transform: translate(-50%, -50%) translate(24px, 24px);">
                                             </span>
                                         </span>
@@ -89,20 +89,20 @@
             </div>
         </div>
         <form action="<?= ROOT ?>/GeneralManager/SetGenerations" method="POST" id="CreateNewAutomation">
-            <div class="mdl-card mdl-shadow--3dp" style="margin-left:2VW">
-                <div class="mdl-card__title">
-                    <h5 class="mdl-card__title-text text-color--white">Create new Automated Generations</h5>
+            <div class="card shadow--3dp" style="margin-left:2VW">
+                <div class="card__title">
+                    <h5 class="card__title-text text-color--white">Create new Automated Generations</h5>
                 </div>
-                <div class="mdl-card__supporting-text">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size is-upgraded"
+                <div class="card__supporting-text">
+                    <div class="textfield js-textfield textfield--floating-label full-size is-upgraded"
                         data-upgraded=",MaterialTextfield">
-                        <input class="mdl-textfield__input" type="text" name="Title" placeholder="Title">
+                        <input class="textfield__input" type="text" name="Title" placeholder="Title">
                     </div>
                     <div style="display: flex;margin-top: 2vh;">
                         <div>
                             <label>Size:</label>
                             <input type="number" name="Size" style="background-color: gray; color: white;">
-                            <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
+                            <!-- <label class="textfield__label" for="floating-first-name">First Name</label> -->
                         </div>
                         <div style="margin-left:2%;">
                             <label for="Category">Select an option:</label>
@@ -124,12 +124,12 @@
                         <div style="margin-left:5%">
                             <label>Time:</label>
                             <input type="time" name="Time" style="background-color: gray; color: white;">
-                            <!-- <label class="mdl-textfield__label" for="floating-first-name">First Name</label> -->
+                            <!-- <label class="textfield__label" for="floating-first-name">First Name</label> -->
                         </div>
                     </div>
                     <input type="text" style="display:none" id="password">
                     <button id="Generate" type="button" onclick="NewInventory(event, 'CreateNewAutomation')"
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                        class="button js-button button--raised js-ripple-effect button--colored-green"
                         style="border-radius: 99px; margin-left: 1VW; margin-top: 2VW;">SET</Button>
                 </div>
             </div>

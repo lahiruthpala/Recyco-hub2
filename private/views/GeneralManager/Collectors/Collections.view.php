@@ -1,9 +1,9 @@
-<div class="mdl-card__supporting-text no-padding" id="Collections" style="display: none;">
-    <table class="mdl-data-table mdl-js-data-table" style="width: 100%; table-layout: fixed;">
+<div class="card__supporting-text no-padding" id="Collections" style="display: none;">
+    <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Date</th>
-                <th class="mdl-data-table__cell--non-numeric">Number of Collections</th>
+                <th class="data-table__cell--header">Date</th>
+                <th class="data-table__cell--header">Number of Collections</th>
             </tr>
         </thead>
         <tbody>
@@ -12,10 +12,10 @@
                 foreach ($rows as $row) {
                     ?>
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->Date ?? '' ?>
                         </td>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="data-table__cell--non-numeric">
                             <?= $row->Count  ?? '' ?>
                         </td>
                     </tr>

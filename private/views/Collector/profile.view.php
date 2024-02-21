@@ -3,18 +3,18 @@
 <body>
 
     <body>
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+        <div class="layout js-layout layout--fixed-header is-small-screen">
             <?php $this->view('include/header') ?>
-            <main class="mdl-layout__content">
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--12-col">
+            <main class="layout__content">
+                <div class="grid">
+                    <div class="cell cell--12-col">
 
                         <?php if ($row): ?>
-                            <div class="mdl-card mdl-shadow--2dp" style="width:1000px ;margin-left: 250px;">
-                                <div class="mdl-card__title" style="position: relative;">
-                                    <h5 class="mdl-card__title-text text-color--white">PROFILE INFO</h5>
+                            <div class="card shadow--2dp" style="width:1000px ;margin-left: 250px;">
+                                <div class="card__title" style="position: relative;">
+                                    <h5 class="card__title-text text-color--white">PROFILE INFO</h5>
                                     <a href="<?= ROOT ?>/collector/profileedit/<?= $row->Collector_ID ?? '' ?>">
-                                        <button class="mdl-button"
+                                        <button class="button"
                                             style="position: absolute; top: 10px; right: 20px; background-color: green; color: white;">
                                             edit
                                         </button>
@@ -24,11 +24,11 @@
                                 </div>
 
 
-                                <div class="mdl-card__supporting-text">
+                                <div class="card__supporting-text">
                                     <form class="form form--basic">
-                                        <div class="mdl-grid">
+                                        <div class="grid">
                                             <div
-                                                class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone">
+                                                class="cell cell--3-col-desktop cell--3-col-tablet cell--1-col-phone">
                                                 <div class="profile-image color--smooth-gray profile-image--rounds"
                                                     style="margin-left: 40px;overflow: hidden; border-radius: 50%; width: 100px; height: 100px;">
                                                     <img src="<?= ROOT ?>/images/login.png" alt="City Image"
@@ -36,12 +36,12 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone form__article">
+                                                class="cell cell--8-col-desktop cell--8-col-tablet cell--4-col-phone form__article">
                                                 <div style="display: flex; justify-content: space-between;">
 
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    <div class="textfield js-textfield textfield--floating-label full-size"
                                                         style="width: 45%; display: inline-block; margin-right: 5%;">
-                                                        <label class="mdl-textfield__label"
+                                                        <label class="textfield__label"
                                                             for="profile-floating-first-name"
                                                             style="color: white !important;">First Name</label>
                                                         <br>
@@ -52,9 +52,9 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    <div class="textfield js-textfield textfield--floating-label full-size"
                                                         style="width: 45%; display: inline-block; margin-right: 5%;">
-                                                        <label class="mdl-textfield__label"
+                                                        <label class="textfield__label"
                                                             for="profile-floating-first-name"
                                                             style="color: white !important;">Last Name</label>
                                                         <br>
@@ -68,11 +68,11 @@
                                                 </div>
 
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
                                                     style="width: 45%; display: inline-block; margin-right: 5%;">
                                                     <br>
                                                     <br>
-                                                    <label class="mdl-textfield__label" for="profile-floating-first-name"
+                                                    <label class="textfield__label" for="profile-floating-first-name"
                                                         style="color: white !important;">Collector ID</label>
                                                     <span
                                                         style="display: block; font-size: 100%; color: white;border-bottom: 1px solid white; padding-bottom: 1px ">
@@ -81,9 +81,9 @@
                                                 </div>
 
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
                                                     style="width: 45%; display: inline-block; margin-right: 5%;">
-                                                    <label class="mdl-textfield__label" for="profile-floating-email"
+                                                    <label class="textfield__label" for="profile-floating-email"
                                                         style="color: white !important; ">Email</label>
                                                     <br>
                                                     <br>
@@ -93,9 +93,9 @@
                                                     </span>
                                                 </div>
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
                                                     style="width: 45%; display: inline-block;">
-                                                    <label class="mdl-textfield__label" for="profile-floating-contact-no"
+                                                    <label class="textfield__label" for="profile-floating-contact-no"
                                                         style="color: white !important;  ">Contact Number</label>
                                                     <br>
                                                     <br>
@@ -105,9 +105,9 @@
                                                     </span>
                                                 </div>
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
                                                     style="width: 45%; display: inline-block; margin-right: 5%;">
-                                                    <label class="mdl-textfield__label" for="profile-floating-email"
+                                                    <label class="textfield__label" for="profile-floating-email"
                                                         style="color: white !important; ">Assigned Area</label>
                                                     <br>
                                                     <br>
@@ -117,9 +117,9 @@
                                                     </span>
                                                 </div>
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
                                                     style="width: 45%; display: inline-block;">
-                                                    <label class="mdl-textfield__label" for="profile-floating-contact-no"
+                                                    <label class="textfield__label" for="profile-floating-contact-no"
                                                         style="color: white !important;  ">Vehicle Number</label>
                                                     <br>
                                                     <br>
@@ -129,9 +129,9 @@
                                                     </span>
                                                 </div>
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
                                                     style="width: 45%; display: inline-block; margin-right: 5%;">
-                                                    <label class="mdl-textfield__label" for="profile-floating-email"
+                                                    <label class="textfield__label" for="profile-floating-email"
                                                         style="color: white !important; ">Address</label>
                                                     <br>
                                                     <br>

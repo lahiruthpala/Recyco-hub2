@@ -98,7 +98,7 @@ class GeneralManager extends Controller
     function partner()
     {
         $remarks = $this->load_model('Remarks');
-        if (isset($_POST["Note"]) && $_POST["Note"] != ""){
+        if (isset($_POST["Note"]) && $_POST["Note"] != "") {
             $remarks->insert($_POST);
         }
         $partner = $this->load_model('PartnerModel');
@@ -112,7 +112,7 @@ class GeneralManager extends Controller
         $article = $article->where("Partner_ID", $_GET['id']);
         $events = $events->where("Partner_ID", $_GET['id']);
         $complaints = $complaints->where("Partner_ID", $_GET['id']);
-        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article'=>$article, 'complaints'=>$complaints]);
+        $this->view('GeneralManager/Partner/Partner', ['partner' => $partner, 'remarks' => $remarks, 'contact' => $contact, 'events' => $events, 'article' => $article, 'complaints' => $complaints]);
     }
 
     function partnerEvents()
@@ -183,14 +183,21 @@ class GeneralManager extends Controller
 
     function PendingPickups()
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $Pickups = $this->load_model('PickUpRequestModel');
             $data = $Pickups->query("SELECT * FROM pickup_request WHERE Collector_ID = '" . $_POST['Collector_ID'] . "' AND Status != 'Finished'");
-            echo(json_encode($data));
+            echo (json_encode($data));
             return;
         }
         $Pickups = $this->load_model('PickupJobs');
         $data = $Pickups->query("SELECT * FROM pickup_jobs P JOIN collector_details C ON C.Collector_ID=p.Collector_ID WHERE p.Status <> 'Finished' ORDER BY p.Collector_ID");
         $this->view('GeneralManager/Collectors/PendingCollections', ['rows' => $data]);
+    }
+
+    function CollectorComplaints()
+    {
+        $Pickups = $this->load_model('PickUpRequestModel');
+        $data = $Pickups->query("SELECT * FROM pickup_request WHERE Complaints != 'NULL'");
+        $this->view('GeneralManager/Collectors/Complaints', ['rows' => $data]);
     }
 }

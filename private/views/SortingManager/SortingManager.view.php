@@ -3,38 +3,34 @@
 $sortingManager = new SortingManager(); ?>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
         <header>
             <?php $this->view('include/header') ?>
         </header>
 
-        <main class="mdl-layout__content">
+        <main class="layout__content">
 
-            <div class="mdl-grid mdl-grid--no-spacing dashboard">
+            <div class="grid grid--no-spacing dashboard">
 
-                <div
-                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-                    <div style="width: 100%; display: flex; flex-direction: row;">
-                        <?php $sortingManager->SortingRate();
-                        $sortingManager->SortingEfficiency();
-                        $sortingManager->SortedItems();
-                        ?>
-                    </div>
-                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-layout__header-row">
-                                <button id="stock" onclick="loadComponent('NewSortingJobs')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">New Sorting Job</Button>
-                                <button onclick="loadComponent('SortingJobs')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Pending Sorting Jobs</Button>
-                                <button onclick="loadComponent('SortedJobs')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
-                                    style="border-radius: 99px; margin-left: 1VW;">Finished Sorting Jobs</Button>
-                            </div>
-                            <div class="mdl-card__title" style="border-radius: 0;">
-                                <h1 class="mdl-card__title-text" id="tableTitle">Sorting Jobs</h1>
+                <div>
+                    <!-- <div style="width: 100%; display: flex; flex-direction: row;">
+                        //<?php $sortingManager->SortingRate();
+                        //$sortingManager->SortingEfficiency();
+                        //$sortingManager->SortedItems();
+                        // ?>
+                    </div> -->
+                    <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
+                        <div class="card shadow--2dp">
+                            <div id="buttonToggle" class="buttonToggle">
+                                <button id="NewSortingJobs_Button" onclick="loadComponent('NewSortingJobs')"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke"
+                                    style="margin: 4px 10px 4px 4px;">New Sorting Job</Button>
+                                <button id="SortingJobs_Button" onclick="loadComponent('SortingJobs')"
+                                    class="button js-button button--raised js-ripple-effect button--colored-green"
+                                    style="margin: 4px 10px 4px 4px;">Pending Sorting Jobs</Button>
+                                <button id="SortedJobs_Button" onclick="loadComponent('SortedJobs')"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke"
+                                    style="margin: 4px 4px 4px 4px;">Finished Sorting Jobs</Button>
                             </div>
                             <section id="content">
                                 <?php $sortingManager->CreateSortingJobs(); ?>

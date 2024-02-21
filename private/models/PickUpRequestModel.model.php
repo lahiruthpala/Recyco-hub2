@@ -24,6 +24,8 @@ class PickUpRequestModel extends Model
         'Requested_Date',
         'Completed_Date',
         'Review',
+        'Complaints',
+        'Complaints_Status',
         'Job_ID',
         'InventoryId',
         'Customer_ID',

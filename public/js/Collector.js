@@ -65,7 +65,7 @@ function setData(data) {
         if (data[i].InventoryId != null) {
             inventory.push(data[i].InventoryId);
         }
-        document.getElementById('jobs').innerHTML += "<li class='mdl-list__item' style='display: flex;justify-content: space-between;' id=" + data[i].InventoryId + "><div name='" + data[i].Pickup_ID + "'>" + data[i].Pickup_ID + "</div><div>" + (data[i].InventoryId ? data[i].InventoryId : "Rejected") + "</div></li>";
+        document.getElementById('jobs').innerHTML += "<li class='list__item' style='display: flex;justify-content: space-between;' id=" + data[i].InventoryId + "><div name='" + data[i].Pickup_ID + "'>" + data[i].Pickup_ID + "</div><div>" + (data[i].InventoryId ? data[i].InventoryId : "Rejected") + "</div></li>";
     }
 }
 

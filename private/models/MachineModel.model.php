@@ -8,6 +8,7 @@ class MachineModel extends Model
     protected $allowedColumns = [
         'Machine_ID',
         'Location',
+        'Line_NO',
         'Machine_Type',
         'Status',
         'Next_Service',

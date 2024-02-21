@@ -1,25 +1,25 @@
 <?php $this->view('include/head') ?>
 
 <body>
-    <div class="mdl-layout mdl-js-layout color--white is-small-screen login">
+    <div class="layout js-layout color--white is-small-screen login">
         <header>
 
         </header>
-        <main class="mdl-layout__content">
+        <main class="layout__content">
             <form method="post" onsubmit="validateForm()">
-                <div style="margin-top:100px" class="mdl-card mdl-card__login mdl-shadow--2dp">
-                    <div class="mdl-card__supporting-text color--dark-gray">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
-                                <span class="mdl-card__title-text text-color--smooth-gray">RecycoHUB</span>
+                <div style="margin-top:100px" class="card card__login shadow--2dp">
+                    <div class="card__supporting-text color--dark-gray">
+                        <div class="grid" style="display: flex;flex-direction: column;">
+                            <div class="cell cell--12-col cell--4-col-phone">
+                                <span class="card__title-text text-color--smooth-gray">RecycoHUB</span>
                             </div>
-                            <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+                            <div class="cell cell--12-col cell--4-col-phone" style="width: 93%;">
                                 <span class="login-name text-color--white">Sign in</span>
                                 <span class="login-secondary-text text-color--smoke">Enter fields to sign in to
                                     Recyco-HUB</span>
                             </div>
                             <?php if (count($errors) > 0): ?>
-                                <div id="alert" class="mdl-textfield__error" role="alert">
+                                <div id="alert" class="textfield__error" role="alert">
                                     <strong>Errors:</strong>
                                     <div style="margin-left:10px">
                                         <?php foreach ($errors as $error): ?>
@@ -35,23 +35,23 @@
                                     document.getElementById('alert').style.visibility = "visible";
                                 </script>
                             <?php endif; ?>
-                            <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="email" placeholder="" id="Email" name="Email" class="mdl-textfield__input">
-                                    <label class="mdl-textfield__label" for="e-mail">Email</label>
-                                    <div class="mdl-textfield__error" id="emailerror"></div>
+                            <div class="cell cell--12-col cell--4-col-phone" style="width: 93%;">
+                                <div class="textfield js-textfield textfield--floating-label full-size">
+                                    <input type="email" placeholder="" id="Email" name="Email" class="textfield__input">
+                                    <label class="textfield__label" for="e-mail">Email</label>
+                                    <div class="textfield__error" id="emailerror"></div>
                                 </div>
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                    <input type="password" placeholder="" id="pwd" name="pwd" class="mdl-textfield__input">
-                                    <label class="mdl-textfield__label" for="password" id="pwderror">Password</label>
+                                <div class="textfield js-textfield textfield--floating-label full-size">
+                                    <input type="password" placeholder="" id="pwd" name="pwd" class="textfield__input">
+                                    <label class="textfield__label" for="password" id="pwderror">Password</label>
                                 </div>
                                 <a href="<?=ROOT?>/login/ForgotPassword" class="login-link">Forgot password?</a>
                             </div>
-                            <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
+                            <div class="cell cell--12-col cell--4-col-phone submit-cell" style="width: 93%;">
                                 <a href="<?=ROOT?>/Signup" class="login-link">Don't have account?</a>
-                                <div class="mdl-layout-spacer"></div>
+                                <div class="layout-spacer"></div>
                                 <input type="submit" value="Login" name="login"
-                                    class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
+                                    class="button js-button button--raised color--light-blue">
                             </div>
                         </div>
                     </div>

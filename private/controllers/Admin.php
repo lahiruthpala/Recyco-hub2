@@ -95,17 +95,27 @@ class Admin extends Controller
         $this->view('Admin/AccountCreation');
     }
 
+    function showAllMachines(){
+        $machine = $this->load_model("MachineModel");
+        $data = $machine->findAll(1,10,"Machine_ID");
+        $this->view("Admin/SortingCenter/MachineTable", ['rows'=>$data]);
+    }
+
     function AddMachine()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $machine = $this->load_model('MachineModel');
-            if ($machine->validate($_POST)) {
-                $machine->insert($_POST);
-                message('Machine Added Successfully!');
-                $this->redirect('Admin/SortingCenter');
-            }
+            $machine->insert($_POST);
+            message(['Machine Added successfully','success']);
+            $this->redirect('Admin/SortingCenter');
         }
-        $this->view('Admin/AddMachine');
+        $this->view("Admin/SortingCenter/AddNewMachine");
+    }
+
+    function SortingCenterInfo(){
+        $machine = $this->load_model("SortingCenter");
+        $data = $machine->findAll(1,10,"SortingCenter_ID")[0];
+        $this->view("Admin/SortingCenter/SortingCenterInfo", ['row'=>$data]);
     }
 }
 ?>

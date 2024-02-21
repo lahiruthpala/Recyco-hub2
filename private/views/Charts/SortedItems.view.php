@@ -1,9 +1,9 @@
-<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone"style="width: 27%;">
-    <div class="mdl-card mdl-shadow--2dp pie-chart">
-        <div class="mdl-card__title" style="align-items: center; justify-content: center;">
-            <h2 class="mdl-card__title-text">Sorted Items</h2>
+<div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone"style="width: 27%;">
+    <div class="card shadow--2dp pie-chart">
+        <div class="card__title" style="align-items: center; justify-content: center;">
+            <h2 class="card__title-text">Sorted Items</h2>
         </div>
-        <div class="mdl-card__supporting-text">
+        <div class="card__supporting-text">
             <div class="pie-chart__container">
                 <canvas id="InventoryBreakdown"></canvas>
                 <label id="data" hidden>

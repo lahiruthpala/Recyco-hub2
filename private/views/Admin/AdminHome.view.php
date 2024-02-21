@@ -11,41 +11,41 @@ $charts = new Charts();
 ?>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
         <header>
             <?php $this->view('include/Adminheader') ?>
         </header>
 
-        <main class="mdl-layout__content">
+        <main class="layout__content">
 
-            <div class="mdl-grid mdl-grid--no-spacing dashboard">
+            <div class="grid grid--no-spacing dashboard">
 
                 <div
-                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+                    >
                     <div style="width: 100%; display: flex; flex-direction: row;">
                         <?php $inventory->InventoryBreakdown(); 
                         $charts->WarehouseCapacity();
                         $charts->SortingRate()
                         ?>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-layout__header-row">
+                    <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
+                        <div class="card shadow--2dp">
+                            <div class="layout__header-row">
                                 <button onclick="loadComponent('NewInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Pending
+                                    class="button js-button button--raised js-ripple-effect button--colored-green">Pending
                                     Inventory</Button>
                                 <button onclick="loadComponent('RawInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Raw
+                                    class="button js-button button--raised js-ripple-effect button--colored-green">Raw
                                     Inventory</Button>
                                 <button onclick="loadComponent('SortedInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Sorted
+                                    class="button js-button button--raised js-ripple-effect button--colored-green">Sorted
                                     Inventory</Button>
                                 <button onclick="loadComponent('CreateInventory')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green"
+                                    class="button js-button button--raised js-ripple-effect button--colored-green"
                                     style="margin-left: auto;">Add New Stock</button>
                             </div>
-                            <div class="mdl-card__title" style="border-radius: 0;">
-                                <h1 id="tableTitle" class="mdl-card__title-text">Pending Inventory</h1>
+                            <div class="card__title" style="border-radius: 0;">
+                                <h1 id="tableTitle" class="card__title-text">Pending Inventory</h1>
                             </div>
                             <?php
                             $generalManager->Generate();

@@ -7,34 +7,31 @@ $admin = new Admin();
 ?>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
         <header>
             <?php $this->view('include/Adminheader') ?>
         </header>
 
-        <main class="mdl-layout__content">
+        <main class="layout__content">
 
-            <div class="mdl-grid mdl-grid--no-spacing dashboard">
+            <div class="grid grid--no-spacing dashboard">
 
-                <div
-                    class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-layout__header-row">
-                                <button onclick="loadComponent('UserAccounts')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">User
+                <div style="width: 100%;">
+                    <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
+                        <div class="card shadow--2dp">
+                            <div id="buttonToggle" class="buttonToggle">
+                                <button onclick="loadComponent2('UserAccounts',['UserAccountSort'],[])"
+                                id="UserAccounts_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-green"
+                                    style="margin: 4px 10px 4px 4px;">User
                                     Accounts</Button>
-                                <button onclick="loadComponent('UserAccountCreation')"
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">Add
+                                <button onclick="loadComponent2('UserAccountCreation',[],['UserAccountSort'])" id="UserAccountCreation_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke"
+                                    style="margin: 4px 10px 4px 4px;">Add
                                     New Account</Button>
-                            </div>
-                            <div class="mdl-card__title" style="border-radius: 0;display: flex;justify-content: space-between;">
-                                <h1 id="tableTitle" class="mdl-card__title-text" style="margin-left:20px">User Accounts
-                                </h1>
                                 <div style="margin-right:30px" id="UserAccountSort">
                                     <form method="POST" class="align-right" style="padding-left:10vw">
-                                        <select name="Role" onchange="this.form.submit()"
-                                            style="background-color: #333; color: #fff; border: none; padding: 5px; margin-right:50px">
+                                        <select name="Role" onchange="this.form.submit()" class="dropdown">
                                             <option value="ALL" <?php if (!isset($_POST['Role'])) {
                                                 echo 'selected';
                                             } ?>>ALL
@@ -45,7 +42,7 @@ $admin = new Admin();
                                             </option>
                                             <option value="SortingManager" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'SortingManager') {
                                                 echo 'selected';
-                                            } ?>>Sorting Manager
+                                            } ?>>Sorting   Manager
                                             </option>
                                             <option value="SellingManager" <?php if (isset($_POST['Role']) && $_POST['Role'] == 'SellingManager') {
                                                 echo 'selected';
@@ -58,8 +55,7 @@ $admin = new Admin();
                                                 echo 'selected';
                                             } ?>>Customer</option>
                                         </select>
-                                        <select name="Status" onchange="this.form.submit()"
-                                            style="background-color: #333; color: #fff; border: none; padding: 5px; margin-right:50px">
+                                        <select name="Status" onchange="this.form.submit()" class="dropdown">
                                             <option value="ALL" <?php if (!isset($_POST['Status'])) {
                                                 echo 'selected';
                                             } ?>>
@@ -71,13 +67,15 @@ $admin = new Admin();
                                                 echo 'selected';
                                             } ?>>In Active</option>
                                         </select>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="padding: 0;">
-                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="UserSearch" style="top: 0;">
+                                        <div class="textfield js-textfield textfield--expandable" style="padding: 0;">
+                                            <label class="button js-button button--icon" for="UserSearch"
+                                                style="top: 0;">
                                                 <i class="material-icons">search</i>
                                             </label>
 
-                                            <div class="mdl-textfield__expandable-holder">
-                                                <input class="mdl-textfield__input" type="text" id="UserSearch" name="Name" />
+                                            <div class="textfield__expandable-holder">
+                                                <input class="textfield__input" type="text" id="UserSearch"
+                                                    name="Name" />
                                             </div>
                                         </div>
                                     </form>

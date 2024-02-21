@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/css/horizontal.css">
 </head>
 
-<div class="scrollmain">
+<div class="scrollmain" id="EventPreview">
     <div class="scrollcontainer">
         <div class="scroll">
             <div class="scrollcard" style="background-color:#333; padding:10px">
