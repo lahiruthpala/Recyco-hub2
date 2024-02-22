@@ -1,4 +1,7 @@
-<?php $this->view('include/head') ?>
+<?php
+global $activeTab;
+$activeTab = 1;
+$this->view('include/head') ?>
 <?php require_once(APP_ROOT . "/controllers/Inventory.php");
 require_once(APP_ROOT . "/controllers/GeneralManager.php");
 require_once(APP_ROOT . "/controllers/Charts.php");
@@ -13,12 +16,12 @@ $charts = new Charts();
 
         <main class="layout__content">
             <div>
-                <!-- <div style="width: 100%; display: flex; flex-direction: row;">
-                    //<?php $inventory->InventoryBreakdown();
-                    //$charts->WarehouseCapacity();
-                    //$charts->SortingRate()
-                    //    ?>
-                </div> -->
+                <div style="width: 100%; display: flex; flex-direction: row;">
+                    <?php $inventory->InventoryBreakdown();
+                    $charts->WarehouseCapacity();
+                    $charts->WarehouseInsOuts()
+                        ?>
+                </div>
                 <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
                     <div class="card shadow--2dp">
                         <div id="buttonToggle" class="buttonToggle">

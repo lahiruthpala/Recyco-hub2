@@ -1,9 +1,12 @@
 <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone" style="width: 30%;">
     <div class="card shadow--2dp" style="height: auto;">
-        <div class="card__title" style="align-items: center; justify-content: center;">
-            <h2 class="card__title-text">Inventory Breakdown</h2>
-        </div>
         <div class="card__supporting-text">
+            <div style="display: flex;">
+                <h6 style="margin-top: 0;color: black;font-weight: bold;">Inventories</h6>
+                <div class="chartIconBlock">
+                    <img style="width: 10px;height: 10px;" src="<?= ROOT ?>/images/home.svg" />
+                </div>
+            </div>
             <div class="pie-chart__container" style="height: 350px;display: flex;justify-content: center;">
                 <canvas id="InventoryBreakdown" style="height: 300px"></canvas>
                 <label id="data" hidden>
@@ -17,14 +20,17 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
     const chartColors = [
-        '#006400',
-        '#228B22',
-        '#20B2AA',
-        '#008080',
-        '#3CB371',
-        '#32CD32',
-        '#00FF00',
-        '#ADFF2F',
+        '#8BE3C3',
+        '#106752',
+        '#19AA76',
+        '#274E13',
+        '#38761D',
+        '#6AA84F',
+        '#93C47D',
+        '#B6D7A8',
+        '#D9EAD3',
+        '#D9D9D9',
+        '#EFEFEF',
         '#7FFF00',
         '#556B2F',
         '#8FBC8F',
@@ -56,6 +62,9 @@
         datasets: [{
             label: 'Inventory Breakdown',
             data: weight,
+            borderWidth: 3,
+            spacing: 3,
+            borderRadius: 10,
             backgroundColor: Array.from({ length: type.length }, () => getColor(color)),
             hoverOffset: 4
         }]
@@ -69,8 +78,29 @@
                 legend: {
                     display: true,
                     labels: {
-                        color: 'rgb(255, 255, 255)'
+                        color: 'black'
                     }
+                },
+                afterDraw: chart => {
+                    var ctx = chart.chart.ctx;
+                    ctx.save();
+                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillStyle = "#666";
+                    var data = chart.data.datasets[0].data;
+                    chart.data.labels.forEach(function (label, i) {
+                        var meta = chart.getDatasetMeta(0);
+                        var rect = meta.data[i].getBoundingClientRect();
+                        ctx.fillText(label, rect.x + rect.width / 2, rect.y - 5);
+                        ctx.beginPath();
+                        ctx.moveTo(rect.x + rect.width / 2, rect.y);
+                        ctx.lineTo(rect.x + rect.width / 2, rect.y - 10);
+                        ctx.lineTo(rect.x + rect.width / 2 - 5, rect.y - 5);
+                        ctx.fillStyle = "#666";
+                        ctx.fill();
+                    });
+                    ctx.restore();
                 }
             }
         }

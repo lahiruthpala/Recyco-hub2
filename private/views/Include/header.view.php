@@ -6,14 +6,14 @@
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
         <div style="display: flex; margin-right:auto; gap:30px; justify-content: space-between;">
-            <a href="<?= ROOT ?>/GeneralManager">Inventory</a>
-            <a href="<?= ROOT ?>/SortingManager">Sorting Jobs</a>
+            <a href="<?= ROOT ?>/GeneralManager" <?= setActiveTab(1) ?>>Inventory</a>
+            <a href="<?= ROOT ?>/SortingManager" <?= setActiveTab(2) ?>>Sorting Jobs</a>
             <?php if (Auth::getRole() == 'GeneralManager'): ?>
-                <a href="<?= ROOT ?>/GeneralManager/partnership">Partnership</a>
+                <a href="<?= ROOT ?>/GeneralManager/partnership" <?= setActiveTab(3) ?>>Partnership</a>
             <?php endif; ?>
-            <a href="<?= ROOT ?>/GeneralManager/collector">Collection</a>
+            <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4) ?>>Collection</a>
             <?php if (Auth::getRole() == 'GeneralManager'): ?>
-                <a href="<?= ROOT ?>/Store">Store</a>
+                <a href="<?= ROOT ?>/Store" <?= setActiveTab(5) ?>>Store</a>
             <?php endif; ?>
         </div>
         <div></div>

@@ -165,11 +165,11 @@
             // Save the PDF (optional step)
             // pdf.save("qrcodes.pdf");
 
-            // Open the print dialog
-            pdf.autoPrint();
+            // // Open the print dialog
+            // pdf.autoPrint();
 
             // Print the PDF document
-            pdf.output('dataurlnewwindow');
+            pdf.save('test.pdf');
         }
 
     </script>

@@ -1,4 +1,7 @@
-<?php $this->view('include/head') ?>
+<?php
+global $activeTab;
+$activeTab = 4;
+$this->view('include/head') ?>
 <?php require_once(APP_ROOT . "/controllers/GeneralManager.php");
 $generalmanager = new GeneralManager();
 ?>

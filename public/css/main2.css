@@ -106,6 +106,17 @@ a:hover {
     color: green;
 }
 
+.linkinfo {
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+}
+
+.linkinfo:hover {
+    color: green;
+}
+
 html {
     height: 100%;
     -ms-touch-action: manipulation;
@@ -164,7 +175,7 @@ h2 {
 }
 
 h6 {
-    font-weight: 400;
+    font-weight: inherit;
     margin-bottom: 16px;
     line-height: 24px;
 }
@@ -300,7 +311,7 @@ ul {
 
 .button--raised {
     background: rgba(158, 158, 158, .2);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12); */
 }
 
 .button--raised:active {
@@ -356,7 +367,6 @@ ul {
     background: white;
     border-radius: 20px;
     box-sizing: border-box;
-    border: 2px solid #268252;
 }
 
 .info {
@@ -401,7 +411,7 @@ ul {
     color: inherit;
     display: block;
     display: flex;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     line-height: normal;
     overflow: hidden;
@@ -414,6 +424,8 @@ ul {
     color: rgba(255, 255, 255, 1);
     font-size: 1rem;
     padding: 20px 16px;
+    /* background-image: linear-gradient(to bottom right, white, #8BD2A0); */
+    border-radius: 0 0 15px 15px;
 }
 
 .data-table {
@@ -451,6 +463,7 @@ ul {
     border: 0.5px solid rgba(255, 255, 255, .5);
     padding-top: 12px;
     box-sizing: border-box;
+    color: black;
 }
 
 .data-table th {
@@ -476,8 +489,17 @@ ul {
     border-radius: 0 15px 0 0;
 }
 
+table.data-table tr:nth-child(odd) {
+    background-color: white;
+}
+
+
+table.data-table tr:nth-child(even) {
+    background-color: #F3F3F3;
+}
+
 .data-table__cell--header {
-    background-color: #333;
+    background-color: #16896E;
 }
 
 .label--mini {
@@ -1019,7 +1041,8 @@ a {
 
 main {
     background-size: cover;
-    background-image: linear-gradient(to bottom right, white, #8BD2A0)
+    background-color: #EDEDED
+        /* linear-gradient(to bottom right, white, #8BD2A0) */
 }
 
 .layout__header {
@@ -1113,7 +1136,7 @@ main {
 }
 
 .card__title {
-    background-color: #333;
+    background-color: #16896E;
     border-radius: 20px 20px 0 0;
 }
 
@@ -1142,8 +1165,8 @@ main {
 }
 
 .button.button--colored-smoke {
-    background-color: #eae8e8;
-    color: black;
+    background-color: #16896E;
+    color: white;
     margin: 1vw;
 }
 
@@ -1159,9 +1182,9 @@ main {
 
 .button.button--colored-green:not([disabled]).button--raised,
 .button.button--colored-green:not([disabled]).button--raised:hover {
-    background-color: #00d45a;
-    background-image: linear-gradient(to bottom right, #124d2e, #268252);
-    color: #fff;
+    background-color: #EEEEEE;
+    /* background-image: linear-gradient(to bottom right, #124d2e, #268252); */
+    color: black;
     margin: 1vw;
 }
 
@@ -1231,6 +1254,7 @@ a {
 .label--mini {
     padding: 3px 8px 2px;
     cursor: pointer;
+    background-color: #16896E;
 }
 
 .list {
@@ -1445,7 +1469,7 @@ a {
 }
 
 .login .card__login.card {
-    max-width: 450px;
+    margin-top: 25%;
     margin: auto;
     height: auto;
 }
@@ -1529,8 +1553,8 @@ a {
     flex-wrap: wrap;
     width: auto;
     align-self: center;
-    margin: 10px;
-    background-color: #8BD2A0;
+    margin: 20px;
+    background-color: #16896E;
     border-radius: 99px;
     height: 45px;
 }
@@ -1542,4 +1566,16 @@ a {
     padding: 5px;
     margin: 10px 0 10px 0;
     border-radius: 15px;
+}
+
+.chartIconBlock {
+    margin-left: auto;
+    height: 30px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.17);
 }

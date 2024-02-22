@@ -1,6 +1,11 @@
-<?php $this->view('include/head') ?>
+<?php
+global $activeTab;
+$activeTab = 2;
+$this->view('include/head') ?>
 <?php require_once(APP_ROOT . "/controllers/SortingManager.php");
-$sortingManager = new SortingManager(); ?>
+require_once(APP_ROOT . "/controllers/Charts.php");
+$sortingManager = new SortingManager();
+$chart = new Charts();?>
 
 <body>
     <div class="layout js-layout layout--fixed-header is-small-screen">
@@ -13,12 +18,12 @@ $sortingManager = new SortingManager(); ?>
             <div class="grid grid--no-spacing dashboard">
 
                 <div>
-                    <!-- <div style="width: 100%; display: flex; flex-direction: row;">
-                        //<?php $sortingManager->SortingRate();
-                        //$sortingManager->SortingEfficiency();
-                        //$sortingManager->SortedItems();
-                        // ?>
-                    </div> -->
+                    <div style="width: 100%; display: flex; flex-direction: row;">
+                        <?php $chart->SortingRate();
+                        $chart->SortingEfficiency();
+                        $chart->SortedItems();
+                         ?>
+                    </div>
                     <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
                         <div class="card shadow--2dp">
                             <div id="buttonToggle" class="buttonToggle">

@@ -200,4 +200,8 @@ class GeneralManager extends Controller
         $data = $Pickups->query("SELECT * FROM pickup_request WHERE Complaints != 'NULL'");
         $this->view('GeneralManager/Collectors/Complaints', ['rows' => $data]);
     }
+
+    function Dashboard(){
+        $this->view('GeneralManager/Dashboard');
+    }
 }

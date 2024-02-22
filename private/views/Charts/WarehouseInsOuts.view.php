@@ -2,13 +2,13 @@
     <div class="card shadow--2dp" style="height: auto;">
         <div class="card__supporting-text">
             <div style="display: flex;">
-                <h6 style="margin-top: 0;color: black;font-weight: bold;">Sorting Rate</h6>
+                <h6 style="margin-top: 0;color: black;font-weight: bold;">Warehouse Traffic Flow</h6>
                 <div class="chartIconBlock">
                     <img style="width: 10px;height: 10px;" src="<?= ROOT ?>/images/home.svg" />
                 </div>
             </div>
-            <div class="card__supporting-text" style="height: 300px;">
-                <div class="pie-chart__container" style="height: inherit;">
+            <div class="card__supporting-text">
+                <div class="pie-chart__container">
                     <canvas id="SortingRate"></canvas>
                     <label id="SortingRate_data" hidden>
                         <?php
@@ -23,22 +23,30 @@
 <script>
     var temp = JSON.parse(document.getElementById("SortingRate_data").textContent);
     labels = Array()
-    Sorted_values = Array()
+    Ins = Array()
+    Outs = Array()
     for (var i = 0; i < temp.length; i++) {
         labels.push(temp[i].Date);
+        Ins.push(temp[i].Ins);
+        Outs.push(temp[i].Outs);
     }
-    for (var i = 0; i < temp.length; i++) {
-        Sorted_values.push(temp[i].count);
-    }
-    console.log(labels, Sorted_values);
+    console.log(labels, Ins);
     console.log(labels)
     const SortingRate_values = {
         labels: labels,
         datasets: [{
-            label: 'Num of Sorting Job',
-            data: Sorted_values,
+            label: 'Incoming Inventories',
+            data: Ins,
             fill: true,
+            backgroundColor: "rgba(3, 169, 245, 0.2)",
             borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }, {
+            label: 'Outgoing Inventory',
+            data: Outs,
+            fill: true,
+            backgroundColor: "rgba(200, 44, 44, 0.2)",
+            borderColor: 'red',
             tension: 0.1
         }]
     };
