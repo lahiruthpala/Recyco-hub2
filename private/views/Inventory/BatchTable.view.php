@@ -31,7 +31,7 @@
                         <?php if ($row->Status == "New"): ?>
                             <button onclick="loadComponent('InventoryAssign', '<?= $row->Batch_ID ?>')"
                                 class="button js-button button--raised js-ripple-effect button--colored-teal"
-                                style="border-radius: 99px;" <?= ($row->Status === 'Assigned') ? 'disabled' : '' ?>>
+                                style="border-radius: 99px;background-color: #027855;" <?= ($row->Status === 'Assigned') ? 'disabled' : '' ?>>
                                 Assign
                             </button>
                         <?php else: ?>

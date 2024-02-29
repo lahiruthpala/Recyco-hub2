@@ -12,6 +12,7 @@ class User extends Model
 
     protected $allowedColumns = [
         'User_ID',
+        'UserName',
         'FirstName',
         'LastName',
         'Email',

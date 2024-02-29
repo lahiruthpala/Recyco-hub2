@@ -2,10 +2,10 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--non-numeric">Partnership ID</th>
-                <th class="data-table__cell--non-numeric">Company Name</th>
-                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Events</th>
-                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
+                <th class="data-table__cell--header">Partnership ID</th>
+                <th class="data-table__cell--header">Company Name</th>
+                <th class="data-table__cell--header" style="padding-left: 70px">Events</th>
+                <th class="data-table__cell--header" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
         <tbody>

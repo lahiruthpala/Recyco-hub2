@@ -21,19 +21,19 @@
                         <div>
                             <div class="grid" style="justify-content: center;">
                                 <div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                    <div style="flex: ;display: flex;gap: 10px;">
                                         <h6>Type -> </h6>
                                         <h6>
                                             <?= $data[0]->Type; ?>
                                         </h6>
                                     </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                    <div style="flex: ;display: flex;gap: 10px;">
                                         <h6>Total Weight -> </h6>
                                         <h6>
                                             <?= $data[0]->Weight; ?>
                                         </h6>
                                     </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                    <div style="flex: ;display: flex;gap: 10px;">
                                         <h6>Buying Price -> </h6>
                                         <h6>
                                             <?= $data[0]->Buying_Price ?? "No price  set yet."; ?>
@@ -41,19 +41,19 @@
                                     </div>
                                 </div>
                                 <div style="margin-left: 10vw;">
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                    <div style="flex: ;display: flex;gap: 10px;">
                                         <h6>Description -> </h6>
                                         <h6 style="max-width: 500px;">
                                             <?= $data[0]->Description ?? "Inventory Type is not Identified"; ?>
                                         </h6>
                                     </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                    <div style="flex: ;display: flex;gap: 10px;">
                                         <h6>Status -> </h6>
                                         <h6>
                                             <?= $data[0]->Status ?? "Not Accepting"; ?>
                                         </h6>
                                     </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
+                                    <div style="flex: ;display: flex;gap: 10px;">
                                         <h6>Selling Price -> </h6>
                                         <h6>
                                             <?= $data[0]->Selling_Price ?? "No price  set yet."; ?>

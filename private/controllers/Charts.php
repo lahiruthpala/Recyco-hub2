@@ -14,7 +14,7 @@ class Charts extends Controller
         $sortingcenter = $this->load_model('SortingCenter');
         $data = $sortingcenter->where("SortingCenter_ID", 'SC001');
         $invantory = $this->load_model("InventoryModel");
-        $totalWeight = $invantory->query("SELECT SUM(Weight) as TotalWeight FROM inventory WHERE status IN ('In whorehouse', 'Sorted'); ");
+        $totalWeight = $invantory->query("SELECT SUM(Weight) as TotalWeight FROM inventory WHERE status IN ('In_Warehouse', 'Sorted'); ");
         $data[0]->TotalWeight = $totalWeight[0]->TotalWeight;
         $this->view('Charts/WarehouseCapacity', $data);
     }
@@ -49,9 +49,15 @@ GROUP BY Type;
         $sortingcenter = $this->load_model('SortingCenter');
         $data = $sortingcenter->where("SortingCenter_ID", 'SC001');
         $invantory = $this->load_model("InventoryModel");
-        $totalWeight = $invantory->query("SELECT SUM(Weight) as TotalWeight FROM inventory WHERE status IN ('In whorehouse', 'Sorted'); ");
+        $totalWeight = $invantory->query("SELECT SUM(Weight) as TotalWeight FROM inventory WHERE status IN ('In_Warehouse', 'Sorted'); ");
         $data[0]->TotalWeight = $totalWeight[0]->TotalWeight;
         $this->view("Charts/SortingEfficiency", $data);
+    }
+
+    function CollectionRate(){
+        $pickupRequest = $this->load_model('PickUpRequestModel');
+        $data = $pickupRequest->query("SELECT COUNT(*) as TotalCollections, Date(Completed_Date) Date, Status FROM pickup_request WHERE Status='Finished' OR Status='Rejected' Group BY Completed_Date;");
+        $this->view("Charts/CollectionRate", ['data' => $data]);
     }
 }
 ?>

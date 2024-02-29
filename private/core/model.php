@@ -72,7 +72,6 @@ class Model extends Database
 					unset($data[$key]);
 				}
 			}
-
 		}
 
 		$keys = array_keys($data);

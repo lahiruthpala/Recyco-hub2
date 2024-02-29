@@ -2,9 +2,11 @@
     <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--non-numeric">Pickup ID</th>
-                <th class="data-table__cell--non-numeric">Assigned Date</th>
-                <th class="data-table__cell--non-numeric">Status</th>
+                <th class="data-table__cell--header">Pickup ID</th>
+                <th class="data-table__cell--header">Assigned Date</th>
+                <th class="data-table__cell--header">Status</th>
+                <th class="data-table__cell--header"></th>
+                <th class="data-table__cell--header"></th>
             </tr>
         </thead>
         <tbody>

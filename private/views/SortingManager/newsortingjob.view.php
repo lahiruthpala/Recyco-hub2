@@ -1,25 +1,25 @@
 <div class="card__supporting-text no-padding" id="NewSortingJobs" style="display:none">
     <form class="form form--basic" method="POST" action="<?= ROOT ?>/SortingManager/CreateSortingJobs"
         id="newSortingJob" onsubmit="NewSortingJob(event)">
-        <div class="info" style="flex-direction: row;border-radius: 16px; width: 94vw;">
+        <div class="info" style="flex-direction: row;border-radius: 16px;">
             <div style="margin:5%; margin-bottom: 5%;">
                 <div style="display: flex; justify-content: center; align-items: center;">
                     <div>
                         <div style="display: flex;">
-                            <h6>Sorting Machine ID</h6>
+                            <h6 style="width: 100%;">Sorting Machine ID</h6>
                             <h6 style="margin-left:3vw;margin-top: 0;margin-bottom: 0;">
                                 <div class="textfield js-textfield textfield--floating-label getmdl-select full-size"
                                     style="display: flex;">
                                     <input class="textfield__input" type="text" id="Machine_ID" name="Machine_ID"
                                         readonly tabIndex="-1" />
-                                    <ul class="menu menu--bottom-left js-menu dark_dropdown"
-                                        for="Machine_ID">
+                                    <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Machine_ID">
                                         <?php
                                         if (is_array($Machines) && !empty($Machines)) {
                                             foreach ($Machines as $Machine) {
                                                 ?>
                                                 <li class="menu__item" onclick="SetForm('<?= $Machine->Machine_ID ?>')">
-                                                    <?= $Machine->Machine_ID ?></li>
+                                                    <?= $Machine->Machine_ID ?>
+                                                </li>
                                                 <?php
                                             }
                                         } else {
@@ -35,11 +35,10 @@
                             </h6>
                         </div>
                         <div class="textfield js-textfield textfield--floating-label full-size">
-                            <input class="textfield__input" type="text" placeholder="Description"
-                                name="Description">
+                            <input class="textfield__input" type="text" placeholder="Description" name="Description">
                         </div>
                         <div>
-                            <button type="submit" style="border-radius: 20px; margin-top:0"
+                            <button type="submit" style="border-radius: 20px; margin-top:0; background-color: #027855; color:white;"
                                 class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                 Create</button>
                         </div>
@@ -49,21 +48,20 @@
                 </div>
             </div>
             <video id="preview" style="width: 23%;"></video>
-            <div style="width: 30%; height: 30%; margin: 3%;"
-                class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone">
-                <div class="card shadow--2dp trending" style="margin: 0 0 20px 0;background-color: #444;">
-                    <div class="card__title" style="display: flex;justify-content: space-between;margin: 0;flex-direction: row;">
-                        <h2 class="card__title-text"> Inventories</h2>
-                        <button style="background-color: #4c504e; border-radius: 20px; margin-left: auto;"
-                            onclick="Addinventory()" type="button"
-                            class="button js-button button--raised js-ripple-effect button--colored-light-blue pull-right">
-                            Add Inventory
-                        </button>
-                    </div>
-                    <div class="card__supporting-text" style="min-height: 110px;">
-                        <ul class="list" id="inventory">
-                        </ul>
-                    </div>
+            <div style="width: 30%; height: 30%; margin: 3%;">
+                <div style="display:flex">
+                    <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">
+                        Inventories
+                    </h6>
+                    <button style="border-radius: 99px;margin: 20px 25px 25px auto;background-color: #027855;"
+                        onclick="Addinventory()" type="button"
+                        class="button js-button button--raised js-ripple-effect button--colored-light-blue pull-right">
+                        Add Inventory
+                    </button>
+                </div>
+                <div class="card__supporting-text" style="min-height: 110px;background-color: #EDEDED;border-radius: 15px;">
+                    <ul class="list" id="inventory">
+                    </ul>
                 </div>
             </div>
         </div>

@@ -189,7 +189,7 @@ GROUP BY Type;
     {
         if (count($_POST) > 0) {
             $arr1['Status'] = 'Finished';
-            $arr2['Status'] = 'In_whorehouse';
+            $arr2['Status'] = 'In_Warehouse';
             $Job = $this->load_model('PickupJobs');
             $pickupRequest = $this->load_model('PickUpRequestModel');
             $inventory = $this->load_model('InventoryModel');

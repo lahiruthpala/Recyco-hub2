@@ -40,6 +40,7 @@ class Login extends Controller
 
 	private function processVerificationLoginForEmp($user, $id, &$errors)
 	{
+		die;
 		$verifyModle = $this->load_model('Verify');
 		// Check if the provided id is valid and not used by someone else.
 		$verify = $verifyModle->where('Email', $_POST['Email']);
@@ -49,7 +50,7 @@ class Login extends Controller
 				$temp['Status'] = 'Active';
 				$user->update($_POST['Email'], $temp, 'Email');
 				$verifyModle->delete($verify['Email'], 'Email');
-				$this->userHome();
+				$this->passwordReset($id);
 			} else {
 				$errors['email'] = "Wrong email or password";
 			}
@@ -63,18 +64,19 @@ class Login extends Controller
 		$verify = $verifyModle->where('Email', $_POST['Email']);
 		if ($verify) {
 			$verify = (array) $verify[0];
-
 			if (password_verify($_POST['pwd'], $verify['pwd']) && $id == $verify['code']) {
-				if ($verify['Role'] != "customer") {
-					$user->update($verify);
+				if ($verify['Role'] == "Customer") {
+					$verify['Status'] = "Active";
+					$data = $user->insert($verify);
+					$verifyModle->delete($verify['Email'], 'Email');
+					$row = $user->where('Email', $_POST['Email'])[0];
+					Auth::authenticate($row);
+					$this->redirect('Profile/info');
+					return;
+				} else {
+					message(["Something, Went Wrong. Please Retry", 'error']);
+					$this->redirect('login');
 				}
-				$verify['Role'] = "customer";
-				$user->insert($verify);
-				$verifyModle->delete($verify['Email'], 'Email');
-				$row = $user->where('Email', $_POST['Email'])[0];
-				Auth::authenticate($row);
-				$this->redirect('Profile/info');
-				return;
 			} else {
 				$errors['email'] = "Wrong email or password";
 			}
@@ -90,7 +92,11 @@ class Login extends Controller
 			$row = $row[0];
 			if (password_verify($_POST['pwd'], $row->pwd)) {
 				Auth::authenticate($row);
-				$this->userHome();
+				if(Auth::getStatus() == 'Active'){
+					$this->userHome();
+				}else{
+					$this->redirect('login');
+				}
 			}
 		}
 
@@ -100,14 +106,19 @@ class Login extends Controller
 	function ForgotPassword()
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$verify = $this->load_model('Verify');
-			$_POST['pwd'] = random_string(8);
-			$verify = $verify->insert($_POST);
-			$message = "Click this link to Reset the password http://localhost:8380/Recyco-hub2/public/login/passwordReset" . $verify['code'];
-			$subject = "Password Reset";
-			$recipient = $_POST['Email'];
-			send_mail($recipient, $subject, $message);
-			message();
+			$user = $this->load_model('User');
+			$user = $user->where('Email', $_POST['Email'])[0];
+			if ($user) {
+				$_POST['pwd'] = $user->pwd;
+				$_POST['Role'] = 'PwdReset';
+				$_POST['UserName'] = $user->UserName;
+				$verify = $this->load_model('Verify');
+				$verify = $verify->insert($_POST);
+				message(['Reset link has sent check your email','success']);
+				$this->redirect('login');
+			}else{
+				message(['Email not found','error']);
+			}
 		}
 		$this->view("ForgotPassword");
 	}
@@ -123,6 +134,9 @@ class Login extends Controller
 				$user->update($verify['Email'], ['pwd' => password_hash($_POST['pwd1'], PASSWORD_DEFAULT)], 'Email');
 				$VerifyModel->delete($verify['Email'], 'Email');
 				$this->redirect('login');
+			} else {
+				message(['Verification link expired', 'error']);
+				$this->redirect(login);
 			}
 		}
 		$this->view("NewPassword");

@@ -3,6 +3,8 @@ global $activeTab;
 $activeTab = 4;
 $this->view('include/head') ?>
 <?php require_once(APP_ROOT . "/controllers/GeneralManager.php");
+require_once(APP_ROOT . "/controllers/Charts.php");
+$charts = new Charts();
 $generalmanager = new GeneralManager();
 ?>
 
@@ -13,47 +15,15 @@ $generalmanager = new GeneralManager();
         </header>
 
         <main class="layout__content">
-
-            <div class="grid grid--no-spacing dashboard">
-
-                <div>
-                    <!-- <div style="width: 100%; display: flex; flex-direction: row;">
-                        <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone">
-                            <div class="card shadow--2dp pie-chart">
-                                <div class="card__title">
-                                    <h2 class="card__title-text">Active Collectors</h2>
-                                </div>
-                                <div class="card__supporting-text">
-                                    <div class="pie-chart__container">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone">
-                            <div class="card shadow--2dp pie-chart">
-                                <div class="card__title">
-                                    <h2 class="card__title-text">Daily collection</h2>
-                                </div>
-                                <div class="card__supporting-text">
-                                    <div class="pie-chart__container">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone">
-                            <div class="card shadow--2dp pie-chart">
-                                <div class="card__title">
-                                    <h2 class="card__title-text">Summary</h2>
-                                </div>
-                                <div class="card__supporting-text">
-                                    <div class="pie-chart__container">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+            <div>
+                <div style="width: 100%; display: flex; flex-direction: row;">
+                    <?php 
+                    $charts->CollectionRate();
+                    $charts->WarehouseCapacity();
+                        ?>
+                </div>
                     <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
-                        <div class="card shadow--2dp">
+                        <div style="display: flex;flex-direction: column;">
                             <div id="buttonToggle" class="buttonToggle">
                                 <button onclick="loadComponent('Collectors')" id="Collectors_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-green"

@@ -14,12 +14,12 @@
                         foreach ($rows as $pickup):
                             ?>
                             <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone" style="min-width: 350px;">
-                                <div class="card shadow--2dp" style="background-color: #444;">
+                                <div class="card shadow--2dp">
                                     <img src="<?= ROOT ?>/images/trash-truck.png"
                                         style="width: 100px; height: 100px; display: block; margin: 0 auto;">
                                     <div class="card__supporting-text">
-                                        <h4>Pickup Details</h4>
-                                        <table class="data-table js-data-table">
+                                        <h4 style="color:black">Pickup Details</h4>
+                                        <table class="data-table js-data-table" style="width: 100%;">
                                             <tbody>
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Job No.</td>
@@ -100,8 +100,8 @@
                                         <div class="card__actions">
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green"
                                                 href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>"
-                                                style="margin-right: 10px;">Accept</a>
-                                            <a class="button js-button button--raised js-ripple-effect button--colored-green"
+                                                style="margin-right: 10px;background-color: #027855; color:white;">Accept</a>
+                                            <a style="background-color: #ff5746;color:white;" class="button js-button button--raised js-ripple-effect button--colored-green"
                                                 href="<?= ROOT ?>/collector/jobs/<?= $pickup->InventoryId ?>/Rejected/<?= $pickup->Pickup_ID ?>">Reject</a>
                                         </div>
                                     <?php endif; ?>

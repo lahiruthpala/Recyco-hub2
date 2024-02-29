@@ -8,7 +8,9 @@ class Signup extends Controller
 			$verify = $this->load_model('Verify');
 			if ($verify->validate($_POST)) {
 				$_POST["pwd"] = $_POST["pwd1"];
-				$verify->insert($_POST);
+				$data = $verify->insert($_POST);
+				var_dump($data);
+				die;
 				// echo "You're already verified";
 				// $this->redirect('login');
 			} else {

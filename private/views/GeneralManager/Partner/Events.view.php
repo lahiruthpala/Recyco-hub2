@@ -2,11 +2,11 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--non-numeric">Event Name</th>
-                <th class="data-table__cell--non-numeric">Company Name</th>
-                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Published Date</th>
-                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Event Date</th>
-                <th class="data-table__cell--non-numeric" style="padding-left: 70px">Status</th>
+                <th class="data-table__cell--header">Event Name</th>
+                <th class="data-table__cell--header">Company Name</th>
+                <th class="data-table__cell--header" style="padding-left: 70px">Published Date</th>
+                <th class="data-table__cell--header" style="padding-left: 70px">Event Date</th>
+                <th class="data-table__cell--header" style="padding-left: 70px">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -34,16 +34,15 @@
                             </span>
                         </td>
 
-                        <td class="data-table__cell--non-numeric">
+                        <!-- <td class="data-table__cell--non-numeric">
                             <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
-                                <!-- Replace 'your_id_value' with the actual ID -->
                                 <input type="hidden" name="id" value="<?= $row->Partner_ID ?? '' ?>">
                                 <button type="submit"
                                     class="button js-button button--raised js-ripple-effect button--colored-teal"
                                     style="border-radius: 99px;">View</button>
                             </form>
 
-                        </td>
+                        </td> -->
                     </tr>
                     <?php
                 }

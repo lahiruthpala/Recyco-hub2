@@ -2,11 +2,11 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--non-numeric">Machine_ID</th>
-                <th class="data-table__cell--non-numeric">Location</th>
-                <th class="data-table__cell--non-numeric">Machine Type</th>
+                <th class="data-table__cell--header">Machine ID</th>
+                <th class="data-table__cell--header">Location</th>
+                <th class="data-table__cell--header">Machine Type</th>
                 <!-- <th class="data-table__cell--non-numeric">Next Service</th> -->
-                <th class="data-table__cell--non-numeric">Status</th>
+                <th class="data-table__cell--header"style="padding-left: 70px;">Status</th>
             </tr>
         </thead>
         <tbody>

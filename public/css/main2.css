@@ -12,16 +12,13 @@ video {
 
 :root {
     --main-color: #3498db;
-    --light-gray: #444;
+    /* --light-gray: #444; */
+    --light-gray: white;
     --smoke-color: #666;
 }
 
 .text-color--smoke {
     color: var(--smoke-color);
-}
-
-.color--dark-gray {
-    background-color: #333;
 }
 
 .color--light-blue {
@@ -109,7 +106,6 @@ a:hover {
 .linkinfo {
     font-size: 16px;
     font-weight: 300;
-    color: white;
     text-decoration: none;
 }
 
@@ -382,7 +378,8 @@ ul {
     border-radius: 0 0 15px 15px;
     box-sizing: border-box;
     border: 2px solid #268252;
-    background-color: #444;
+    width: 100%;
+    color: #000;
 }
 
 .card__title {
@@ -586,7 +583,7 @@ table.data-table tr:nth-child(even) {
     width: 24px;
     font-size: 24px;
     box-sizing: border-box;
-    color: rgba(255, 255, 255, .8);
+    color: black;
 }
 
 .list__item-avatar,
@@ -653,9 +650,10 @@ table.data-table tr:nth-child(even) {
 }
 
 .menu__outline {
-    background: var(--light-gray);
+    background: #EDEDED;
     margin: 0;
-    border-radius: 2px;
+    border-radius: 15px;
+    border: 1px solid green;
     top: 0;
     left: 0;
     overflow: hidden;
@@ -822,6 +820,7 @@ table.data-table tr:nth-child(even) {
     overflow-x: hidden;
     flex-grow: 1;
     z-index: 1;
+    padding: 0 50px;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -1141,7 +1140,7 @@ main {
 }
 
 .card__supporting-text {
-    width: calc(100% - 32px);
+    /* width: 100%; */
     line-height: 22px;
 }
 
@@ -1295,8 +1294,8 @@ a {
 .list .list__item {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 300;
-    color: #fff;
+    font-weight: 500;
+    color: inherit;
     letter-spacing: 0;
 }
 
@@ -1349,6 +1348,7 @@ a {
 
 .account-dropdown>.list__item:first-child .list__item-primary-content .list__item-sub-title {
     font-weight: 300;
+    color: #000;
 }
 
 .account-dropdown .list__item--border-top {
@@ -1393,7 +1393,7 @@ a {
 }
 
 .getmdl-select .icon-toggle__label {
-    color: #fff;
+    color: black;
 }
 
 .getmdl-select .menu__container {
@@ -1410,7 +1410,7 @@ a {
 
 .getmdl-select .menu .menu__item,
 .textfield input {
-    color: white;
+    color: black;
     font-size: 16px;
     font-weight: 300;
 }
@@ -1566,6 +1566,14 @@ a {
     padding: 5px;
     margin: 10px 0 10px 0;
     border-radius: 15px;
+}
+
+.dropdown2 {
+    padding: 0 0 0 10px;
+    border: 1px solid;
+    padding-left: 5px;
+    background-color: #EDEDED;
+    border-radius: 18px;
 }
 
 .chartIconBlock {

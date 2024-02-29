@@ -65,13 +65,21 @@ class Admin extends Controller
             $file = new FileManager();
             if (!empty($_FILES['profileImage']['name'])) { //checking for a file upload
                 if ($_FILES['profileImage']['error'] == 0) {
-
-                    $_POST['pwd1'] = random_string(8);
-                    $_POST['pwd2'] = $_POST['pwd1'];
-                    $_POST['pwd'] = $_POST['pwd1'];
+                    $_POST['pwd'] = random_string(8);
                     $_POST['Email'] = $_POST['OfficialMail'];
+                    $_POST['Phone'] = $_POST['OfficialNumber'];
+                    $_POST['UserName'] = $_POST['FirstName'];
+                    if(!isset($_POST['Address'])){
+                        $_POST['Address'] = "Colombo Sorting Center";
+                    }
                     $_POST['Creator_ID'] = Auth::getUser_ID();
-                    if ($user->validate($_POST)) { //before move file, validate other data and insert
+                    if($user->where('Email',$_POST['Email'])){
+                        message(['Email already exists','error']);
+                    }
+                    elseif($user->where('Phone',$_POST['Phone'])) {
+                        message(['Phone number already exists','error']);
+                    }
+                    else{
                         $verifyData = $verify->insert($_POST);
                         $_POST['pwd'] = $verifyData['pwd'];
                         $UserData = $user->insert($_POST);
@@ -88,11 +96,12 @@ class Admin extends Controller
                         }
                     }
                 } else {
-                    $user->errors['profileImage'] = "Couldn't upload the file";
+                    message(["Couldn't upload the file",'error']);
+                    $this->redirect('Admin/AccountManagement');
                 }
             }
         }
-        $this->view('Admin/AccountCreation');
+        $this->redirect('Admin/AccountManagement');
     }
 
     function showAllMachines(){

@@ -4,14 +4,16 @@ class Verify extends Model
 {
     protected $table = "verify";
     protected $beforeInsert = [
-        'hashPassword',
         'GenerateOTP',
         'GenerateExpireTime',
-        'SentMail'
+        'SentMail',
+        'hashPassword'
     ];
 
     protected $allowedColumns = [
         'Email',
+        'UserName',
+        'Role',
         'code',
         'expires',
         'pwd',
@@ -19,9 +21,10 @@ class Verify extends Model
 
     public function GenerateOTP($data)
     {
-        if(isset($data['Role']) && $data['Role'] != 'Customer'){
-            $data['code'] = 'in'.random_string(8);
-        }else{
+        if (isset($data['Role']) && $data['Role'] != 'Customer') {
+            $data['code'] = 'in' . random_string(8);
+        } else {
+            $data['Role'] = "Customer";
             $data['code'] = random_string(10);
         }
         return $data;
@@ -38,14 +41,21 @@ class Verify extends Model
         if (isset($data['message'])) {
             $message = $data['message'];
         } else {
-            if(isset($data['Role']) && $data['Role'] != "Customer"){
-                $message = "Your verification link is http://localhost:8380/Recyco-hub2/public/login/" . $data['code']. " Your temporary password is " . $data['pwd'];
-            }else{
+            if (isset($data['Role']) && $data['Role'] == "PwdReset") {
+                $message = "Click this link to Reset the password http://localhost:8380/Recyco-hub2/public/login/passwordReset/" . $data['code'];
+                $subject = "Password Reset";
+				$recipient = $_POST['Email'];
+            }
+            elseif(isset($data['Role']) && $data['Role'] != "Customer") {
+                $message = "Your verification link is http://localhost:8380/Recyco-hub2/public/login/" . $data['code'] . " Your temporary password is " . $data['pwd'];
+                $subject = "Email verification";
+                $recipient = $data['Email'];
+            } else {
                 $message = "Your verification link is http://localhost:8380/Recyco-hub2/public/login/" . $data['code'];
+                $subject = "Email verification";
+                $recipient = $data['Email'];
             }
         }
-        $subject = "Email verification";
-        $recipient = $data['Email'];
         send_mail($recipient, $subject, $message);
         return $data;
     }

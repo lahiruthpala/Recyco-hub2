@@ -1,25 +1,30 @@
 <div class="card__supporting-text no-padding"
-    style="margin: 20px; display: none; width: 94.7%;background-color: #444;border: solid 1px green;border-radius: 15px;"
+    style="margin: 20px; display: none; width: 94.7%;color:black;border: solid 1px green;border-radius: 15px;"
     id="AddNewMachine">
-    <form method="POST" action="<?=ROOT?>/Admin/AddMachine">
+    <form method="POST" action="<?= ROOT ?>/Admin/AddMachine">
         <div class="form__article">
             <h3>Machine Info</h3>
             <div class="grid" style="margin-left: 30px;">
                 <div style="margin-left: 30px">
                     <div style="display: flex; ">
                         <h6>Machine Machine_Type</h6>
-                        <h6 style="margin-left:7.5vw;margin-top: 16px;">
-                            <div class="textfield js-textfield textfield--floating-label getmdl-select full-size"
+                        <h6 style="margin-left:39px;margin-top: 16px;">
+                            <div class="textfield js-textfield textfield--floating-label getmdl-select full-size dropdown2"
                                 style="display: flex; padding:0">
-                                <input class="textfield__input" type="text" id="Machine_Type" name="Machine_Type" readonly
-                                    tabIndex="-1" />
+                                <input class="textfield__input" type="text" id="Machine_Type" name="Machine_Type"
+                                    readonly tabIndex="-1" />
                                 <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Machine_Type">
-                                    <li class="menu__item" onclick="SetForm('Machine_Type','Belt sorters')">Belt sorters</li>
-                                    <li class="menu__item" onclick="SetForm('Machine_Type','Color sorter')">Color sorter</li>
-                                    <li class="menu__item" onclick="SetForm('Machine_Type','Color sorter')">Color sorter</li>
-                                    <li class="menu__item" onclick="SetForm('Machine_Type','Optical sorter')">Optical sorter
+                                    <li class="menu__item" onclick="SetForm('Machine_Type','Belt sorters')">Belt sorters
                                     </li>
-                                    <li class="menu__item" onclick="SetForm('Machine_Type','Metallic sorter')">Metallic sorter
+                                    <li class="menu__item" onclick="SetForm('Machine_Type','Color sorter')">Color sorter
+                                    </li>
+                                    <li class="menu__item" onclick="SetForm('Machine_Type','Color sorter')">Color sorter
+                                    </li>
+                                    <li class="menu__item" onclick="SetForm('Machine_Type','Optical sorter')">Optical
+                                        sorter
+                                    </li>
+                                    <li class="menu__item" onclick="SetForm('Machine_Type','Metallic sorter')">Metallic
+                                        sorter
                                     </li>
                                 </ul>
 
@@ -33,7 +38,7 @@
                     <div style="display: flex;">
                         <h6>Location</h6>
                         <h6 style="margin-left:10vw;margin-top: 16px;">
-                            <div class="textfield js-textfield textfield--floating-label getmdl-select full-size"
+                            <div class="textfield js-textfield textfield--floating-label getmdl-select full-size dropdown2"
                                 style="display: flex; padding:0">
                                 <input class="textfield__input" type="text" id="Location" name="Location" readonly
                                     tabIndex="-1" />
@@ -54,8 +59,8 @@
                     <div style="margin-left: 30px">
                         <div style="display: flex; ">
                             <h6>Assign Line</h6>
-                            <h6 style="margin-left:8vw;margin-top: 0;margin-bottom: 0;">
-                                <div class="textfield js-textfield textfield--floating-label getmdl-select full-size"
+                            <h6 style="margin-left:8vw;margin-top: 16px;margin-bottom: 0;">
+                                <div class="textfield js-textfield textfield--floating-label getmdl-select full-size dropdown2"
                                     style="display: flex;">
                                     <input class="textfield__input" type="text" id="Line_NO" name="Line_NO" readonly
                                         tabIndex="-1" />
@@ -87,7 +92,7 @@
         </div>
 
         <button type="submit" class="button js-button button--raised js-ripple-effect button--colored-green"
-            style="border-radius: 99px; margin-right: auto;margin-left: 83.5%;">Create</button>
+            style="border-radius: 99px; margin-right: auto;margin-left: 83.5%;background-color: green;color: white;">Create</button>
     </form>
 </div>
 

@@ -11,10 +11,7 @@
         </header>
         <main class="layout__content">
             <div class="Progressbackground">
-                <div class="card__title">
-                    <h1 class="card__title-text">Current Progress</h1>
-                </div>
-
+                <h6 class="title">Current Progress</h6>
                 <div class="bar__container">
                     <ul class="bar" id="bar">
                         <li class="active">New</li>
@@ -23,7 +20,7 @@
                         <li class="<?php if ($data[0]->statusint >= 2)
                             echo 'active'; ?>">Collected</li>
                         <li class="<?php if ($data[0]->statusint >= 3)
-                            echo 'active'; ?>">In whorehouse</li>
+                            echo 'active'; ?>">In_Warehouse</li>
                         <li class="<?php if ($data[0]->statusint >= 4)
                             echo 'active'; ?>">Sorting</li>
                         <li class="<?php if ($data[0]->statusint >= 5)
@@ -36,93 +33,90 @@
                 </div>
             </div>
             <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
-                <div class="card__title">
-                    <h1 class="card__title-text" id="tableTitle">
-                        <?= $data[0]->Status ?>
-                    </h1>
-                </div>
-                <section id="cards" style="background-color: var(--light-gray);">
-                    <form class="form form--basic" method="POST">
-                        <div>
-                            <div class="grid" style="justify-content: center;">
-                                <div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                        <h6>Batch_ID -> </h6>
-                                        <h6>
-                                            <?php $var = $data[0]->pagetype . "_ID";
-                                            echo $data[0]->$var; ?>
-                                        </h6>
-                                    </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                        <h6>Created BY -> </h6>
-                                        <h6>
-                                            <?= $data[0]->User_ID; ?>
-                                        </h6>
-                                    </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                        <h6>Created Date -> </h6>
-                                        <h6>
-                                            <?= $data[0]->Date; ?>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div style="margin-left: 10vw;">
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                        <h6>Description -> </h6>
-                                        <h6>
-                                            <?= $data[0]->Description; ?>
-                                        </h6>
-                                    </div>
-                                    <div style="flex: ;display: flex;gap: 10px;color: aliceblue;">
-                                        <h6>Assigned to -> </h6>
-                                        <h6>
-                                            <?= $data[0]->Collector_Name ?? "Not assigned"; ?>
-                                        </h6>
-                                    </div>
-                                    <button type="button" onclick="generateQRCodesAndPrint()"
-                                        class="button js-button button--raised js-ripple-effect button--colored-teal"
-                                        style="border-radius: 99px;" id="Assignbutton" readonly>Print</button>
-                                </div>
+                <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">
+                    Assigned Details
+                </h6>
+                <form class="form form--basic" method="POST">
+                    <div class="grid" style="background-color: white;color: black;border-radius: 20px;">
+                        <div style="margin: 0 15px 20px 40px;">
+                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
+                                <h6 style="margin: 0px;">Batch_ID</h6>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?php $var = $data[0]->pagetype . "_ID";
+                                    echo $data[0]->$var; ?>
+                                </h6>
                             </div>
-                            <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
-                                <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
-                                    <thead>
-                                        <tr style="background-color: #333;width: 100%;">
-                                            <th class="data-table__cell--non-numeric">Inventory_ID</th>
-                                            <th class="data-table__cell--non-numeric" style="text-align: center;">Status
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    if (is_array($rows) && !empty($rows)) {
-                                        $id = 1; // Initialize ID counter
-                                        foreach ($rows as $row) {
-                                            ?>
-                                            <tr
-                                                onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
-                                                <td class="data-table__cell--non-numeric" name="Inventory_ID"
-                                                    id="batch<?= $id ?>">
-                                                    <?= $row->Inventory_ID ?>
-                                                </td>
-                                                <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                                    <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
-                                                        <?= $row->Status ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                            $id++; // Increment ID for the next row
-                                        }
-                                    } else {
-                                        echo "No data available.";
-                                    }
-                                    ?>
-                                </table>
+                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
+                                <h6 style="margin: 0px;">Created BY</h6>
+                                <a>
+                                    <h6 style="margin: 0;font-weight: bold;">
+                                        <?= $data[0]->User_ID; ?>
+                                    </h6>
+                                </a>
+                            </div>
+                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
+                                <h6 style="margin: 0px;">Created Date</h6>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?= $data[0]->Date; ?>
+                                </h6>
                             </div>
                         </div>
+                        <div style="margin-left: 10vw;">
+                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
+                                <h6 style="margin: 0px;">Description</h6>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?= $data[0]->Description; ?>
+                                </h6>
+                            </div>
+                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
+                                <h6 style="margin: 0px;">Assigned to</h6>
+                                <a>
+                                    <h6 style="margin: 0;font-weight: bold;">
+                                        <?= $data[0]->Collector_Name ?? "Not assigned"; ?>
+                                    </h6>
+                                </a>
+                            </div>
+                        </div>
+                        <button type="button" onclick="generateQRCodesAndPrint()"
+                                class="button js-button button--raised js-ripple-effect button--colored-teal"
+                                style="border-radius: 99px;align-self: end;margin: 0 25px 25px auto;background-color: #027855;" id="Assignbutton" readonly>
+                                <img style="padding: 2px 10px 6px 0;" src="<?=ROOT?>/images/Printer.svg">Print the Document</button>
+                    </div>
+            </div>
+            <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
+                <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th class="data-table__cell--header">Inventory_ID</th>
+                            <th class="data-table__cell--header" style="text-align: center;">Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <?php
+                    if (is_array($rows) && !empty($rows)) {
+                        $id = 1; // Initialize ID counter
+                        foreach ($rows as $row) {
+                            ?>
+                            <tr onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
+                                <td class="data-table__cell--non-numeric" name="Inventory_ID" id="batch<?= $id ?>">
+                                    <?= $row->Inventory_ID ?>
+                                </td>
+                                <td class="data-table__cell--non-numeric" style="text-align: center;">
+                                    <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
+                                        <?= $row->Status ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <?php
+                            $id++; // Increment ID for the next row
+                        }
+                    } else {
+                        echo "No data available.";
+                    }
+                    ?>
+                </table>
             </div>
             </form>
-            </section>
     </div>
     </main>
     </div>

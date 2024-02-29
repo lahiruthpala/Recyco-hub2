@@ -2,15 +2,15 @@
     <div class="card shadow--2dp" style="height: auto;">
         <div class="card__supporting-text">
             <div style="display: flex;">
-                <h6 style="margin-top: 0;color: black;font-weight: bold;">Warehouse Traffic Flow</h6>
+                <h6 style="margin-top: 0;color: black;font-weight: bold;">Collection Rate</h6>
                 <div class="chartIconBlock">
                     <img style="width: 10px;height: 10px;" src="<?= ROOT ?>/images/home.svg" />
                 </div>
             </div>
             <div class="card__supporting-text">
                 <div class="pie-chart__container">
-                    <canvas id="WarehouseTrafficFlow"></canvas>
-                    <label id="WarehouseTrafficFlow_data" hidden>
+                    <canvas id="CollectionRate"></canvas>
+                    <label id="CollectionRate_data" hidden>
                         <?php
                         echo json_encode($data); ?>
                     </label>
@@ -21,29 +21,32 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-    var temp = JSON.parse(document.getElementById("WarehouseTrafficFlow_data").textContent);
+    var temp = JSON.parse(document.getElementById("CollectionRate_data").textContent);
     labels = Array()
-    Ins = Array()
-    Outs = Array()
+    Reject = Array()
+    Finished = Array()
     for (var i = 0; i < temp.length; i++) {
-        labels.push(temp[i].Date);
-        Ins.push(temp[i].Ins);
-        Outs.push(temp[i].Outs);
+        $tempStatus =temp[i].Status;
+        if ($tempStatus == "Rejected") {
+            Reject.push(temp[i].TotalCollections);
+        } else {
+            Finished.push(temp[i].TotalCollections);
+        }
+        labels.push(temp[i].Date)
     }
-    console.log(labels, Ins);
-    console.log(labels)
-    const WarehouseTrafficFlow_values = {
+    console.log(labels, Reject, Finished);
+    const CollectionRate_values = {
         labels: labels,
         datasets: [{
-            label: 'Incoming Inventories',
-            data: Ins,
+            label: 'Success Pickup Request',
+            data: Finished,
             fill: true,
             backgroundColor: "rgba(3, 169, 245, 0.2)",
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
         }, {
-            label: 'Outgoing Inventory',
-            data: Outs,
+            label: 'Fail Pickup Request',
+            data: Reject,
             fill: true,
             backgroundColor: "rgba(200, 44, 44, 0.2)",
             borderColor: 'red',
@@ -51,11 +54,11 @@
         }]
     };
 
-    const WarehouseTrafficFlowConfig = {
+    const CollectionRateConfig = {
         type: 'line',
-        data: WarehouseTrafficFlow_values,
+        data: CollectionRate_values,
     };
 
-    const chart = new Chart(document.getElementById('WarehouseTrafficFlow'), WarehouseTrafficFlowConfig);
+    const chart = new Chart(document.getElementById('CollectionRate'), CollectionRateConfig);
 
 </script>

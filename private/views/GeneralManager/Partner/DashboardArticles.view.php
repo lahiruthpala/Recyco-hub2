@@ -5,7 +5,7 @@
 <div class="scrollmain" id="ArticlePreview" style="display:none">
     <div class="scrollcontainer">
         <div class="scroll">
-            <div class="scrollcard" style="background-color:#333; padding:10px">
+            <div class="scrollcard" style="background-color:#16896E; padding:10px">
                 <div class="scrollcard-image" style="padding:10">
                     <img src="https://i.ibb.co/WfMhk7c/Image-1.jpg" loading="lazy" class="responsive scrollimg" alt="Images">
                 </div>

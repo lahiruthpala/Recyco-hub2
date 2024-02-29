@@ -35,7 +35,7 @@ $generalmanager = new GeneralManager();
                 <div>
 
                     <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
-                        <div class="card shadow--2dp">
+                        <div style="display: flex;flex-direction: column;">
                             <div id="buttonToggle" class="buttonToggle">
                                 <button onclick="loadComponent('PartnerTable')" id="PartnerTable_Button"
                                     style="margin: 4px 10px 4px 4px;"

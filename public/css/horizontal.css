@@ -116,7 +116,7 @@ button {
         scroll-snap-type: x mandatory;
         scroll-padding: 0px 1.25rem;
         scrollbar-width: none;
-        background-color: #444;
+        background-color: white;
         padding: 32px 0 32px 0;
 
         &::-webkit-scrollbar {

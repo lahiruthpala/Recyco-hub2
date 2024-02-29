@@ -3,9 +3,9 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--non-numeric">Commpany_Name</th>
-                <th class="data-table__cell--non-numeric">Application Date</th>
-                <th class="data-table__cell--non-numeric">Status</th>
+                <th class="data-table__cell--header">Commpany_Name</th>
+                <th class="data-table__cell--header">Application Date</th>
+                <th class="data-table__cell--header">Status</th>
             </tr>
         </thead>
         <tbody>

@@ -36,20 +36,20 @@ class OTP extends Model
     {
         $user = "94718696971";
         $password = "8915";
-        $text = urlencode("Hello {$data['firstName']} \n Thanks for Joining RecycoHUB OTP is {$data['OTP']}");
-        $to = "94".$data['phone'];
+        $text = urlencode("Hello {$data['FirstName']} \n Thanks for Joining RecycoHUB OTP is {$data['OTP']}");
+        $to = "94".$data['Phone'];
 
-        $baseurl = "http://www.textit.biz/sendmsg";
-        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
-        $ret = file($url);
-
-        $res = explode(":", $ret[0]);
-
-        if (trim($res[0]) == "OK") {
-            echo "Message Sent - ID : " . $res[1];
-        } else {
-            echo "Sent Failed - Error : " . $res[1];
-        }
+        //$baseurl = "http://www.textit.biz/sendmsg";
+        //$url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+        //$ret = file($url);
+//
+        //$res = explode(":", $ret[0]);
+//
+        //if (trim($res[0]) == "OK") {
+        //    message("Message Sent - ID : " . $res[1], "success");
+        //} else {
+        //    message("Sent Failed - Error : " . $res[1], 'error');
+        //}
         return($data);
     }
     public function validate($data)
