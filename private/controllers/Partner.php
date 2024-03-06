@@ -18,7 +18,7 @@ class Partner extends Controller
         }else{
             $data = $articles->findAll(1, 10, "Article_ID");
         }
-        $this->view("Partner/articles", ["articles" => $data]);
+        $this->view("Partner/Articles", ["articles" => $data]);
     }
 
     function addNew($id = null)
@@ -49,7 +49,7 @@ class Partner extends Controller
         $article = $this->load_model('Articles');
         $article->delete($id, "Article_ID");
         $data = $article->findAll();
-        $this->view("Partner/articles", ["articles" => $data]);
+        $this->view("Partner/Articles", ["articles" => $data]);
     }
 
     function Events()
@@ -87,6 +87,6 @@ class Partner extends Controller
         $article = $this->load_model('Articles');
         $article->delete($id, "Article_ID");
         $data = $article->findAll();
-        $this->view("Partner/articles", ["articles" => $data]);
+        $this->view("Partner/Articles", ["articles" => $data]);
     }
 }

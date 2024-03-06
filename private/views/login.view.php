@@ -5,7 +5,7 @@
         <div style="display: flex;height: 100%;flex-direction: row;flex-wrap: wrap;width: 100%;border-radius: 0;padding: 20px auto;background-color: #EDEDED;justify-content: space-between;"
             class="card card__login" style="background-color: #EDEDED;">
             <form method="post" onsubmit="validateForm(event)" id="loginForm"
-                style="background-color: #EDEDED;align-self: center;margin-left: 197px;">
+                style="background-color: #EDEDED;align-self: center;margin-left: auto;margin-right: auto;">
                 <div class="card__supporting-text color--dark-gray"
                     style="border-radius: 0 15px 15px 0;max-width: 450px;color: black;"">
                         <div class=" grid" style="display: flex;flex-direction: column;">

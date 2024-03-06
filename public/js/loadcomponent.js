@@ -107,11 +107,11 @@ function loadPreview(component, id="") {
 }
 
 function loadScreen(page, id = "") {
-    const url = "http://localhost:8380/Recyco-hub2/public/" + `/${page}?id=${id}`;
+    const url = ROOT  + `/${page}?id=${id}`;
     window.location.href = url;
 }
 
 function loadRawInventoryInfo(page, Type = "", Location = "") {
-    const url = `http://localhost:8380/Recyco-hub2/public/${page}?Type=${Type}&Location=${Location}`;
+    const url = ROOT + `/${page}?Type=${Type}&Location=${Location}`;
     window.location.href = url;
 }
