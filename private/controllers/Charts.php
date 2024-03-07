@@ -56,7 +56,7 @@ GROUP BY Type;
 
     function CollectionRate(){
         $pickupRequest = $this->load_model('PickUpRequestModel');
-        $data = $pickupRequest->query("SELECT COUNT(*) as TotalCollections, Date(Completed_Date) Date, Status FROM pickup_request WHERE Status='Finished' OR Status='Rejected' Group BY Completed_Date;");
+        $data = $pickupRequest->query("SELECT COUNT(*) as TotalCollections, DATE(Completed_Date) AS Date, Status FROM pickup_request WHERE Status='Finished' OR Status='Rejected' GROUP BY DATE(Completed_Date), Status;");
         $this->view("Charts/CollectionRate", ['data' => $data]);
     }
 }

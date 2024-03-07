@@ -51,7 +51,6 @@ $generalmanager = new GeneralManager();
                     </div>
                 </div>
             </div>
-
         </main>
 
     </div>

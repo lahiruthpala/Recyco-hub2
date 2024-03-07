@@ -42,16 +42,16 @@ class Verify extends Model
             $message = $data['message'];
         } else {
             if (isset($data['Role']) && $data['Role'] == "PwdReset") {
-                $message = "Click this link to Reset the password http://localhost:8380/Recyco-hub2/public/login/passwordReset/" . $data['code'];
+                $message = "Click this link to Reset the password ->" . ROOT ."/login/passwordReset/" . $data['code'];
                 $subject = "Password Reset";
 				$recipient = $_POST['Email'];
             }
             elseif(isset($data['Role']) && $data['Role'] != "Customer") {
-                $message = "Your verification link is http://localhost:8380/Recyco-hub2/public/login/" . $data['code'] . " Your temporary password is " . $data['pwd'];
+                $message = "Your verification link is ->" . ROOT . "/login/" . $data['code'] . " Your temporary password is " . $data['pwd'];
                 $subject = "Email verification";
                 $recipient = $data['Email'];
             } else {
-                $message = "Your verification link is http://localhost:8380/Recyco-hub2/public/login/" . $data['code'];
+                $message = "Your verification link is ->" . ROOT .  "/public/login/" . $data['code'];
                 $subject = "Email verification";
                 $recipient = $data['Email'];
             }

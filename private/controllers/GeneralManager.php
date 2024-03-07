@@ -190,7 +190,7 @@ class GeneralManager extends Controller
             return;
         }
         $Pickups = $this->load_model('PickupJobs');
-        $data = $Pickups->query("SELECT * FROM pickup_jobs P JOIN collector_details C ON C.Collector_ID=p.Collector_ID WHERE p.Status <> 'Finished' ORDER BY p.Collector_ID");
+        $data = $Pickups->query("SELECT * FROM pickup_jobs p JOIN collector_details C ON C.Collector_ID=p.Collector_ID WHERE p.Status <> 'Finished' ORDER BY p.Collector_ID");
         $this->view('GeneralManager/Collectors/PendingCollections', ['rows' => $data]);
     }
 
