@@ -4,8 +4,7 @@
     <div class="layout js-layout color--white is-small-screen login">
         <div style="display: flex;height: 100%;flex-direction: row;flex-wrap: wrap;width: 100%;border-radius: 0;padding: 20px auto;background-color: #EDEDED;justify-content: space-between;"
             class="card card__login" style="background-color: #EDEDED;">
-            <form method="post" onsubmit="validateForm(event)" id="loginForm"
-                style="background-color: #EDEDED;align-self: center;margin-left: auto;margin-right: auto;">
+            <form method="post" onsubmit="validateForm(event)" id="loginForm" class="loginForm">
                 <div class="card__supporting-text color--dark-gray"
                     style="border-radius: 0 15px 15px 0;max-width: 450px;color: black;"">
                         <div class=" grid" style="display: flex;flex-direction: column;">
@@ -61,16 +60,7 @@
                 </div>
         </div>
         </form>
-        <?php if (!isMobileDevice()): ?>
-            <style>
-                @media (max-width: 767px) {
-                    .login-image {
-                        display: none;
-                    }
-                }
-            </style>
-        <?php endif; ?>
-            <img src="<?= ROOT ?>/images/Login-SignUp.png" style="max-width: 600px;padding-top: 20px;">
+            <img class="loginImage" src="<?= ROOT ?>/images/Login-SignUp.png">
     </div>
     </div>
     <script>

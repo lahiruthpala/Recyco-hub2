@@ -1,3 +1,7 @@
 .vscode/
 .vscode/settings.json
 .vscode/settings.json
+/private/core/config.php
+/private/views/include/head.view.php
+private/core/config.php
+private/views/include/head.view.php

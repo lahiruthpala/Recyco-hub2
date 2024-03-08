@@ -69,7 +69,7 @@ html {
     }
 
     a[href]:after {
-        content: " ("attr(href) ")";
+        content: " (" attr(href) ")";
     }
 
     thead {
@@ -1505,6 +1505,27 @@ a {
 
 .login .card__login.card .card__supporting-text .submit-cell {
     display: flex;
+}
+
+.loginImage {
+    max-width: 600px;
+    padding-top: 20px;
+}
+
+.loginForm {
+    background-color: #EDEDED;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 767px) {
+    .loginImage {
+        display: none !important;
+    }
+    .loginForm{
+        align-self: flex-start;
+    }
 }
 
 .textfield.is-focused input {

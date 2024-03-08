@@ -36,19 +36,14 @@
                 }
                 foreach ($groupedData as $sectorId => $group) {
                     if (isset($sectorCollectorMap[$sectorId])) {
-                        $job = $this->load_model("PickupJobs");
-                        $jobdata = array();
-                        
-                        $jobdata = $job->insert(array("Collector_ID" => $collectors[0]));
-                        var_dump("sdvsvsv");
                         $collectors = $sectorCollectorMap[$sectorId];
+                        $job = $this->load_model("PickupJobs");
+                        $jobdata = $job->insert(array("Collector_ID" => $collectors[0]));
                         $temp = array();
                         $temp["Status"] = "Assigned";
                         $temp["Collector_ID"] = $collectors[0];
-                        $temp["Job_ID"] = $jobdata->Job_ID;
-                        var_dump($temp);
+                        $temp["Job_ID"] = $jobdata['Job_ID'];
                         $pickup->update($group['requests'][0],$temp,"Pickup_ID");
-                        var_dump($temp);
                     }
                 }
             }else{
