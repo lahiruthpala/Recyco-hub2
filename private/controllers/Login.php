@@ -40,7 +40,6 @@ class Login extends Controller
 
 	private function processVerificationLoginForEmp($user, $id, &$errors)
 	{
-		die;
 		$verifyModle = $this->load_model('Verify');
 		// Check if the provided id is valid and not used by someone else.
 		$verify = $verifyModle->where('Email', $_POST['Email']);
