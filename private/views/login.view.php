@@ -71,7 +71,6 @@
             </style>
         <?php endif; ?>
             <img src="<?= ROOT ?>/images/Login-SignUp.png" style="max-width: 600px;padding-top: 20px;">
-        <?php endif; ?>
     </div>
     </div>
     <script>
