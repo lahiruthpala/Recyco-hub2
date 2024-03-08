@@ -107,7 +107,7 @@ function loadPreview(component, id="") {
 }
 
 function loadScreen(page, id = "") {
-    const url = ROOT + `/${page}?id=${id}`;
+    const url = ROOT  + `/${page}?id=${id}`;
     window.location.href = url;
 }
 

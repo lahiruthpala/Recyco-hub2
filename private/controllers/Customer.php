@@ -5,7 +5,6 @@ class Customer extends Controller
 	{
 		$this->view('Customer/LandingPage');
 	}
-
 	function CreatePickups()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {

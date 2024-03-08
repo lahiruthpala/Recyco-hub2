@@ -5,18 +5,17 @@
                 <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">
                     PROFILE INFO
                 </h6>
-                <div class="card shadow--2dp" style="height: auto;background-color: #EDEDED;">
+                <div class="card shadow--2dp" style="border: 1px solid green;height: auto;">
                     <form class="form form--basic" action="<?= ROOT ?>/Inventory/Assign" method="POST"
                         style="margin: 20px 2px 20px 30px;">
-                        <div class="grid">
+                        <div style="display: flex;">
                             <div
                                 style="display: flex;justify-content: center;align-items: center;padding-right: 30px;border-right: 2px solid var(--smoke-color);">
                                 <div class="profile-image color--smooth-gray profile-image--round">
-                                    <img src="" id="CollecterImage">
+                                    <img src="<?=ROOT?>/images/ProfilePicTemplate.jpg" style="max-width: 100%;" id="CollecterImage">
                                 </div>
                             </div>
-                            <div class="cell cell--8-col-desktop cell--8-col-tablet cell--4-col-phone form__article"
-                                style="padding-left: 30px;">
+                            <div style="padding-left: 30px;display: flex;flex-direction: column;">
                                 <div class="textfield js-textfield textfield--floating-label full-size">
                                     <input class="textfield__input" type="text" value="" name="BatchID"
                                         id="AssignBatchID" readonly>
@@ -41,7 +40,7 @@
                                 </div>
                                 <button type="submit"
                                     class="button js-button button--raised js-ripple-effect button--colored-teal"
-                                    style="border-radius: 99px;" id="Assignbutton" readonly>Assign</button>
+                                    style="border-radius: 99px;margin-left: auto;background-color: #16896E;" id="Assignbutton" readonly>Assign</button>
                             </div>
                         </div>
                     </form>
@@ -51,10 +50,10 @@
                 <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">
                     Collector ID
                 </h6>
-                <div class="cell cell--5-col-desktop cell--5-col-tablet cell--4-col-phone">
-                    <div class="card shadow--2dp" style="height: auto;background-color: #EDEDED;width: 376px;">
+                <div>
+                    <div class="card shadow--2dp" style="height: auto;width: 376px;border: 1px solid green;">
                         <form class="form form--basic" style="margin: 20px 2px 20px 30px;">
-                            <div class="grid">
+                            <div>
                                 <div class="textfield js-textfield textfield--floating-label full-size"
                                     style="padding: 30px 0 0 0;">
                                     <input class="textfield__input" type="text" value="" name="Name"

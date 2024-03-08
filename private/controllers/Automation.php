@@ -6,8 +6,8 @@
             $pickup = $this->load_model("PickUpRequestModel");
             $data = $pickup->where("Status", "Pending");
             $collector = $this->load_model("CollectorModel");
-            $collector = $collector->where("Status", "Available");
-            $collector = $collector->where("SortingCenter_ID", $data[0]->SortingCenter_ID);
+            $collector = $collector->where("Status", "Active");
+            $collector = $collector->where("sector_ID", $data[0]->SortingCenter_ID);
             $collector = $collector->where("Area", $data[0]->Area);
             $collector = $collector->where("Type", $data[0]->Type);
             $collector = $collector->where("Capacity", ">=", $data[0]->Weight);
@@ -23,6 +23,15 @@
             }else{
                 $this->view('Automation/CollectingJobs', []);
             }
+        }
+
+        function test(){
+            var_dump($_POST);
+            $temp = array();
+            $automationmodel = $this->load_model("AutomationModel");
+            $automationmodel->insert($_POST);
+            header("Content-Type: application/json");
+            echo json_encode($_POST);
         }
     }
 ?>

@@ -89,6 +89,29 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <form action="<?= ROOT ?>/Automation/ESP32CodeGenerationAI" method="POST">
+                    <div class="modal" id="modal">
+                        <div>
+                            <div class="card shadow--2dp">
+                                <div class="card__title">
+                                    <div class="card__title-text">Describe</div>
+                                </div>
+                                <div class="textfield js-textfield textfield--floating-label is-upgraded"
+                                    data-upgraded=",MaterialTextfield" style="margin: 10px 20px 10px 20px;border: 1px solid black;border-radius: 19px;">
+                                        <textarea class="textfield__input" type="text" rows="3" name="Note"
+                                            spellcheck="false"></textarea>
+                                </div>
+                                <button type="submit"
+                                    class="button js-button button--raised js-ripple-effect button--colored-teal"
+                                    style="border-radius: 99px; margin: 0 20px 20px 20px background-color: aqua;">
+                                    Get the code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <button type="submit" class="button js-button button--raised js-ripple-effect button--colored-green"

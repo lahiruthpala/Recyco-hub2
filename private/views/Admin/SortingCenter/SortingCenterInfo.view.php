@@ -8,7 +8,7 @@
                                 <div class="cell cell--3-col-desktop cell--3-col-tablet cell--1-col-phone" style="width: 14%;border-right: 1px solid;">
                                     <div class="profile-image color--smooth-gray profile-image--rounds"
                                         style="margin-left: 40px;overflow: hidden; border-radius: 50%; width: 100px; height: 100px;">
-                                        <img src="<?= ROOT ?>/images/Recycohub.png" alt="City Image"
+                                        <img src="<?= ROOT ?>/images/RecycoHub.png" alt="City Image"
                                             style="width: 100%; height: 100%; border-radius: 50%; ">
                                     </div>
                                 </div>

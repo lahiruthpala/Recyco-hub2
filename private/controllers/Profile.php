@@ -42,4 +42,8 @@ class Profile extends Controller
 		$data = $user->where('User_ID', Auth::getUser_ID());
 		$this->view('info',['data'=>$data]);
 	}
+	
+	function Chat(){
+		$this->view('Chat',);
+	}
 }
