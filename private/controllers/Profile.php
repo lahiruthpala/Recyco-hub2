@@ -44,6 +44,6 @@ class Profile extends Controller
 	}
 	
 	function Chat(){
-		$this->view('Chat',);
+		$this->view('Chat');
 	}
 }

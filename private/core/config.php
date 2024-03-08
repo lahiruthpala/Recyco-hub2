@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT', 'https://recycohub.lahirujayathilake.me');
+define('ROOT', 'https://recycohub.lahirujayathilake.me/Recyco-hub2/public/');
 define("APP_ROOT", "../private");
 define('DBDRIVER', 'mysql');
 define('DBHOST', 'localhost');

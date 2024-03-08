@@ -63,7 +63,7 @@ $this->view('include/head') ?>
         const messages = document.getElementById('messages');
         const messageForm = document.getElementById('message-form');
         const messageInput = document.getElementById('message-input');
-        const ws = new WebSocket('ws://your-server-ip:8080');
+        const ws = new WebSocket('ws://34.136.53.128:8080');
         ws.addEventListener('open', (event) => {
             console.log('WebSocket connection opened:', event);
         });

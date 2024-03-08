@@ -1,4 +1,4 @@
-AutomationModel<?php
+<?php
 class AutomationModel extends Model
 {
     protected $allowedColumns = [

@@ -22,7 +22,8 @@ $admin = new Admin();
                             <div id="buttonToggle" class="buttonToggle">
                                 <button onclick="loadComponent('SortingCenter')" style="margin: 4px 10px 4px 4px;"
                                     id="SortingCenter_Button"
-                                    class="button js-button button--raised js-ripple-effect button--colored-green">Sorting Center</Button>
+                                    class="button js-button button--raised js-ripple-effect button--colored-green">Sorting
+                                    Center</Button>
                                 <button onclick="loadComponent('MachineTable')" style="margin: 4px 10px 4px 4px;"
                                     id="MachineTable_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">Machines</Button>
@@ -30,11 +31,16 @@ $admin = new Admin();
                                     id="AddNewMachine_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">Add
                                     New Machine</Button>
+                                <button onclick="loadComponent('Automation')" style="margin: 4px 10px 4px 4px;"
+                                    id="Automation_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">
+                                    Automation</Button>
                             </div>
                             <?php
                             $admin->AddMachine();
                             $admin->showAllMachines();
                             $admin->SortingCenterInfo();
+                            $admin->Automation();
                             ?>
                         </div>
                     </div>

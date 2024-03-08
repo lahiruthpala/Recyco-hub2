@@ -6,7 +6,6 @@
 class PickUpRequestModel extends Model
 {
     protected $beforeInsert = [
-        'findCircleForLocation',
         'GeneratePickup_ID',
         'GetCustomer_ID'
     ];
@@ -30,6 +29,7 @@ class PickUpRequestModel extends Model
         'InventoryId',
         'Customer_ID',
         'Collector_ID',
+        'sector_ID',
     ];
 
     public function areAllJobsPendingOrRejected($Pickup_ID)
@@ -42,9 +42,9 @@ class PickUpRequestModel extends Model
         $result = $this->query($query, ['Pickup_ID' => $Pickup_ID]);
 
         // If there are no jobs with status other than 'Pending' or 'Reject', return true
-        return ($result[0]->total_jobs == 0);
+        return($result[0]->total_jobs == 0);
     }
-    
+
     public function calculateDistance($lat1, $lng1, $lat2, $lng2)
     {
         // Convert latitude and longitude from degrees to radians
@@ -68,28 +68,59 @@ class PickUpRequestModel extends Model
         $query = "SELECT * FROM sectors";
         $circles = $this->query($query);
         foreach ($circles as $circle) {
-            $circleCenterLat = $circle -> latitude;
-            $circleCenterLng = $circle -> longitude;
-            $circleRadius = $circle -> radius;
+            $circleCenterLat = $circle->latitude;
+            $circleCenterLng = $circle->longitude;
+            $circleRadius = $circle->radius;
 
-            $distance = $this->calculateDistance((float)$data['latitude'], (float)$data['longitude'], (float)$circleCenterLat, (float)$circleCenterLng);
+            $distance = $this->calculateDistance((float) $data['latitude'], (float) $data['longitude'], (float) $circleCenterLat, (float) $circleCenterLng);
             if ($distance <= $circleRadius) {
-                $data["Collector_ID"] = $circle->Collector_ID;
+                $data["sector_ID"] = $circle->sector_ID;
                 return $data; // Return the circle that the location belongs to
             }
         }
         // If no circle is found for the location
-        $data["Collector_ID"] = null;
-        return $data;
+        return false;
     }
 
-    function GeneratePickup_ID($data){
+    function GeneratePickup_ID($data)
+    {
         $data['Pickup_ID'] = generateID("pick");
         return $data;
     }
 
-    function GetCustomer_ID($data){
+    function GetCustomer_ID($data)
+    {
         $data['Customer_ID'] = Auth::getUser_ID();
         return $data;
+    }
+
+    public function validate($data)
+    {
+        $data = $this->findCircleForLocation($data);
+        if ($data != false) {
+            $temp = 0;
+            if ($data['weight'] <= 0) {
+                $temp = 1;
+                message(['Weight must be greater than 0','error']);
+            }
+            if ($data['latitude'] == '' || $data['longitude'] == '') {
+                $temp = 1;
+                message(['Location is required']);
+            }
+            if ($data['pickup_address'] == '') {
+                $temp = 1;
+                message(['Address is required']);
+            }
+            if ($data['waste_type'] == '') {
+                $temp = 1;
+                message(['Waste type is required']);
+            }
+            if ($temp == 0) {
+                return $data;
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 }

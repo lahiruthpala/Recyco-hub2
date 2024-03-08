@@ -126,5 +126,10 @@ class Admin extends Controller
         $data = $machine->findAll(1,10,"SortingCenter_ID")[0];
         $this->view("Admin/SortingCenter/SortingCenterInfo", ['row'=>$data]);
     }
+    function Automation(){
+        $machine = $this->load_model("AutomationModel");
+        $data = $machine->findAll(1,10,"Automation_ID");
+        $this->view("Admin/SortingCenter/Automation", ['rows'=>$data]);
+    }
 }
 ?>

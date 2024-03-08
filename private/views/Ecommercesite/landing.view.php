@@ -9,11 +9,11 @@
                 foreach ($rows as $data) : ?>
                     <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone"> <!-- Adjusted column size to fit 4 tiles -->
                         <div class="mdl-card mdl-shadow--2dp" style="max-width: 300px; max-height: 450px; display: flex; flex-direction: column;">
-                        <img src="<?= ROOT ?>/images/Products/<?= strtolower($data->product_name) ?>.jpg" alt="<?= $data->product_name ?>" style="max-width: 100%; height: auto; display: block; margin: 10px auto 5px;">
+                        <img src="<?=ROOT?>/images/Products/<?= strtolower($data->product_name) ?>.jpg" alt="<?= $data->product_name ?>" style="max-width: 100%; height: auto; display: block; margin: 10px auto 5px;">
                             <div class="mdl-card__supporting-text" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                                 <div class="mdl-card__supporting-text mdl-card--expand" style="text-align: center; margin-bottom: 10px;">
                                     <h5><?= $data->product_name ?></h5>
-                                    <b><?= $data->price ?></b> /Kg
+                                    <b><?= $data->price?></b> /Kg
                                     <br>
                                     <span class="label label--mini color--light-blue"><?= $data->status ?></span>
                                 </div>

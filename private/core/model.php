@@ -57,14 +57,12 @@ class Model extends Database
 
 	public function insert($data)
 	{
-
 		//run functions before insert
 		if (property_exists($this, 'beforeInsert')) {
-			foreach ($this->beforeInsert as $func) {
+			foreach ($this->beforeInsert as $func){
 				$data = $this->$func($data);
 			}
 		}
-
 		//remove unwanted columns
 		if (property_exists($this, 'allowedColumns')) {
 			foreach ($data as $key => $column) {

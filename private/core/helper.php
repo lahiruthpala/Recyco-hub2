@@ -84,8 +84,7 @@ function generateID($id)
 	$currentTime = time();
 	$randomCode = random_string(4);
 	$uniqueId = $id . $currentTime . $randomCode;
-
-	return $uniqueId;
+	return($uniqueId);
 }
 
 function show($data)
