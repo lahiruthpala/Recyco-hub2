@@ -89,4 +89,8 @@ class Partner extends Controller
         $data = $article->findAll();
         $this->view("Partner/Articles", ["articles" => $data]);
     }
+
+    function edit(){
+        $this->view('Partner/Edit');
+    }
 }

@@ -2,9 +2,13 @@
 <script src="<?= ROOT ?>/js/material.min.js"></script>
 <script src="<?= ROOT ?>/js/helper.js"></script>
 <div style="display:block" id="PopupNotification">
-    <?php foreach (message([], true) as $msg) {?>
+    <?php
+    $messages = message([], true);
+    if ($messages !== false) {
+        foreach ($messages as $msg) {
+    ?>
         <h6 class="<?=$msg[1]; ?>"><?=$msg[0];?></h6>
-    <?php } ?>
+    <?php }} ?>
 </div>
 </body>
 
