@@ -1,13 +1,18 @@
 <?php
-    class Automation extends Controller{
-        function index(){}
+class Automation extends Controller
+{
+    function index()
+    {
+    }
 
-        function CreateCollectingJobs(){
+    function CreateCollectingJobs()
+    {
+        if ($_POST['pwd'] == "123456789") {
             $pickup = $this->load_model("PickUpRequestModel");
             $data = $pickup->where("Status", "Pending");
-            if($data != null){
+            if ($data != null) {
                 $groupedData = array();
-                foreach ($data as $request){
+                foreach ($data as $request) {
                     $sectorId = $request->sector_ID;
                     $weight = $request->weight;
                     if (!isset($groupedData[$sectorId])) {
@@ -43,13 +48,15 @@
                         $temp["Status"] = "Assigned";
                         $temp["Collector_ID"] = $collectors[0];
                         $temp["Job_ID"] = $jobdata['Job_ID'];
-                        $pickup->update($group['requests'][0],$temp,"Pickup_ID");
+                        $pickup->update($group['requests'][0], $temp, "Pickup_ID");
                     }
                 }
-            }else{
+                echo "Done";
+            } else {
 
 
             }
         }
     }
+}
 ?>

@@ -8,7 +8,7 @@
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Recyco-HUB</title>
-
+    <link rel="icon" type="image/x-icon" href="<?= ROOT ?>/images/logo.ico" />
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
 
@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/css/main2.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>var ROOT = 'https://recycohub.lahirujayathilake.me/Recyco-hub2/public/' </script>
+    <script>var ROOT = 'https://recycohub.lahirujayathilake.me' </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- endinject -->
