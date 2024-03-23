@@ -48,13 +48,13 @@ class Login extends Controller
 			if (password_verify($_POST['pwd'], $verify['pwd']) && $id == $verify['code']) {
 				$temp['Status'] = 'Active';
 				$user->update($_POST['Email'], $temp, 'Email');
-				$verifyModle->delete($verify['Email'], 'Email');
 				$this->passwordReset($id);
 			} else {
 				$errors['email'] = "Wrong email or password";
 			}
 		} else {
 			$errors['verification'] = "Your verification link is no longer valid";
+			$this->redirect('login');
 		}
 	}
 	private function processVerificationLogin($user, $id, &$errors)
@@ -81,6 +81,10 @@ class Login extends Controller
 			}
 		} else {
 			$errors['verification'] = "Your verification link is no longer valid";
+			message(['User Added successfully','success']);
+			
+			die;
+			$this->redirect('login');
 		}
 	}
 

@@ -9,12 +9,12 @@ class Signup extends Controller
 			if ($verify->validate($_POST)) {
 				$_POST["pwd"] = $_POST["pwd1"];
 				$data = $verify->insert($_POST);
-				massage(["Your account has been created, please verify your email","success"]);
+				message(["Your account has been created, please verify your email","success"]);
 				// echo "You're already verified";
 				$this->redirect('login');
 			} else {
 				//errors
-				massage("Please check your input", "error");
+				message(["Please check your input", "error"]);
 				$errors = $verify->errors;
 			}
 		}

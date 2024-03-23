@@ -53,7 +53,34 @@
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
+            var MyAjax = {
+                upload: function (file) {
+                    var formData = new FormData();
+                    formData.append('file', file);
+
+                    return new Promise(function (resolve, reject) {
+                        $.ajax({
+                            url: 'https://' + ROOT + '/Editor/imageUpload',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response.success) {
+                                    resolve(response.file);
+                                } else {
+                                    reject(new Error('Upload failed'));
+                                }
+                            },
+                            error: function () {
+                                reject(new Error('Upload failed'));
+                            }
+                        });
+                    });
+                }
+            };
             const editor = new EditorJS({
                 holder: 'editorjs',
                 tools: {
@@ -79,7 +106,7 @@
                                         return {
                                             success: 1,
                                             file: {
-                                                url: 'https://example.com/uploads/image.jpg',
+                                                url: 'https://' + ROOT + '/images/logo.png',
                                                 // any other image data you want to store, such as width, height, color, extension, etc
                                             }
                                         };

@@ -69,6 +69,7 @@ class Admin extends Controller
                     $_POST['Email'] = $_POST['OfficialMail'];
                     $_POST['Phone'] = $_POST['OfficialNumber'];
                     $_POST['UserName'] = $_POST['FirstName'];
+                    $_POST['Status'] = "Pending";
                     if(!isset($_POST['Address'])){
                         $_POST['Address'] = "Colombo Sorting Center";
                     }
@@ -91,7 +92,7 @@ class Admin extends Controller
                             message(['User Added successfully','success']);
                             $this->redirect('Admin/AccountManagement');
                         } else { //didnt inserted to db
-                            message(['Error occurred while posting! Try again', "error"]);
+                            message(['Error occurred ! Try again', "error"]);
                             $this->redirect('Admin/AccountManagement');
                         }
                     }

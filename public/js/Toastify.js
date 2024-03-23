@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     var success = document.getElementsByClassName("success");
     var error = document.getElementsByClassName("error");
+    console.log(error, success);
 
     Array.from(success).forEach(function (element) {
         Toastify({
