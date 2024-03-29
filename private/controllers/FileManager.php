@@ -7,10 +7,10 @@ class FileManager extends Controller
     private $referer;
     public function __construct()
     {
-        if (!Auth::logged_in()) { //if not logged in redirect to login page
-            message('Please login to download!');
-            redirect('login');
-        }
+        //if (!Auth::logged_in()) { //if not logged in redirect to login page
+        //    message('Please login to download!');
+        //    redirect('login');
+        //}
         $this->filePath = "../private/uploads/";
 
         //for any fallbacks
@@ -29,9 +29,9 @@ class FileManager extends Controller
         if (!empty($fileName)) {
             $extension = array_reverse(explode('.', $file['name']))[0];
 
-            $destination = $savingDir . $fileName . '.' . $extension;
+            $destination = $savingDir . $fileName;
         } else {
-            $destination = $savingDir . $file['name'] . '.jpg';
+            $destination = $savingDir . $file['name'];
         }
         move_uploaded_file($file['tmp_name'], $destination);
         return $destination;

@@ -10,12 +10,12 @@ class Partner extends Controller
         $this->view("Partner/Articles", ["articles" => $data]);
     }
 
-    function Articles($Pid=null)
+    function Articles($Pid = null)
     {
         $articles = $this->load_model('Articles');
-        if($Pid!=null){
+        if ($Pid != null) {
             $data = $articles->where("Partner_ID", $Pid);
-        }else{
+        } else {
             $data = $articles->findAll(1, 10, "Article_ID");
         }
         $this->view("Partner/Articles", ["articles" => $data]);
@@ -23,6 +23,28 @@ class Partner extends Controller
 
     function addNew($id = null)
     {
+        if (isset($_FILES["image"])) {
+            $response = array();
+            $target_dir = "./images/Article/";
+            require_once(APP_ROOT . "/controllers/FileManager.php");
+            $file = new FileManager();
+            $destination = $file->uploadFile($_FILES['image'], $target_dir);
+            $response["success"] = 1;
+            $response["file"]["url"] = ROOT . "/images/Article/" . $_FILES['image']['name'];
+            echo json_encode($response);
+            return;
+        }
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $articles = $this->load_model('Articles');
+            $_POST['Edit_Date'] = date("Y-m-d H:i:s");
+            if(isset($_POST['Action']) && $_POST['Action'] == 'Publish'){
+                $_POST['Published_Date'] = date("Y-m-d H:i:s");
+                $_POST['Status'] = 'Published';
+            }
+            $data = $articles->insert($_POST);
+            $this->redirect("Partner/articles");
+        }
+
         $errors = array();
         if ($id == null) {
             if (count($_POST) > 0) {
@@ -41,6 +63,22 @@ class Partner extends Controller
             $data = $articles->first('Article_ID', $id);
             $articles->delete($id, "Article_ID");
             $this->view("Partner/newarticle", ["article" => $data]);
+        }
+    }
+
+    function uploadImage()
+    {
+        die;
+        if (isset($_FILES["file"])) {
+            $response = array();
+            $target_dir = ROOT . "images/Aricals";
+            $target_file = $target_dir . basename($_FILES["file"]["name"]);
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                $response["success"] = 1;
+                $response["file"]["url"] = $target_file;
+                echo json_encode($response);
+            }
         }
     }
 
@@ -90,7 +128,8 @@ class Partner extends Controller
         $this->view("Partner/Articles", ["articles" => $data]);
     }
 
-    function edit(){
+    function edit()
+    {
         $this->view('Partner/Edit');
     }
 }

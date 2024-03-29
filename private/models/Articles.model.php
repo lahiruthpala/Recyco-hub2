@@ -8,10 +8,13 @@ class Articles extends Model
 
     protected $allowedColumns = [
         'Article_ID',
-        'Artical_Title',
-        'Discription',
+        'Article_Title',
+        'Description',
+        'Published_Date',
+        'Edit_Date',
         'Data',
-        'Partner_ID'
+        'Partner_ID',
+        'Status'
     ];
     protected $table = "articles";
 

@@ -12,27 +12,26 @@
                     Create New Article</h5>
                 <div class="card shadow--2dp">
                     <div class="card__supporting-text">
-                        <form class="form form--basic" method="POST">
+                        <form id="Article" action="<?= ROOT ?>/Partner/addnew" method="POST">
                             <div class="textfield js-textfield textfield--floating-label full-size">
                                 <input class="textfield__input" type="text" id="floating-last-name" placeholder="Title"
-                                    name="Artical_Title"
+                                    name="Article_Title"
                                     value="<?= isset($article->Artical_Title) ? $article->Artical_Title : '' ?>">
                                 <label class="textfield__label" for="floating-last-name"></label>
                             </div>
 
                             <div class="textfield js-textfield textfield--floating-label full-size">
                                 <input class="textfield__input" type="text" id="floating-e-mail"
-                                    placeholder="Discription" name="Discription"
-                                    value="<?= isset($article->Discription) ? $article->Discription : '' ?>">
+                                    placeholder="Description" name="Description">
                                 <label class="textfield__label" for="floating-e-mail"></label>
                             </div>
                             <div style="color:black" id="editorjs"></div>
                             <div class="card__actions">
-                                <button type="submit"
+                                <button type="button" onclick="saveData(event)"
                                     style="background-color: green;color: white;width: 146px;display: flex;"
                                     class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                     <img src="<?= ROOT ?>/images/save.svg" style="padding: 6px 10px;">Save</button>
-                                <button type="submit" id="save-button"
+                                <button onclick="saveData(event)"
                                     style="background-color: green;color: white;width: 146px;display: flex;"
                                     class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                     <img src="<?= ROOT ?>/images/published.svg"
@@ -55,32 +54,6 @@
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            var MyAjax = {
-                upload: function (file) {
-                    var formData = new FormData();
-                    formData.append('file', file);
-
-                    return new Promise(function (resolve, reject) {
-                        $.ajax({
-                            url: 'https://' + ROOT + '/Editor/imageUpload',
-                            type: 'POST',
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            success: function (response) {
-                                if (response.success) {
-                                    resolve(response.file);
-                                } else {
-                                    reject(new Error('Upload failed'));
-                                }
-                            },
-                            error: function () {
-                                reject(new Error('Upload failed'));
-                            }
-                        });
-                    });
-                }
-            };
             const editor = new EditorJS({
                 holder: 'editorjs',
                 tools: {
@@ -98,34 +71,9 @@
                     },
                     image: {
                         class: ImageTool,
-                        config: {
-                            uploader: {
-                                uploadByFile(file) {
-                                    // your own uploading logic here
-                                    return MyAjax.upload(file).then(() => {
-                                        return {
-                                            success: 1,
-                                            file: {
-                                                url: 'https://' + ROOT + '/images/logo.png',
-                                                // any other image data you want to store, such as width, height, color, extension, etc
-                                            }
-                                        };
-                                    });
-                                },
-                                uploadByUrl(url) {
-                                    // your ajax request for uploading
-                                    return MyAjax.upload(url).then(() => {
-                                        return {
-                                            success: 1,
-                                            file: {
-                                                url: 'https://example.com/uploads/image.jpg',
-                                                // any other image data you want to store, such as width, height, color, extension, etc
-                                            }
-                                        };
-                                    });
-                                }
-                            }
-                        }
+                        endpoints: {
+                            byUrl: ROOT + "Partner/uploadImage",
+                        },
                     },
                     checklist: {
                         class: Checklist,
@@ -138,14 +86,30 @@
                     },
                 }
             });
-            var temp = "";
             // Save data when the user clicks the "Save" button
-            document.getElementById('save-button').addEventListener('click', () => {
-                editor.save().then((savedData) => {
-                    // Display the saved data in the textarea
-                    temp = savedData;
-                    console.log(temp);
-                });
-            });
+            function saveData(e) {
+                e.preventDefault();
+                console.log("jsdbhvkjdhv")
+                editor.save()
+                    .then((outputData) => {
+                        // Create a form element
+                        const form = document.getElementById('Article');
+                        // Create an input element to hold the outputData
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'Data';
+                        input.value = JSON.stringify(outputData);
+
+                        // Append the input element to the form
+                        form.appendChild(input);
+
+                        // Submit the form
+                        form.submit();
+                    })
+                    .catch((error) => {
+                        console.log('Saving failed: ', error);
+                    });
+            }
+
         </script>
         <?php $this->view('include/footer') ?>
