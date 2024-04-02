@@ -32,7 +32,7 @@
                                     style="background-color: #444;max-height: 500px;max-width: 400px;margin: 16px;">
                                     <div class="card__title">
                                         <h2 class="card__title-text">
-                                            <?= $article->Artical_Title ?>
+                                            <?= $article->Article_Title ?>
                                         </h2>
                                     </div>
                                     <canvas id="<?= $article->Article_ID ?>_img"></canvas>
@@ -53,12 +53,12 @@
                                         img.src = "<?= ROOT ?>/images/Article/<?= $article->Article_ID ?>.jpg";
                                     </script>
                                     <div class="card__supporting-text card--expand">
-                                        <?= $article->Discription ?><br><br>
+                                        <?= $article->Description?><br><br>
                                     </div>
                                     <div class="card__actions">
                                         <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"
                                             class="button js-button button--raised js-ripple-effect button--colored-green"
-                                            href="<?= ROOT ?>/Partner/addNew/<?= $article->Article_ID ?>">
+                                            href="<?= ROOT ?>/Partner/EditArticle/<?= $article->Article_ID ?>">
                                             Edit
                                         </a>
                                         <a style="background-color: #16C784; border-radius: 20px;"

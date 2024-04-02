@@ -17,12 +17,12 @@
                                 <div
                                     class="cell cell--6-col-desktop cell--6-col-tablet cell--4-col-phone form__article">
                                     <div class="textfield js-textfield textfield--floating-label full-size">
-                                        <input class="textfield__input" type="text" id="floating-last-name" placeholder="Title" name="Event_Title" value="<?= isset($article->Artical_Title) ? $article->Artical_Title : '' ?>">
+                                        <input class="textfield__input" type="text" id="floating-last-name" placeholder="Title" name="Event_Title" value="<?= isset($article->Article_Title) ? $article->Article_Title : '' ?>">
                                         <label class="textfield__label" for="floating-last-name"></label>
                                     </div>
 
                                     <div class="textfield js-textfield textfield--floating-label full-size">
-                                        <input class="textfield__input" type="text" id="floating-e-mail" placeholder="Discription" name="Discription" value="<?= isset($article->Discription) ? $article->Discription : '' ?>">
+                                        <input class="textfield__input" type="text" id="floating-e-mail" placeholder="Discription" name="Discription" value="<?= isset($article->Description) ? $article->Description : '' ?>">
                                         <label class="textfield__label" for="floating-e-mail"></label>
                                     </div>
                                     <div class="textfield js-textfield textfield--floating-label full-size">

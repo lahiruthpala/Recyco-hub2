@@ -81,6 +81,14 @@ class Model extends Database
 	}
 	public function update($id, $data, $column)
 	{
+		if (property_exists($this, 'allowedColumns')) {
+			foreach ($data as $key => $columns) {
+				if (!in_array($key, $this->allowedColumns)) {
+					unset($data[$key]);
+				}
+			}
+		}
+
 		$str = "";
 		foreach ($data as $key => $value) {
 			// code...

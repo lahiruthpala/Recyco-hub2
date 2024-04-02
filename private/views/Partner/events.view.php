@@ -36,7 +36,7 @@
                                             </h2>
                                         </div>
                                         <div class="card__supporting-text card--expand">
-                                            <?= $article->Discription ?><br><br>
+                                            <?= $article->Description ?><br><br>
                                         </div>
                                         <div class="card__actions">
                                             <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"

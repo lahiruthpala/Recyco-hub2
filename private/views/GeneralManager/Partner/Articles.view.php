@@ -18,7 +18,7 @@
                             <?= $row->Partner_ID ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->Artical_Title ?? '' ?>
+                            <?= $row->Article_Title ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding-left: 50px">
                             <?= $row->Submition_Date ?? '' ?>
