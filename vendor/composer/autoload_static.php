@@ -14,6 +14,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -54,6 +55,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'E' => 
         array (
             'Evenement\\' => 10,
+            'EditorJS\\' => 9,
         ),
     );
 
@@ -139,6 +141,20 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         array (
             0 => __DIR__ . '/..' . '/evenement/evenement/src',
         ),
+        'EditorJS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codex-team/codex.editor/EditorJS',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'H' => 
+        array (
+            'HTMLPurifier' => 
+            array (
+                0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -167,6 +183,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1::$classMap;
 
         }, null, ClassLoader::class);

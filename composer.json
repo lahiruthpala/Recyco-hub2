@@ -1,6 +1,7 @@
 {
     "require": {
         "cboden/ratchet": "^0.4.4",
-        "setono/editorjs-php": "^0.1.2"
+        "setono/editorjs-php": "^0.1.2",
+        "codex-team/codex.editor": "^2.0"
     }
 }
