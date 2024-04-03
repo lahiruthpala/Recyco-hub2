@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>Greenture Environment Saving HTML5 Template | Homepage Style One</title>
     <!-- Stylesheets -->
-    <link href="<?= ROOT ?>css/revolution-slider.css" rel="stylesheet">
-    <link href="<?= ROOT ?>css/style.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/css/revolution-slider.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/css/style.css" rel="stylesheet">
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -19,7 +19,7 @@
     <div class="page-wrapper">
 
         <!-- Preloader -->
-        <div class="preloader"></div>
+        <!-- <div class="preloader"></div> -->
 
         <!-- Main Header -->
         <header class="main-header">
@@ -797,13 +797,13 @@
     <div class="scroll-to-top scroll-to-target" data-target=".main-header"><span class="fa fa-long-arrow-up"></span></div>
     <!-- /.modal -->
 
-    <script href="<?= ROOT ?>js/jquery.js"></script>
-    <script href="<?= ROOT ?>js/revolution.min.js"></script>
-    <script href="<?= ROOT ?>js/jquery.fancybox.pack.js"></script>
-    <script href="<?= ROOT ?>js/jquery.fancybox-media.js"></script>
-    <script href="<?= ROOT ?>js/owl.js"></script>
-    <script href="<?= ROOT ?>js/wow.js"></script>
-    <script href="<?= ROOT ?>js/script.js"></script>
+    <script href="<?= ROOT ?>/js/jquery.js"></script>
+    <script href="<?= ROOT ?>/js/revolution.min.js"></script>
+    <script href="<?= ROOT ?>/js/jquery.fancybox.pack.js"></script>
+    <script href="<?= ROOT ?>/js/jquery.fancybox-media.js"></script>
+    <script href="<?= ROOT ?>/js/owl.js"></script>
+    <script href="<?= ROOT ?>/js/wow.js"></script>
+    <script href="<?= ROOT ?>/js/script.js"></script>
 </body>
 
 </html>
