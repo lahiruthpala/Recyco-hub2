@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <title>Greenture Environment Saving HTML5 Template | Homepage Style One</title>
     <!-- Stylesheets -->
-    <link href="css/revolution-slider.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<?= ROOT ?>css/revolution-slider.css" rel="stylesheet">
+    <link href="<?= ROOT ?>css/style.css" rel="stylesheet">
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    <!--[if lt IE 9]><script href="<?= ROOT ?>http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 9]><script href="<?= ROOT ?>js/respond.js"></script><![endif]-->
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                 <div class="auto-container clearfix">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo-1.png" alt="Greenture"></a>
+                        <a href="index.html"><img href="<?= ROOT ?>images/logo-1.png" alt="Greenture"></a>
                     </div>
 
                     <!--Nav Outer-->
@@ -144,7 +144,7 @@
                     <ul>
 
                         <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/1.jpg" data-saveperformance="off" data-title="Awesome Title Here">
-                            <img src="images/main-slider/1.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <img href="<?= ROOT ?>images/main-slider/1.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="15" data-y="center" data-voffset="-150" data-speed="1500" data-start="500" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3"
@@ -173,7 +173,7 @@
                         </li>
 
                         <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/2.jpg" data-saveperformance="off" data-title="Awesome Title Here">
-                            <img src="images/main-slider/2.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <img href="<?= ROOT ?>images/main-slider/2.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-120" data-speed="1500" data-start="500" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3"
@@ -309,7 +309,7 @@
                     <div class="column default-featured-column" style="width: auto;margin-right: 10px;">
                         <article class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/featured-image-1.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/featured-image-1.jpg" alt=""></a>
                             </figure>
                             <div class="content-box">
                                 <h3><a href="#">Project Name</a></h3>
@@ -324,7 +324,7 @@
                     <div class="column default-featured-column" style="width: auto;margin-right: 10px;">
                         <article class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/featured-image-2.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/featured-image-2.jpg" alt=""></a>
                             </figure>
                             <div class="content-box">
                                 <h3><a href="#">Project Name</a></h3>
@@ -339,7 +339,7 @@
                     <div class="column default-featured-column" style="width: auto;margin-right: 10px;">
                         <article class="inner-box wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/featured-image-3.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/featured-image-3.jpg" alt=""></a>
                             </figure>
                             <div class="content-box">
                                 <h3><a href="#">Project Name</a></h3>
@@ -354,7 +354,7 @@
                     <div class="column default-featured-column" style="width: auto;">
                         <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/featured-image-4.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/featured-image-4.jpg" alt=""></a>
                             </figure>
                             <div class="content-box">
                                 <h3><a href="#">Project Name</a></h3>
@@ -429,11 +429,11 @@
                                 </div>
                                 <div class="information clearfix">
                                     <div class="info">
-                                        <figure class="image-thumb"><img src="images/resource/ceo-thumb.jpg" alt=""></figure>
+                                        <figure class="image-thumb"><img href="<?= ROOT ?>images/resource/ceo-thumb.jpg" alt=""></figure>
                                         <h3>Alex Zender</h3>
                                         <p>CEO of Go Green</p>
                                     </div>
-                                    <div class="signature"><img src="images/resource/signature-image-1.png" alt=""></div>
+                                    <div class="signature"><img href="<?= ROOT ?>images/resource/signature-image-1.png" alt=""></div>
                                 </div>
                             </div>
 
@@ -461,7 +461,7 @@
                     <div class="column default-featured-column" style="width: auto;margin-right: 10px;">
                         <article class="inner-box">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/featured-image-5.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/featured-image-5.jpg" alt=""></a>
                                 <div class="post-tag">Featured</div>
                             </figure>
                             <div class="content-box">
@@ -477,7 +477,7 @@
                     <div class="column default-featured-column" style="width: auto;margin-right: 10px;">
                         <article class="inner-box">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/featured-image-6.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/featured-image-6.jpg" alt=""></a>
                             </figure>
                             <div class="content-box">
                                 <h3><a href="#">One Tree Thousand Hope</a></h3>
@@ -494,25 +494,25 @@
                             <div class="vertical-links-outer">
                                 <div class="link-block">
                                     <div class="default inner">
-                                        <figure class="image-thumb"><img src="images/resource/post-thumb-1.jpg" alt=""></figure><strong>Togather we can change the</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
+                                        <figure class="image-thumb"><img href="<?= ROOT ?>images/resource/post-thumb-1.jpg" alt=""></figure><strong>Togather we can change the</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
                                     <a href="#" class="alternate"><strong>Togather we can change the</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></a>
                                 </div>
 
                                 <div class="link-block">
                                     <div class="default inner">
-                                        <figure class="image-thumb"><img src="images/resource/post-thumb-2.jpg" alt=""></figure><strong>Urgent Clothe Needed</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
+                                        <figure class="image-thumb"><img href="<?= ROOT ?>images/resource/post-thumb-2.jpg" alt=""></figure><strong>Urgent Clothe Needed</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
                                     <a href="#" class="alternate"><strong>Urgent Clothe Needed</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></a>
                                 </div>
 
                                 <div class="link-block">
                                     <div class="default inner">
-                                        <figure class="image-thumb"><img src="images/resource/post-thumb-3.jpg" alt=""></figure><strong>Let’s plant 200 tree each...</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
+                                        <figure class="image-thumb"><img href="<?= ROOT ?>images/resource/post-thumb-3.jpg" alt=""></figure><strong>Let’s plant 200 tree each...</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
                                     <a href="#" class="alternate"><strong>Let’s plant 200 tree each...</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></a>
                                 </div>
 
                                 <div class="link-block">
                                     <div class="default inner">
-                                        <figure class="image-thumb"><img src="images/resource/post-thumb-1.jpg" alt=""></figure><strong>Keep your house envirome..</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
+                                        <figure class="image-thumb"><img href="<?= ROOT ?>images/resource/post-thumb-1.jpg" alt=""></figure><strong>Keep your house envirome..</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></div>
                                     <a href="#" class="alternate"><strong>Keep your house envirome..</strong><span class="desc">Lorem ipsum dolor sit amet et siu amet sio audiam si copiosaei mei purto </span></a>
                                 </div>
 
@@ -542,7 +542,7 @@
                     <article class="slide-item">
 
                         <div class="info-box">
-                            <figure class="image-box"><img src="images/resource/testi-image-1.jpg" alt=""></figure>
+                            <figure class="image-box"><img href="<?= ROOT ?>images/resource/testi-image-1.jpg" alt=""></figure>
                             <h3>Mark Pine</h3>
                             <p class="designation">Rome, Italy</p>
                         </div>
@@ -556,7 +556,7 @@
                     <article class="slide-item">
 
                         <div class="info-box">
-                            <figure class="image-box"><img src="images/resource/testi-image-2.jpg" alt=""></figure>
+                            <figure class="image-box"><img href="<?= ROOT ?>images/resource/testi-image-2.jpg" alt=""></figure>
                             <h3>Mark Pine</h3>
                             <p class="designation">Rome, Italy</p>
                         </div>
@@ -570,7 +570,7 @@
                     <article class="slide-item">
 
                         <div class="info-box">
-                            <figure class="image-box"><img src="images/resource/testi-image-3.jpg" alt=""></figure>
+                            <figure class="image-box"><img href="<?= ROOT ?>images/resource/testi-image-3.jpg" alt=""></figure>
                             <h3>Mark Pine</h3>
                             <p class="designation">Rome, Italy</p>
                         </div>
@@ -602,7 +602,7 @@
                     <div class="column blog-news-column" style="margin-left: 10px; width: auto">
                         <article class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/blog-image-1.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/blog-image-1.jpg" alt=""></a>
                                 <div class="news-date">28<span class="month">OCT</span></div>
                             </figure>
                             <div class="content-box">
@@ -624,7 +624,7 @@
                     <div class="column blog-news-column col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <article class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/blog-image-2.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/blog-image-2.jpg" alt=""></a>
                                 <div class="news-date">22<span class="month">APR</span></div>
                             </figure>
                             <div class="content-box">
@@ -646,7 +646,7 @@
                     <div class="column blog-news-column col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <article class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
                             <figure class="image-box">
-                                <a href="#"><img src="images/resource/blog-image-3.jpg" alt=""></a>
+                                <a href="#"><img href="<?= ROOT ?>images/resource/blog-image-3.jpg" alt=""></a>
                                 <div class="news-date">23<span class="month">MAR</span></div>
                             </figure>
                             <div class="content-box">
@@ -676,11 +676,11 @@
                 <div class="slider-outer">
                     <!--Sponsors Slider-->
                     <ul class="sponsors-slider">
-                        <li><a href="#"><img src="images/clients/1.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="images/clients/2.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="images/clients/3.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="images/clients/4.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="images/clients/2.jpg" alt=""></a></li>
+                        <li><a href="#"><img href="<?= ROOT ?>images/clients/1.jpg" alt=""></a></li>
+                        <li><a href="#"><img href="<?= ROOT ?>images/clients/2.jpg" alt=""></a></li>
+                        <li><a href="#"><img href="<?= ROOT ?>images/clients/3.jpg" alt=""></a></li>
+                        <li><a href="#"><img href="<?= ROOT ?>images/clients/4.jpg" alt=""></a></li>
+                        <li><a href="#"><img href="<?= ROOT ?>images/clients/2.jpg" alt=""></a></li>
                     </ul>
                 </div>
 
@@ -734,7 +734,7 @@
                             <div class="row clearfix" style="display: flex;justify-content: space-between;">
                                 <div class="column">
                                     <div class="footer-widget about-widget">
-                                        <div class="logo"><a href="index.html"><img src="images/logo-2.png" class="img-responsive" alt=""></a></div>
+                                        <div class="logo"><a href="index.html"><img href="<?= ROOT ?>images/logo-2.png" class="img-responsive" alt=""></a></div>
                                         <div class="text">
                                             <p>Lorem ipsum dolor sit amet, eu me.</p>
                                         </div>
@@ -797,13 +797,13 @@
     <div class="scroll-to-top scroll-to-target" data-target=".main-header"><span class="fa fa-long-arrow-up"></span></div>
     <!-- /.modal -->
 
-    <script src="js/jquery.js"></script>
-    <script src="js/revolution.min.js"></script>
-    <script src="js/jquery.fancybox.pack.js"></script>
-    <script src="js/jquery.fancybox-media.js"></script>
-    <script src="js/owl.js"></script>
-    <script src="js/wow.js"></script>
-    <script src="js/script.js"></script>
+    <script href="<?= ROOT ?>js/jquery.js"></script>
+    <script href="<?= ROOT ?>js/revolution.min.js"></script>
+    <script href="<?= ROOT ?>js/jquery.fancybox.pack.js"></script>
+    <script href="<?= ROOT ?>js/jquery.fancybox-media.js"></script>
+    <script href="<?= ROOT ?>js/owl.js"></script>
+    <script href="<?= ROOT ?>js/wow.js"></script>
+    <script href="<?= ROOT ?>js/script.js"></script>
 </body>
 
 </html>
