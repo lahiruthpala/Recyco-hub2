@@ -105,7 +105,7 @@
                                 <button type="submit"
                                     class="button js-button button--raised js-ripple-effect button--colored-teal"
                                     style="border-radius: 99px; margin: 0 20px 20px 20px background-color: aqua;">
-                                    Get the code
+                                            
                                 </button>
                             </div>
                         </div>

@@ -12,7 +12,7 @@ class Automation extends Controller
             $data = $pickup->where("Status", "Pending");
             if ($data != null) {
                 $groupedData = array();
-                foreach ($data as $request) {
+                foreach ($data as $request){
                     $sectorId = $request->sector_ID;
                     $weight = $request->weight;
                     if (!isset($groupedData[$sectorId])) {

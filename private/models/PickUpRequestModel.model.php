@@ -21,6 +21,8 @@ class PickUpRequestModel extends Model
         'longitude',
         'waste_type',
         'Requested_Date',
+        'Collection_Date',
+        'Note',
         'Completed_Date',
         'Review',
         'Complaints',

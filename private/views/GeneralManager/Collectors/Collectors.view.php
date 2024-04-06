@@ -24,7 +24,7 @@
                             <?= $row->Collector_Name ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->sector_ID ?? '' ?>
+                            <?= $row->SectorName ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding: 0;max-height: 150px;">
                             <canvas class="miniChart" width="130" height="40" data-chart-data="<?= $result ?>"></canvas>

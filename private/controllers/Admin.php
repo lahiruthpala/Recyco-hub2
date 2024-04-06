@@ -17,7 +17,7 @@ class Admin extends Controller
 
     function index()
     {
-        $this->view('Admin/AdminHome');
+        $this->view('Admin/AccountManagement');
     }
 
     function AccountManagement()
@@ -130,7 +130,51 @@ class Admin extends Controller
     function Automation(){
         $machine = $this->load_model("AutomationModel");
         $data = $machine->findAll(1,10,"Automation_ID");
+        foreach($data as $key=>$value){
+            if($data[$key]->day_of_the_week != '*'){
+                $data[$key]->Repeat = 'Weekly';
+            }
+            if($data[$key]->day_of_the_month != '*'){
+                $data[$key]->Repeat = 'Monthly';
+            }
+            if($data[$key]->month != '*'){
+                $data[$key]->Repeat = 'Yearly';
+            }
+            if($data[$key]->day_of_the_week == '*' && $data[$key]->day_of_the_month == '*'){
+                $data[$key]->Repeat = 'Daily';
+            }
+        }
         $this->view("Admin/SortingCenter/Automation", ['rows'=>$data]);
+    }
+
+    function UpdateAutomation($id){
+        $machine = $this->load_model('AutomationModel');
+        $data = $machine->first('Automation_ID',$id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_POST['Creator_ID'] = Auth::getUser_ID();
+            $_POST['Status'] = 'Active';
+            $Code = $_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
+            shell_exec("crontab -l | grep -v \"". $data->Code ."\" | crontab -");
+            shell_exec("(crontab -l; echo \"". $Code ."\") | crontab -");
+            $machine->update($_POST['Automation_ID'],$_POST);
+            message(['Automation Updated successfully','success']);
+            $this->redirect('Admin/Automation');
+        }
+        switch (true) {
+            case $data->day_of_the_week != '*':
+                $data->Repeat = 'Weekly';
+                break;
+            case $data->day_of_the_month != '*':
+                $data->Repeat = 'Monthly';
+                break;
+            case $data->month != '*':
+                $data->Repeat = 'Yearly';
+                break;
+            case $data->day_of_the_week == '*' && $data->day_of_the_month == '*':
+                $data->Repeat = 'Daily';
+                break;
+        }
+        $this->view("Admin/SortingCenter/UpdateAutomation", ['data'=>$data]);
     }
 }
 ?>
