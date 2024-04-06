@@ -85,7 +85,7 @@ $this->view('include/head');
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <div style="margin-right: 115px">
+                                            <div style="margin-right: 100px">
                                                 <div style="display: flex; ">
                                                     <h6>Minutes</h6>
                                                     <h6 style="margin-left:50px;">
@@ -234,7 +234,7 @@ $this->view('include/head');
 
                                     <button type="submit"
                                         class="button js-button button--raised js-ripple-effect button--colored-green"
-                                        style="border-radius: 99px; margin-right: auto;margin-left: 83.5%;background-color: green;color: white;">Create</button>
+                                        style="border-radius: 99px; margin-right: auto;margin-left: 83.5%;background-color: green;color: white;">Update</button>
                                 </form>
                             </div>
 

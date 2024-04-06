@@ -156,9 +156,9 @@ class Admin extends Controller
             $Code = $_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
             shell_exec("crontab -l | grep -v \"". $data->Code ."\" | crontab -");
             shell_exec("(crontab -l; echo \"". $Code ."\") | crontab -");
-            $machine->update($_POST['Automation_ID'],$_POST);
+            $machine->update($id,$_POST,'Automation_ID');
             message(['Automation Updated successfully','success']);
-            $this->redirect('Admin/Automation');
+            $this->redirect('Admin/SortingCenter');
         }
         switch (true) {
             case $data->day_of_the_week != '*':
