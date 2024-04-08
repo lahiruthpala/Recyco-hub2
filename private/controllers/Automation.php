@@ -14,7 +14,7 @@ class Automation extends Controller
                 $groupedData = array();
                 foreach ($data as $request){
                     $sectorId = $request->sector_ID;
-                    $weight = $request->weight;
+                    $Weight = $request->Weight;
                     if (!isset($groupedData[$sectorId])) {
                         $groupedData[$sectorId] = array(
                             'total_weight' => 0,
@@ -22,7 +22,7 @@ class Automation extends Controller
                         );
                     }
 
-                    $groupedData[$sectorId]['total_weight'] += $weight;
+                    $groupedData[$sectorId]['total_weight'] += $Weight;
                     $groupedData[$sectorId]['requests'][] = $request->Pickup_ID;
                 }
 
