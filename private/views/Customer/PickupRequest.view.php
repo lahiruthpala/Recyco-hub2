@@ -22,8 +22,8 @@
                 <option value="polythene">polythene</option>
             </select>
 
-            <label for="weight">Quantity:</label>
-            <input type="number" id="weight" name="weight" placeholder="Enter quantity" required>
+            <label for="Weight">Quantity:</label>
+            <input type="number" id="Weight" name="Weight" placeholder="Enter quantity" required>
             <input type="text" value="" id="latitude" name="latitude" hidden>
             <input type="text" value="" id="longitude" name="longitude" hidden>
 
@@ -33,7 +33,7 @@
             <label for="pickup_address">Address:</label>
             <input type="text" id="pickup_address" name="pickup_address" required>
 
-            <label for="Note">Address:</label>
+            <label for="Note">Note:</label>
             <input type="text" id="Note" name="Note" required>
         </div>
         <div id="map" style="height: 500px"></div>

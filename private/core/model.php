@@ -99,6 +99,8 @@ class Model extends Database
 
 		$data['id'] = $id;
 		$query = "update $this->table set $str where $column = :id";
+		//var_dump($query, $data);
+		//die;
 		// echo $query;
 		return $this->query($query, $data);
 	}

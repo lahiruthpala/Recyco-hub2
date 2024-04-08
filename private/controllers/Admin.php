@@ -119,7 +119,9 @@ class Admin extends Controller
             message(['Machine Added successfully','success']);
             $this->redirect('Admin/SortingCenter');
         }
-        $this->view("Admin/SortingCenter/AddNewMachine");
+        $watetype = $this->load_model("WasteType");
+        $waste = $watetype->findAll(1, 10, "Waste_ID");
+        $this->view("Admin/SortingCenter/AddNewMachine", ['waste' => $waste]);
     }
 
     function SortingCenterInfo(){
@@ -175,6 +177,29 @@ class Admin extends Controller
                 break;
         }
         $this->view("Admin/SortingCenter/UpdateAutomation", ['data'=>$data]);
+    }
+
+    function SectorsView(){
+        $sectors = $this->load_model("Sectors");
+        $data = $sectors->query("SELECT S.sector_ID,S.SectorName,S.latitude,S.longitude,S.radius,COALESCE(GROUP_CONCAT(C.Collector_ID ORDER BY C.Collector_ID ASC SEPARATOR ','), '') AS Collector_ID FROM sectors S Left JOIN collector_details C ON C.sector_ID=S.sector_ID GROUP BY S.sector_ID;");
+        $this->view("Admin/SortingCenter/Sectors", ['rows'=>$data]);
+    }
+
+    function NewSector(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sectors = $this->load_model('Sectors');
+            $sectors->insert($_POST);
+            message(['Sector Added successfully','success']);
+            $this->redirect('Admin/SortingCenter');
+        }
+        $this->view("Admin/SortingCenter/NewSector");
+    }
+
+    function MachineRemove($id){
+        $machine = $this->load_model('MachineModel');
+        $machine->delete($id,'Machine_ID');
+        message(['Machine Removed successfully','success']);
+        $this->redirect('Admin/SortingCenter');
     }
 }
 ?>

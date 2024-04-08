@@ -12,9 +12,11 @@ class InventoryModel extends Model
     protected $allowedColumns = [
         'Inventory_ID',
         'Status',
-        'Type',
+        'waste_type',
         'Weight',
-        'Batch_ID'
+        'Weight_After_Sorting',
+        'Batch_ID',
+        'Sorting_Job_ID'
     ];
     protected $table = "inventory";
 

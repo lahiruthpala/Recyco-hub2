@@ -7,13 +7,15 @@
         <div class="layout js-layout layout--fixed-header is-small-screen">
             <?php $this->view('include/CollectorHeader') ?>
             <main class="layout__content">
-                <div class="grid ui-cards" style="display: flex;flex-direction: row;flex-wrap: wrap; justify-content: center;">
+                <div class="grid ui-cards"
+                    style="display: flex;flex-direction: row;flex-wrap: wrap; justify-content: center;">
                     <?php
                     if (is_array($rows) && !empty($rows)):
 
                         foreach ($rows as $pickup):
                             ?>
-                            <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone" style="min-width: 350px;">
+                            <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone"
+                                style="min-width: 350px;">
                                 <div class="card shadow--2dp">
                                     <img src="<?= ROOT ?>/images/trash-truck.png"
                                         style="width: 100px; height: 100px; display: block; margin: 0 auto;">
@@ -21,31 +23,31 @@
                                         <h4 style="color:black">Pickup Details</h4>
                                         <table class="data-table js-data-table" style="width: 100%;">
                                             <tbody>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td class="data-table__cell--non-numeric">Job No.</td>
                                                     <td style="text-align: left;">
                                                         <?= $pickup->Job_ID ?>
                                                     </td>
-                                                </tr>
-                                                <tr>
+                                                </tr> -->
+                                                <!-- <tr>
                                                     <td class="data-table__cell--non-numeric">Request No.</td>
                                                     <td style="text-align: left;">
                                                         <?= $pickup->Pickup_ID ?>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
 
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Weight</td>
                                                     <td style="text-align: left;">
-                                                        <?= $pickup->weight ?>
+                                                        <?= $pickup->Weight ?>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td class="data-table__cell--non-numeric">Inventory_ID</td>
                                                     <td style="text-align: left;">
-                                                        <?= $pickup->InventoryId ?? "Not yet Collected"; ?>
+                                                        <?= $pickup->Inventory_ID ?? "Not yet Collected"; ?>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Job status</td>
                                                     <td class="data-table__cell--non-numeric">
@@ -83,26 +85,40 @@
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Completed Date</td>
                                                     <td style="text-align: left;">
-                                                        <?= $pickup->Completed_Date ?? "Not Completed";?>
+                                                        <?= $pickup->Completed_Date ?? "Not Completed"; ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="card__actions">
-                                        <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
-                                            href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?=$pickup->latitude ?? ''?>,<?=$pickup->longitude ?? ''?>&travelmode=driving"
-                                            target="_blank">
-                                            Show on map
-                                        </a>
-                                    </div>
                                     <?php if ($pickup->Status == 'Assigned'): ?>
                                         <div class="card__actions">
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>"
+                                                href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted"
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Accept</a>
-                                            <a style="background-color: #ff5746;color:white;" class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/jobs/<?= $pickup->InventoryId ?>/Rejected/<?= $pickup->Pickup_ID ?>">Reject</a>
+                                            <a style="background-color: #ff5746;color:white;"
+                                                class="button js-button button--raised js-ripple-effect button--colored-green"
+                                                href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted">Reject</a>
+                                            <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
+                                                href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
+                                                target="_blank">
+                                                Show on map
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($pickup->Status == 'Accepted'): ?>
+                                        <div class="card__actions">
+                                            <a class="button js-button button--raised js-ripple-effect button--colored-green"
+                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>"
+                                                style="margin-right: 10px;background-color: #027855; color:white;">Collect</a>
+                                            <a style="background-color: #ff5746;color:white;"
+                                                class="button js-button button--raised js-ripple-effect button--colored-green"
+                                                href="<?= ROOT ?>/collector/jobs/<?= $pickup->Inventory_ID ?>/Rejected/<?= $pickup->Pickup_ID ?>">Decline</a>
+                                            <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
+                                                href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
+                                                target="_blank">
+                                                Show on map
+                                            </a>
                                         </div>
                                     <?php endif; ?>
                                 </div>

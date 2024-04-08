@@ -1,75 +1,157 @@
-<?php $this->view('include/head') ?>
+<?php
+global $activeTab;
+$activeTab = 3;
+$this->view('include/head');
+?>
 
 <body>
-    <div class="layout js-layout layout--fixed-header">
+    <div class="layout js-layout layout--fixed-header is-small-screen">
+        <header>
+            <?php $this->view('include/Adminheader') ?>
+        </header>
+        <main class="layout__content">
+            <div class="grid grid--no-spacing dashboard">
+                <div style="width:100%">
+                    <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
+                        <div class="card shadow--2dp">
+                            <div class="card__supporting-text no-padding"
+                                style="margin: 20px; width: 94.7%;color:black;border: solid 1px green;border-radius: 15px;">
+                                <form method="POST" action="<?= ROOT ?>/collector/store/<?= $data[0]->Pickup_ID ?? '' ?>/Accepted/<?= $data[0]->Job_ID ?? '' ?>">
+                                    <div class="form__article">
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <div style="margin-left: 30px">
+                                                <div style="display: flex; ">
+                                                    <h6>Customer Name</h6>
+                                                    <h6 style="margin-left:50px;">
+                                                        <input type="text" placeholder="Enter the Name" id="Name"
+                                                            name="Name" class="textfield__input"
+                                                            value="<?= $data[0]->FirstName . " " . $data[0]->LastName ?>"
+                                                            disabled>
+                                                        <label class="textfield__error" id="NameError"
+                                                            for="Name"></label>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div style="margin-right:150px">
+                                                <div style="margin-left: 30px">
+                                                    <div style="display: flex;">
+                                                        <h6>Waste Type</h6>
+                                                        <h6 style="margin-left:39px;margin-top: 16px;">
+                                                            <div class="textfield js-textfield textfield--floating-label get-select full-size dropdown2"
+                                                                style="display: flex; padding:0">
+                                                                <input class="textfield__input" type="text"
+                                                                    style="padding-left: 16px;width: 112px;"
+                                                                    value="<?= $data[0]->waste_type ?>" id="waste_type"
+                                                                    name="waste_type" readonly tabIndex="-1" />
+                                                                <ul class="menu menu--bottom-left js-menu dark_dropdown"
+                                                                    for="waste_type">
+                                                                    <?php foreach ($waste as $w): ?>
+                                                                        <li class="menu__item"
+                                                                            onclick="SetForm('waste_type','<?= $w->Name ?>')">
+                                                                            <?= $w->Name ?>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                </ul>
 
-        <main class="layout__content color--grey-100">
-            <div class="card shadow--2dp employer-form" action="#">
-                <div class="card__title">
-                    <h2>Please complete the form</h2>
-                    <div class="card__subtitle"></div>
-                </div>
-
-                <div class="card__supporting-text">
-                    <?php
-
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                        header("Location: " . ROOT . "collector/index"); // Change "/redirect-page" to the appropriate URL
-                        exit();
-                    }
-                    ?>
-                    <form
-                        action="<?= ROOT ?>/collector/store/<?= $data->Pickup_ID ?? '' ?>/Accepted/<?= $data->Job_ID ?? '' ?>"
-                        method="POST" class="form">
-                        <div class="form__article">
-                            <h3>Inventory Details</h3>
-                            <div class="grid">
-                                <div class="cell cell--6-col textfield js-textfield textfield--floating-label"
-                                    style="display: flex; align-items: center;">
-                                    <input class="textfield__input" type="text" id="inventoryId" value=""
-                                        name="InventoryId" readonly>
-                                    <button type="button" onclick="getInvenId()"
-                                        class="button js-button button--raised js-ripple-effect button--colored-green"
-                                        style="margin-left: 400px; ">scan</button>
-                                </div>
-                            </div>
-                            <div class="form__article">
-                                <div class="grid">
-                                    <div
-                                        class="cell cell--6-col textfield js-textfield textfield--floating-label">
-                                        <input class="textfield__input" type="text" value=<?= $data->waste_type ?>
-                                            id="wasteType" name="wasteType" />
-                                        <label class="textfield__label" for="position">waste Types</label>
-                                    </div>
-
-                                    <div class="grid">
-                                        <div
-                                            class="cell cell--6-col textfield js-textfield textfield--floating-label">
-                                            <input class="textfield__input" type="text" value=<?= $data->weight ?>
-                                                id="weight" name="weight" />
-                                            <label class="textfield__label" for="position">Weight</label>
+                                                                <label for="Repeat">
+                                                                    <i
+                                                                        class="icon-toggle__label material-icons">arrow_drop_down</i>
+                                                                </label>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <div style="margin-left: 30px">
+                                                <div style="display: flex; ">
+                                                    <h6>Weight</h6>
+                                                    <h6 style="margin-left:50px;">
+                                                        <input type="text" placeholder="Enter the Weight" id="Weight"
+                                                            name="Weight" class="textfield__input"
+                                                            value="<?= $data[0]->Weight ?>">
+                                                        <label class="textfield__error" id="WeightError"
+                                                            for="Weight"></label>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div style="margin-right: 100px">
+                                                <div style="display: flex; margin-right: 60px;">
+                                                    <h6>Note</h6>
+                                                    <h6 style="margin-left:50px;">
+                                                        <input type="text" placeholder="Enter the Note" id="Note"
+                                                            name="Note" class="textfield__input"
+                                                            value="<?= $data[0]->Note ?>" readonly>
+                                                        <label class="textfield__error" id="NoteError"
+                                                            for="Note"></label>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="margin-left: 30px; display: flex;justify-content: space-between;">
+                                            <div style="display: flex; ">
+                                                <h6>pickup_address</h6>
+                                                <h6 style="margin-left:50px;">
+                                                    <input type="text" placeholder="Enter the pickup_address"
+                                                        id="pickup_address" name="pickup_address"
+                                                        class="textfield__input"
+                                                        value="<?= $data[0]->pickup_address ?>">
+                                                    <label class="textfield__error" id="pickup_addressError"
+                                                        for="pickup_address"></label>
+                                                </h6>
+                                            </div>
+                                            <div style="display: flex; margin-right: 105px;" id="InventoryIDdiv">
+                                                <h6>Inventory ID</h6>
+                                                <h6 style="margin-left:50px;">
+                                                    <input type="text" placeholder="Enter the Inventory_ID"
+                                                        id="Inventory_ID" name="Inventory_ID"
+                                                        class="textfield__input" value="None" readonly>
+                                                    <label class="textfield__error" id="Inventory_IDError"
+                                                        for="Inventory_ID"></label>
+                                                </h6>
+                                            </div>
+                                            <div style="margin-right: 242px; display: none" id="video">
+                                                <video style="width: 200px;" id="preview"></video>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form__action">
-                                        <label class="checkbox js-checkbox js-ripple-effect"
-                                            for="isInfoReliable">
-                                            <input type="checkbox" id="isInfoReliable" class="checkbox__input"
-                                                required />
-                                            <span class="checkbox__label">Entered information is reliable</span>
-                                        </label>
-                                        <button id="submit_button"
-                                            class="button js-button button--raised button--colored button--accent"
-                                            style="position: absolute; bottom: 0; right: 0; margin: 20px;">
-                                            Submit
-                                        </button>
+                                    <div style="display: flex;justify-content: end;margin-right: 74px;">
+                                        <button type="button" onclick="getInvenId()"
+                                            class="button js-button button--raised js-ripple-effect button--colored-green"
+                                            style="border-radius: 99px;background-color: gray;color: white;">Scan</button>
+                                        <button type="submit"
+                                            class="button js-button button--raised js-ripple-effect button--colored-green"
+                                            style="border-radius: 99px;background-color: green;color: white;">Collect</button>
                                     </div>
-                    </form>
-                    <video id="preview" style="padding: 100px; transform: scaleX(-1);max-width: 400px;max-height: 400px;""></video>
+                                </form>
+                            </div>
+
+                            <script>
+                                function SetForm(selection, form) {
+                                    document.getElementById(selection).value = form;
+                                    // Get all elements with class "userform"
+                                    var userFormDivs = document.getElementsByClassName("userform");
+
+                                    // Iterate through the collection and set display to "none"
+                                    for (var i = 0; i < userFormDivs.length; i++) {
+                                        userFormDivs[i].style.display = "none";
+                                    }
+                                }
+
+                            </script>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </main>
+
     </div>
+    <script src="<?= ROOT ?>/js/material.min.js"></script>
+    <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <?php $this->view('include/footer') ?>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
         let isScannerActive = false;
@@ -78,6 +160,8 @@
         });
 
         function getInvenId() {
+            document.getElementById('video').style.display = 'block';
+            document.getElementById('InventoryIDdiv').style.display = 'none';
             Instascan.Camera.getCameras().then(function (cameras) {
                 if (cameras.length > 0) {
                     scanner.start(cameras[0]);
@@ -89,7 +173,10 @@
                 console.error(e);
             });
             scanner.addListener('scan', function (content) {
-                document.getElementById('inventoryId').value = content;
+                console.log(content);
+                document.getElementById('Inventory_ID').value = content;
+                document.getElementById('video').style.display = 'none';
+                document.getElementById('InventoryIDdiv').style.display = 'flex';
             });
         }
     </script>

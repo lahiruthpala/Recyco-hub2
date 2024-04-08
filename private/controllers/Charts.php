@@ -24,6 +24,9 @@ class Charts extends Controller
         $data = array();
         $Sorting_job_model = $this->load_model("SortingJobModel");
         $data = $Sorting_job_model->query("SELECT DATE(Start_Date) as Date, COUNT(*) AS count FROM sorting_job WHERE Status = 'Sorted' GROUP BY DATE(Start_Date)");
+        if($data == null){
+            $data = [];
+        }
         $this->view("Charts/SortingRate", $data);
     }
 
@@ -38,10 +41,10 @@ class Charts extends Controller
     {
         $items = $this->load_model("SortedInventory");
         $data = $items->query("
-        SELECT Type, SUM(Weight) AS total_weight
+        SELECT waste_type, SUM(Weight) AS total_weight
 FROM inventory
-WHERE Type <> 'Sold'
-GROUP BY Type;
+WHERE waste_type <> 'Sold'
+GROUP BY waste_type;
 ", $data = []);
         $this->view('Charts/SortedItems', [$data]);
     }

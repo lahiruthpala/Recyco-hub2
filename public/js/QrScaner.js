@@ -42,14 +42,16 @@ function callVerifyInventory(content) {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Parse the response (assuming it's a JSON response)
+                console.log(xhr.responseText);
                 var response = JSON.parse(xhr.responseText);
 
                 // Check if the inventory verification was successful
-                console.log(response);
+                console.log('Response',response);
                 if (response.success) {
                     // If successful, update the HTML element with the scanned content
                     inventoryIds.push(content);
-                    document.getElementById('inventory').innerHTML += "<li class='list__item' value=" + content + ">" + content + "</li>";
+                    document.getElementById('inventory').innerHTML += "<li class='list__item' value=" + content + " style='color: black;'>" + content + "</li>";
+                    document.getElementById('WasteType').value = response.WasteType;
                 } else {
                     alert('Invalied QR code');
                 }
@@ -64,7 +66,7 @@ function callVerifyInventory(content) {
 }
 
 function CheckInventoryAlreadyAdded(id) {
-    console.log("--->>>>>>>>", id)
+    console.log("AlreadyAdded", id)
     var inventoryList = document.getElementById('inventory');
     var inventoryArray = Array.from(inventoryList.getElementsByTagName('li')).map(li => li.innerHTML);
     console.log("--->>>>>>>>", inventoryArray)
