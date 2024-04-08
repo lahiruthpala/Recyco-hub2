@@ -2,9 +2,9 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--header">Job_ID</th>
+                <th class="data-table__cell--header">Machine Type</th>
+                <th class="data-table__cell--header">Waste Type</th>
                 <th class="data-table__cell--header">Start_Date</th>
-                <th class="data-table__cell--header">Assign_Line</th>
                 <th class="data-table__cell--header">Status</th>
             </tr>
         </thead>
@@ -16,13 +16,13 @@
                     ?>
                     <tr onclick="loadScreen('SortingManager/SortingJobProgress', '<?= $row->Sorting_Job_ID ?>')">
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->Sorting_Job_ID ?>
+                            <?= $row->Machine_Type ?>
+                        </td>
+                        <td class="data-table__cell--non-numeric">
+                            <?= $row->waste_type ?>
                         </td>
                         <td class="data-table__cell--non-numeric">
                             <?= $row->Start_Date ?>
-                        </td>
-                        <td class="data-table__cell--non-numeric">
-                            <?= $row->Line_No ?>
                         </td>
                         <td class="data-table__cell--non-numeric">
                             <span class="label label--mini color--green">

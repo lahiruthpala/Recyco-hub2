@@ -8,6 +8,7 @@
                 <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
                 <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
                 <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
+                <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
             </tr>
         </thead>
         <tbody>
@@ -48,37 +49,24 @@
                             ?>
                             <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                                 <a class="button js-button button--raised js-ripple-effect button--colored-green"
+                                    href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>/Assigned"
+                                    style="margin-right: 10px;">View</a>
+                            </td>
+
+                            <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
+                                <a class="button js-button button--raised js-ripple-effect button--colored-green"
                                     href="<?= ROOT ?>/collector/statusupdate/<?= $row->Job_ID ?>/Accepted"
                                     style="margin-right: 10px;">Accept</a>
-
                             </td>
                             <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                                 <a class="button js-button button--raised js-ripple-effect button--colored-green"
                                     href="<?= ROOT ?>/collector/statusupdate/<?= $row->Job_ID ?>/Rejected"
                                     style="margin-right: 10px;">Reject</a>
-
                             </td>
 
                             <?php
                         }
                         ?>
-
-                        <?php
-
-                        if ($row->Status == 'Accepted') {
-                            ?>
-                            <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
-                                <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                    href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>" style="margin-right: 10px;">View</a>
-
-                            </td>
-
-
-                            <?php
-                        }
-                        ?>
-
-
                     </tr>
 
                     <?php

@@ -22,7 +22,7 @@ class SortingManager extends Controller
 	function PendingSortingJobs()
 	{
 		$jobs = $this->load_model('SortingJobModel');
-		$data = $jobs->where('Status', 'In_Progress');
+		$data = $jobs->query("SELECT S.*, M.waste_type, M.Machine_Type FROM sorting_job S JOIN machine M ON S.Machine_ID=M.Machine_ID WHERE S.Status='In_Progress'");
 		$this->view('SortingManager/SortingJobs', ['rows' => $data]);
 	}
 	function SortedJobs()
@@ -34,13 +34,11 @@ class SortingManager extends Controller
 
 	function CreateSortingJobs()
 	{
-		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$inventory = explode(',', $_POST['inventoryIds']);
-			if(password_verify($_POST['pwd'], Auth::getpwd())) {
+			if (password_verify($_POST['pwd'], Auth::getpwd())) {
 				$Inventory_Model = $this->load_model('InventoryModel');
 				$SortingJob_Model = $this->load_model('SortingJobModel');
-				$_POST['Line_No'] = $_POST['Machine_ID'];
 				$data = $SortingJob_Model->insert($_POST);
 				foreach ($inventory as $row) {
 					$arr['Status'] = "Sorting";
@@ -67,8 +65,8 @@ class SortingManager extends Controller
 		header('Content-Type: application/json');
 		$inventory = $inventory->where("Inventory_ID", $id)[0];
 		if ($inventory != null) {
-			if ($inventory->Status == "In_whorehouse") {
-				echo json_encode(['success' => true]);
+			if ($inventory->Status == "In_Warehouse") {
+				echo json_encode(['success' => true, 'WasteType' => $inventory->waste_type]);
 			} else {
 				echo json_encode(['success' => false]);
 			}
@@ -77,25 +75,25 @@ class SortingManager extends Controller
 		}
 	}
 
-	function SortedItems()
-	{
-		$inventory = $this->load_model('InventoryModel');
-		$data = $inventory->query("
-        SELECT Type, SUM(Weight) AS total_weight
-        FROM inventory
-        GROUP BY Type;", $data = []);
-		$this->view('Charts/SortedItems', [$data]);
-	}
+	//function SortedItems()
+	//{
+	//	$inventory = $this->load_model('InventoryModel');
+	//	$data = $inventory->query("
+	//    SELECT Type, SUM(Weight) AS total_weight
+	//    FROM inventory
+	//    GROUP BY Type;", $data = []);
+	//	$this->view('Charts/SortedItems', [$data]);
+	//}
 
-	function SortingEfficiency()
-	{
-		$inventory = $this->load_model('InventoryModel');
-		$data = $inventory->query("
-        SELECT Type, SUM(Weight) AS total_weight
-        FROM inventory
-        GROUP BY Type;", $data = []);
-		$this->view('Charts/SortingEfficiency', [$data]);
-	}
+	//function SortingEfficiency()
+	//{
+	//	$inventory = $this->load_model('InventoryModel');
+	//	$data = $inventory->query("
+	//    SELECT Type, SUM(Weight) AS total_weight
+	//    FROM inventory
+	//    GROUP BY Type;", $data = []);
+	//	$this->view('Charts/SortingEfficiency', [$data]);
+	//}
 
 	function SortingRate()
 	{
@@ -116,7 +114,7 @@ class SortingManager extends Controller
 			echo "ID parameter is not set in the URL.";
 		}
 		$sorting = $this->load_model("SortingJobModel");
-		$data = $sorting->first("Sorting_Job_ID", $id);
+		$data = $sorting->query("SELECT S.*, M.waste_type, M.Machine_Type FROM sorting_job S JOIN machine M ON S.Machine_ID=M.Machine_ID WHERE S.Sorting_Job_ID='" . $id . "'")[0];
 		$inventories = $this->load_model('InventoryModel');
 		$data->inventories = $inventories->where("Sorting_Job_ID", $id);
 		$data->statusint = statustoint($data->Status);
@@ -165,5 +163,11 @@ class SortingManager extends Controller
 		$customer = $customer->query($query);
 		//var_dump($query, $User_ID);
 		$data = $inventory->update($_POST["Inventory_ID"], $_POST, "Inventory_ID");
+	}
+
+	function SortedToInventory()
+	{
+		$inventory = $this->load_model("InventoryModel");
+		$inventory->update($_POST["Inventory_ID"], ["Status" => "In_Warehouse"], "Inventory_ID");
 	}
 }

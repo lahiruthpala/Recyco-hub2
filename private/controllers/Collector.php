@@ -37,11 +37,29 @@ class collector extends Controller
         $this->view('Collector/Jobs/AcceptedJobs', ['rows' => $pickup]);
     }
 
+    function AcceptJob($jobid, $id, $status)
+    {
+        $pickup = $this->load_model('PickUpRequestModel');
+        if ($status == 'Accepted') {
+            $pickup->update($id, ['Status' => $status], 'Pickup_ID');
+        }
+        if ($status == 'Rejected') {
+            $pickup->update($id, ['Status' => $status], 'Pickup_ID');
+        }
+        $temp = $pickup->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $jobid . "' AND Status = 'Assigned'");
+        if ($temp == null) {
+            $pickupjob = $this->load_model('PickupJobs');
+            $pickup = $pickupjob->query("UPDATE pickup_jobs SET Status = 'Accepted' WHERE Job_ID = '" . $jobid . "'");
+            $this->redirect('collector');
+        }
+        $this->redirect('collector/details/' . $jobid . '/Assigned');
+    }
+
     function FinishedJobs()
     {
         $pickup = $this->load_model('PickupJobs');
         // Auth::getCollector_ID
-        $pickup = $pickup->query("SELECT * FROM pickup_jobs WHERE Collector_ID='" . Auth::getUser_ID() . "'AND Status='Finished'");
+        $pickup = $pickup->query("SELECT * FROM pickup_jobs WHERE Collector_ID='" . Auth::getUser_ID() . "' AND (Status='Completed' OR Status='Finished')");
         $this->view('Collector/Jobs/FinishedJobs', ['rows' => $pickup]);
     }
 
@@ -52,10 +70,10 @@ class collector extends Controller
         $this->view('pickup_table', ['rows' => $data]);
     }
 
-    function details($id)
+    function details($id, $Status)
     {
         $user = $this->load_model('PickUpRequestModel');
-        $data = $user->where('Job_ID', $id);
+        $data = $user->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $id . "' AND Status = '" . $Status . "'");
         $this->view('Collector/RequestDetails', ['rows' => $data]);
     }
 
@@ -72,16 +90,11 @@ class collector extends Controller
     function jobs($id, $type, $pid)
     {
         $pickup = $this->load_model('PickUpRequestModel');
-
-
-
         // Get pickup requests with the specified ID
-
-
         // Auth::getCollector_ID
         $arr = [];
         $arr['jobstatus'] = $type;
-        $data = $pickup->Update($id, $arr, "InventoryId");
+        $data = $pickup->Update($id, $arr, "Inventory_ID");
         $this->details($pid);
     }
 
@@ -118,7 +131,7 @@ class collector extends Controller
         $this->start($pid);
 
     }
-    function store($id, $type, $pid)
+    function store($id, $type, $jobid)
     {
         $in = $this->load_model('PickUpRequestModel');
         $inventory = $this->load_model('InventoryModel');
@@ -127,35 +140,28 @@ class collector extends Controller
         $invenarray = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Assuming you have the relevant validation and sanitation in place
-            $wasteType = $_POST['wasteType'];
-            $weight = $_POST['weight'];
-            $InventoryId = $_POST['InventoryId'];
-            $current_timestamp = time();
-
-            // Update the database using the form values
-            $arr = [
-                'Status' => $type,
-                'waste_type' => $wasteType,
-                'weight' => $weight,
-                'InventoryId' => $InventoryId,
-                'Completed_Date' => date('Y-m-d H:i:s', $current_timestamp),
-            ];
-            $invenarray = [
-                'Status' => 'Collected',
-                'Type' => $wasteType,
-                'Weight' => $weight,
-                ];
-            $data = $inventory->update($_POST['InventoryId'], $invenarray, "Inventory_ID");
-            $data = $in->update($id, $arr, "Pickup_ID");
-            message(['Successfully Updated the pickup request','success']);
-            $this->redirect('collector/details/' . $pid);
+            $_POST['Status'] = "Collected";
+            $_POST['Completed_Date'] = date('Y-m-d H:i:s');
+            $data = $inventory->update($_POST['Inventory_ID'], $_POST, "Inventory_ID");
+            $data = $in->update($id, $_POST, "Pickup_ID");
+            $temp = $in->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $jobid . "' AND Status = 'Accepted'");
+            message(['Successfully Updated the pickup request', 'success']);
+            if ($temp == null) {
+                $pickupjob = $this->load_model('PickupJobs');
+                $pickup = $pickupjob->query("UPDATE pickup_jobs SET Status = 'Completed' WHERE Job_ID = '" . $jobid . "'");
+                $this->redirect('collector');
+                return;
+            }
+            $this->redirect('collector/details/' . $jobid . '/Accepted');
         }
     }
     function form($id)
     {
         $user = $this->load_model('PickUpRequestModel');
-        $data = $user->first('Pickup_ID', $id);
-        $this->view('Collector/form', ['data' => $data]);
+        $data = $user->query("SELECT * FROM pickup_request P JOIN reg_users U ON P.Customer_ID = U.User_ID WHERE P.Pickup_ID ='" . $id . "'");
+        $watetype = $this->load_model("WasteType");
+        $waste = $watetype->findAll(1, 10, "Waste_ID");
+        $this->view('Collector/form', ['data' => $data, 'waste' => $waste]);
     }
 
     function profile()
@@ -173,8 +179,6 @@ class collector extends Controller
         $data->Email = $user->Email;
         $data->Address = $user->Address;
         $this->view('Collector/profile', ['row' => $data]);
-
-
 
     }
     function profileedit($cId)
@@ -244,7 +248,7 @@ class collector extends Controller
                 var_dump($data);
                 die;
             }
-        }else{
+        } else {
             echo "No pending pickups";
         }
     }

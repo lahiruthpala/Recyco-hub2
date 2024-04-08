@@ -6,7 +6,6 @@
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
         <div style="display: flex; margin-right:auto; gap:30px">
-            <a href="<?= ROOT ?>/Admin/Dashboard" <?= setActiveTab(1) ?>>Dashboard</a>
             <a href="<?= ROOT ?>/Admin/AccountManagement" <?= setActiveTab(2) ?>>Account Management</a>
             <a href="<?= ROOT ?>/Admin/SortingCenter" <?= setActiveTab(3) ?>>Sorting Center Management</a>
             <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4) ?>>Complaint Management</a>

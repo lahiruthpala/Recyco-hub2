@@ -17,7 +17,7 @@ class Admin extends Controller
 
     function index()
     {
-        $this->view('Admin/AdminHome');
+        $this->view('Admin/AccountManagement');
     }
 
     function AccountManagement()
@@ -119,7 +119,9 @@ class Admin extends Controller
             message(['Machine Added successfully','success']);
             $this->redirect('Admin/SortingCenter');
         }
-        $this->view("Admin/SortingCenter/AddNewMachine");
+        $watetype = $this->load_model("WasteType");
+        $waste = $watetype->findAll(1, 10, "Waste_ID");
+        $this->view("Admin/SortingCenter/AddNewMachine", ['waste' => $waste]);
     }
 
     function SortingCenterInfo(){
@@ -130,7 +132,76 @@ class Admin extends Controller
     function Automation(){
         $machine = $this->load_model("AutomationModel");
         $data = $machine->findAll(1,10,"Automation_ID");
+        foreach($data as $key=>$value){
+            if($data[$key]->day_of_the_week != '*'){
+                $data[$key]->Repeat = 'Weekly';
+            }
+            if($data[$key]->day_of_the_month != '*'){
+                $data[$key]->Repeat = 'Monthly';
+            }
+            if($data[$key]->month != '*'){
+                $data[$key]->Repeat = 'Yearly';
+            }
+            if($data[$key]->day_of_the_week == '*' && $data[$key]->day_of_the_month == '*'){
+                $data[$key]->Repeat = 'Daily';
+            }
+        }
         $this->view("Admin/SortingCenter/Automation", ['rows'=>$data]);
+    }
+
+    function UpdateAutomation($id){
+        $machine = $this->load_model('AutomationModel');
+        $data = $machine->first('Automation_ID',$id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_POST['Creator_ID'] = Auth::getUser_ID();
+            $_POST['Status'] = 'Active';
+            $Code = $_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
+            $temp = "sudo crontab -l | grep -v \"". $data->Code ."\" | crontab -";
+            $output1 = shell_exec($temp);
+            $temp2 = "(crontab -l; echo \"". $Code ."\") | crontab -";
+            $output2 = shell_exec($temp2);
+            $machine->update($id,$_POST,'Automation_ID');
+            message(['Automation Updated successfully','success']);
+            $this->redirect('Admin/SortingCenter');
+        }
+        switch (true) {
+            case $data->day_of_the_week != '*':
+                $data->Repeat = 'Weekly';
+                break;
+            case $data->day_of_the_month != '*':
+                $data->Repeat = 'Monthly';
+                break;
+            case $data->month != '*':
+                $data->Repeat = 'Yearly';
+                break;
+            case $data->day_of_the_week == '*' && $data->day_of_the_month == '*':
+                $data->Repeat = 'Daily';
+                break;
+        }
+        $this->view("Admin/SortingCenter/UpdateAutomation", ['data'=>$data]);
+    }
+
+    function SectorsView(){
+        $sectors = $this->load_model("Sectors");
+        $data = $sectors->query("SELECT S.sector_ID,S.SectorName,S.latitude,S.longitude,S.radius,COALESCE(GROUP_CONCAT(C.Collector_ID ORDER BY C.Collector_ID ASC SEPARATOR ','), '') AS Collector_ID FROM sectors S Left JOIN collector_details C ON C.sector_ID=S.sector_ID GROUP BY S.sector_ID;");
+        $this->view("Admin/SortingCenter/Sectors", ['rows'=>$data]);
+    }
+
+    function NewSector(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sectors = $this->load_model('Sectors');
+            $sectors->insert($_POST);
+            message(['Sector Added successfully','success']);
+            $this->redirect('Admin/SortingCenter');
+        }
+        $this->view("Admin/SortingCenter/NewSector");
+    }
+
+    function MachineRemove($id){
+        $machine = $this->load_model('MachineModel');
+        $machine->delete($id,'Machine_ID');
+        message(['Machine Removed successfully','success']);
+        $this->redirect('Admin/SortingCenter');
     }
 }
 ?>

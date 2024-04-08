@@ -10,6 +10,8 @@ class Batch extends Model
         'Batch_ID',
         'Description',
         'User_ID',
+        'Status',
+        'Collector_ID',
     ];
 
     protected $table = "inventory_batch";

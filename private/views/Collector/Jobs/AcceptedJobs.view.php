@@ -44,35 +44,13 @@
                         <td class="data-table__cell--non-numeric">
                             <?= $row->waste_type ?? '' ?>
                         </td>
-
-                        <?php
-
-                        if ($row->Status == 'Assigned') {
-                            ?>
-                            <td class="data-table__cell--non-numeric">
-                                <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                    href="<?= ROOT ?>/collector/statusupdate/<?= $row->Job_ID ?>/Accepted"
-                                    style="margin-right: 10px;">Accept</a>
-
-                            </td>
-                            <td class="data-table__cell--non-numeric">
-                                <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                    href="<?= ROOT ?>/collector/statusupdate/<?= $row->Job_ID ?>/Rejected"
-                                    style="margin-right: 10px;">Reject</a>
-
-                            </td>
-
-                            <?php
-                        }
-                        ?>
-
                         <?php
 
                         if ($row->Status == 'Accepted') {
                             ?>
                             <td class="data-table__cell--non-numeric">
                                 <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                    href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>" style="margin-right: 10px;">View</a>
+                                    href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>/Accepted" style="margin-right: 10px;">View</a>
 
                             </td>
 

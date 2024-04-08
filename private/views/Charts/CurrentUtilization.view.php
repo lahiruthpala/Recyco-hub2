@@ -21,7 +21,7 @@
     type = Array()
     weight = Array()
     for (var i = 0; i < temp.length; i++) {
-        type.push(temp[i].Type);
+        type.push(temp[i].waste_type);
     }
     for (var i = 0; i < temp.length; i++) {
         weight.push(temp[i].total_weight);

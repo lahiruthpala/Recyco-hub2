@@ -5,14 +5,14 @@ class Customer extends Controller
 	{
 		$this->view('Customer/LandingPage');
 	}
-
+      
 	function CreatePickups()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$pickup = $this->load_model("PickUpRequestModel");
 			$data = $pickup->validate($_POST);
 			if ($data != false) {
-				message(["Pickup request successfully placed","success"]);
+	 			message(["Pickup request successfully placed","success"]);
 				$data = $pickup->insert($data);
 			}
 		}

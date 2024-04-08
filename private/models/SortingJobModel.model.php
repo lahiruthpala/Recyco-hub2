@@ -13,8 +13,9 @@ class SortingJobModel extends Model
     protected $allowedColumns = [
         'Sorting_Job_ID',
         'Status',
-        'Line_No',
+        'Machine_ID',
         "Description",
+        'Start_Date',
         'End_Date',
         'User_ID',
     ];

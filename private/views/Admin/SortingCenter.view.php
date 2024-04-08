@@ -2,7 +2,7 @@
 global $activeTab;
 $activeTab = 3;
 $this->view('include/head');
-require_once(APP_ROOT . "/controllers/Admin.php");
+require_once (APP_ROOT . "/controllers/Admin.php");
 $admin = new Admin();
 ?>
 
@@ -31,6 +31,10 @@ $admin = new Admin();
                                     id="AddNewMachine_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">Add
                                     New Machine</Button>
+                                <button onclick="loadComponent('Sectors')" style="margin: 4px 10px 4px 4px;"
+                                    id="Sectors_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">
+                                    Sectors</Button>
                                 <button onclick="loadComponent('Automation')" style="margin: 4px 10px 4px 4px;"
                                     id="Automation_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">
@@ -41,6 +45,7 @@ $admin = new Admin();
                             $admin->showAllMachines();
                             $admin->SortingCenterInfo();
                             $admin->Automation();
+                            $admin->SectorsView();
                             ?>
                         </div>
                     </div>

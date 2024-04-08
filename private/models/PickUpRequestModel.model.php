@@ -14,19 +14,21 @@ class PickUpRequestModel extends Model
 
     protected $allowedColumns = [
         'Pickup_ID',
-        'weight',
+        'Weight',
         'Status',
         'pickup_address',
         'latitude',
         'longitude',
         'waste_type',
         'Requested_Date',
+        'Collection_Date',
+        'Note',
         'Completed_Date',
         'Review',
         'Complaints',
         'Complaints_Status',
         'Job_ID',
-        'InventoryId',
+        'Inventory_ID',
         'Customer_ID',
         'Collector_ID',
         'sector_ID',
@@ -99,7 +101,7 @@ class PickUpRequestModel extends Model
         $data = $this->findCircleForLocation($data);
         if ($data != false) {
             $temp = 0;
-            if ($data['weight'] <= 0) {
+            if ($data['Weight'] <= 0) {
                 $temp = 1;
                 message(['Weight must be greater than 0','error']);
             }

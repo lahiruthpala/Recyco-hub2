@@ -5,20 +5,29 @@
             <div style="margin:5%; margin-bottom: 5%;">
                 <div style="display: flex; justify-content: center; align-items: center;">
                     <div>
+                        <div style="display: flex; ">
+                            <h6>Waste Type</h6>
+                            <h6 style="margin-left:50px;">
+                                <input type="text" placeholder="Enter the WasteType" id="WasteType" name="WasteType"
+                                    class="textfield__input" value="" disabled>
+                                <label class="textfield__error" id="WasteTypeError" for="WasteType"></label>
+                            </h6>
+                        </div>
                         <div style="display: flex;">
-                            <h6 style="width: 100%;">Sorting Machine ID</h6>
+                            <h6 style="width: 100%;">Sorting Machine Type</h6>
                             <h6 style="margin-left:3vw;margin-top: 0;margin-bottom: 0;">
                                 <div class="textfield js-textfield textfield--floating-label getmdl-select full-size"
                                     style="display: flex;">
-                                    <input class="textfield__input" type="text" id="Machine_ID" name="Machine_ID"
-                                        readonly tabIndex="-1" />
-                                    <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Machine_ID">
+                                    <input class="textfield__input" type="text" id="Machine_Type" name="Machine_Type"
+                                        readonly tabIndex="-1"/>
+                                        <input type="hidden" id="Machine_ID" name="Machine_ID" value="" hidden>
+                                    <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Machine_Type">
                                         <?php
                                         if (is_array($Machines) && !empty($Machines)) {
                                             foreach ($Machines as $Machine) {
                                                 ?>
-                                                <li class="menu__item" onclick="SetForm('<?= $Machine->Machine_ID ?>')">
-                                                    <?= $Machine->Machine_ID ?>
+                                                <li class="menu__item" onclick="SetForm('<?= $Machine->Machine_ID ?>','<?= $Machine->Machine_Type ?>')">
+                                                    <?= $Machine->Machine_Type ?>
                                                 </li>
                                                 <?php
                                             }
@@ -34,11 +43,9 @@
                                 </div>
                             </h6>
                         </div>
-                        <div class="textfield js-textfield textfield--floating-label full-size">
-                            <input class="textfield__input" type="text" placeholder="Description" name="Description">
-                        </div>
                         <div>
-                            <button type="submit" style="border-radius: 20px; margin-top:0; background-color: #027855; color:white;"
+                            <button type="submit"
+                                style="border-radius: 20px; margin-top:0; background-color: #027855; color:white;"
                                 class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                 Create</button>
                         </div>
@@ -59,7 +66,8 @@
                         Add Inventory
                     </button>
                 </div>
-                <div class="card__supporting-text" style="min-height: 110px;background-color: #EDEDED;border-radius: 15px;">
+                <div class="card__supporting-text"
+                    style="min-height: 110px;background-color: #EDEDED;border-radius: 15px;">
                     <ul class="list" id="inventory">
                     </ul>
                 </div>
@@ -74,17 +82,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= ROOT ?>/js/NewSortingJob.js"></script>
     <script>
-        function SetForm(form) {
-            document.getElementById("Machine_ID").value = form;
+        function SetForm(id,form) {
+            document.getElementById("Machine_Type").value = form;
+            document.getElementById("Machine_ID").value = id;
         }
-
-        function setAutomation() {
-
-        }
-
-        function AutomationONOff() {
-
-        }
-
     </script>
 </div>

@@ -1,4 +1,4 @@
-function loadComponent(component, id="") {
+function loadComponent(component, id = "") {
     event.stopPropagation();
     console.log(component);
     var sections = document.getElementsByClassName('card__supporting-text no-padding');
@@ -11,7 +11,7 @@ function loadComponent(component, id="") {
         }
     }
     console.log("All are hidden");
-    if(id.length != 0){
+    if (id.length != 0) {
         createcomponent(id)
     }
     var partnerTableSection = document.getElementById(component);
@@ -21,22 +21,22 @@ function loadComponent(component, id="") {
     // Get all child elements in the div
     var button = document.getElementById("buttonToggle");
     var childElements = button.children;
-    for(var i = 0; i < childElements.length; i++){
+    for (var i = 0; i < childElements.length; i++) {
         if (childElements[i].id && childElements[i].id.endsWith("_Button")) {
-            if(childElements[i].id != component+"_Button"){
+            if (childElements[i].id != component + "_Button") {
                 childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-smoke";
-            }else{
+            } else {
                 childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-green";
             }
         }
     }
 }
 
-function loadComponent2(component, show=[], hide=[], id="") {
+function loadComponent2(component, show = [], hide = [], id = "") {
     event.stopPropagation();
     console.log(component);
 
-    for(var i = 0; i < hide.length; i++){
+    for (var i = 0; i < hide.length; i++) {
         document.getElementById(hide[i]).style.display = 'none';
     }
     var sections = document.getElementsByClassName('card__supporting-text no-padding');
@@ -48,12 +48,12 @@ function loadComponent2(component, show=[], hide=[], id="") {
             scanner.stop();
         }
     }
-    for(var i = 0; i < show.length; i++){
+    for (var i = 0; i < show.length; i++) {
         var partnerTableSection = document.getElementById(show[i]);
         partnerTableSection.style.display = 'block';
     }
     console.log("All are hidden");
-    if(id.length != 0){
+    if (id.length != 0) {
         createcomponent(id)
     }
     var partnerTableSection = document.getElementById(component);
@@ -63,18 +63,18 @@ function loadComponent2(component, show=[], hide=[], id="") {
     // Get all child elements in the div
     var button = document.getElementById("buttonToggle");
     var childElements = button.children;
-    for(var i = 0; i < childElements.length; i++){
+    for (var i = 0; i < childElements.length; i++) {
         if (childElements[i].id && childElements[i].id.endsWith("_Button")) {
-            if(childElements[i].id != component+"_Button"){
+            if (childElements[i].id != component + "_Button") {
                 childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-smoke";
-            }else{
+            } else {
                 childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-green";
             }
         }
     }
 }
 
-function loadPreview(component, id="") {
+function loadPreview(component, id = "") {
     event.stopPropagation();
     console.log(component);
     var sections = document.getElementsByClassName('scrollmain');
@@ -87,7 +87,7 @@ function loadPreview(component, id="") {
         }
     }
     console.log("All are hidden");
-    if(id.length != 0){
+    if (id.length != 0) {
         createcomponent(id)
     }
     var partnerTableSection = document.getElementById(component);
@@ -97,17 +97,23 @@ function loadPreview(component, id="") {
     // Get all child elements in the div
     var button = document.getElementById("buttonToggle");
     var childElements = button.children;
-    for(var i = 0; i < childElements.length; i++){
-        if(childElements[i].id != component+"_Button"){
+    for (var i = 0; i < childElements.length; i++) {
+        if (childElements[i].id != component + "_Button") {
             childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-smoke";
-        }else{
+        } else {
             childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-green";
         }
     }
 }
 
 function loadScreen(page, id = "") {
-    const url = ROOT  + `/${page}?id=${id}`;
+    const url = ROOT + `/${page}?id=${id}`;
+    window.location.href = url;
+}
+
+function loadScreen2(page) {
+    let url = ROOT + page ;
+    console.log(url);
     window.location.href = url;
 }
 
