@@ -156,8 +156,10 @@ class Admin extends Controller
             $_POST['Creator_ID'] = Auth::getUser_ID();
             $_POST['Status'] = 'Active';
             $Code = $_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
-            shell_exec("crontab -l | grep -v \"". $data->Code ."\" | crontab -");
-            shell_exec("(crontab -l; echo \"". $Code ."\") | crontab -");
+            $temp = "sudo crontab -l | grep -v \"". $data->Code ."\" | crontab -";
+            $output1 = shell_exec($temp);
+            $temp2 = "(crontab -l; echo \"". $Code ."\") | crontab -";
+            $output2 = shell_exec($temp2);
             $machine->update($id,$_POST,'Automation_ID');
             message(['Automation Updated successfully','success']);
             $this->redirect('Admin/SortingCenter');
