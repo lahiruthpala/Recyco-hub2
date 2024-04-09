@@ -19,7 +19,7 @@
                                 <div class="card__actions" style=" padding: 0;text-align: center; margin-top: -10px;padding-bottom: 10px;">
                                     <?php if ($data->status == 'In stock') : ?>
                                         <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                           href="#"
+                                           href="<?= ROOT ?>/Ecommercesite/details/<?= $data->product_Id ?? '' ?>"
                                            target="_blank"
                                            style="max-width: 100%;">
                                             Add to cart&nbsp;&nbsp;<i class="material-icons">shopping_cart</i>
