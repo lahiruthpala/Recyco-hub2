@@ -14,6 +14,7 @@ return array(
     'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\OptionsResolver\\' => array($vendorDir . '/symfony/options-resolver'),
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
+    'Simps\\MQTT\\' => array($vendorDir . '/simps/mqtt/src'),
     'Setono\\EditorJS\\' => array($vendorDir . '/setono/editorjs-php/src'),
     'React\\Stream\\' => array($vendorDir . '/react/stream/src'),
     'React\\Socket\\' => array($vendorDir . '/react/socket/src'),
@@ -30,4 +31,5 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'Evenement\\' => array($vendorDir . '/evenement/evenement/src'),
     'EditorJS\\' => array($vendorDir . '/codex-team/codex.editor/EditorJS'),
+    'Bluerhinos\\' => array($vendorDir . '/bluerhinos/phpmqtt'),
 );

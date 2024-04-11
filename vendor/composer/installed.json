@@ -1,6 +1,50 @@
 {
     "packages": [
         {
+            "name": "bluerhinos/phpmqtt",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bluerhinos/phpMQTT.git",
+                "reference": "fe4b6b2fe3d1b651fe1456e147ad4f044fa70603"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bluerhinos/phpMQTT/zipball/fe4b6b2fe3d1b651fe1456e147ad4f044fa70603",
+                "reference": "fe4b6b2fe3d1b651fe1456e147ad4f044fa70603",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "time": "2021-08-21T18:25:12+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Bluerhinos\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Milsted",
+                    "email": "andrew@bluerhinos.co.uk"
+                }
+            ],
+            "description": "Simple MQTT Class",
+            "support": {
+                "issues": "https://github.com/bluerhinos/phpMQTT/issues",
+                "source": "https://github.com/bluerhinos/phpMQTT/tree/1.0.1"
+            },
+            "install-path": "../bluerhinos/phpmqtt"
+        },
+        {
             "name": "cboden/ratchet",
             "version": "v0.4.4",
             "version_normalized": "0.4.4.0",
@@ -1274,6 +1318,85 @@
             "install-path": "../setono/editorjs-php"
         },
         {
+            "name": "simps/mqtt",
+            "version": "v1.4.4",
+            "version_normalized": "1.4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simps/mqtt.git",
+                "reference": "7c4c2484cd59a50a6e4716545a8b6c3b65b30a90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simps/mqtt/zipball/7c4c2484cd59a50a6e4716545a8b6c3b65b30a90",
+                "reference": "7c4c2484cd59a50a6e4716545a8b6c3b65b30a90",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^8.5",
+                "simps/mqtt-cli": "*",
+                "swoole/ide-helper": ">=4.4.20"
+            },
+            "suggest": {
+                "ext-swoole": "The ext-swoole >= v4.4.20 or v4.5.3 needs to be loaded when using the MQTT Client."
+            },
+            "time": "2022-08-01T00:52:05+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/constants.php"
+                ],
+                "psr-4": {
+                    "Simps\\MQTT\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lu Fei",
+                    "email": "lufei@simps.io"
+                }
+            ],
+            "description": "MQTT Protocol Analysis and Coroutine Client for PHP",
+            "keywords": [
+                "client",
+                "coroutine",
+                "mqtt",
+                "mqtt3.1",
+                "mqtt5.0",
+                "mqtt_client",
+                "mqtt_protocol",
+                "php",
+                "simps",
+                "swoole"
+            ],
+            "support": {
+                "issues": "https://github.com/simps/mqtt/issues",
+                "source": "https://github.com/simps/mqtt/tree/v1.4.4"
+            },
+            "funding": [
+                {
+                    "url": "https://donate.qq52o.me",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/simps",
+                    "type": "github"
+                }
+            ],
+            "install-path": "../simps/mqtt"
+        },
+        {
             "name": "symfony/deprecation-contracts",
             "version": "v3.4.0",
             "version_normalized": "3.4.0.0",
@@ -1822,17 +1945,17 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v6.4.5",
-            "version_normalized": "6.4.5.0",
+            "version": "v6.4.6",
+            "version_normalized": "6.4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "7fe30068e207d9c31c0138501ab40358eb2d49a4"
+                "reference": "f2591fd1f8c6e3734656b5d6b3829e8bf81f507c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/7fe30068e207d9c31c0138501ab40358eb2d49a4",
-                "reference": "7fe30068e207d9c31c0138501ab40358eb2d49a4",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/f2591fd1f8c6e3734656b5d6b3829e8bf81f507c",
+                "reference": "f2591fd1f8c6e3734656b5d6b3829e8bf81f507c",
                 "shasum": ""
             },
             "require": {
@@ -1854,7 +1977,7 @@
                 "symfony/http-foundation": "^5.4|^6.0|^7.0",
                 "symfony/yaml": "^5.4|^6.0|^7.0"
             },
-            "time": "2024-02-27T12:33:30+00:00",
+            "time": "2024-03-28T13:28:49+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1888,7 +2011,7 @@
                 "url"
             ],
             "support": {
-                "source": "https://github.com/symfony/routing/tree/v6.4.5"
+                "source": "https://github.com/symfony/routing/tree/v6.4.6"
             },
             "funding": [
                 {
