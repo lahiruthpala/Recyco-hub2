@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "415a8f75d73817e0c8ec3fdc9ad5f5d6",
+    "content-hash": "fe8abbb8cbf9d5328b89747fd403d30e",
     "packages": [
         {
             "name": "bluerhinos/phpmqtt",
@@ -444,21 +444,21 @@
         },
         {
             "name": "php-mqtt/client",
-            "version": "v2.0.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-mqtt/client.git",
-                "reference": "458afc0bf33075ed8a1ffad72af5e10f2b516220"
+                "reference": "22a207edef01d5f0ed3a6a79565cc425b678d786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-mqtt/client/zipball/458afc0bf33075ed8a1ffad72af5e10f2b516220",
-                "reference": "458afc0bf33075ed8a1ffad72af5e10f2b516220",
+                "url": "https://api.github.com/repos/php-mqtt/client/zipball/22a207edef01d5f0ed3a6a79565cc425b678d786",
+                "reference": "22a207edef01d5f0ed3a6a79565cc425b678d786",
                 "shasum": ""
             },
             "require": {
                 "myclabs/php-enum": "^1.7",
-                "php": "^8.0",
+                "php": "^7.4|^8.0",
                 "psr/log": "^1.1|^2.0|^3.0"
             },
             "require-dev": {
@@ -495,9 +495,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-mqtt/client/issues",
-                "source": "https://github.com/php-mqtt/client/tree/v2.0.0"
+                "source": "https://github.com/php-mqtt/client/tree/v1.6.0"
             },
-            "time": "2023-11-25T20:53:47+00:00"
+            "time": "2022-11-01T20:00:19+00:00"
         },
         {
             "name": "psr/http-factory",

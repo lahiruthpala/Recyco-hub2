@@ -1,5 +1,4 @@
 function loadComponent(component, id = "") {
-    event.stopPropagation();
     console.log(component);
     var sections = document.getElementsByClassName('card__supporting-text no-padding');
     // Hide all sections
@@ -120,4 +119,24 @@ function loadScreen2(page) {
 function loadRawInventoryInfo(page, Type = "", Location = "") {
     const url = ROOT + `/${page}?Type=${Type}&Location=${Location}`;
     window.location.href = url;
+}
+
+function Edit(link, page){
+    fetch(link)
+        .then(response => response.json())
+        .then(data => {
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    // Do something with each key in the response
+                    console.log(key + " -> " + data[key]);
+                document.getElementById(page).querySelector(`#${key}`).value = data[key];
+                console.log(key + " -> " + data[key]);
+                }
+            }
+            document.getElementById(page).querySelector('#CreateButton').innerHTML = 'Update';
+            loadComponent(page);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }

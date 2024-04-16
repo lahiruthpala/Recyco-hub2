@@ -7,5 +7,11 @@
         "Partnershipreview"
     ],
     "liveServer.settings.port": 5501,
-    "r.lsp.promptToInstall": false
+    "r.lsp.promptToInstall": false,
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.rmd": "markdown",
+        "type_traits": "cpp",
+        "string_view": "cpp"
+    }
 }

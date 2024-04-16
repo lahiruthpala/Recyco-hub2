@@ -875,6 +875,9 @@ table.data-table tr:nth-child(even) {
     padding: 4px 0;
     background: 0 0;
     color: inherit;
+    border: solid 1px gray;
+    border-radius: 6px;
+    padding: 4px;
 }
 
 a {
@@ -1523,7 +1526,8 @@ a {
     .loginImage {
         display: none !important;
     }
-    .loginForm{
+
+    .loginForm {
         align-self: flex-start;
     }
 }

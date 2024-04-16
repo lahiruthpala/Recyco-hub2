@@ -82,7 +82,7 @@ $admin = new Admin();
                                 </div>
                             </div>
                             <?php
-                            $this->view("Admin/NewAccountCreation");
+                            $admin->AccountCreation();
                             $admin->GetAccountinfo()
                                 ?>
                         </div>

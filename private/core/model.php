@@ -76,6 +76,8 @@ class Model extends Database
 		$columns = implode(',', $keys);
 		$values = implode(',:', $keys);
 		$query = "insert into $this->table ($columns) values (:$values)";
+		//var_dump($query, $data);
+		//die;
 		$this->query($query, $data);
 		return $data;
 	}

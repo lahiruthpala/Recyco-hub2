@@ -39,12 +39,26 @@ class SortingManager extends Controller
 			if (password_verify($_POST['pwd'], Auth::getpwd())) {
 				$Inventory_Model = $this->load_model('InventoryModel');
 				$SortingJob_Model = $this->load_model('SortingJobModel');
+				$machineModel = $this->load_model('MachineModel');
+				//TODO(Remove this quary and get the ID from the form)
+				$machine = $machineModel->query("SELECT * FROM machine WHERE waste_type='" . $_POST['waste_type'] . "' AND Machine_Type='" . $_POST['Machine_Type'] . "'");
+				$machineModel->update($machine[0]->Machine_ID, ['Is_Sorting' => 1], 'Machine_ID');
 				$data = $SortingJob_Model->insert($_POST);
 				foreach ($inventory as $row) {
 					$arr['Status'] = "Sorting";
 					$arr['Sorting_Job_ID'] = $data['Sorting_Job_ID'];
 					$Inventory_Model->update($row, $arr, "Inventory_ID");
 				}
+				$payload = array(
+					'Action' => 'CreateSortingJob',
+					'Machine_ID'=> $machine[0]->Machine_ID,
+					'Sorting_Job_ID' => $data['Sorting_Job_ID'],
+					'waste_type' => $_POST['waste_type'],
+					'Inventory_IDs' => $inventory
+				);
+				$mqttController = new MqttController();
+				$mqttController->publish('Recycohub', json_encode($payload));
+				$mqttController->disconnect();
 				message(["Sorting jos successfully initiated", "success"]);
 				$this->redirect("SortingManager");
 			} else {

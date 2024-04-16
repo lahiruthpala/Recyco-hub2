@@ -3,7 +3,7 @@
         "cboden/ratchet": "^0.4.4",
         "setono/editorjs-php": "^0.1.2",
         "codex-team/codex.editor": "^2.0",
-        "php-mqtt/client": "^2.0",
+        "php-mqtt/client": "v1.6.0",
         "bluerhinos/phpmqtt": "@dev",
         "simps/mqtt": "^1.4"
     }

@@ -4,6 +4,12 @@
     <form method="POST" action="<?= ROOT ?>/Admin/AddMachine">
         <div class="form__article">
             <h3>Machine Info</h3>
+            <input id="Action" name="Action" value="AddNew" hidden>
+            <input id="Machine_ID" name="Machine_ID" hidden>
+            <input id="Status" name="Status" hidden>
+            <input id="SortingCenter_ID" name="SortingCenter_ID" hidden>
+            <input id="SortingCenter_ID" name="SortingCenter_ID" hidden>
+            <input id="Location" name="Location" hidden>
             <div class="grid" style="margin-left: 30px;">
                 <div style="margin-left: 30px">
                     <div style="display: flex; ">
@@ -116,7 +122,7 @@
             </div>
         </div>
 
-        <button type="submit" class="button js-button button--raised js-ripple-effect button--colored-green"
+        <button id="CreateButton" type="submit" class="button js-button button--raised js-ripple-effect button--colored-green"
             style="border-radius: 99px; margin-right: auto;margin-left: 83.5%;background-color: green;color: white;">Create</button>
     </form>
 </div>

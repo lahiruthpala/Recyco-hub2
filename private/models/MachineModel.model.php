@@ -11,6 +11,7 @@ class MachineModel extends Model
         'waste_type',
         'Machine_Type',
         'Status',
+        'Is_Sorting',
         'Next_Service',
     ];
     protected $table = "machine";

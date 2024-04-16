@@ -16,7 +16,8 @@ class Customer extends Controller
 				$data = $pickup->insert($data);
 			}
 		}
-		$this->view("Customer/PickupRequest");
+		$data = $this->load_model('WasteType')->findAll(1,10,"Waste_ID");
+		$this->view("Customer/PickupRequest",['data'=>$data]);
 	}
 
 	function newrequest()
