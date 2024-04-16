@@ -15,6 +15,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '100b0519bb5d021f6352b0077e8ac28a' => __DIR__ . '/..' . '/simps/mqtt/src/constants.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -31,6 +32,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\HttpFoundation\\' => 33,
+            'Simps\\MQTT\\' => 11,
             'Setono\\EditorJS\\' => 16,
         ),
         'R' => 
@@ -46,7 +48,13 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+            'PhpMqtt\\Client\\' => 15,
+        ),
+        'M' => 
+        array (
+            'MyCLabs\\Enum\\' => 13,
         ),
         'G' => 
         array (
@@ -56,6 +64,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         array (
             'Evenement\\' => 10,
             'EditorJS\\' => 9,
+        ),
+        'B' => 
+        array (
+            'Bluerhinos\\' => 11,
         ),
     );
 
@@ -91,6 +103,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Simps\\MQTT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simps/mqtt/src',
         ),
         'Setono\\EditorJS\\' => 
         array (
@@ -128,10 +144,22 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         array (
             0 => __DIR__ . '/..' . '/cboden/ratchet/src/Ratchet',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'PhpMqtt\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-mqtt/client/src',
+        ),
+        'MyCLabs\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -144,6 +172,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'EditorJS\\' => 
         array (
             0 => __DIR__ . '/..' . '/codex-team/codex.editor/EditorJS',
+        ),
+        'Bluerhinos\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bluerhinos/phpmqtt',
         ),
     );
 
@@ -173,7 +205,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'Override' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/Override.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'SQLite3Exception' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/SQLite3Exception.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );

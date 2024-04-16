@@ -8,8 +8,8 @@
                         <div style="display: flex; ">
                             <h6>Waste Type</h6>
                             <h6 style="margin-left:50px;">
-                                <input type="text" placeholder="Enter the WasteType" id="WasteType" name="WasteType"
-                                    class="textfield__input" value="" disabled>
+                                <input type="text" placeholder="Enter the WasteType" id="WasteType" name="waste_type"
+                                    class="textfield__input" value="" readonly>
                                 <label class="textfield__error" id="WasteTypeError" for="WasteType"></label>
                             </h6>
                         </div>

@@ -10,10 +10,11 @@ class Sectors extends Model
         'SectorName',
         'latitude',
         'longitude',
-        'radius'
+        'radius',
+        'Collector_ID',
     ];
 
-    protected $table = "remarks";
+    protected $table = "sectors";
     function GenerateSectorID($data){
         $data['sector_ID'] = generateID("S");
         return $data;

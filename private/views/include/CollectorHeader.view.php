@@ -51,7 +51,7 @@
             </li>
             <li class="list__item--border-top"></li>
             <li class="menu__item list__item">
-                <a href="<?= ROOT . '/' . Auth::getRole() ?>/profile">
+                <a href="<?= ROOT . '/' . Auth::getRole() . '/profile/' . Auth::getUser_ID()?>">
                     <span class="list__item-primary-content">
                         <i class="material-icons list__item-icon">account_circle</i>
                         My account

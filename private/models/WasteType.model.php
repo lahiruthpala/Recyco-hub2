@@ -9,6 +9,8 @@ class WasteType extends Model
         'Waste_ID',
         'Name',
         'Price',
+        'Status',
+        'Description'
     ];
 
     protected $table = "waste_type";

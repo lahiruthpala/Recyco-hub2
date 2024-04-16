@@ -164,15 +164,15 @@ class collector extends Controller
         $this->view('Collector/form', ['data' => $data, 'waste' => $waste]);
     }
 
-    function profile()
+    function profile($id)
     {
         // code...
 
         $collector = $this->load_model('CollectorModel');
         $user = $this->load_model('User');
-        $user = $user->first("User_ID", Auth::getUser_ID());
+        $user = $user->first("User_ID", $id);
         // Auth::getCollector_ID
-        $data = $collector->first("Collector_ID", Auth::getUser_ID());
+        $data = $collector->first("Collector_ID", $id);
         $data->firstname = $user->FirstName;
         $data->lastname = $user->LastName;
         $data->Phone = $user->Phone;

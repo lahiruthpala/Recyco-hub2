@@ -33,7 +33,7 @@
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                             <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                href="<?= ROOT ?>/Admin/details/<?= $row->Machine_ID ?>/Assigned"
+                                onclick="Edit('<?= ROOT . 'Admin/MachineEdit/' . $row->Machine_ID?>','AddNewMachine')"
                                 style="margin-right: 10px;">Edit</a>
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
@@ -51,4 +51,9 @@
             ?>
         </tbody>
     </table>
+    <div style="display:flex;justify-content: end;">
+        <button onclick="loadComponent('AddNewMachine')" style="margin: 50px 29px 2px 4px;width: 100px;" id="AddNewMachine_Button"
+            class="button js-button button--raised js-ripple-effect button--colored-smoke">Add
+            New Machine</Button>
+    </div>
 </div>

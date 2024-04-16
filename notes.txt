@@ -4,4 +4,73 @@ when one sorting of inventory is done it will send a request that has inventory 
 $_POST = 'Inventory_ID', 'Weight_After_Sorting', 'Status'
 
 
-Customer need to get the need to have the 
+Machinr Inventoryupdate ->
+
+{
+  "Action":"CreateSortingJob",
+  "Machine_ID":"MID1712542744n5eZ",
+  "Sorting_Job_ID":"Sort1712831709SUGZ",
+  "waste_type":"Plastic",
+  "Inventory_IDs":["Inven1712490181SGHw","Inven1712490181qfB3"]
+}
+
+//if currently doesn't have inventory to sorted to then send a request to teh server and geth inventory ids
+{
+  "Action":"CreateInventories",
+  "Sorting_Job_ID":"Sort1712831709SUGZ",
+  "Types":["RedPlastic","GreenPlastic"]
+}
+
+//Send the created inventory to previous request
+{
+  "Action":"InventoriesCreated",
+  "Inventory_IDs":[
+    {
+      "Inventory_ID":"Inven00001",
+      "Type":"RedPlastic"
+    },
+    {
+      "Inventory_ID":"Inven00002",
+      "Type":"GreenPlastic"
+    }
+  ],
+  "Sorting_Job_ID":Sort1712831709SUGZ
+}
+
+{
+  "Action":"InventoriesCreated",
+  "Inventory_IDs":[
+      ["SI1712926245tx8K","RedPlastic"],
+      ["SI1712926246cGr0","GreenPlastic"],
+      ["SI1712926246bYvf","BluePlastic"]
+    ],
+    "Sorting_Job_ID":"Sort1712831709SUGZ"
+}
+
+
+{
+  "Action":"UpdateInventory",
+  "Machine_ID":"MID1712542744n5eZ",
+  "Sorting_Job_ID":"Sort1712831709SUGZ",
+  "Inventory_IDs":[
+    [
+      "Inven00001","RedPlastic"
+    ],
+    [
+      "Inven00002","GreenPlastic"
+    ]
+  ]
+}
+
+{
+  "Action":"UpdateSortingJobStatus",
+  "Sorting_Job_ID":"Sort1712831709SUGZ",
+  "Machine_ID":"MID1712542744n5eZ",
+  "Status":"Completed"
+}
+
+{
+  "Action":"UpdateInventoryStatus",
+  "Inventory_ID":"Inven1712490181SGHw",
+  "Status":"Sorted"
+}

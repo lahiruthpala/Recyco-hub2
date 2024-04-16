@@ -24,13 +24,13 @@ $admin = new Admin();
                                     id="SortingCenter_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-green">Sorting
                                     Center</Button>
+                                <button onclick="loadComponent('WasteTypesTable')" style="margin: 4px 10px 4px 4px;"
+                                    id="WasteTypesTable_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">Waste
+                                    Types</Button>
                                 <button onclick="loadComponent('MachineTable')" style="margin: 4px 10px 4px 4px;"
                                     id="MachineTable_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">Machines</Button>
-                                <button onclick="loadComponent('AddNewMachine')" style="margin: 4px 10px 4px 4px;"
-                                    id="AddNewMachine_Button"
-                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">Add
-                                    New Machine</Button>
                                 <button onclick="loadComponent('Sectors')" style="margin: 4px 10px 4px 4px;"
                                     id="Sectors_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">
@@ -46,6 +46,9 @@ $admin = new Admin();
                             $admin->SortingCenterInfo();
                             $admin->Automation();
                             $admin->SectorsView();
+                            $admin->WasteType();
+                            $admin->AddNewSectors();
+                            $this->view('Admin/SortingCenter/AddNewWasteType');
                             ?>
                         </div>
                     </div>

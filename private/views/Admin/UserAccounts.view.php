@@ -2,7 +2,7 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--header">User_Name/Emp_ID</th>
+                <!-- <th class="data-table__cell--header">User_Name/Emp_ID</th> -->
                 <th class="data-table__cell--header">First Name</th>
                 <th class="data-table__cell--header">Last Name</th>
                 <th class="data-table__cell--header">Role</th>
@@ -15,9 +15,9 @@
                 foreach ($rows as $row) {
                     ?>
                     <tr>
-                        <td class="data-table__cell--non-numeric">
+                        <!-- <td class="data-table__cell--non-numeric">
                             <?= $row->User_ID ?? '' ?>
-                        </td>
+                        </td> -->
                         <td class="data-table__cell--non-numeric">
                             <?= $row->FirstName ?? 'Company_abc' ?>
                         </td>
