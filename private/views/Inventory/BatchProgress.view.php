@@ -102,7 +102,7 @@
                                     <?= $row->Inventory_ID ?>
                                 </td>
                                 <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                    <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
+                                    <span class="label label--mini" style="background-color: <?= statuscolor($row->Status) ?>">
                                         <?= $row->Status ?>
                                     </span>
                                 </td>

@@ -40,9 +40,7 @@ class SortingManager extends Controller
 				$Inventory_Model = $this->load_model('InventoryModel');
 				$SortingJob_Model = $this->load_model('SortingJobModel');
 				$machineModel = $this->load_model('MachineModel');
-				//TODO(Remove this quary and get the ID from the form)
-				$machine = $machineModel->query("SELECT * FROM machine WHERE waste_type='" . $_POST['waste_type'] . "' AND Machine_Type='" . $_POST['Machine_Type'] . "'");
-				$machineModel->update($machine[0]->Machine_ID, ['Is_Sorting' => 1], 'Machine_ID');
+				$machineModel->update($_POST['Machine_ID'], ['Is_Sorting' => 1], 'Machine_ID');
 				$data = $SortingJob_Model->insert($_POST);
 				foreach ($inventory as $row) {
 					$arr['Status'] = "Sorting";
@@ -51,7 +49,7 @@ class SortingManager extends Controller
 				}
 				$payload = array(
 					'Action' => 'CreateSortingJob',
-					'Machine_ID'=> $machine[0]->Machine_ID,
+					'Machine_ID' => $_POST['Machine_ID'],
 					'Sorting_Job_ID' => $data['Sorting_Job_ID'],
 					'waste_type' => $_POST['waste_type'],
 					'Inventory_IDs' => $inventory
@@ -183,5 +181,18 @@ class SortingManager extends Controller
 	{
 		$inventory = $this->load_model("InventoryModel");
 		$inventory->update($_POST["Inventory_ID"], ["Status" => "In_Warehouse"], "Inventory_ID");
+	}
+
+	function getSortingMachine()
+	{
+		$machine = $this->load_model("MachineModel");
+		$machine = $machine->query("SELECT * FROM machine WHERE Is_Sorting = 0 AND Status = 'Operational' AND waste_type='" . $_POST['waste_type'] . "'");
+		header('Content-Type: application/json');
+		if ($machine == false) {
+			echo json_encode("false");
+			return;
+		} else {
+			echo json_encode($machine);
+		}
 	}
 }

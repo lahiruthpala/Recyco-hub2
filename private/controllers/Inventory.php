@@ -40,7 +40,7 @@ class Inventory extends Controller
     function RawInventory()
     {
         $batch = $this->load_model('InventoryModel');
-        $data = $batch->query("SELECT waste_type, SUM(Weight) Weight FROM inventory WHERE Status = 'In_whorehouse' GROUP BY waste_type;");
+        $data = $batch->query("SELECT waste_type, SUM(Weight) Weight FROM inventory WHERE Status = 'In_Warehouse' GROUP BY waste_type;");
         $this->view('Inventory/RawInventory', ['rows' => $data]);
     }
 

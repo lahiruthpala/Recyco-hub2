@@ -67,7 +67,7 @@ class Admin extends Controller
                 if ($_FILES['profileImage']['error'] == 0) {
                     $_POST['pwd'] = random_string(8);
                     $_POST['Email'] = $_POST['OfficialMail'];
-                    $_POST['Phone'] = $_POST['OfficialNumber'];;
+                    $_POST['Phone'] = $_POST['OfficialNumber'];
                     $_POST['UserName'] = $_POST['FirstName'];
                     $_POST['Status'] = "Pending";
                     if (!isset($_POST['Address'])) {
@@ -82,7 +82,7 @@ class Admin extends Controller
                         $verifyData = $verify->insert($_POST);
                         $_POST['pwd'] = $verifyData['pwd'];
                         $UserData = $user->insert($_POST);
-                        if($_POST['Role']){
+                        if ($_POST['Role']) {
                             $_POST['User_ID'] = $UserData['User_ID'];
                             $_POST['Collector_ID'] = $UserData['User_ID'];
                             $_POST['sector_ID'] = $this->load_model('Sectors')->first('SectorName', $_POST['SectorName'])->sector_ID;
@@ -108,7 +108,7 @@ class Admin extends Controller
         }
         $sectors = $this->load_model('Sectors');
         $sectors = $sectors->query("SELECT * FROM sectors;");
-        $this->view("Admin/NewAccountCreation",[ 'sectors' => $sectors]);
+        $this->view("Admin/NewAccountCreation", ['sectors' => $sectors]);
     }
 
     function showAllMachines()
@@ -121,10 +121,19 @@ class Admin extends Controller
     function AddMachine()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $machine = $this->load_model('MachineModel');
-            $machine->insert($_POST);
-            message(['Machine Added successfully', 'success']);
-            $this->redirect('Admin/SortingCenter');
+            if ($_POST['Action'] == 'Edit') {
+                $machine = $this->load_model('MachineModel');
+                $machine->update($_POST['Machine_ID'], $_POST, 'Machine_ID');
+                message(['Machine Updated successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            } else {
+                $machine = $this->load_model('MachineModel');
+                $machine->insert($_POST);
+                message(['Machine Added successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            }
         }
         $watetype = $this->load_model("WasteType");
         $waste = $watetype->findAll(1, 10, "Waste_ID");
@@ -268,7 +277,8 @@ class Admin extends Controller
         $this->view("Admin/SortingCenter/Sectors", ['rows' => $data]);
     }
 
-    function AddNewSectors(){
+    function AddNewSectors()
+    {
         $sectors = $this->load_model('Sectors');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sectors->insert($_POST);

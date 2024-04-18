@@ -1,8 +1,7 @@
-<div class="card__supporting-text no-padding" id="Collectors" style="display: block;">
+<div class="card__supporting-text no-padding" id="Collectors" style="display: block;background-color: white;border-radius: 20px;">
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--header">Collector ID</th>
                 <th class="data-table__cell--header">Collector Name</th>
                 <th class="data-table__cell--header">Assign Aria</th>
                 <th class="data-table__cell--header" style="padding-left: 70px">Performance</th>
@@ -13,13 +12,14 @@
             <?php
             if (is_array($collectors) && !empty($collectors)) {
                 foreach ($collectors as $row) {
-                    $array = array_map('intval', explode(',', $row->Collections));
-                    $result = '[' . implode(',', $array) . ']';
+                    if ($row->Collections) {
+                        $array = array_map('intval', explode(',', $row->Collections));
+                        $result = '[' . implode(',', $array) . ']';
+                    }else{
+                        $result = '[]';
+                    }
                     ?>
                     <tr>
-                        <td class="data-table__cell--non-numeric">
-                            <?= $row->Collector_ID ?? '' ?>
-                        </td>
                         <td class="data-table__cell--non-numeric">
                             <?= $row->Collector_Name ?? '' ?>
                         </td>

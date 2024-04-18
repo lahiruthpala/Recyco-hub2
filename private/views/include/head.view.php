@@ -58,7 +58,12 @@ function statuscolor($status)
 {
     if ($status == "New") {
         return "green";
-    } else {
+    }elseif($status == "In_Warehouse"){
+        return "#0034ff";
+    }elseif($status == "Assigned"){
+        return "#ff8c00";
+    }
+    else {
         return "red";
     }
 }

@@ -486,12 +486,12 @@ ul {
     border-radius: 0 15px 0 0;
 }
 
-table.data-table tr:nth-child(odd) {
+.data-table tr:nth-child(odd) {
     background-color: white;
 }
 
 
-table.data-table tr:nth-child(even) {
+.data-table tr:nth-child(even) {
     background-color: #F3F3F3;
 }
 
