@@ -2,6 +2,7 @@
 
 define('ROOT', 'http://localhost:8380/Recyco-hub2/public/');
 define("APP_ROOT", "../private");
+define("IMAGES", "../public/images/");
 define('DBDRIVER', 'mysql');
 define('DBHOST', 'localhost');
 define('DBNAME', 'recyco-hub');

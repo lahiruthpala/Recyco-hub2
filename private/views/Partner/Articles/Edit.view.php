@@ -1,4 +1,6 @@
-<?php $this->view('include/head') ?>
+<?php global $activeTab;
+$activeTab = 2;
+$this->view('include/head') ?>
 
 <body>
     <div class="layout js-layout layout--fixed-header">
@@ -6,26 +8,26 @@
             <?php $this->view('include/partnerheader') ?>
         </header>
         <main class="layout__content">
-            <div>
-                <h5 class="card__title-text" id="tableTitle"
-                    style="color: black;margin: 68px 15px 15px 42px;font-size: 15px;">
-                    Create New Article</h5>
+            <div style="margin-top: 34px;">
                 <div class="card shadow--2dp">
                     <div class="card__supporting-text">
                         <label id="data" hidden>
-                            <?= $article->Data?>
+                            <?= $article->Data ?>
                         </label>
-                        <form id="Article" action="<?= ROOT ?>/Partner/EditArticle/<?=$article->Article_ID?>" method="POST">
-                            <div class="textfield js-textfield textfield--floating-label full-size">
+                        <form id="Article" action="<?= ROOT ?>/Partner/EditArticle/<?= $article->Article_ID ?>"
+                            method="POST">
+                            <div class="textfield full-size" style="display: flex;justify-content: center;">
                                 <input class="textfield__input" type="text" id="floating-last-name" placeholder="Title"
                                     name="Article_Title"
+                                    style="border: 0;border-bottom: solid 1px black;border-radius: 0;width: 70%;font-size: 61px;text-align: center;"
                                     value="<?= isset($article->Article_Title) ? $article->Article_Title : '' ?>">
                                 <label class="textfield__label" for="floating-last-name"></label>
                             </div>
-                            <div class="textfield js-textfield textfield--floating-label full-size">
-                                <input class="textfield__input" type="text" id="floating-e-mail"
-                                    placeholder="Description" name="Description" value="<?= isset($article->Description) ? $article->Description : '' ?>">
-                                <label class="textfield__label" for="floating-e-mail"></label>
+                            <div class="textfield" style="margin: 10px 20px 10px 200px;width: 70%;">
+                                <div>
+                                    <textarea placeholder="Enter the Description" class="textfield__input" type="text"
+                                        rows="4" name="Description" style="color: black;"><?= isset($article->Description) ? $article->Description : '' ?></textarea>
+                                </div>
                             </div>
                             <div style="color:black" id="editorjs"></div>
                             <div class="card__actions">

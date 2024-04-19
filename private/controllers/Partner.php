@@ -7,7 +7,21 @@ class Partner extends Controller
         // code...
         $articles = $this->load_model('Articles');
         $data = $articles->findAll(1, 10, "Article_ID");
-        $this->view("Partner/Articles", ["articles" => $data]);
+        $this->view("Partner/Articles");
+    }
+
+    function PublishedArticles()
+    {
+        $articles = $this->load_model('Articles');
+        $data = $articles->where("Status", "Published");
+        $this->view("Partner/Articles/PublishedArticles", ["articles" => $data]);
+    }
+
+    function DraftsArticles()
+    {
+        $articles = $this->load_model('Articles');
+        $data = $articles->where("Status", "Draft");
+        $this->view("Partner/Articles/DraftsArticles", ["articles" => $data]);
     }
 
     function Articles($Pid = null)
@@ -21,12 +35,13 @@ class Partner extends Controller
         $this->view("Partner/Articles", ["articles" => $data]);
     }
 
-    function EditArticle($id){
+    function EditArticle($id)
+    {
         $articles = $this->load_model('Articles');
         if (isset($_FILES["image"])) {
             $response = array();
             $target_dir = "./images/Article/";
-            require_once(APP_ROOT . "/controllers/FileManager.php");
+            require_once (APP_ROOT . "/controllers/FileManager.php");
             $file = new FileManager();
             $destination = $file->uploadFile($_FILES['image'], $target_dir);
             $response["success"] = 1;
@@ -34,24 +49,24 @@ class Partner extends Controller
             echo json_encode($response);
             return;
         }
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_POST['Edit_Date'] = date("Y-m-d H:i:s");
-            if(isset($_POST['Action']) && $_POST['Action'] == 'Publish'){
+            if (isset($_POST['Action']) && $_POST['Action'] == 'Publish') {
                 $_POST['Published_Date'] = date("Y-m-d H:i:s");
                 $_POST['Status'] = 'Published';
             }
-            $data = $articles->update($id,$_POST,"Article_ID");
+            $data = $articles->update($id, $_POST, "Article_ID");
             $this->redirect("Partner/articles");
         }
         $data = $articles->first('Article_ID', $id);
-        $this->view("Partner/Edit",[ "article" => $data]);
+        $this->view("Partner/Articles/Edit", ["article" => $data]);
     }
-    function addNew($id = null)
+    function AddNewArticle($id = null)
     {
         if (isset($_FILES["image"])) {
             $response = array();
             $target_dir = "./images/Article/";
-            require_once(APP_ROOT . "/controllers/FileManager.php");
+            require_once (APP_ROOT . "/controllers/FileManager.php");
             $file = new FileManager();
             $destination = $file->uploadFile($_FILES['image'], $target_dir);
             $response["success"] = 1;
@@ -59,10 +74,10 @@ class Partner extends Controller
             echo json_encode($response);
             return;
         }
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $articles = $this->load_model('Articles');
             $_POST['Edit_Date'] = date("Y-m-d H:i:s");
-            if(isset($_POST['Action']) && $_POST['Action'] == 'Publish'){
+            if (isset($_POST['Action']) && $_POST['Action'] == 'Publish') {
                 $_POST['Published_Date'] = date("Y-m-d H:i:s");
                 $_POST['Status'] = 'Published';
             }
@@ -70,22 +85,6 @@ class Partner extends Controller
             $this->redirect("Partner/articles");
         }
         $this->view("Partner/newarticle");
-    }
-
-    function uploadImage()
-    {
-        die;
-        if (isset($_FILES["file"])) {
-            $response = array();
-            $target_dir = ROOT . "images/Aricals";
-            $target_file = $target_dir . basename($_FILES["file"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                $response["success"] = 1;
-                $response["file"]["url"] = $target_file;
-                echo json_encode($response);
-            }
-        }
     }
 
     function ArticleDelete($id)
@@ -99,31 +98,39 @@ class Partner extends Controller
     function Events()
     {
         $events = $this->load_model('Event');
-        $data = $events->findAll(1, 10, "Event_ID");
-        $this->view("Partner/events", ["articles" => $data]);
+        $this->view("Partner/Events");
     }
 
-    function addNewEvent($id = null)
+    function UpcomingEvents()
     {
-        $errors = array();
-        if ($id == null) {
-            if (count($_POST) > 0) {
-                $articles = $this->load_model('Event');
-                $articles->insert($_POST);
-                $this->redirect("Partner/events");
-            }
-            $this->view("Partner/newevent");
-        } else {
-            if (count($_POST) > 0) {
-                $articles = $this->load_model('Event');
-                $articles->insert($_POST);
-                $this->redirect("Partner/events");
-            }
-            $articles = $this->load_model('Event');
-            $data = $articles->first('Event_ID', $id);
-            $articles->delete($id, "Event_ID");
-            $this->view("Partner/newevent", ["article" => $data]);
+        $events = $this->load_model('Event');
+        $data = $events->where("Status", "UpComing");
+        $this->view("Partner/Events/UpcomingEvents", ["Events" => $data]);
+    }
+
+    function AddNewEvent($id = null)
+    {
+        if (isset($_FILES["image"])) {
+            $response = array();
+            $target_dir = "./images/Events/";
+            require_once (APP_ROOT . "/controllers/FileManager.php");
+            $file = new FileManager();
+            $destination = $file->uploadFile($_FILES['image'], $target_dir);
+            $response["success"] = 1;
+            $response["file"]["url"] = ROOT . "/images/Events/" . $_FILES['image']['name'];
+            echo json_encode($response);
+            return;
         }
+        if (count($_POST) > 0) {
+            $articles = $this->load_model('Event');
+            $_POST['Edit_Date'] = date("Y-m-d H:i:s");
+            if (isset($_POST['Action']) && $_POST['Action'] == 'Publish') {
+                $_POST['Published_Date'] = date("Y-m-d H:i:s");
+                $_POST['Status'] = 'UpComing';
+            }
+            $data = $articles->insert($_POST);
+        }
+        $this->view("Partner/Events/NewEvent");
     }
 
     function EventDelete($id)

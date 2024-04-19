@@ -1,5 +1,6 @@
 <script src="<?= ROOT ?>/js/Toastify"></script>
 <script src="<?= ROOT ?>/js/material.min.js"></script>
+<script src="<?= ROOT ?>/js/loadcomponent.js"></script>
 <script src="<?= ROOT ?>/js/helper.js"></script>
 <div style="display:block" id="PopupNotification">
     <?php

@@ -90,8 +90,8 @@ class Admin extends Controller
                             $collector->insert($_POST);
                         }
                         if ($UserData) { //successful insertion
-                            $folder = APP_ROOT . "/Uploads/ProfilePIC/";
-                            $_FILES['profileImage']['name'] = $UserData['User_ID'];
+                            $folder = IMAGES .'/Users';
+                            $_FILES['profileImage']['name'] = $UserData['User_ID'].".jpg";
                             $destination = $file->uploadFile($_FILES['profileImage'], $folder);
                             message(['User Added successfully', 'success']);
                             $this->redirect('Admin/AccountManagement');
