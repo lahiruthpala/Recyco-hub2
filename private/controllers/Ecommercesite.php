@@ -22,15 +22,31 @@ class Ecommercesite extends Controller
 	
 	
 	function productclasses($type)
-    {
-        $data = $this->load_model('ProductDetailsModel');
-       
-       
-        $products= $data->query("SELECT * FROM products WHERE product_name LIKE '%$type%'");
+{
+    $data = $this->load_model('ProductDetailsModel');
+   
+    
+    $metalProducts = array("steel", "bronze", "iron","copper");
 
-        $this->view('Ecommercesite/productclasses', ['rows' => $products]);
+    
+    $query = "SELECT * FROM products WHERE ";
+    if ($type === "metal") {
+        $conditions = array();
+        foreach ($metalProducts as $metalProduct) {
+            $conditions[] = "product_name LIKE '%$metalProduct%'";
+        }
+        $metalConditions = implode(" OR ", $conditions);
+        $query .= "($metalConditions)";
+    } else {
+        $query .= "product_name LIKE '%$type%'";
     }
-	
-	
+
+   
+    $products = $data->query($query);
+
+   
+    $this->view('Ecommercesite/productclasses', ['rows' => $products]);
+}
+
 
 }
