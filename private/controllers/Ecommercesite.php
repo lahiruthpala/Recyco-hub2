@@ -20,5 +20,17 @@ class Ecommercesite extends Controller
     }
 
 	
+	
+	function productclasses($type)
+    {
+        $data = $this->load_model('ProductDetailsModel');
+       
+       
+        $products= $data->query("SELECT * FROM products WHERE product_name LIKE '%$type%'");
+
+        $this->view('Ecommercesite/landing', ['rows' => $products]);
+    }
+	
+	
 
 }
