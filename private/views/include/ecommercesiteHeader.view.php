@@ -16,6 +16,7 @@
     <div class="textfield__expandable-holder" style="display: block !important; border: none; background-color: #f0f0f0;width:500px">
         <input class="textfield__input" type="text" id="search" />
         <label class="textfield__label" style="color:black " for="search">Enter your query...</label>
+        <ul id="product-list"></ul> <!-- Unordered list to display matching products -->
     </div>
 </div>
 
@@ -113,4 +114,55 @@
         </ul>
     </div>
 </header>
-<script src="<?= ROOT ?>/js/Notification.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("search").addEventListener("input", function() {
+            var query = this.value;
+            if (query.length >= 0) {
+                var xhr = new XMLHttpRequest();
+                var url = ROOT +'Ecommercesite/search'; // URL of the server-side script handling the search
+                var method = 'POST';
+
+                xhr.open(method, url, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            var response = JSON.parse(xhr.responseText);
+                             updateProductList(response); // Call function to update the product list
+                        } else {
+                            console.error('Error: ' + xhr.status);
+                        }
+                    }
+                };
+
+                   var data = 'query=' + encodeURIComponent(query);
+                   xhr.send(data);
+                  } else {
+                  clearProductList(); // Clear the product list if query length is less than 3 characters
+                   }
+                 });
+               });
+
+// Function to update the product list
+function updateProductList(products) {
+var productList = document.getElementById('product-list');
+// Clear existing product list
+productList.innerHTML = '';
+// Populate the product list with matching products
+products.forEach(function(product) {
+var listItem = document.createElement('li');
+listItem.textContent = product.product_name; // Assuming 'name' is the property containing the product name
+productList.appendChild(listItem);
+});
+}
+
+// Function to clear the product list
+function clearProductList() {
+    var productList = document.getElementById('product-list');
+    // Clear existing product list
+    productList.innerHTML = '';
+}
+</script>
+<script src="<?= ROOT ?>/js/Notification.js"></script> 
