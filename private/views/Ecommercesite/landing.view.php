@@ -1,66 +1,85 @@
 <?php $this->view('include/head') ?>
 <body>
-    <div class="layout js-layout layout--fixed-drawer layout--fixed-header is-small-screen">
-        <?php $this->view('include/ecommercesiteHeader') ?>
-       
-        <main class="layout__content">
-        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone" style="margin-top: 20px;margin-left: 50px;border-radius: 30px; overflow: hidden;">
-    <div class="mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title"></div>
+ <div class="layout js-layout layout--fixed-drawer layout--fixed-header is-small-screen">
+<?php $this->view('include/ecommercesiteHeader') ?>
+<main class="layout__content">
+<div style="width:1200px;height:500px; margin-left: 100px;margin-bottom:100px;background-color: green;margin-top:20px;border-radius: 15px; overflow: hidden;">
+<div class="card__supporting-text">
+<div class="grid">
+<div class="cell cell--6-col-desktop cell--6-col-tablet cell--1-col-phone" style="position: relative;">
+   <div style="position: relative; display: inline-block;">
+        <img id="image" src="<?=ROOT?>/images/ecommercesite_images/glass.jpg" alt="Image" style="width: 600px; height: 400px; margin-top: 10px; margin-left: 40px;">
+        <button onclick="changeImage('prev')" style="position: absolute; top: 50%; left: 40px; transform: translateY(-50%);"><i class="material-icons">chevron_left</i></button>
+        <button onclick="changeImage('next')" style="position: absolute; top: 50%; right: 0px; transform: translateY(-50%);"><i class="material-icons">chevron_right</i></button>
+        <div id="product-info" style="position: absolute; bottom: 10px; left: 40px; color: #333; font-size: 18px; font-weight: bold; background-color: green; padding: 10px;">
+            <h2 id="product-name" style="display: inline; margin-right: 10px;color:black"></h2>
+            <h2 style="display: inline;"> <span id="product-discount" style="color: white;"></span></h2>
+        </div>
+    </div>
+</div>
+<div class="cell cell--6-col-desktop cell--6-col-tablet cell--1-col-phone" style="margin-top: 40px; margin-left: 400px;">
         <div class="mdl-card__supporting-text no-padding">
-        <table class="mdl-data-table mdl-js-data-table" style="box-shadow: 5px 5px 5px rgba(0,0,0,0.1); width:400px;">
-    <tbody>
-        <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
-            <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
+          <table class="mdl-data-table mdl-js-data-table" style="box-shadow: 5px 5px 5px rgba(0,0,0,0.1); width:300px;">
+          <tbody>
+             <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
+                <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
                 <div style="text-align:left;">
                     <a href="<?= ROOT ?>/Ecommercesite/productclasses/polythene">Polythene</a> 
                     <i class="material-icons" style="vertical-align: middle;">chevron_right</i>
                 </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
 
-        <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
-            <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
+            <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
+                <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
                 <div style="text-align: left;">
                     <a href="<?= ROOT ?>/Ecommercesite/productclasses/plastic">Plastic</a> 
                     <i class="material-icons" style="vertical-align: middle;">chevron_right</i>
                 </div>
-            </td>
-        </tr>
-
-        <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
-            <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
+                 </td>
+            </tr>
+            <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
+                <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
                 <div style="text-align: left;">
-                    <a href="<?= ROOT ?>/Ecommercesite/productclasses/glass">Glass</a>
+                    <a href="<?= ROOT ?>/Ecommercesite/productclasses/glass">Glass</a> 
                     <i class="material-icons" style="vertical-align: middle;">chevron_right</i>
                 </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
+            <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
+                <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
+                <div style="text-align: left;">
+                    <a href="<?= ROOT ?>/Ecommercesite/productclasses/Paper">Paper</a>
+                    <i class="material-icons" style="vertical-align: middle;">chevron_right</i>
+                </div>
+                </td>
+            </tr>
+       
 
-        <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
-            <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
+            <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
+                <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
                 <div style="text-align: left;">
                     <a href="<?= ROOT ?>/Ecommercesite/productclasses/cloth">Cloth</a>
                     <i class="material-icons" style="vertical-align: middle;">chevron_right</i>
                 </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
 
-        <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
-            <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
+            <tr style="height:50px;background-color: #ffffff;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#ffffff';">
+                <td class="mdl-data-table__cell--non-numeric" style="color: black;padding:10px; position: relative;">
                 <div style="text-align: left;">
                     <a href="<?= ROOT ?>/Ecommercesite/productclasses/metal">Metal</a>
                     <i class="material-icons" style="vertical-align: middle;">chevron_right</i>
                 </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-        </div>
-    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-
+</div>
+</div>
+</div>
+</div>
 <div class="grid ui-cards" style="display: flex; flex-wrap: wrap;">
     <?php if (is_array($rows) && !empty($rows)) :
         foreach ($rows as $data) : ?>
@@ -87,12 +106,44 @@
     <?php endif; ?>
 </div>
 
-        </main>
-    </div>
-
-    <!-- inject:js -->
-    <!-- endinject -->
-
-    <?php $this->view('include/footer') ?>
+</main>
+</div>
+<?php $this->view('include/footer') ?>
 </body>
+<script>
+    var images = [];
+    var productNames = [];
+    var discounts = [];
+
+    <?php foreach ($rows as $data): ?>
+        <?php if (!is_null($data->discount)): ?>
+            images.push("<?=ROOT?>/images/ecommercesite_images/<?= strtolower($data->product_name) ?>.jpg");
+            productNames.push("<?= $data->product_name ?>");
+            discounts.push("<?= $data->discount ?>% off");
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    var currentIndex = 0;
+
+   
+    function updateContent() {
+        document.getElementById('image').src = images[currentIndex] || '<?=ROOT?>/images/no-image.jpg'; // Fallback to a default image
+        document.getElementById('product-name').textContent = productNames[currentIndex] || 'No Product';
+        document.getElementById('product-discount').textContent = discounts[currentIndex] || 'No Discount';
+    }
+
+    if (images.length > 0) {
+        updateContent();
+    }
+
+    function changeImage(direction) {
+        if (direction === 'prev') {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+        } else {
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+        updateContent();
+    }
+</script>
+
 </html>
