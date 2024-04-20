@@ -67,19 +67,11 @@ class Machine extends Controller
         return "UpdateSortingJobStatus";
     }
 
-    function SortingJobUpdate()
+    function SortingJobUpdate($data)
 	{
 		$inventory = $this->load_model("InventoryModel");
 		$prices = $this->load_model('InventoryTypes');
-		$items = json_decode($_POST['Weight_After_Sorting'], true);
-
-		// Extract the Type_Name values from $items
-		$typeNames = array_keys($items);
-
-		// Construct the IN clause for the SQL query
-		$inClause = implode(',', array_map(function ($typeName) {
-			return "'" . $typeName . "'";
-		}, $typeNames));
+        
 		// Use the constructed IN clause in the SQL query
 		$query = "SELECT Type_Name, Buying_Price AS Price FROM prices WHERE Type_Name IN ($inClause)";
 		$prices = $prices->query($query);

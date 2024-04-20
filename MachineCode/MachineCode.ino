@@ -7,7 +7,7 @@
 #include <ArduinoJson.h>
 #include <Keypad.h>
 #include <vector>
-# define NumTypes 4
+#define NumTypes 4
 
 using namespace std;
 // ***ADD VARIABLE BELOW INITIAL CONFIG***
@@ -225,6 +225,10 @@ void loop()
     if (customKey == 'B')
     {
       DisplaySortingInventories();
+    }
+    if (customKey == 'C')
+    {
+      SortingJobInventoryUpdate();
     }
   }
 
@@ -471,29 +475,31 @@ void SortingJobInventoryUpdate()
       {
         DynamicJsonDocument updateStatusDoc(1024);
         updateStatusDoc["Action"] = "SortingJobInventoryUpdate";
-        updateStatusDoc["Sorting_Job_ID"] = Sorting_Job_ID;
         updateStatusDoc["Inventory_ID"] = SortingInventory_IDs.at(num - 49);
-        updateStatusDoc["Machine_ID"] = clientId;
-        updateStatusDoc["Status"] = "Completed";
         JsonArray WeightArray = updateStatusDoc.createNestedArray("Weight");
         Serial.println("Enter the weights(#Kg)->");
         for (int i = 0; i < NumTypes; i++)
         {
           JsonArray nestedArray = WeightArray.createNestedArray();
           nestedArray.add(SortingTo[i][0]);
-          Serial.print(SortingTo[i][0] + ' -> ');
+          Serial.print(SortingTo[i][0]);
+          Serial.print(" -> ");
           String temp2 = "";
-          char customKey;
+          customKey = 'N';
           while (customKey != '#')
           {
             customKey = customKeypad.getKey();
-            if (customKey != '#')
+            if (customKey)
             {
-              temp2 += customKey;
+              if (customKey != '#')
+              {
+                Serial.print(customKey);
+                temp2 += customKey;
+              }
             }
           }
           nestedArray.add(temp2);
-          WeightArray.add(nestedArray);
+          Serial.println();
         }
         String updateStatusJson;
         serializeJson(updateStatusDoc, updateStatusJson);
