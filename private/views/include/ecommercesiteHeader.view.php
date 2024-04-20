@@ -8,18 +8,7 @@
       
         <div></div>
         <!-- Search-->
-        <div class="textfield js-textfield textfield--expandable" style="margin-right: auto; margin-left: 10px;">
-    <label class="button js-button button--icon" for="search">
-        <i class="material-icons">search</i>
-    </label>
-
-    <div class="textfield__expandable-holder" style="display: block !important; border: none; background-color: #f0f0f0;width:500px">
-        <input class="textfield__input" type="text" id="search" />
-        <label class="textfield__label" style="color:black " for="search">Enter your query...</label>
-        <ul id="product-list"></ul> <!-- Unordered list to display matching products -->
-    </div>
-</div>
-
+     
 
         <div class="material-icons badge badge--overlap button--icon notification" id="notification"
             data-badge="4">
