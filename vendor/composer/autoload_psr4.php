@@ -28,6 +28,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'PhpMqtt\\Client\\' => array($vendorDir . '/php-mqtt/client/src'),
     'MyCLabs\\Enum\\' => array($vendorDir . '/myclabs/php-enum/src'),
+    'MyApp\\' => array($baseDir . '/'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'Evenement\\' => array($vendorDir . '/evenement/evenement/src'),
     'EditorJS\\' => array($vendorDir . '/codex-team/codex.editor/EditorJS'),

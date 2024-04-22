@@ -174,7 +174,7 @@ class Admin extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['Creator_ID'] = Auth::getUser_ID();
             $_POST['Status'] = 'Active';
-            $Code = $_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
+            $Code = gmdate('i H d m w', strtotime($_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'])) . ' ' . $data->Code;
             $temp = "sudo crontab -l | grep -v \"" . $data->Code . "\" | crontab -";
             $output1 = shell_exec($temp);
             $temp2 = "(crontab -l; echo \"" . $Code . "\") | crontab -";

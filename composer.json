@@ -1,4 +1,9 @@
 {
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "\\"
+        }
+    },
     "require": {
         "cboden/ratchet": "^0.4.4",
         "setono/editorjs-php": "^0.1.2",

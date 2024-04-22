@@ -55,6 +55,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
+            'MyApp\\' => 6,
         ),
         'G' => 
         array (
@@ -160,6 +161,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'MyCLabs\\Enum\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
+        ),
+        'MyApp\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
