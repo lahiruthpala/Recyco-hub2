@@ -36,14 +36,14 @@
                     <div style="width: 93%;margin-left: 16px;display: flex;flex-direction: column;">
                         <div class="textfield js-textfield textfield--floating-label full-size">
                             <input style="border: 1px solid#8897AD;border-radius: 8px;margin-top: 7px;" type="email"
-                                placeholder="" id="Email" name="Email" class="textfield__input">
-                            <label class="textfield__label" for="Email">Email</label>
+                                placeholder="Email" id="Email" name="Email" class="textfield__input">
+                            <!-- <label class="textfield__label" for="Email">Email</label> -->
                         </div>
                         <label class="textfield__error" id="emailerror" for="Email"></label>
                         <div class="textfield js-textfield textfield--floating-label full-size">
                             <input style="border: 1px solid#8897AD;border-radius: 8px;margin-top: 7px;" type="password"
-                                placeholder="" id="pwd" name="pwd" class="textfield__input">
-                            <label class="textfield__label" for="pwd" id="pwd">Password</label>
+                                placeholder="Password" id="pwd" name="pwd" class="textfield__input">
+                            <!-- <label class="textfield__label" for="pwd" id="pwd">Password</label> -->
                         </div>
                         <label class="textfield__error" id="pwderror" for="pwd"></label>
                         <a href="<?= ROOT ?>/login/ForgotPassword" style="color: green;align-self: end;">Forgot

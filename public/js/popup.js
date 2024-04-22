@@ -1,10 +1,12 @@
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
-
+console.log(openModalButtons);
 openModalButtons.forEach(button => {
   button.addEventListener('click', () => {
+    console.log("clicked");
     const modal = document.querySelector(button.dataset.modalTarget)
+    console.log(modal);
     openModal(modal)
   })
 })
@@ -24,8 +26,10 @@ closeModalButtons.forEach(button => {
 })
 
 function openModal(modal) {
+  console.log(modal);
   if (modal == null) return
   modal.classList.add('active')
+  modal.style.display = 'block';
   overlay.classList.add('active')
 }
 

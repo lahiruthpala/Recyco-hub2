@@ -17,17 +17,6 @@
             <?php endif; ?>
         </div>
         <div></div>
-        <!-- Search-->
-        <div class="textfield js-textfield textfield--expandable">
-                    <label class="button js-button button--icon" for="search">
-                        <i class="material-icons">search</i>
-                    </label>
-
-                    <div class="textfield__expandable-holder">
-                        <input class="textfield__input" type="text" id="search" />
-                        <label class="textfield__label" for="search">Enter your query...</label>
-                    </div>
-                </div>
 
         <div class="material-icons badge badge--overlap button--icon notification" id="notification"
             data-badge="4">

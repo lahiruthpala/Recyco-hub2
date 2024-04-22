@@ -23,6 +23,8 @@ function getInitialLocation() {
         navigator.geolocation.getCurrentPosition(function (position) {
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
             var initialLocation = [lat, lng];
             initialize_map(initialLocation);
         }, function (error) {

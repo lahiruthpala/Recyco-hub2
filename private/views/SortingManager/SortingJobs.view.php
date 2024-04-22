@@ -1,16 +1,17 @@
 <div class="card__supporting-text no-padding" id="SortingJobs" style="display:block">
-    <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
-        <thead>
-            <tr>
-                <th class="data-table__cell--header">Machine Type</th>
-                <th class="data-table__cell--header">Waste Type</th>
-                <th class="data-table__cell--header">Start_Date</th>
-                <th class="data-table__cell--header">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (is_array($rows) && !empty($rows)) {
+    <?php
+    if (is_array($rows) && !empty($rows)) { ?>
+        <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th class="data-table__cell--header">Machine Type</th>
+                    <th class="data-table__cell--header">Waste Type</th>
+                    <th class="data-table__cell--header">Start_Date</th>
+                    <th class="data-table__cell--header">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                 foreach ($rows as $row) {
                     // Your table row generation code here
                     ?>
@@ -31,12 +32,16 @@
                         </td>
                     </tr>
                     <?php
-                }
-            } else {
-                // If $rows is not an array or is empty
-                echo "Currently there is no sorting jobs in progress";
-            }
-            ?>
-        </tbody>
+                } ?>
+            </tbody>
+            <?php
+    } else {
+        ?>
+            <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
+                <img src="<?= ROOT ?>/images/NoInventory.jpg" alt="No data found" style="width: 400px;">
+            </div>
+            <?php
+    }
+    ?>
     </table>
 </div>

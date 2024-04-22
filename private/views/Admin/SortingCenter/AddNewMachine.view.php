@@ -6,10 +6,8 @@
             <h3>Machine Info</h3>
             <input id="Action" name="Action" value="AddNew" hidden>
             <input id="Machine_ID" name="Machine_ID" hidden>
-            <input id="Status" name="Status" hidden>
+            <input id="Status" name="Status" value="Operational" hidden>
             <input id="SortingCenter_ID" name="SortingCenter_ID" hidden>
-            <input id="SortingCenter_ID" name="SortingCenter_ID" hidden>
-            <input id="Location" name="Location" hidden>
             <div class="grid" style="margin-left: 30px;">
                 <div style="margin-left: 30px">
                     <div style="display: flex; ">

@@ -40,9 +40,7 @@ class SortingManager extends Controller
 				$Inventory_Model = $this->load_model('InventoryModel');
 				$SortingJob_Model = $this->load_model('SortingJobModel');
 				$machineModel = $this->load_model('MachineModel');
-				//TODO(Remove this quary and get the ID from the form)
-				$machine = $machineModel->query("SELECT * FROM machine WHERE waste_type='" . $_POST['waste_type'] . "' AND Machine_Type='" . $_POST['Machine_Type'] . "'");
-				$machineModel->update($machine[0]->Machine_ID, ['Is_Sorting' => 1], 'Machine_ID');
+				$machineModel->update($_POST['Machine_ID'], ['Is_Sorting' => 1], 'Machine_ID');
 				$data = $SortingJob_Model->insert($_POST);
 				foreach ($inventory as $row) {
 					$arr['Status'] = "Sorting";
@@ -51,7 +49,7 @@ class SortingManager extends Controller
 				}
 				$payload = array(
 					'Action' => 'CreateSortingJob',
-					'Machine_ID'=> $machine[0]->Machine_ID,
+					'Machine_ID' => $_POST['Machine_ID'],
 					'Sorting_Job_ID' => $data['Sorting_Job_ID'],
 					'waste_type' => $_POST['waste_type'],
 					'Inventory_IDs' => $inventory
@@ -137,51 +135,22 @@ class SortingManager extends Controller
 		$this->view('SortingManager/SortingJobInfo', ['data' => $data, 'rows' => $inventory]);
 	}
 
-	//Get the data form esp32 module and calculate the credits and assign to the respect customers
-	function SortingJobUpdate()
-	{
-		$inventory = $this->load_model("InventoryModel");
-		$prices = $this->load_model('InventoryTypes');
-		$items = json_decode($_POST['Weight_After_Sorting'], true);
-
-		// Extract the Type_Name values from $items
-		$typeNames = array_keys($items);
-
-		// Construct the IN clause for the SQL query
-		$inClause = implode(',', array_map(function ($typeName) {
-			return "'" . $typeName . "'";
-		}, $typeNames));
-		// Use the constructed IN clause in the SQL query
-		$query = "SELECT Type_Name, Buying_Price AS Price FROM prices WHERE Type_Name IN ($inClause)";
-		$prices = $prices->query($query);
-		//var_dump($query, $inClause, $prices);
-		$sum = 0;
-		$data = array(
-			'Inventory_ID' => $_POST['Inventory_ID'],
-			'Date' => date('Y-m-d H:i:s'),
-			'Items' => array()
-		);
-		foreach ($prices as &$price) {
-			$data["Items"][substr($price->Type_Name, 0, -2)] = array(
-				"Weight" => $items[$price->Type_Name],
-				"Price" => $price->Price
-			);
-			$sum = $items[$price->Type_Name] * $price->Price;
-		}
-		$data = json_encode($data, true);
-		//var_dump($_POST, $sum, $data);
-		$customer = $this->load_model("CustomerModel");
-		$User_ID = $this->load_model("PickUpRequestModel");
-		$User_ID = ($User_ID->where("InventoryId", $_POST['Inventory_ID']))[0]->Customer_ID;
-		$query = "UPDATE customer SET Credit_History = '$data' WHERE User_ID = '$User_ID';";
-		$customer = $customer->query($query);
-		//var_dump($query, $User_ID);
-		$data = $inventory->update($_POST["Inventory_ID"], $_POST, "Inventory_ID");
-	}
-
 	function SortedToInventory()
 	{
 		$inventory = $this->load_model("InventoryModel");
 		$inventory->update($_POST["Inventory_ID"], ["Status" => "In_Warehouse"], "Inventory_ID");
+	}
+
+	function getSortingMachine()
+	{
+		$machine = $this->load_model("MachineModel");
+		$machine = $machine->query("SELECT * FROM machine WHERE Is_Sorting = 0 AND Status = 'Operational' AND waste_type='" . $_POST['waste_type'] . "'");
+		header('Content-Type: application/json');
+		if ($machine == false) {
+			echo json_encode("false");
+			return;
+		} else {
+			echo json_encode($machine);
+		}
 	}
 }

@@ -6,24 +6,21 @@
             <?php $this->view('include/partnerheader') ?>
         </header>
         <main class="layout__content">
-            <div>
-                <h5 class="card__title-text" id="tableTitle"
-                    style="color: black;margin: 68px 15px 15px 42px;font-size: 15px;">
-                    Create New Article</h5>
+            <div style="margin-top: 34px;">
                 <div class="card shadow--2dp">
                     <div class="card__supporting-text">
                         <form id="Article" action="<?= ROOT ?>/Partner/addnew" method="POST">
-                            <div class="textfield js-textfield textfield--floating-label full-size">
+                            <div class="textfield full-size" style="display: flex;justify-content: center;">
                                 <input class="textfield__input" type="text" id="floating-last-name" placeholder="Title"
                                     name="Article_Title"
+                                    style="border: 0;border-bottom: solid 1px black;border-radius: 0;width: 70%;font-size: 61px;text-align: center;"
                                     value="<?= isset($article->Article_Title) ? $article->Article_Title : '' ?>">
                                 <label class="textfield__label" for="floating-last-name"></label>
                             </div>
-
-                            <div class="textfield js-textfield textfield--floating-label full-size">
-                                <input class="textfield__input" type="text" id="floating-e-mail"
-                                    placeholder="Description" name="Description">
-                                <label class="textfield__label" for="floating-e-mail"></label>
+                            <div class="textfield" style="margin: 10px 20px 10px 200px;width: 70%;">
+                                <div>
+                                    <textarea placeholder="Enter the Description" class="textfield__input" type="text" rows="4" name="Description" style="color: black;"></textarea>
+                                </div>
                             </div>
                             <div style="color:black" id="editorjs"></div>
                             <div class="card__actions">
@@ -53,63 +50,5 @@
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
         <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            const editor = new EditorJS({
-                holder: 'editorjs',
-                tools: {
-                    header: {
-                        class: Header,
-                        config: {
-                            placeholder: 'Enter a header'
-                        }
-                    },
-                    raw: {
-                        class: RawTool
-                    },
-                    simpleImage: {
-                        class: SimpleImage
-                    },
-                    image: {
-                        class: ImageTool,
-                        endpoints: {
-                            byUrl: ROOT + "Partner/uploadImage",
-                        },
-                    },
-                    checklist: {
-                        class: Checklist,
-                    },
-                    list: {
-                        class: List
-                    },
-                    quote: {
-                        class: Quote
-                    },
-                }
-            });
-            // Save data when the user clicks the "Save" button
-            function saveData(e) {
-                e.preventDefault();
-                console.log("jsdbhvkjdhv")
-                editor.save()
-                    .then((outputData) => {
-                        // Create a form element
-                        const form = document.getElementById('Article');
-                        // Create an input element to hold the outputData
-                        const input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = 'Data';
-                        input.value = JSON.stringify(outputData);
-
-                        // Append the input element to the form
-                        form.appendChild(input);
-
-                        // Submit the form
-                        form.submit();
-                    })
-                    .catch((error) => {
-                        console.log('Saving failed: ', error);
-                    });
-            }
-
-        </script>
+        <script src="<?=ROOT?>/js/EditorJS.js"></script>
         <?php $this->view('include/footer') ?>
