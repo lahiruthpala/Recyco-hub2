@@ -90,8 +90,8 @@ class Admin extends Controller
                             $collector->insert($_POST);
                         }
                         if ($UserData) { //successful insertion
-                            $folder = IMAGES .'/Users';
-                            $_FILES['profileImage']['name'] = $UserData['User_ID'].".jpg";
+                            $folder = IMAGES . '/Users';
+                            $_FILES['profileImage']['name'] = $UserData['User_ID'] . ".jpg";
                             $destination = $file->uploadFile($_FILES['profileImage'], $folder);
                             message(['User Added successfully', 'success']);
                             $this->redirect('Admin/AccountManagement');
@@ -174,7 +174,29 @@ class Admin extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['Creator_ID'] = Auth::getUser_ID();
             $_POST['Status'] = 'Active';
-            $Code = gmdate('i H d m w', strtotime($_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'])) . ' ' . $data->Code;
+            // Get SLT hour and minute values from $_POST
+            $hour = intval($_POST['hour']);
+            $min = intval($_POST['min']);
+
+            // Subtract 5 hours and 30 minutes from SLT to get UTC
+            $utc_hour = $hour - 5;
+            $utc_min = $min - 30;
+
+            // Adjust if the result goes below 0
+            if ($utc_min < 0) {
+                $utc_hour -= 1;
+                $utc_min += 60;
+            }
+
+            // Adjust if the result goes below 0 or above 23
+            if ($utc_hour < 0) {
+                $utc_hour += 24;
+            } elseif ($utc_hour > 23) {
+                $utc_hour -= 24;
+            }
+            $Code = sprintf("%02d", $utc_hour) . " " . sprintf("%02d", $utc_min) . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
+            var_dump($Code);
+            die;
             $temp = "sudo crontab -l | grep -v \"" . $data->Code . "\" | crontab -";
             $output1 = shell_exec($temp);
             $temp2 = "(crontab -l; echo \"" . $Code . "\") | crontab -";
