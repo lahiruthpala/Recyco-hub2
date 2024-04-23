@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/css/main2.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>var ROOT = 'https://recycohub.lahirujayathilake.me/' </script>
+    <script>var ROOT = '<?=ROOT?>' </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- endinject -->

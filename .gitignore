@@ -7,3 +7,4 @@ private/core/config.php
 private/views/include/head.view.php
 private/Automation/cron.log
 MQTTClient.log
+private/core/.env

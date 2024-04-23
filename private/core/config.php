@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT', 'https://recycohub.lahirujayathilake.me/');
+define('ROOT', getenv('ROOT_URL'));
 define("APP_ROOT", "../private");
 define("IMAGES", "../public/images/");
 define('DBDRIVER', 'mysql');

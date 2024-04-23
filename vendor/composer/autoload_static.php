@@ -15,6 +15,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '100b0519bb5d021f6352b0077e8ac28a' => __DIR__ . '/..' . '/simps/mqtt/src/constants.php',
     );
 
@@ -29,6 +30,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\HttpFoundation\\' => 33,
@@ -50,6 +52,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+            'PhpOption\\' => 10,
             'PhpMqtt\\Client\\' => 15,
         ),
         'M' => 
@@ -60,11 +63,16 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
+            'GrahamCampbell\\ResultType\\' => 26,
         ),
         'E' => 
         array (
             'Evenement\\' => 10,
             'EditorJS\\' => 9,
+        ),
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
         ),
         'B' => 
         array (
@@ -92,6 +100,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Component\\Routing\\' => 
         array (
@@ -154,6 +166,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'PhpMqtt\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-mqtt/client/src',
@@ -170,6 +186,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
+        'GrahamCampbell\\ResultType\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
         'Evenement\\' => 
         array (
             0 => __DIR__ . '/..' . '/evenement/evenement/src',
@@ -177,6 +197,10 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'EditorJS\\' => 
         array (
             0 => __DIR__ . '/..' . '/codex-team/codex.editor/EditorJS',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Bluerhinos\\' => 
         array (
