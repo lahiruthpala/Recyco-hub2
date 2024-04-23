@@ -40,7 +40,7 @@ class Charts extends Controller
     function SortedItems()
     {
         $items = $this->load_model("SortedInventory");
-        $data = $items->query("SELECT Type, SUM(Weight) AS total_weight FROM sorted_inventory WHERE Type <> 'Sold' GROUP BY Type;", $data = []);
+        $data = $items->query("SELECT Type, SUM(Weight) AS total_weight FROM sorted_inventory WHERE Type <> 'Sold' AND Type <> 'Sorting' GROUP BY Type;", $data = []);
         $this->view('Charts/SortedItems', [$data]);
     }
     function SortingEfficiency(){

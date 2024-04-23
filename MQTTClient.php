@@ -1,6 +1,6 @@
 <?php
 
-require ('/var/www/html/Recyco-hub2/vendor/autoload.php');
+require ('C:/wamp64/www/Recyco-hub2/vendor/autoload.php');
 
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
@@ -27,12 +27,12 @@ $mqtt->connect($connectionSettings, $clean_session);
 
 $mqtt->subscribe('Recycohub', function ($topic, $message) {
 
-    printf("Received message on topic [%s]: %s\n", $topic, $message);
+    printf("\n\n\n\n\n\n\nReceived message on topic [%s]: %s\n", $topic, $message);
     if ($message == "40") {
         printf("Received message on topic [%s]: %s\n", $topic, $message);
     } else {
         // URL to which you want to send the POST request
-        $url = 'localhost/Recyco-hub2/public/Machine';
+        $url = 'http://localhost:8380/Recyco-hub2/public/Machine';
 
         // Data to be sent in the POST request
         $data = array (
@@ -57,7 +57,7 @@ $mqtt->subscribe('Recycohub', function ($topic, $message) {
 
         // Handle response
         echo $response;
-        printf("Received message on topic [%s]: %s\n", $topic, $message);
+        printf("\nReceived message on topic [%s]: %s\n", $topic, $message);
     }
 }, 0);
 
