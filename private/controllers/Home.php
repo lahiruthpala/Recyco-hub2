@@ -6,7 +6,13 @@ class Home extends Controller
 
 	function index()
 	{
-		$this->view('/Home/index');
+		$testimonial = $this->load_model('Testimonial');
+		$testimonials = $testimonial->query("SELECT * FROM testimonial T JOIN reg_users U ON T.User_ID=U.User_ID;");
+
+		$event = $this->load_model('Event');
+		$data = $event->findAll(1,3,"Event_ID");
+
+		$this->view('/Home/index',['events'=>$data,'testimonials'=>$testimonials]);
 	}
 
 	function Article()

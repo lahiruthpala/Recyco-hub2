@@ -183,34 +183,7 @@
     }
 
 
-    //Sponsors Slider
-    if ($('.sponsors-slider').length) {
-        $('.sponsors-slider').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            smartSpeed: 500,
-            autoplay: 4000,
-            navText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 2
-                },
-                600: {
-                    items: 2
-                },
-                800: {
-                    items: 3
-                },
-                1200: {
-                    items: 4
-                }
-            }
-        });
-    }
+   
 
 
     //Accordion Box
