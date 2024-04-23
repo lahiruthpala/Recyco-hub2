@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT', 'http://localhost:8380/Recyco-hub2/public/');
+define('ROOT', getenv('ROOT_URL'));
 define("APP_ROOT", "../private");
 define("IMAGES", "../public/images/");
 define('DBDRIVER', 'mysql');

@@ -194,13 +194,14 @@ class Admin extends Controller
             } elseif ($utc_hour > 23) {
                 $utc_hour -= 24;
             }
-            $Code = sprintf("%02d", $utc_hour) . " " . sprintf("%02d", $utc_min) . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
-            var_dump($Code);
-            die;
+            $Code = sprintf("%02d", $utc_min) . " " . sprintf("%02d", $utc_hour) . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
             $temp = "sudo crontab -l | grep -v \"" . $data->Code . "\" | crontab -";
             $output1 = shell_exec($temp);
+            //var_dump($temp,$output1);
             $temp2 = "(crontab -l; echo \"" . $Code . "\") | crontab -";
             $output2 = shell_exec($temp2);
+            //var_dump($temp2,$output2);
+            //die;
             $machine->update($id, $_POST, 'Automation_ID');
             message(['Automation Updated successfully', 'success']);
             $this->redirect('Admin/SortingCenter');
