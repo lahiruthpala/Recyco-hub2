@@ -9,9 +9,7 @@ class Automation extends Controller
     function CreateCollectingJobs()
     {
         $pickup = $this->load_model("PickUpRequestModel");
-        $temp = "SELECT * FROM pickup_request WHERE Status='Pending' AND (Collection_Date='" . date("Y-m-d", strtotime("+1 day")) . "' or Collection_Date='" . date("Y-m-d") . "')";
-        var_dump($temp);
-        die;
+        $temp = "SELECT * FROM pickup_request WHERE Status='Pending' or Status='Rejected' AND (Collection_Date='" . date("Y-m-d", strtotime("+1 day")) . "' or Collection_Date='" . date("Y-m-d") . "')";
         $data = $pickup->query($temp);
         if ($data != null) {
             $groupedData = array();

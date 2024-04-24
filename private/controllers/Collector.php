@@ -151,8 +151,8 @@ class collector extends Controller
                 }
                 $this->redirect('collector/details/' . $jobid . '/Accepted');
             }
-            if ($type == "Rejected") {
-                $_POST['Status'] = "Rejected";
+            if ($type == "Declined") {
+                $_POST['Status'] = "Declined";
                 $_POST['Completed_Date'] = date('Y-m-d H:i:s');
                 $data = $in->update($id, $_POST, "Pickup_ID");
                 $temp = $in->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $jobid . "' AND Status = 'Accepted'");

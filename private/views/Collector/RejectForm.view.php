@@ -17,7 +17,7 @@ $this->view('include/head');
                             <div class="card__supporting-text no-padding"
                                 style="margin: 20px; width: 94.7%;color:black;border: solid 1px green;border-radius: 15px;">
                                 <form method="POST"
-                                    action="<?= ROOT ?>/collector/store/<?= $data[0]->Pickup_ID ?? '' ?>/Rejected/<?= $data[0]->Job_ID ?? '' ?>">
+                                    action="<?= ROOT ?>/collector/store/<?= $data[0]->Pickup_ID ?? '' ?>/Declined/<?= $data[0]->Job_ID ?? '' ?>">
                                     <div class="form__article">
                                         <div style="display: flex;justify-content: space-between;">
                                             <div style="margin-left: 30px">
