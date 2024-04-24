@@ -46,4 +46,19 @@ class Profile extends Controller
 	function Chat(){
 		$this->view('Chat');
 	}
+
+	function viewProfile($id){
+		$collector = $this->load_model('CollectorModel');
+        $user = $this->load_model('User');
+        $user = $user->first("User_ID", $id);
+        // Auth::getCollector_ID
+        $data = $collector->first("Collector_ID", $id);
+		$data->User_ID = $user->User_ID;
+        $data->firstname = $user->FirstName;
+        $data->lastname = $user->LastName;
+        $data->Phone = $user->Phone;
+        $data->Email = $user->Email;
+        $data->Address = $user->Address;
+        $this->view('Profile', ['row' => $data]);
+	}
 }

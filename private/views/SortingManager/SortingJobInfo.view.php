@@ -161,7 +161,6 @@
     </div>
     </main>
     </div>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/progress.js"></script>
 </body>

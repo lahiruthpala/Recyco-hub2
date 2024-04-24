@@ -1,24 +1,24 @@
 <div class="card__supporting-text no-padding" id="SortedInventory" style="display: none; padding-top:0;">
-    <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
-        <thead>
-            <tr>
-                <th class="data-table__cell--header">Inventory ID</th>
-                <th class="data-table__cell--header">Type</th>
-                <th class="data-table__cell--header">Location</th>
-                <th class="data-table__cell--header">Status</th>
-            </tr>
-        </thead>
-        <?php
-        if (is_array($rows) && !empty($rows)) {
-            $id = 1; // Initialize ID counter
+    <?php
+    if (is_array($rows) && !empty($rows)) { ?>
+        <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th class="data-table__cell--header">Inventory ID</th>
+                    <th class="data-table__cell--header">Type</th>
+                    <th class="data-table__cell--header">Location</th>
+                    <th class="data-table__cell--header">Status</th>
+                </tr>
+            </thead>
+            <?php
             foreach ($rows as $row) {
                 ?>
                 <tr>
-                    <td class="data-table__cell--non-numeric" id="batch<?= $id ?>">
+                    <td class="data-table__cell--non-numeric">
                         <?= $row->Inventory_ID ?>
                     </td>
                     <td class="data-table__cell--non-numeric">
-                        <?= $row->Type?>
+                        <?= $row->Type ?>
                     </td>
                     <td class="data-table__cell--non-numeric">
                         <?= $row->Type ?>
@@ -29,11 +29,14 @@
                     </td>
                 </tr>
                 <?php
-                $id++; // Increment ID for the next row
             }
-        } else {
-            echo "No data available.";
-        }
+    } else {
         ?>
+            <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
+                <img src="<?= ROOT ?>/images/NoInventory.jpg" alt="No data found" style="width: 400px;">
+            </div>
+            <?php
+    }
+    ?>
     </table>
 </div>

@@ -9,9 +9,15 @@ class Event extends Model
     protected $allowedColumns = [
         'Event_ID',
         'Event_Title',
-        'Discription',
+        'Description',
         'Data',
-        'Partner_ID'
+        'Partner_ID',
+        'Publish_Date',
+        'Event_Starting_Data',
+        'Event_location',
+        'Event_Mode',
+        'Status',
+        'Event_Finish_Data',
     ];
     protected $table = "events";
 

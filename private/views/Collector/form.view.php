@@ -7,7 +7,7 @@ $this->view('include/head');
 <body>
     <div class="layout js-layout layout--fixed-header is-small-screen">
         <header>
-            <?php $this->view('include/Adminheader') ?>
+            <?php $this->view('include/CollectorHeader') ?>
         </header>
         <main class="layout__content">
             <div class="grid grid--no-spacing dashboard">
@@ -16,7 +16,8 @@ $this->view('include/head');
                         <div class="card shadow--2dp">
                             <div class="card__supporting-text no-padding"
                                 style="margin: 20px; width: 94.7%;color:black;border: solid 1px green;border-radius: 15px;">
-                                <form method="POST" action="<?= ROOT ?>/collector/store/<?= $data[0]->Pickup_ID ?? '' ?>/Accepted/<?= $data[0]->Job_ID ?? '' ?>">
+                                <form method="POST"
+                                    action="<?= ROOT ?>/collector/store/<?= $data[0]->Pickup_ID ?? '' ?>/Accepted/<?= $data[0]->Job_ID ?? '' ?>">
                                     <div class="form__article">
                                         <div style="display: flex;justify-content: space-between;">
                                             <div style="margin-left: 30px">
@@ -67,10 +68,10 @@ $this->view('include/head');
                                             <div style="margin-left: 30px">
                                                 <div style="display: flex; ">
                                                     <h6>Weight</h6>
-                                                    <h6 style="margin-left:50px;">
+                                                    <h6 style="margin-left:50px;display: flex;">
                                                         <input type="text" placeholder="Enter the Weight" id="Weight"
                                                             name="Weight" class="textfield__input"
-                                                            value="<?= $data[0]->Weight ?>">
+                                                            value="<?= $data[0]->Weight?>"> Kg
                                                         <label class="textfield__error" id="WeightError"
                                                             for="Weight"></label>
                                                     </h6>
@@ -105,8 +106,8 @@ $this->view('include/head');
                                                 <h6>Inventory ID</h6>
                                                 <h6 style="margin-left:50px;">
                                                     <input type="text" placeholder="Enter the Inventory_ID"
-                                                        id="Inventory_ID" name="Inventory_ID"
-                                                        class="textfield__input" value="None" readonly>
+                                                        id="Inventory_ID" name="Inventory_ID" class="textfield__input"
+                                                        value="None" readonly>
                                                     <label class="textfield__error" id="Inventory_IDError"
                                                         for="Inventory_ID"></label>
                                                 </h6>
@@ -142,7 +143,6 @@ $this->view('include/head');
         </main>
 
     </div>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php $this->view('include/footer') ?>
@@ -168,10 +168,46 @@ $this->view('include/head');
             });
             scanner.addListener('scan', function (content) {
                 console.log(content);
-                document.getElementById('Inventory_ID').value = content;
-                document.getElementById('video').style.display = 'none';
-                document.getElementById('InventoryIDdiv').style.display = 'flex';
+                verifyInventory(content);
             });
+        }
+        function verifyInventory(content) {
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the PHP file URL and the request method (POST in this example)
+            var url = ROOT + '/collector/VerifyInventory';
+            var method = 'POST';
+            // Set up the request
+            xhr.open(method, url, true);
+
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            // Add session ID to the request header
+            var data = 'Inventory_ID=' + encodeURIComponent(content);
+
+            // Set up the callback function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Parse the response (assuming it's a JSON response)
+                        var response = JSON.parse(xhr.responseText);
+                        if(response == 'false'){
+                            SideNotification(["Error: Invalid inventory", 'error']);
+                        }else{
+                            setdata(content);
+                        }
+                    } else {
+                        console.error('Error: ' + xhr.status);
+                    }
+                }
+            };
+            // Send the request with the data
+            xhr.send(data);
+        }
+        function setdata(content) {
+            document.getElementById('Inventory_ID').value = content;
+            document.getElementById('video').style.display = 'none';
+            document.getElementById('InventoryIDdiv').style.display = 'flex';
         }
     </script>
     <?php $this->view('include/footer') ?>

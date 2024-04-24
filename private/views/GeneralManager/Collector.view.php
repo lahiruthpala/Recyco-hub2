@@ -24,6 +24,7 @@ $generalmanager = new GeneralManager();
                     <?php
                     $charts->CollectionRate();
                     $charts->WarehouseCapacity();
+                    $charts->CollectionHeartMap();
                     ?>
                 </div>
                 <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">

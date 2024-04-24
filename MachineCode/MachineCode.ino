@@ -6,8 +6,10 @@
 #include <SPI.h>
 #include <ArduinoJson.h>
 #include <Keypad.h>
+#include <vector>
+#define NumTypes 4
 
-
+using namespace std;
 // ***ADD VARIABLE BELOW INITIAL CONFIG***
 //---- WiFi settings
 const char *ssid = "DESKTOP-QC0EJRU 8105";
@@ -84,12 +86,12 @@ void callback(char *topic, byte *payload, unsigned int length)
   {
     Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CreateSortingJob if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     CreateSortingJob(doc);
-  }else if (doc["Action"].as<String>() == "InventoriesCreated")
+  }
+  else if (doc["Action"].as<String>() == "InventoriesCreated")
   {
     Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>InventoriesCreated if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     InventoriesCreated(doc);
   }
-  
 }
 
 void reconnect()
@@ -121,25 +123,26 @@ void reconnect()
 int in_use = 0;
 String Sorting_Job_ID = "";
 String waste_type = "";
-char* defaultInventorID = "0000000000000000000";
-String* SortingInventory_IDs;
-char *SortingTo[3][3] = { 
-    {"RedPlastic","50",strdup(defaultInventorID)},
-    {"GreenPlastic","50",strdup(defaultInventorID)},
-    {"BluePlastic","50",strdup(defaultInventorID)}
-    };
-const byte ROWS = 4; 
-const byte COLS = 4; 
+char *defaultInventorID = "0000000000000000000";
+vector<String> SortingInventory_IDs;
+
+char *SortingTo[NumTypes][3] = {
+    {"PETE", "50", strdup(defaultInventorID)},
+    {"HDPE", "50", strdup(defaultInventorID)},
+    {"PVC", "50", strdup(defaultInventorID)},
+    {"Polystyrene", "50", strdup(defaultInventorID)}};
+
+const byte ROWS = 4;
+const byte COLS = 4;
 
 char hexaKeys[ROWS][COLS] = {
-  {'1', '2', '3', 'A'},
-  {'4', '5', '6', 'B'},
-  {'7', '8', '9', 'C'},
-  {'*', '0', '#', 'D'}
-};
+    {'1', '2', '3', 'A'},
+    {'4', '5', '6', 'B'},
+    {'7', '8', '9', 'C'},
+    {'*', '0', '#', 'D'}};
 
-byte rowPins[ROWS] = {18, 17, 16, 15}; 
-byte colPins[COLS] = {7, 6, 5, 4}; 
+byte rowPins[ROWS] = {18, 17, 16, 15};
+byte colPins[COLS] = {7, 6, 5, 4};
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 void setup()
@@ -175,27 +178,31 @@ void loop()
     reconnect();
   client.loop();
   //============== ADD LOOP CODE HERE==============
-  if (Serial.available()) {
+  if (Serial.available())
+  {
     int input = Serial.parseInt();
-    if (input == 1) {
+    if (input == 1)
+    {
       Serial.print("in_use: ");
       Serial.println(in_use);
       Serial.print("Sorting_Job_ID: ");
       Serial.println(Sorting_Job_ID);
       Serial.print("waste_type: ");
       Serial.println(waste_type);
-      int numRows = sizeof(SortingInventory_IDs);
       Serial.print("SortingInventory_IDs: ");
-      for (int i = 0; i < numRows; i++) {
-        Serial.print(SortingInventory_IDs[i]);
+      for (String s : SortingInventory_IDs)
+      {
+        Serial.print(s);
         Serial.print(" ");
       }
       Serial.println();
       Serial.print("defaultInventorID");
       Serial.println(defaultInventorID);
       Serial.println("SortingTo:");
-      for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+      for (int i = 0; i < NumTypes; i++)
+      {
+        for (int j = 0; j < 3; j++)
+        {
           Serial.print(SortingTo[i][j]);
           Serial.print(" ");
         }
@@ -204,16 +211,24 @@ void loop()
     }
   }
   char customKey = customKeypad.getKey();
-  
-  if (customKey){
-    if(customKey == '#'){
+
+  if (customKey)
+  {
+    if (customKey == '#')
+    {
       UpdateSortingJobStatus();
     }
-    if(customKey == 'A'){
+    if (customKey == 'A')
+    {
       DisplaySortingToInventories();
     }
-    if(customKey == 'B'){
+    if (customKey == 'B')
+    {
       DisplaySortingInventories();
+    }
+    if (customKey == 'C')
+    {
+      SortingJobInventoryUpdate();
     }
   }
 
@@ -235,55 +250,65 @@ void CreateSortingJob(DynamicJsonDocument &doc)
   Sorting_Job_ID = doc["Sorting_Job_ID"].as<String>();
   waste_type = doc["waste_type"].as<String>();
   JsonArray array = doc["Inventory_IDs"].as<JsonArray>();
-  // Allocate memory for stringArray based on the size of the JSON array
-  SortingInventory_IDs = new String[array.size()];
 
-  // Convert JSON array to string array
-  for (size_t i = 0; i < array.size(); i++) {
-    SortingInventory_IDs[i] = array[i].as<String>();
+  // Convert JSON array to string
+  for (size_t i = 0; i < array.size(); i++)
+  {
+    SortingInventory_IDs.push_back(array[i].as<String>());
   }
+
   in_use = 1;
   int numRows = sizeof(SortingTo) / sizeof(SortingTo[0]);
   String InventoryTypesNeeded;
   String InventoryTypesHave;
   Serial.println(numRows);
-  for (int i = 0; i < numRows; i++) {
+  for (int i = 0; i < numRows; i++)
+  {
     Serial.println(i);
-    if (strcmp(SortingTo[i][2], defaultInventorID) == 0) {
+    if (strcmp(SortingTo[i][2], defaultInventorID) == 0)
+    {
       InventoryTypesNeeded += ",";
       InventoryTypesNeeded += SortingTo[i][0];
       Serial.print("InventoryTypesNeeded - ");
       Serial.println(InventoryTypesNeeded);
-    } else {
+    }
+    else
+    {
       InventoryTypesHave += ",";
       InventoryTypesHave += SortingTo[i][0];
       Serial.print("InventoryTypesHave - ");
       Serial.println(InventoryTypesHave);
     }
   }
-  if(InventoryTypesNeeded.length() > 0) {
+  if (InventoryTypesNeeded.length() > 0)
+  {
     CreateInventories(InventoryTypesNeeded);
   }
   Serial.print("InventoryTypesHavelenght - ");
   Serial.println(InventoryTypesHave.length());
-  if(InventoryTypesHave.length() > 0) {
+  if (InventoryTypesHave.length() > 0)
+  {
     UpdateInventory(InventoryTypesHave);
   }
-
 }
 
-void CreateInventories(String InventoryTypesNeeded) {
+void CreateInventories(String InventoryTypesNeeded)
+{
   DynamicJsonDocument inventoriesDoc(1024);
   inventoriesDoc["Action"] = "CreateInventories";
   inventoriesDoc["Sorting_Job_ID"] = Sorting_Job_ID;
   JsonArray typesArray = inventoriesDoc.createNestedArray("Types");
   // Add inventory types to the array
   String type;
-  for (int i = 1; i < InventoryTypesNeeded.length(); i++) {
-    if (InventoryTypesNeeded[i] == ',') {
+  for (int i = 1; i < InventoryTypesNeeded.length(); i++)
+  {
+    if (InventoryTypesNeeded[i] == ',')
+    {
       typesArray.add(type);
       type = "";
-    } else {
+    }
+    else
+    {
       type += InventoryTypesNeeded[i];
     }
   }
@@ -293,12 +318,15 @@ void CreateInventories(String InventoryTypesNeeded) {
   publishMessage("Recycohub", inventoriesJson, false);
 }
 
-void InventoriesCreated(DynamicJsonDocument &doc){
+void InventoriesCreated(DynamicJsonDocument &doc)
+{
   Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>InventoriesCreated if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-  if (doc.containsKey("Inventory_IDs")) {
+  if (doc.containsKey("Inventory_IDs"))
+  {
     JsonArray inventoryIds = doc["Inventory_IDs"].as<JsonArray>();
     int i = 0;
-    for (const auto& inventory : inventoryIds) {
+    for (const auto &inventory : inventoryIds)
+    {
       String inventoryId = inventory[0].as<String>();
       String type = inventory[1].as<String>();
       // Assign the values to pre-defined variables here
@@ -310,13 +338,15 @@ void InventoriesCreated(DynamicJsonDocument &doc){
   }
 }
 
-void UpdateInventory(String InventoryTypesHave){
+void UpdateInventory(String InventoryTypesHave)
+{
   Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UpdateInventory if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   DynamicJsonDocument updateInventoryDoc(1024);
   updateInventoryDoc["Action"] = "UpdateInventory";
   updateInventoryDoc["Sorting_Job_ID"] = Sorting_Job_ID;
   JsonArray inventoriesArray = updateInventoryDoc.createNestedArray("Inventories");
-  for (int i = 0; i < sizeof(SortingTo) / sizeof(SortingTo[0]); i++) {
+  for (int i = 0; i < sizeof(SortingTo) / sizeof(SortingTo[0]); i++)
+  {
     JsonArray inventory = inventoriesArray.createNestedArray();
     inventory.add(SortingTo[i][2]);
     inventory.add(SortingTo[i][0]);
@@ -327,7 +357,8 @@ void UpdateInventory(String InventoryTypesHave){
   publishMessage("Recycohub", updateInventoryJson, false);
 }
 
-void UpdateSortingJobStatus(){
+void UpdateSortingJobStatus()
+{
   Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UpdateSortingJobStatus if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   DynamicJsonDocument updateStatusDoc(1024);
   updateStatusDoc["Action"] = "UpdateSortingJobStatus";
@@ -340,7 +371,8 @@ void UpdateSortingJobStatus(){
   publishMessage("Recycohub", updateStatusJson, false);
 }
 
-void UpdateInventoryStatus(String Inventory_ID, String Model){
+void UpdateInventoryStatus(String Inventory_ID, String Model)
+{
   Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UpdateInventoryStatus if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   DynamicJsonDocument updateStatusDoc(1024);
   updateStatusDoc["Action"] = "UpdateInventoryStatus";
@@ -353,50 +385,126 @@ void UpdateInventoryStatus(String Inventory_ID, String Model){
   publishMessage("Recycohub", updateStatusJson, false);
 }
 
-void DisplaySortingToInventories(){
+void DisplaySortingToInventories()
+{
   int numRows = sizeof(SortingTo) / sizeof(SortingTo[0]);
   Serial.println("Select the inventory ID");
-  for (int i = 0; i < numRows; i++) {
+  for (int i = 0; i < numRows; i++)
+  {
     Serial.print(SortingTo[i][2]);
     Serial.print(" - ");
-    Serial.println(i+1);
+    Serial.println(i + 1);
   }
   int temp = 0;
-  while (temp == 0) {
+  while (temp == 0)
+  {
     char customKey = customKeypad.getKey();
-    if (customKey){
+    if (customKey)
+    {
       Serial.println(customKey);
       int num = customKey;
       Serial.println(num);
-      if(num == 0){
+      if (num == 0)
+      {
         temp = 1;
-      }else{
-        UpdateInventoryStatus(String(SortingTo[num-49][2]), "SortedInventory");
+      }
+      else
+      {
+        UpdateInventoryStatus(String(SortingTo[num - 49][2]), "SortedInventory");
         temp = 1;
       }
     }
   }
 }
 
-void DisplaySortingInventories(){
-  int numRows = sizeof(SortingInventory_IDs);
+void DisplaySortingInventories()
+{
   Serial.println("Select the inventory ID");
-  for (int i = 0; i < numRows; i++) {
-    Serial.print(SortingInventory_IDs[i]);
+  for (int i = 0; i < SortingInventory_IDs.size(); i++)
+  {
+    Serial.print(SortingInventory_IDs.at(i));
     Serial.print(" - ");
-    Serial.println(i+1);
+    Serial.println(i + 1);
   }
   int temp = 0;
-  while (temp == 0) {
+  while (temp == 0)
+  {
     char customKey = customKeypad.getKey();
-    if (customKey){
+    if (customKey)
+    {
       Serial.println(customKey);
       int num = customKey;
       Serial.println(num);
-      if(num == 0){
+      if (num - 48 == 0)
+      {
         temp = 1;
-      }else{
-        UpdateInventoryStatus(String(SortingInventory_IDs[num-49]), "InventoryModel");
+      }
+      else
+      {
+        UpdateInventoryStatus(SortingInventory_IDs.at(num - 49), "InventoryModel");
+        temp = 1;
+      }
+    }
+  }
+}
+
+void SortingJobInventoryUpdate()
+{
+  Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SortingJobInventoryUpdate if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+  Serial.println("Select the inventory ID");
+  for (int i = 0; i < SortingInventory_IDs.size(); i++)
+  {
+    Serial.print(SortingInventory_IDs.at(i));
+    Serial.print(" - ");
+    Serial.println(i + 1);
+  }
+  int temp = 0;
+  while (temp == 0)
+  {
+    char customKey = customKeypad.getKey();
+    if (customKey)
+    {
+      Serial.println(customKey);
+      int num = customKey;
+      Serial.println(num);
+      if (num - 48 == 0)
+      {
+        temp = 1;
+      }
+      else
+      {
+        DynamicJsonDocument updateStatusDoc(1024);
+        updateStatusDoc["Action"] = "SortingJobInventoryUpdate";
+        updateStatusDoc["Inventory_ID"] = SortingInventory_IDs.at(num - 49);
+        JsonArray WeightArray = updateStatusDoc.createNestedArray("Weight");
+        Serial.println("Enter the weights(#Kg)->");
+        for (int i = 0; i < NumTypes; i++)
+        {
+          JsonArray nestedArray = WeightArray.createNestedArray();
+          nestedArray.add(SortingTo[i][0]);
+          Serial.print(SortingTo[i][0]);
+          Serial.print(" -> ");
+          String temp2 = "";
+          customKey = 'N';
+          while (customKey != '#')
+          {
+            customKey = customKeypad.getKey();
+            if (customKey)
+            {
+              if (customKey != '#')
+              {
+                Serial.print(customKey);
+                temp2 += customKey;
+              }
+            }
+          }
+          nestedArray.add(temp2);
+          Serial.println();
+        }
+        String updateStatusJson;
+        serializeJson(updateStatusDoc, updateStatusJson);
+        Serial.println(updateStatusJson);
+        publishMessage("Recycohub", updateStatusJson, false);
         temp = 1;
       }
     }

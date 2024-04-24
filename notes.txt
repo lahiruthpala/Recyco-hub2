@@ -25,21 +25,6 @@ Machinr Inventoryupdate ->
 {
   "Action":"InventoriesCreated",
   "Inventory_IDs":[
-    {
-      "Inventory_ID":"Inven00001",
-      "Type":"RedPlastic"
-    },
-    {
-      "Inventory_ID":"Inven00002",
-      "Type":"GreenPlastic"
-    }
-  ],
-  "Sorting_Job_ID":Sort1712831709SUGZ
-}
-
-{
-  "Action":"InventoriesCreated",
-  "Inventory_IDs":[
       ["SI1712926245tx8K","RedPlastic"],
       ["SI1712926246cGr0","GreenPlastic"],
       ["SI1712926246bYvf","BluePlastic"]
@@ -73,4 +58,14 @@ Machinr Inventoryupdate ->
   "Action":"UpdateInventoryStatus",
   "Inventory_ID":"Inven1712490181SGHw",
   "Status":"Sorted"
+}
+
+{
+  "Date": "2024-01-11 02:22:18",
+  "Items":{
+            "Zinc": {"Price": "225", "Weight": 30},
+            "Copper": {"Price": "1500", "Weight": 10,},
+            "Aluminum": {"Price": "206", "Weight":20}
+          },
+  "Inventory_ID": "Inven1703354856BxTC"
 }

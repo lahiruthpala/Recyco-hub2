@@ -1,7 +1,6 @@
 <?php 
 
 // Controller
-require('C:/wamp64/www/Recyco-hub2/vendor/autoload.php');
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
 class MqttController {

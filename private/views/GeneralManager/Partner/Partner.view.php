@@ -135,7 +135,7 @@
                                 <div
                                     >
                                     <div
-                                        class="cell cell--6-col-desktop cell--6-col-tablet cell--12-col-phone">
+                                        class="cell">
                                         <div class="card shadow--2dp">
                                             <div class="card__title">
                                                 <div class="card__title-text">Add A Remark</div>
@@ -170,9 +170,6 @@
     </main>
 
     </div>
-
-
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/popup.js"></script>
 </body>

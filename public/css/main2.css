@@ -486,12 +486,12 @@ ul {
     border-radius: 0 15px 0 0;
 }
 
-table.data-table tr:nth-child(odd) {
+.data-table tr:nth-child(odd) {
     background-color: white;
 }
 
 
-table.data-table tr:nth-child(even) {
+.data-table tr:nth-child(even) {
     background-color: #F3F3F3;
 }
 
@@ -1345,7 +1345,7 @@ a {
 .account-dropdown>.list__item:first-child .list__item-primary-content .list__item-avatar {
     height: 48px;
     width: 48px;
-    background: url(http://34.136.53.128/Recyco-hub2/public/images/Icon.png);
+    background: url(http://localhost:8380/Recyco-hub2/public/images/Icon.png);
     background-size: cover;
 }
 
@@ -1395,23 +1395,27 @@ a {
     color: rgba(244, 67, 54, .8) !important;
 }
 
-.getmdl-select .icon-toggle__label {
+.icon-toggle__label {
     color: black;
 }
 
-.getmdl-select .menu__container {
+.menu__container {
     margin-top: -45px !important;
 }
 
-.getmdl-select .menu__outline {
+.menu__outline {
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
 }
 
-.getmdl-select .textfield__input {
+.textfield__input {
     cursor: pointer;
 }
 
-.getmdl-select .menu .menu__item,
+.textfield__input:focus-visible {
+    outline: none;
+}
+
+.menu .menu__item,
 .textfield input {
     color: black;
     font-size: 16px;

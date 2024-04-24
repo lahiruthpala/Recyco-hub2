@@ -14,6 +14,8 @@ class Machine extends Controller
             $result = $this->UpdateInventoryStatus($message);
         } elseif ($message['Action'] == "UpdateSortingJobStatus") {
             $result = $this->UpdateSortingJobStatus($message);
+        } elseif ($message['Action'] == "SortingJobInventoryUpdate") {
+            $result = $this->SortingJobInventoryUpdate($message);
         }
         echo $result; //Return empty to keep the connection
     }
@@ -38,7 +40,7 @@ class Machine extends Controller
             $temp['Type'] = $Type;
             $temp['Sorting_Job_ID'] = $data['Sorting_Job_ID'];
             $Inventory = $InventoryModel->insert($temp);
-            $Inventory_IDs[] = array($Inventory['Inventory_ID'],$Type);
+            $Inventory_IDs[] = array($Inventory['Inventory_ID'], $Type);
         }
         $payload = array(
             'Action' => 'InventoriesCreated',
@@ -65,6 +67,53 @@ class Machine extends Controller
         $MachineModel = $this->load_model('MachineModel');
         $MachineModel->update($data['Machine_ID'], ['Is_Sorting' => 0], 'Machine_ID');
         return "UpdateSortingJobStatus";
+    }
+
+    function SortingJobInventoryUpdate($data)
+    {
+        $prices = $this->load_model('InventoryTypes');
+        $customer = $this->load_model("CustomerModel");
+        
+        //getting the id of the customer
+        $User_ID = $this->load_model("PickUpRequestModel");
+        $User_ID = ($User_ID->where("Inventory_ID", $data['Inventory_ID']))[0]->Customer_ID;
+
+        $types = $data['Weight'];
+        $inClause = implode(',', array_map(function ($value) {
+            return "'" . $value . "'";
+        }, array_column($types, 0)));
+        // Use the constructed IN clause in the SQL query
+        $query = "SELECT Type_Name, Buying_Price AS Price FROM inventory_types WHERE Type_Name IN ($inClause)";
+        $prices = $prices->query($query);
+        $sum = 0;
+        $Credit_History = array(
+            'Inventory_ID' => $data['Inventory_ID'],
+            'Date' => date('Y-m-d H:i:s'),
+            'Items' => array()
+        );
+        $i = 0;
+        $totalWeight = 0;
+        foreach ($prices as $price) {
+            $Credit_History["Items"][$price->Type_Name] = array(
+                "Weight" => $types[$i][1],
+                "Price" => $price->Price
+            );
+            $totalWeight += floatval($types[$i][1]);
+            $sum = $sum + floatval($types[$i][1]) * floatval($price->Price);
+            $i = $i + 1;
+        }
+        $Credit_History = json_encode($Credit_History, true);
+        //return(var_dump($User_ID,$_POST, $sum, $data));
+        $query = "UPDATE customer SET Credit_History = '$Credit_History',Credits = $sum WHERE Customer_ID = '$User_ID';";
+        
+        $customer = $customer->query($query);
+        //var_dump($query, $User_ID);
+        $temp = array();
+        $temp['Weight_After_Sorting'] = $totalWeight;
+        $temp['Status'] = 'Sorted';
+        $inventory = $this->load_model("InventoryModel");
+        $data = $inventory->update($data["Inventory_ID"], $temp, "Inventory_ID");
+        return("Successfully updated");
     }
 }
 ?>
