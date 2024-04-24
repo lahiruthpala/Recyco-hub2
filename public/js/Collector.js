@@ -62,6 +62,7 @@ function getInfo(content) {
 function setData(data) {
     console.log("--------->>>>>>>>", data);
     for (var i = 0; i < data.length; i++) {
+        console.log("-->>>>",data[i]);
         if (data[i].Inventory_ID != null) {
             inventory.push(data[i].Inventory_ID);
         }

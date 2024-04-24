@@ -2,7 +2,6 @@
 
 
 <body>
-
     <body>
         <div class="layout js-layout layout--fixed-header is-small-screen">
             <?php $this->view('include/CollectorHeader') ?>
@@ -98,7 +97,7 @@
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Accept</a>
                                             <a style="background-color: #ff5746;color:white;"
                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted">Reject</a>
+                                                href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Rejected">Reject</a>
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
                                                 href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
                                                 target="_blank">

@@ -25,7 +25,7 @@ function getCollecter() {
 }
 
 //get the coloecter details by enterring the ID manually
-function collectermanual(){
+function collectermanual() {
     var content = document.getElementById('CollectorID').value;
     getinfo(content);
 }
@@ -59,16 +59,20 @@ function getinfo(content) {
     xhr.send(data);
 }
 
-function setdata(data){
-    console.log("--------->>>>>>>>",data);
-    var data = data.success[0];
-    document.getElementById('CollecterName').value = data.FirstName + " " + data.LastName;
-    document.getElementById('VerifiedCollectorID').value = data.Collector_ID;
-    document.getElementById('VehicleNumber').value = data.Vehicle_NO;
-    document.getElementById('Area').value = data.sector_ID;
-    document.getElementById('Status').value = data.Status;
-    document.getElementById('CollecterImage').src = "images/Bobby.PNG"
-    document.getElementById('Assignbutton').disabled = false;
+function setdata(data) {
+    console.log("--------->>>>>>>>", data);
+    if (data.error && data.error.length > 0) {
+        SideNotification([`Error: ${data.error}`, 'error']);
+    } else {
+        var data = data.success[0];
+        document.getElementById('CollecterName').value = data.FirstName + " " + data.LastName;
+        document.getElementById('VerifiedCollectorID').value = data.Collector_ID;
+        document.getElementById('VehicleNumber').value = data.Vehicle_NO;
+        document.getElementById('Area').value = data.sector_ID;
+        document.getElementById('Status').value = data.Status;
+        document.getElementById('CollecterImage').src = "images/Bobby.PNG"
+        document.getElementById('Assignbutton').disabled = false;
+    }
 }
 
 function submitForm() {

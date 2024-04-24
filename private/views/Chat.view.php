@@ -54,30 +54,8 @@ $this->view('include/head') ?>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
+    </div
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<?= ROOT ?>/js/chat.js"></script>
-    <script>
-        const messages = document.getElementById('messages');
-        const messageForm = document.getElementById('message-form');
-        const messageInput = document.getElementById('message-input');
-        const ws = new WebSocket('ws://34.136.53.128:8080');
-        ws.addEventListener('open', (event) => {
-            console.log('WebSocket connection opened:', event);
-        });
-        ws.addEventListener('message', (event) => {
-            const li = document.createElement('li');
-            li.textContent = event.data;
-            messages.appendChild(li);
-            messages.scrollTop = messages.scrollHeight;
-        });
-        messageForm.addEventListener('submit', (event) => {
-            console.log("Helldfvujhkfncisyvsndcsd");
-            event.preventDefault();
-            ws.send(messageInput.value);
-            messageInput.value = '';
-        });
-    </script>
     <?php $this->view('include/footer') ?>

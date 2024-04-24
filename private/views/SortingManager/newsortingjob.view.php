@@ -14,27 +14,14 @@
                             </h6>
                         </div>
                         <div style="display: flex;">
-                            <h6 style="width: 100%;">Sorting Machine Type</h6>
-                            <h6 style="margin-left:3vw;margin-top: 0;margin-bottom: 0;">
-                                <div class="textfield js-textfield textfield--floating-label getmdl-select full-size"
+                            <h6 style="width: 70%;">Sorting Machine Type</h6>
+                            <h6 style="margin-top: 18px;margin-bottom: 49px;margin-right: 15px;">
+                                <div class="textfield js-textfield textfield--floating-label getmdl-select full-size dropdown2"
                                     style="display: flex;">
                                     <input class="textfield__input" type="text" id="Machine_Type" name="Machine_Type"
-                                        readonly tabIndex="-1"/>
-                                        <input type="hidden" id="Machine_ID" name="Machine_ID" value="" hidden>
-                                    <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Machine_Type">
-                                        <?php
-                                        if (is_array($Machines) && !empty($Machines)) {
-                                            foreach ($Machines as $Machine) {
-                                                ?>
-                                                <li class="menu__item" onclick="SetForm('<?= $Machine->Machine_ID ?>','<?= $Machine->Machine_Type ?>')">
-                                                    <?= $Machine->Machine_Type ?>
-                                                </li>
-                                                <?php
-                                            }
-                                        } else {
-                                            echo "No Active Machines Available";
-                                        }
-                                        ?>
+                                        readonly tabIndex="-1" disabled />
+                                    <input type="hidden" id="Machine_ID" name="Machine_ID" value="" hidden>
+                                    <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Machine_Type" id="MachineTypes">
                                     </ul>
 
                                     <label for="Position">
@@ -82,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= ROOT ?>/js/NewSortingJob.js"></script>
     <script>
-        function SetForm(id,form) {
+        function SetForm(id, form) {
             document.getElementById("Machine_Type").value = form;
             document.getElementById("Machine_ID").value = id;
         }

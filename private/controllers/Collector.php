@@ -44,13 +44,15 @@ class collector extends Controller
             $pickup->update($id, ['Status' => $status], 'Pickup_ID');
         }
         if ($status == 'Rejected') {
-            $pickup->update($id, ['Status' => $status], 'Pickup_ID');
+            $pickup->update($id, ['Status' => 'Pending'], 'Pickup_ID');
+
         }
         $temp = $pickup->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $jobid . "' AND Status = 'Assigned'");
         if ($temp == null) {
             $pickupjob = $this->load_model('PickupJobs');
             $pickup = $pickupjob->query("UPDATE pickup_jobs SET Status = 'Accepted' WHERE Job_ID = '" . $jobid . "'");
             $this->redirect('collector');
+            return;
         }
         $this->redirect('collector/details/' . $jobid . '/Assigned');
     }
@@ -250,6 +252,15 @@ class collector extends Controller
             }
         } else {
             echo "No pending pickups";
+        }
+    }
+    function VerifyInventory(){
+        $inventory = $this->load_model('InventoryModel');
+        $data = $inventory->query("SELECT * FROM inventory I JOIN inventory_batch B ON I.Batch_ID = B.Batch_ID WHERE I.Inventory_ID='" . $_POST['Inventory_ID'] . "' AND B.Collector_ID='" . Auth::getUser_ID() . "'");
+        if($data != false){
+            echo (json_encode('true'));
+        }else{
+            echo (json_encode('false'));
         }
     }
 }

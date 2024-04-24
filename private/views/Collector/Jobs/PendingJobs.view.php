@@ -1,21 +1,21 @@
 <div class="card__supporting-text no-padding" id="PendingJobs" style="display: block;">
-    <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
-        <thead>
-            <tr>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px">Pickup ID</th>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px">Assigned Date</th>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px">Status</th>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
-                <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (is_array($rows) && !empty($rows)) {
-                foreach ($rows as $row) {
-                    ?>
+    <?php
+    if (is_array($rows) && !empty($rows)) {
+        foreach ($rows as $row) {
+            ?>
+            <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px">Pickup ID</th>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px">Assigned Date</th>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px">Status</th>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
+                        <th class="data-table__cell--header" style="padding:0 0 10px 20px"></th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                             <?= $row->Job_ID ?? '' ?>
@@ -68,17 +68,16 @@
                         }
                         ?>
                     </tr>
-
-                    <?php
-                }
-            } else {
-                // If $rows is not an array or is empty
-                echo "No data available.";
-            }
-            ?>
-
-
-        </tbody>
-    </table>
-
+                </tbody>
+            </table>
+            <?php
+        }
+    } else {
+        ?>
+        <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
+            <img src="<?= ROOT ?>/images/NoTask.jpg" alt="No data found" style="width: 400px;">
+        </div>
+        <?php
+    }
+    ?>
 </div>

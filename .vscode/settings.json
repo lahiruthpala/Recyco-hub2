@@ -12,6 +12,12 @@
         "*.embeddedhtml": "html",
         "*.rmd": "markdown",
         "type_traits": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
     }
 }

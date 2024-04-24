@@ -23,7 +23,6 @@
         '#8BE3C3',
         '#106752',
         '#19AA76',
-        '#274E13',
         '#38761D',
         '#6AA84F',
         '#93C47D',
@@ -52,7 +51,7 @@
     type = Array()
     weight = Array()
     for (var i = 0; i < temp.length; i++) {
-        type.push(temp[i].waste_type);
+        type.push(temp[i].Type);
     }
     for (var i = 0; i < temp.length; i++) {
         weight.push(temp[i].total_weight);

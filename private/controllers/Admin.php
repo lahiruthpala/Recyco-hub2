@@ -67,7 +67,7 @@ class Admin extends Controller
                 if ($_FILES['profileImage']['error'] == 0) {
                     $_POST['pwd'] = random_string(8);
                     $_POST['Email'] = $_POST['OfficialMail'];
-                    $_POST['Phone'] = $_POST['OfficialNumber'];;
+                    $_POST['Phone'] = $_POST['OfficialNumber'];
                     $_POST['UserName'] = $_POST['FirstName'];
                     $_POST['Status'] = "Pending";
                     if (!isset($_POST['Address'])) {
@@ -82,7 +82,7 @@ class Admin extends Controller
                         $verifyData = $verify->insert($_POST);
                         $_POST['pwd'] = $verifyData['pwd'];
                         $UserData = $user->insert($_POST);
-                        if($_POST['Role']){
+                        if ($_POST['Role']) {
                             $_POST['User_ID'] = $UserData['User_ID'];
                             $_POST['Collector_ID'] = $UserData['User_ID'];
                             $_POST['sector_ID'] = $this->load_model('Sectors')->first('SectorName', $_POST['SectorName'])->sector_ID;
@@ -90,8 +90,8 @@ class Admin extends Controller
                             $collector->insert($_POST);
                         }
                         if ($UserData) { //successful insertion
-                            $folder = APP_ROOT . "/Uploads/ProfilePIC/";
-                            $_FILES['profileImage']['name'] = $UserData['User_ID'];
+                            $folder = IMAGES . '/Users';
+                            $_FILES['profileImage']['name'] = $UserData['User_ID'] . ".jpg";
                             $destination = $file->uploadFile($_FILES['profileImage'], $folder);
                             message(['User Added successfully', 'success']);
                             $this->redirect('Admin/AccountManagement');
@@ -108,7 +108,7 @@ class Admin extends Controller
         }
         $sectors = $this->load_model('Sectors');
         $sectors = $sectors->query("SELECT * FROM sectors;");
-        $this->view("Admin/NewAccountCreation",[ 'sectors' => $sectors]);
+        $this->view("Admin/NewAccountCreation", ['sectors' => $sectors]);
     }
 
     function showAllMachines()
@@ -121,10 +121,19 @@ class Admin extends Controller
     function AddMachine()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $machine = $this->load_model('MachineModel');
-            $machine->insert($_POST);
-            message(['Machine Added successfully', 'success']);
-            $this->redirect('Admin/SortingCenter');
+            if ($_POST['Action'] == 'Edit') {
+                $machine = $this->load_model('MachineModel');
+                $machine->update($_POST['Machine_ID'], $_POST, 'Machine_ID');
+                message(['Machine Updated successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            } else {
+                $machine = $this->load_model('MachineModel');
+                $machine->insert($_POST);
+                message(['Machine Added successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            }
         }
         $watetype = $this->load_model("WasteType");
         $waste = $watetype->findAll(1, 10, "Waste_ID");
@@ -165,11 +174,34 @@ class Admin extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['Creator_ID'] = Auth::getUser_ID();
             $_POST['Status'] = 'Active';
-            $Code = $_POST['min'] . ' ' . $_POST['hour'] . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
+            // Get SLT hour and minute values from $_POST
+            $hour = intval($_POST['hour']);
+            $min = intval($_POST['min']);
+
+            // Subtract 5 hours and 30 minutes from SLT to get UTC
+            $utc_hour = $hour - 5;
+            $utc_min = $min - 30;
+
+            // Adjust if the result goes below 0
+            if ($utc_min < 0) {
+                $utc_hour -= 1;
+                $utc_min += 60;
+            }
+
+            // Adjust if the result goes below 0 or above 23
+            if ($utc_hour < 0) {
+                $utc_hour += 24;
+            } elseif ($utc_hour > 23) {
+                $utc_hour -= 24;
+            }
+            $Code = sprintf("%02d", $utc_min) . " " . sprintf("%02d", $utc_hour) . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
             $temp = "sudo crontab -l | grep -v \"" . $data->Code . "\" | crontab -";
             $output1 = shell_exec($temp);
+            //var_dump($temp,$output1);
             $temp2 = "(crontab -l; echo \"" . $Code . "\") | crontab -";
             $output2 = shell_exec($temp2);
+            //var_dump($temp2,$output2);
+            //die;
             $machine->update($id, $_POST, 'Automation_ID');
             message(['Automation Updated successfully', 'success']);
             $this->redirect('Admin/SortingCenter');
@@ -268,7 +300,8 @@ class Admin extends Controller
         $this->view("Admin/SortingCenter/Sectors", ['rows' => $data]);
     }
 
-    function AddNewSectors(){
+    function AddNewSectors()
+    {
         $sectors = $this->load_model('Sectors');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sectors->insert($_POST);

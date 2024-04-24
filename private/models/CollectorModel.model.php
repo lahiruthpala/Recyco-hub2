@@ -14,6 +14,7 @@ class CollectorModel extends Model
         'User_ID',
         'Collections',
         'Status',
+        'Priority',
     ];
 
 }
