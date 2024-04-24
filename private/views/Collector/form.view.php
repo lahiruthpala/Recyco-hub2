@@ -29,7 +29,7 @@ $this->view('include/head');
                                                             disabled>
                                                         <label class="textfield__error" id="NameError"
                                                             for="Name"></label>
-                                                    </h6>
+                                                    </h6> 
                                                 </div>
                                             </div>
                                             <div style="margin-right:150px">
@@ -130,13 +130,7 @@ $this->view('include/head');
                             <script>
                                 function SetForm(selection, form) {
                                     document.getElementById(selection).value = form;
-                                    // Get all elements with class "userform"
-                                    var userFormDivs = document.getElementsByClassName("userform");
-
-                                    // Iterate through the collection and set display to "none"
-                                    for (var i = 0; i < userFormDivs.length; i++) {
-                                        userFormDivs[i].style.display = "none";
-                                    }
+                                 
                                 }
 
                             </script>

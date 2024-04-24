@@ -24,25 +24,13 @@
 
 
                         <td class="data-table__cell--non-numeric">
-                            <?php
-                            $statusClass = ''; // Default class
-                            if ($row->Status == 'Assigned') {
-                                $statusClass = 'color--light-blue'; // Set class for Accepted status
-                            } elseif ($row->Status == 'Completed') {
-                                $statusClass = 'color--green'; // Set class for Completed status
-                            } elseif ($row->Status == 'Accepted') {
-                                $statusClass = 'color--green'; // Set class for Completed status
-                            } elseif ($row->Status == 'Rejected') {
-                                $statusClass = 'color--red'; // Set class for Completed status
-                            }
-
-                            ?>
-                            <span class="label label--mini <?= $statusClass ?>">
+                        
+                            <span class="label label--mini color--light-blue">
                                 <?= $row->Status ?? '' ?>
                             </span>
                         </td>
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->waste_type ?? '' ?>
+                             <?= $row->waste_type ?? '' ?>
                         </td>
                         <?php
 
@@ -51,7 +39,7 @@
                             <td class="data-table__cell--non-numeric">
                                 <a class="button js-button button--raised js-ripple-effect button--colored-green"
                                     href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>/Accepted" style="margin-right: 10px;">View</a>
-
+ 
                             </td>
 
 

@@ -97,13 +97,13 @@
                                                 href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted"
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Accept</a>
                                             <a style="background-color: #ff5746;color:white;"
-                                                class="button js-button button--raised js-ripple-effect button--colored-green"
+                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
                                                 href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted">Reject</a>
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
-                                                href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
+                                                 href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
                                                 target="_blank">
                                                 Show on map
-                                            </a>
+                                            </a> 
                                         </div>
                                     <?php endif; ?>
                                     <?php if ($pickup->Status == 'Accepted'): ?>
@@ -113,7 +113,7 @@
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Collect</a>
                                             <a style="background-color: #ff5746;color:white;"
                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/jobs/<?= $pickup->Inventory_ID ?>/Rejected/<?= $pickup->Pickup_ID ?>">Decline</a>
+                                                href="<?= ROOT ?>/collector/jobs/<?= $pickup->Inventory_ID ?>/<?= $pickup->Job_ID ?>/Rejected/">Decline</a>
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
                                                 href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
                                                 target="_blank">
