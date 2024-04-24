@@ -92,6 +92,8 @@ class GeneralManager extends Controller
     {
         $Partners = $this->load_model('PartnerModel');
         $partners = $Partners->findAll(1, 10, "Partner_ID");
+        $events = $this->load_model('Event');
+        $events = $events->query("SELECT * FROM events WHERE CURDATE() BETWEEN Event_Finish_Data AND Event_Finish_Data");
         $this->view('GeneralManager/Partner/PartnerTable', ['rows' => $partners]);
     }
 
@@ -206,5 +208,16 @@ class GeneralManager extends Controller
 
     function Dashboard(){
         $this->view('GeneralManager/Dashboard');
+    }
+
+    function ArticleDashboard(){
+        $articles = $this->load_model('Articles');
+        $data = $articles->findall(1, 10, "Published_Date");
+        $this->view('GeneralManager/Partner/DashboardArticles', ['articles' => $data]);
+    }
+    function EventDashboard(){
+        $articles = $this->load_model('Event');
+        $data = $articles->findall(1, 10, "Publish_Date");
+        $this->view('GeneralManager/Partner/Dashboardevents', ['events' => $data]);
     }
 }

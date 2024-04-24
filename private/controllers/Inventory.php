@@ -187,6 +187,8 @@ GROUP BY waste_type;
 
     function UpdateStatus()
     {
+        var_dump($_POST);
+        die;
         if (count($_POST) > 0) {
             $arr1['Status'] = 'Finished';
             $arr2['Status'] = 'In_Warehouse';
@@ -204,7 +206,27 @@ GROUP BY waste_type;
                 $data = $inventory->update($Inventory_ID, $arr2, "Inventory_ID");
             }
             message("Job Status Updated Successfully!");
+            if($_POST['NewBatch'] == 'true'){
+                $this->inventoryGeneration();
+            }
             $this->redirect("/GeneralManager");
+        }
+    }
+
+    function inventoryGeneration(){
+        if (count($_POST) > 0) {
+            $batch = $this->load_model('Batch');
+            $inventory = $this->load_model('InventoryModel');
+            if ($batch->validate($_POST)) {
+                $data = $batch->insert($_POST);
+                for ($i = 0; $i < $_POST['Size']; $i++) {
+                    $inventory->insert($data);
+                }
+                message(['Batch Created Successfully!', 'success']);
+                $this->redirect('Inventory/BatchProgress/?id='.$data['Batch_ID']);
+            } else {
+                $errors = $batch->errors;
+            }
         }
     }
 

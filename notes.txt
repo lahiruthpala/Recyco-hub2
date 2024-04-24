@@ -69,3 +69,5 @@ Machinr Inventoryupdate ->
           },
   "Inventory_ID": "Inven1703354856BxTC"
 }
+
+0x27

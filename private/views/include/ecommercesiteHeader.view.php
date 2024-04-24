@@ -5,25 +5,6 @@
             <img src="<?= ROOT ?>/images/RecycoHub.png" style="height: 80%; border-radius: 99px; ">
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
-      
-        <div></div>
-        <!-- Search-->
-     
-
-        <div class="material-icons badge badge--overlap button--icon notification" id="notification"
-            data-badge="4">
-            notifications_none
-        </div>
-        <!-- Notifications dropdown-->
-        <ul class="menu list js-menu js-ripple-effect menu--bottom-right shadow--2dp notifications-dropdown"
-            for="notification">
-            <ul id="notificationList" style="padding: 1px;"></ul>
-            <li class="list__item list__item--border-top">
-                <button href="#" class="button js-button js-ripple-effect">ALL
-                    NOTIFICATIONS</button>
-            </li>
-        </ul>
-
         <div class="avatar-dropdown" id="icon">
             <span>
                 <?= Auth::getUserName() ?>

@@ -2,8 +2,8 @@
     <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
         <thead>
             <tr>
-                <th class="data-table__cell--header">Partnership ID</th>
                 <th class="data-table__cell--header">Company Name</th>
+                <th class="data-table__cell--header">Impotent</th>
                 <th class="data-table__cell--header" style="padding-left: 70px">Events</th>
                 <th class="data-table__cell--header" style="padding-left: 70px">Status</th>
             </tr>
@@ -15,12 +15,12 @@
                     $array = array_map('intval', explode(',', $row->Events));
                     $result = '[' . implode(',', $array) . ']';
                     ?>
-                    <tr onclick="loadScreen('/GeneralManager/partner', '<?= $row->Partner_ID?>')">
-                        <td class="data-table__cell--non-numeric">
-                            <?= $row->Partner_ID ?? '' ?>
-                        </td>
+                    <tr onclick="loadScreen('/GeneralManager/partner', '<?= $row->Partner_ID ?>')">
                         <td class="data-table__cell--non-numeric">
                             <?= $row->Company_Name ?? '' ?>
+                        </td>
+                        <td class="data-table__cell--non-numeric">
+                            <?= $row->impotent ?? 'None' ?>
                         </td>
                         <td class="data-table__cell--non-numeric" style="max-height:80px; padding:0">
                             <canvas class="miniChart" width="130" height="40" data-chart-data="<?= $result ?>"></canvas>

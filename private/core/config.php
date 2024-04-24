@@ -1,6 +1,5 @@
 <?php
-
-define('ROOT', getenv('ROOT_URL'));
+define('ROOT', $_ENV['ROOT_URL']);
 define("APP_ROOT", "../private");
 define("IMAGES", "../public/images/");
 define('DBDRIVER', 'mysql');

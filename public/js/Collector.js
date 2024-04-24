@@ -61,6 +61,10 @@ function getInfo(content) {
 
 function setData(data) {
     console.log("--------->>>>>>>>", data);
+    if(data == false){
+        SideNotification([`No inventory found for this collector`, 'error']);
+        return;
+    }
     for (var i = 0; i < data.length; i++) {
         console.log("-->>>>",data[i]);
         if (data[i].Inventory_ID != null) {
@@ -88,7 +92,7 @@ function scanInventory(content) {
 
 function submit() {
     if(inventory.length != count){
-        alert("All inventory are not yet saned");
+        SideNotification([`All inventory are not yet scanned`, 'error']);
         return;
     }
     const form = document.createElement('form');

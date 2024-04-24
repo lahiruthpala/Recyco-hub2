@@ -69,7 +69,6 @@
                         ?>
                     </tr>
                 </tbody>
-            </table>
             <?php
         }
     } else {
@@ -80,4 +79,5 @@
         <?php
     }
     ?>
+    </table>
 </div>

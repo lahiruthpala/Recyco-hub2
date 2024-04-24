@@ -14,12 +14,11 @@
 
             <div class="grid grid--no-spacing dashboard">
 
-                <div
-                    >
+                <div style="width: 100%;">
                     <div class="cell cell--6-col-desktop cell--6-col-tablet cell--12-col-phone">
-                        <div class="card shadow--2dp" style="background-color: #444;">
+                        <div class="card shadow--2dp">
                             <div class="card__title">
-                                <h2 class="card__title-text">Simple Line Chart 1</h2>
+                                <h2 class="card__title-text">Activity</h2>
                             </div>
                             <canvas id="myChart"></canvas>
                             <script>
@@ -72,7 +71,7 @@
                                                 id: 'y-axis-1',
                                                 ticks: {
                                                     stepSize: 30, // Adjust the interval between y-axis values
-                                                    fontColor: 'white', // Change y-axis label color to white
+                                                    fontColor: 'black', // Change y-axis label color to white
                                                 },
                                             },
                                             {
@@ -85,20 +84,20 @@
                                                 },
                                                 ticks: {
                                                     stepSize: 30, // Adjust the interval between y-axis values
-                                                    fontColor: 'white', // Change y-axis label color to white
+                                                    fontColor: 'black', // Change y-axis label color to white
                                                 },
                                             },
                                         ],
                                     },
                                     legend: {
                                         labels: {
-                                            fontColor: 'white',
+                                            fontColor: 'black',
                                         },
                                     },
                                 };
 
                                 const ctx = document.getElementById('myChart').getContext('2d');
-                                Chart.defaults.color = 'white';
+                                Chart.defaults.color = 'black';
                                 const myChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: data,
