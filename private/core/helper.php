@@ -10,7 +10,7 @@ function get_var($key, $default = "")
 	return $default;
 }
 
-//popup message
+//popup message t
 //message[] consists of message and the type of message
 //$msg=['this is the message','success']
 //$msg=['this is the message','danger']
@@ -43,7 +43,7 @@ function get_select($key, $value)
 		if ($_POST[$key] == $value) {
 			return "selected";
 		}
-	}
+	} 
 
 	return "";
 }
