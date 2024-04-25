@@ -7,31 +7,17 @@
         </div>
         <div style="display: flex; margin-right:auto; gap:30px; justify-content: space-between;">
             <a href="<?= ROOT ?>/GeneralManager" <?= setActiveTab(1) ?>>Inventory</a>
-            <a href="<?= ROOT ?>/SortingManager" <?= setActiveTab(2) ?>>Sorting Jobs</a>
+            <?php if (Auth::getRole() == 'SortingManager'): ?>
+                <a href="<?= ROOT ?>/SortingManager" <?= setActiveTab(2) ?>>Sorting Jobs</a>
+            <?php endif; ?>
             <?php if (Auth::getRole() == 'GeneralManager'): ?>
                 <a href="<?= ROOT ?>/GeneralManager/partnership" <?= setActiveTab(3) ?>>Partnership</a>
             <?php endif; ?>
             <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4) ?>>Collection</a>
             <?php if (Auth::getRole() == 'GeneralManager'): ?>
-                <a href="<?= ROOT ?>/Store" <?= setActiveTab(5) ?>>Store</a>
+                <a href="<?= ROOT ?>/Ecommercesite" <?= setActiveTab(5) ?>>Store</a>
             <?php endif; ?>
         </div>
-        <div></div>
-
-        <div class="material-icons badge badge--overlap button--icon notification" id="notification"
-            data-badge="4">
-            notifications_none
-        </div>
-        <!-- Notifications dropdown-->
-        <ul class="menu list js-menu js-ripple-effect menu--bottom-right shadow--2dp notifications-dropdown"
-            for="notification">
-            <ul id="notificationList" style="padding: 1px;"></ul>
-            <li class="list__item list__item--border-top">
-                <button href="#" class="button js-button js-ripple-effect">ALL
-                    NOTIFICATIONS</button>
-            </li>
-        </ul>
-
         <div class="avatar-dropdown" id="icon">
             <span>
                 <?= Auth::getUserName() ?>
@@ -39,8 +25,7 @@
             <img src="<?= ROOT ?>/images/Icon_header.png">
         </div>
         <!-- Account dropdawn-->
-        <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown"
-            for="icon">
+        <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown" for="icon">
             <li class="list__item list__item--two-line">
                 <span class="list__item-primary-content">
                     <span class="material-icons list__item-avatar"></span>
@@ -97,8 +82,7 @@
             <i class="material-icons">more_vert</i>
         </button>
 
-        <ul class="menu menu--bottom-right js-menu js-ripple-effect shadow--2dp settings-dropdown"
-            for="more">
+        <ul class="menu menu--bottom-right js-menu js-ripple-effect shadow--2dp settings-dropdown" for="more">
             <li class="menu__item">
                 Settings
             </li>

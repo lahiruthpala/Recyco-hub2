@@ -35,7 +35,7 @@
                         <div class="card__actions">
                             <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"
                                 class="button js-button button--raised js-ripple-effect button--colored-green"
-                                href="<?= ROOT ?>/Partner/addNew/<?= $Event->Event_ID ?>">
+                                href="<?= ROOT ?>/Partner/EditEvent/<?= $Event->Event_ID ?>">
                                 Edit
                             </a>
                             <a style="background-color: #16C784; border-radius: 20px;"

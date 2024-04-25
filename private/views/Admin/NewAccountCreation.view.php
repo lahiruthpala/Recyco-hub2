@@ -38,7 +38,6 @@
                                     reader.onload = function (e) {
                                         document.getElementById('Image').src = e.target.result;
                                     }
-
                                     reader.readAsDataURL(input.files[0]);
                                 }
                             }

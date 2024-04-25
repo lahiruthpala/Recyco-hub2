@@ -1,4 +1,4 @@
-<div class="card__supporting-text no-padding" id="DraftArticles" style="display: block;">
+<div class="card__supporting-text no-padding" id="DraftArticles" style="display: none;">
     <div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
         <?php
         if (is_array($articles) && !empty($articles)) {
@@ -47,8 +47,9 @@
                 <?php
             }
         } else {
-            // If $rows is not an array or is empty
-            echo "No data available.";
+            ?>
+            <img src='<?= ROOT ?>/images/NoArticles.jpg'>
+            <?php
         }
         ?>
     </div>

@@ -39,6 +39,7 @@
             data: Sorted_values,
             fill: true,
             borderColor: 'rgb(0, 255, 163)', // Set the desired color value here
+            backgroundColor:'rgba(75, 192, 192, 0.7)', 
             tension: 0.1
         }]
     };

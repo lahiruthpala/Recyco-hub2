@@ -108,11 +108,11 @@
                                     <?php if ($pickup->Status == 'Accepted'): ?>
                                         <div class="card__actions">
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>"
+                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>/Accepted"
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Collect</a>
                                             <a style="background-color: #ff5746;color:white;"
                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/jobs/<?= $pickup->Inventory_ID ?>/Rejected/<?= $pickup->Pickup_ID ?>">Decline</a>
+                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>/Rejected">Decline</a>
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
                                                 href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
                                                 target="_blank">

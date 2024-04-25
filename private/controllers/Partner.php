@@ -82,7 +82,11 @@ class Partner extends Controller
                 $_POST['Status'] = 'Published';
             }
             $data = $articles->insert($_POST);
-            $this->redirect("Partner/articles");
+            $target_dir = "./images/Article/";
+            require_once (APP_ROOT . "/controllers/FileManager.php");
+            $file = new FileManager();
+            $destination = $file->uploadFile($_FILES['imageInput'], $target_dir, $data['Article_ID'].'.jpg');
+            $this->redirect("Partner");
         }
         $this->view("Partner/newarticle");
     }
@@ -91,8 +95,33 @@ class Partner extends Controller
     {
         $article = $this->load_model('Articles');
         $article->delete($id, "Article_ID");
-        $data = $article->findAll();
-        $this->view("Partner/Articles", ["articles" => $data]);
+        $this->redirect("Partner/articles");
+    }
+
+    function EditEvent($id){
+        $articles = $this->load_model('Event');
+        if (isset($_FILES["image"])) {
+            $response = array();
+            $target_dir = "./images/Events/";
+            require_once (APP_ROOT . "/controllers/FileManager.php");
+            $file = new FileManager();
+            $destination = $file->uploadFile($_FILES['image'], $target_dir);
+            $response["success"] = 1;
+            $response["file"]["url"] = ROOT . "/images/Events/" . $_FILES['image']['name'];
+            echo json_encode($response);
+            return;
+        }
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $_POST['Edit_Date'] = date("Y-m-d H:i:s");
+            if (isset($_POST['Action']) && $_POST['Action'] == 'Publish') {
+                $_POST['Published_Date'] = date("Y-m-d H:i:s");
+                $_POST['Status'] = 'Published';
+            }
+            $data = $articles->update($id, $_POST, "Article_ID");
+            $this->redirect("Partner/articles");
+        }
+        $data = $articles->first('Article_ID', $id);
+        $this->view("Partner/Articles/Edit", ["article" => $data]);
     }
 
     function Events()

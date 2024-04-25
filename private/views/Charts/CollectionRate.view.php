@@ -55,10 +55,32 @@
     };
 
     const CollectionRateConfig = {
-        type: 'line',
+        type: 'bar',
         data: CollectionRate_values,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true, // Start y-axis at 0
+                    title: {
+                        display: true,
+                        text: 'Number of request', // Customize y-axis label
+                    },
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date', // Customize x-axis label
+                    },
+                },
+            },
+            legend: {
+                display: true, // Display chart legend
+                position: 'bottom', // Place legend below the chart
+            },
+        },
     };
 
     const chart = new Chart(document.getElementById('CollectionRate'), CollectionRateConfig);
+
 
 </script>

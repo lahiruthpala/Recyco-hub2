@@ -63,11 +63,11 @@
                             </div>
                             <div style="color:black" id="editorjs"></div>
                             <div class="card__actions">
-                                <button type="button" onclick="saveData(event, 'Save')"
+                                <button type="button" onclick="saveData(event, 'Save', 'Event')"
                                     style="background-color: green;color: white;width: 146px;display: flex;"
                                     class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                     <img src="<?= ROOT ?>/images/save.svg" style="padding: 6px 10px;">Save</button>
-                                <button onclick="saveData(event,'Publish')"
+                                <button onclick="saveData(event,'Publish' , 'Event')"
                                     style="background-color: green;color: white;width: 146px;display: flex;"
                                     class="button js-button button--raised js-ripple-effect button--colored-green pull-right">
                                     <img src="<?= ROOT ?>/images/published.svg"

@@ -18,10 +18,10 @@
                         <?= $row->Inventory_ID ?>
                     </td>
                     <td class="data-table__cell--non-numeric">
-                        <?= $row->Type ?>
+                        <?= $row->waste_type ?>
                     </td>
                     <td class="data-table__cell--non-numeric">
-                        <?= $row->Type ?>
+                        <?= $row->waste_type ?>
                     </td>
                     <td class="data-table__cell--non-numeric"><span class="label label--mini color--green">
                             <?= $row->Status ?>
