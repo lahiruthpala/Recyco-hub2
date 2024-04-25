@@ -95,7 +95,6 @@
                                         },
                                     },
                                 };
-
                                 const ctx = document.getElementById('myChart').getContext('2d');
                                 Chart.defaults.color = 'black';
                                 const myChart = new Chart(ctx, {
@@ -129,12 +128,11 @@
                             $this->view('GeneralManager/Partner/ComplaintsTable', ['rows' => $complaints]);
                             ?>
                         </div>
-                        <form action="<?= ROOT ?>/GeneralManager/partner" method="POST">
-                            <div class="modal" id="modal">
-                                <div
-                                    >
+                        <form action="<?= ROOT ?>/GeneralManager/PartnerRemark" method="POST">
+                            <div class="modal" id="modal" style="width: 600px;">
+                                <div style="width: 100%;">
                                     <div
-                                        class="cell">
+                                        class="cell" style="width: 100%;">
                                         <div class="card shadow--2dp">
                                             <div class="card__title">
                                                 <div class="card__title-text">Add A Remark</div>
@@ -151,8 +149,8 @@
                                                 </div>
                                             </div>
                                             <button type="submit"
-                                                class="button js-button button--raised js-ripple-effect button--colored-teal"
-                                                style="border-radius: 99px; margin: 0 20px 20px 20px">
+                                                class="button js-button button--raised js-ripple-effect"
+                                                style="border-radius: 99px; margin: 0 20px 20px 20px;background-color: teal;">
                                                 Commit
                                             </button>
                                         </div>

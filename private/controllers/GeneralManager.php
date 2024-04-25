@@ -220,4 +220,9 @@ class GeneralManager extends Controller
         $data = $articles->findall(1, 10, "Publish_Date");
         $this->view('GeneralManager/Partner/Dashboardevents', ['events' => $data]);
     }
+    function PartnerRemark(){
+        $remarks = $this->load_model('Remarks');
+        $data = $remarks->insert($_POST);
+        $this->redirect('GeneralManager/partner?id=' . $_POST['Partner_ID']);
+    }
 }

@@ -260,7 +260,7 @@ class collector extends Controller
                 var_dump($data);
                 $data = $pickupRequest->query("UPDATE pickup_request SET Status = 'Assigned', Job_ID ='" . $data['Job_ID'] . "' WHERE Collector_ID = '" . $data['Collector_ID'] . "' && " . " Status = 'Pending'");
                 var_dump($data);
-                die;
+                //die;
             }
         } else {
             echo "No pending pickups";

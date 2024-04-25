@@ -188,7 +188,6 @@ GROUP BY waste_type;
     function UpdateStatus()
     {
         var_dump($_POST);
-        die;
         if (count($_POST) > 0) {
             $arr1['Status'] = 'Finished';
             $arr2['Status'] = 'In_Warehouse';

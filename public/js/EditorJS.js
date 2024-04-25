@@ -31,13 +31,13 @@ const editor = new EditorJS({
     }
 });
 // Save data when the user clicks the "Save" button
-function saveData(e, actionValue) {
+function saveData(e, actionValue, fromName) {
     e.preventDefault();
     console.log("jsdbhvkjdhv")
     editor.save()
         .then((outputData) => {
             // Create a form element
-            const form = document.getElementById('Event');
+            const form = document.getElementById(fromName);
             // Create an input element to hold the outputData
             const input = document.createElement('input');
             input.type = 'hidden';

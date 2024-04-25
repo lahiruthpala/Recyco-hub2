@@ -84,8 +84,6 @@ class Login extends Controller
 		} else {
 			$errors['verification'] = "Your verification link is no longer valid";
 			message(['User Added successfully', 'success']);
-
-			die;
 			$this->redirect('login');
 		}
 	}

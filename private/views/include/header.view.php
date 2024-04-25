@@ -7,7 +7,9 @@
         </div>
         <div style="display: flex; margin-right:auto; gap:30px; justify-content: space-between;">
             <a href="<?= ROOT ?>/GeneralManager" <?= setActiveTab(1) ?>>Inventory</a>
-            <a href="<?= ROOT ?>/SortingManager" <?= setActiveTab(2) ?>>Sorting Jobs</a>
+            <?php if (Auth::getRole() == 'SortingManager'): ?>
+                <a href="<?= ROOT ?>/SortingManager" <?= setActiveTab(2) ?>>Sorting Jobs</a>
+            <?php endif; ?>
             <?php if (Auth::getRole() == 'GeneralManager'): ?>
                 <a href="<?= ROOT ?>/GeneralManager/partnership" <?= setActiveTab(3) ?>>Partnership</a>
             <?php endif; ?>
@@ -23,8 +25,7 @@
             <img src="<?= ROOT ?>/images/Icon_header.png">
         </div>
         <!-- Account dropdawn-->
-        <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown"
-            for="icon">
+        <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown" for="icon">
             <li class="list__item list__item--two-line">
                 <span class="list__item-primary-content">
                     <span class="material-icons list__item-avatar"></span>
@@ -81,8 +82,7 @@
             <i class="material-icons">more_vert</i>
         </button>
 
-        <ul class="menu menu--bottom-right js-menu js-ripple-effect shadow--2dp settings-dropdown"
-            for="more">
+        <ul class="menu menu--bottom-right js-menu js-ripple-effect shadow--2dp settings-dropdown" for="more">
             <li class="menu__item">
                 Settings
             </li>
