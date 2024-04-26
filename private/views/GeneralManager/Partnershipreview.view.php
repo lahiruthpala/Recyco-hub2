@@ -11,13 +11,11 @@ $generalmanager = new GeneralManager();
         <header>
             <?php $this->view('include/header') ?>
         </header>
-
         <main class="layout__content">
-
             <div class="grid grid--no-spacing dashboard">
-                <div>
-                    <div class="cell cell--6-col-desktop cell--6-col-tablet cell--12-col-phone"
-                        style="width: calc(93% - 32px);">
+                <div style="width: 100%;">
+                    <div class="cell"
+                        style="width: 100%;">
                         <div class="card shadow--2dp line-chart" style="margin-right: 16px;">
                             <div id="buttonToggle" class="buttonToggle">
                                 <button onclick="loadPreview('EventPreview')" id="EventPreview_Button"
@@ -27,8 +25,9 @@ $generalmanager = new GeneralManager();
                                     style="margin: 4px 10px 4px 4px;"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">Articles</button>
                             </div>
-                            <?php $this->view('GeneralManager/Partner/Dashboardevents') ?>
-                            <?php $this->view('GeneralManager/Partner/DashboardArticles') ?>
+                            <?php $generalmanager->ArticleDashboard();
+                            $generalmanager->EventDashboard();
+                            ?>
                         </div>
                     </div>
                 </div>

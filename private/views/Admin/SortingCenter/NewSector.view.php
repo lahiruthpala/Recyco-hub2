@@ -1,3 +1,4 @@
+
 <div class="card__supporting-text no-padding"
     style="margin: 20px; display: none;  width: 95%; border-radius: 15px; border: 1px solid green;color: black;"
     id="NewSector">
@@ -66,9 +67,9 @@
                     <div style="display: flex;">
                         <h6>Description</h6>
                         <h6 style="margin-left:3vw;">
-                            <input type="Name" placeholder="Enter the Price" id="Price" name="Price"
+                            <input type="Name" placeholder="Enter a description" id="Description" name="Description"
                                 class="textfield__input">
-                            <label class="textfield__error" id="PriceError" for="Price"></label>
+                            <label class="textfield__error" id="PriceError" for="Description"></label>
                         </h6>
                     </div>
                 </div>
