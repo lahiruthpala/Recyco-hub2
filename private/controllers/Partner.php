@@ -127,7 +127,7 @@ class Partner extends Controller
     function Events()
     {
         $events = $this->load_model('Event');
-        $this->view("Partner/Events");
+        $this->view("Partner/events");
     }
 
     function UpcomingEvents()

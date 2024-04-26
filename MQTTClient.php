@@ -1,6 +1,6 @@
 <?php
 
-require ('C:/wamp64/www/Recyco-hub2/vendor/autoload.php');
+require (__DIR__.'/vendor/autoload.php');
 
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
