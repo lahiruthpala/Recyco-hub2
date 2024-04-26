@@ -28,7 +28,7 @@ $mqtt->connect($connectionSettings, $clean_session);
 $mqtt->subscribe('Recycohub', function ($topic, $message) {
 
     printf("\n\n\n\n\n\n\nReceived message on topic [%s]: %s\n", $topic, $message);
-    if ($message == "40") {
+    if ($message == "Connected") {
         printf("Received message on topic [%s]: %s\n", $topic, $message);
     } else {
         // URL to which you want to send the POST request
