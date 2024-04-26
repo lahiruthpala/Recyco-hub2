@@ -474,6 +474,7 @@ void DisplaySortingInventories()
     }
 }
 
+//working
 void SortingJobInventoryUpdate()
 {
     lcd.clear();

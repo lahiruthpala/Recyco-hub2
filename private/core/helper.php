@@ -121,3 +121,21 @@ function statustoint($status)
     }
 }
 
+function statustointselling($status){
+	switch ($status) {
+        case "Sorting":
+			return 0;
+        case "Sorted":
+            return 1;
+        case "Approved to sell":
+			return 2;
+        case "Posted":
+            return 3;
+        case "Sold":
+            return 4;
+        default:
+            // Handle unknown status
+            return -1;
+    }
+}
+
