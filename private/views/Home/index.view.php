@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Greenture Environment Saving HTML5 Template | Homepage Style One</title>
+    <title>Recycohub Homepage</title>
     <!-- Stylesheets -->
     <link href="<?= ROOT ?>/css/indexgeneral.css" rel="stylesheet">
     <link href="<?= ROOT ?>/css/revolution-slider.css" rel="stylesheet">
@@ -46,15 +46,15 @@
                 <div class="auto-container clearfix">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo-1.png" alt="Greenture"></a>
+                        <a href="index.html"><img src="images/logo-1.png" alt="Greenture" style="border-radius: 30px;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);"></a>
                     </div>
 
                     <!--Nav Outer-->
                     <div class="nav-outer clearfix">
-
+                        <div style="display: flex;">
                         <a href="<?=ROOT?>/login" class="theme-btn btn-donate" data-toggle="modal" data-target="#donate-popup">Login Now!</a>
-                        <a href="<?=ROOT?>/signup" class="theme-btn btn-donate" data-toggle="modal" data-target="#donate-popup">Register Now!</a>
-
+                        <a href="<?=ROOT?>/signup" id="join-now" class="theme-btn btn-donate" data-toggle="modal" data-target="#donate-popup" style="box-shadow: 0px 1px 5px rgba(0, 0, 0, 1);">Register Now!</a>
+                        </div>
                         <!-- Main Menu -->
                         <nav class="main-menu">
 
@@ -70,28 +70,28 @@
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation">
 
-                                    <li class="current dropdown"><a href="#">Home</a></li>
+                                    <li ><a href="#">Home</a></li>
                                     <li><a href="about.html">About</a></li>
 
-                                    <li class="dropdown"><a href="#">Events</a>
-                                        <ul>
+                                    <li ><a href="#">Events</a>
+                                        <!-- <ul>
                                             <li><a href="events-list.html">Events List View</a></li>
                                             <li><a href="events-grid.html">Events Grid View</a></li>
                                             <li><a href="event-single.html">Single Event</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </li>
-                                    <li class="dropdown"><a href="#">Blog</a>
-                                        <ul>
+                                    <li ><a href="#">Blog</a>
+                                        <!-- <ul>
                                             <li><a href="blog.html">Blog Classic</a></li>
                                             <li><a href="blog-three-column.html">Blog Three Column</a></li>
                                             <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </li>
-                                    <li class="dropdown"><a href="#">Gallery</a>
-                                        <ul>
+                                    <li ><a href="#">Gallery</a>
+                                        <!-- <ul>
                                             <li><a href="gallery-masonry.html">Gallery Masonry</a></li>
-                                            <!-- <li><a href="gallery-three-column.html">Gallery Three Column</a></li> -->
-                                        </ul>
+                                             <li><a href="gallery-three-column.html">Gallery Three Column</a></li>
+                                        </ul> -->
                                     </li>
 
                                     <li><a href="contact-info">Contact Us</a></li>
@@ -117,8 +117,8 @@
                 <div class="tp-banner">
                     <ul>
 
-                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="<?=ROOT?>/images/resource/mainslider1.jpeg" data-saveperformance="off" data-title="Awesome Title Here">
-                            <img src="images/main-slider/1.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="<?=ROOT?>images/resource/mainslider1.png" data-saveperformance="off" data-title="Awesome Title Here">
+                            <img src="<?=ROOT?>images/resource/mainslider1.png" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="15" data-y="center" data-voffset="-150" data-speed="1500" data-start="500" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
@@ -134,32 +134,28 @@
                             </div>
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="90" data-y="center" data-voffset="110" data-speed="1500" data-start="2000" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <div class="text">Lorem ipsum dolor sit amet, debet dolore mollis his ad, ea usu <br>soleat detraxit.In vix agam moderatius. Modo partiendo.</div>
+                                <div class="text" style="color: black;">Lorem ipsum dolor sit amet, debet dolore mollis his ad, ea usu <br>soleat detraxit.In vix agam moderatius. Modo partiendo.</div>
                             </div>
-
-                            <div class="tp-caption sfr sfb tp-resizeme" data-x="left" data-hoffset="90" data-y="center" data-voffset="190" data-speed="1500" data-start="2000" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Learn More</a></div>
 
                         </li>
 
-                        <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="<?=ROOT?>/images/resource/mainslider1.jpeg" data-saveperformance="off" data-title="Awesome Title Here">
-                            <img src="images/main-slider/2.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="<?=ROOT?>images/resource/mainslider2.png" data-saveperformance="off" data-title="Awesome Title Here">
+                            <img src="<?=ROOT?>images/resource/mainslider2.png" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-120" data-speed="1500" data-start="500" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <h2 class="normal-font">Help us</h2>
+                                <h2 class="normal-font">Boost </h2>
                             </div>
 
                             <div class="tp-caption sfr sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-30" data-speed="1500" data-start="1000" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <h2>to save the Animals</h2>
+                                <h2>Recycling Efforts</h2>
                             </div>
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="50" data-speed="1500" data-start="1500" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <h4>All of our afford can bring back the life</h4>
+                                <h4 style="text-align:center; max: width 400px;margin: 0 auto;"> Reduce leakages to safeguard lives against land and sea-based marine plastic pollution.</h4>
                             </div>
-
-                            <div class="tp-caption sfr sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="120" data-speed="1500" data-start="2000" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Learn More</a></div>
-
                         </li>
+                    <div class="tp-bannertimer" style="visibility:visible;width:auto;transform:translate3d(0px,0px,0px,0px)"></div>
 
 
 
@@ -244,7 +240,7 @@
                             Through organized events, participants will collaborate in cleaning up local areas while focusing on recycling and proper waste management practices.
                             This initiative not only fosters a sense of community involvement but also contributes to the preservation of natural habitats and the promotion of sustainable living.
                             Join us in making a positive impact on our environment </div>
-                        <a href="#" class="theme-btn btn-style-one">Join Now</a>
+                        <a href="#join-now" class="theme-btn btn-style-one">Join Now</a>
                         <!-- <a href="#" class="theme-btn btn-style-two">View details</a> -->
                     </div>
 
@@ -254,60 +250,6 @@
             </div>
 
         </section>
-
-
-        <!--Recent Projects Section-->
-
-
-
-        <!--Two Column Fluid -->
-
-        <!-- <section class="two-column-fluid" style="margin:40px">
-
-
-            <div class="outer clearfix">
-
-
-                <article class="column left-column" style="background-image:url(images/resource/fluid-image-3.jpg);">
-
-                    <div class="content-box pull-right">
-                        <h2>Some <span class="normal-font theme_color">Facts</span></h2>
-                        <div class="title-text">Lorem ipsum dolor some link sit amet, cum at inani interesset</div>
-                        <div class="text">We’re extremely proud of what we’ve achieved together with charitie lorem individuals, philanthropists and schools since the Big Give was founded in 2007, and here are some fact from our achivemnet.</div>
-                        <br>
-
-                        <div class="clearfix">
-                            <div class="icon-box">
-                                <div class="icon"><span class="flaticon-shapes-1"></span></div>
-                                <div class="lower-box">
-                                    <h4>$<span class="count-text" data-stop="7845910" data-speed="1500">7,845,910</span></h4>
-                                    <span class="title">Raised</span>
-                                </div>
-                            </div>
-
-                            <div class="icon-box">
-                                <div class="icon"><span class="flaticon-tool-4"></span></div>
-                                <div class="lower-box">
-                                    <h4>$<span class="count-text" data-stop="13360" data-speed="1500">12,360</span></h4>
-                                    <span class="title">Projects</span>
-                                </div>
-                            </div>
-
-                            <div class="icon-box">
-                                <div class="icon"><span class="flaticon-favorite"></span></div>
-                                <div class="lower-box">
-                                    <h4>$<span class="count-text" data-stop="78459" data-speed="1500">225,580</span></h4>
-                                    <span class="title">Donations</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </article>
-            </div>
-
-        </section> -->
 
         <!--Events Section-->
         <section class="events-section latest-events">
@@ -398,7 +340,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="row clearfix" style="display: flex; justify-content: space-between;align-items: center;">
                                 <!-- <div class="col-lg-8 col-sm-6 col-xs-12 column"> -->
-                                    <div class="footer-widget about-widget" style="width:80%">
+                                    <div class="footer-widget about-widget" style="width:100%">
                                         <div class="logo"><a href="index.html"><img src="images/logo-2.png" class="img-responsive" alt=""></a></div>
                                         <div class="text">
                                             <p>Better Tomorrow</p>
@@ -448,14 +390,14 @@
 
     <!-- /.modal -->
 
-    <script src="js/default.js"></script>
-    <script src="js/indexgeneral.min.js"></script>
-    <script src="js/revolution.min.js"></script>
-    <script src="js/pack.js"></script>
-    <script src="js/media.js"></script>
-    <script src="js/owl.js"></script>
-    <script src="js/wow.js"></script>
-    <script src="js/general.js"></script>
+    <script src="<?=ROOT?>/js/default.js"></script>
+    <script src="<?=ROOT?>/js/indexgeneral.min.js"></script>
+    <script src="<?=ROOT?>/js/revolution.min.js"></script>
+    <script src="<?=ROOT?>/js/pack.js"></script>
+    <script src="<?=ROOT?>/js/media.js"></script>
+    <script src="<?=ROOT?>/js/owl.js"></script>
+    <script src="<?=ROOT?>/js/wow.js"></script>
+    <script src="<?=ROOT?>/js/general.js"></script>
 </body>
 
 </html>
