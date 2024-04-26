@@ -38,15 +38,23 @@ $quantity = 0;
                                                     <p style="color: red; font-size: 30px;">RS&nbsp;<?= $discountedPrice ?>&nbsp;/Kg</p>
                                                     <p style="color: grey; font-size: 15px;"><strike>RS&nbsp;<?= $row->price ?>&nbsp;/Kg&nbsp;</strike>&nbsp;&nbsp;-<?= $row->discount ?>%</p>
                                                 </div>
-                                                <!-- Quantity Control -->
+                                                <?php if ($row->status === 'In stock') : ?>
                                                 <div style="margin-top: 20px;color: red;">
                                                     Quantity: <span id="quantity"><?= $quantity ?></span>Kg&nbsp;
                                                     <button onclick="changeQuantity(-1)">-</button>
                                                     <button onclick="changeQuantity(1)">+</button>
                                                 </div>
+                                            
                                                 <div style="margin-top: 60px; display: flex;">
                                                 <button onclick="payNow()" style="font-size: 15px; padding: 10px 20px; margin-right: 10px; width: 150px; background-color:#139571; color: white; border: none;">Pay Now</button>
                                                 <button onclick="addToCart()" style="font-size: 15px; padding: 10px 20px; width: 150px; background-color:#139571; color: white; border: none;">Add to Cart</button>
+                                                </div>
+                                                <?php else : ?>
+                                                    <div style="margin-top: 70px;">
+                                     
+                               <a     href="<?= ROOT ?>/Ecommercesite/orderform/<?= $row->product_Id ?>"
+                                    style="font-size: 15px; padding: 10px 20px; width: 150px; background-color:#139571; color: white; border: none;margin-top:60px">Order Now</a>
+                                                   <?php endif; ?>
                                                 </div>
 
 
