@@ -14,6 +14,8 @@ class Customer extends Controller
 			if ($data != false) {
 	 			message(["Pickup request successfully placed","success"]);
 				$data = $pickup->insert($data);
+				$this->redirect('Home');
+				return;
 			}
 		}
 		$data = $this->load_model('WasteType')->findAll(1,10,"Waste_ID");

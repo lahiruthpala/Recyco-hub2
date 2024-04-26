@@ -34,17 +34,17 @@
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                             <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                onclick="Edit('<?= ROOT . 'Admin/MachineEdit/' . $row->sector_ID?>','AddNewMachine')"
+                                href="<?= ROOT . 'Admin/ViewSectorDetails/' . $row->sector_ID?>"
                                 style="margin-right: 10px;">View</a>
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                             <a class="button js-button button--raised js-ripple-effect"
-                                onclick="Edit('<?= ROOT . 'Admin/MachineEdit/' . $row->sector_ID?>','AddNewMachine')"
+                            href="<?= ROOT . 'Admin/EditSector/' . $row->sector_ID?>"
                                 style="margin-right: 10px; background-color:#51c9c9;">Edit</a>
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                             <a class="button js-button button--raised js-ripple-effect"
-                                href="<?= ROOT ?>/Admin/MachineRemove/<?= $row->sector_ID ?>"
+                                href="<?= ROOT ?>/Admin/SectorDelete/<?= $row->sector_ID ?>"
                                 style="margin-right: 10px;background-color: red;color: white;">Remove</a>
                         </td>
                     </tr>

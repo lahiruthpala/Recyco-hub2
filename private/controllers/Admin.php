@@ -328,7 +328,32 @@ class Admin extends Controller
         $data->Email = $user->Email;
         $data->Address = $user->Address;
         $this->view('Collector/profile', ['row' => $data]);
-
     }
+
+    function ViewSectorDetails($id){
+        $sectors = $this->load_model('Sectors');
+        $data = $sectors->where('sector_ID', $id);
+        $this->view('Admin/SortingCenter/SectorMap', ['sector' => $data]);
+    }
+
+    function EditSector($id){
+        $sectors = $this->load_model('Sectors');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sectors->update($id, $_POST, 'sector_ID');
+            message(['Sector updated successfully', 'success']);
+            $this->redirect('Admin/SortingCenter');
+            return;
+        }
+        $data = $sectors->where('sector_ID', $id);
+        $this->view('Admin/SortingCenter/EditSector', ['sector' => $data]);
+    }
+
+    function SectorDelete($id){
+        $sectors = $this->load_model('Sectors');
+        $sectors->delete($id, 'sector_ID');
+        message(['Sector deleted successfully', 'success']);
+        $this->redirect('Admin/SortingCenter');
+    }
+
 }
 ?>

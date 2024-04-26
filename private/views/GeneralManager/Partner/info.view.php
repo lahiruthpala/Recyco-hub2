@@ -1,4 +1,4 @@
-<div class="card__supporting-text no-padding" style="margin: 20px;width: 97.2%;background: #444;border-radius: 15px;" id="info">
+<div class="card__supporting-text no-padding" style="margin: 20px;width: 97.2%; color:black; border-radius: 15px;" id="info">
     <div class="form__article">
         <h3>Company Infomation</h3>
 

@@ -13,20 +13,20 @@
                     </div>
                     <canvas id="<?= $article->Article_ID ?>_img"></canvas>
                     <script>
-                        var img = new Image();
-                        img.onload = function () {
+                        var <?='img'.$article->Article_ID ?> = new Image();
+                        <?='img'.$article->Article_ID ?>.onload = function () {
                             var canvas = document.getElementById('<?= $article->Article_ID ?>_img');
                             var ctx = canvas.getContext('2d');
                             canvas.width = 1200;
                             canvas.height = 630;
-                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            ctx.drawImage(<?='img'.$article->Article_ID ?>, 0, 0, canvas.width, canvas.height);
                             var resizedImg = canvas.toDataURL('image/jpeg', 1.0);
                             // Use the resizedImg as needed
                         };
-                        img.onerror = function () {
+                        <?='img'.$article->Article_ID ?>.onerror = function () {
                             console.error('Failed to load image: <?= ROOT ?>/images/Article/<?= $article->Article_ID ?>.jpg');
                         };
-                        img.src = "<?= ROOT ?>/images/Article/<?= $article->Article_ID ?>.jpg";
+                        <?='img'.$article->Article_ID ?>.src = "<?= ROOT ?>/images/Article/<?= $article->Article_ID ?>.jpg";
                     </script>
                     <div class="card__supporting-text card--expand">
                         <?= $article->Description ?><br><br>

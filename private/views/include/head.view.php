@@ -62,6 +62,11 @@ function statuscolor($status)
         return "#0034ff";
     }elseif($status == "Assigned"){
         return "#ff8c00";
+    }elseif($status == 'Sorting'){
+        return "green";
+    }
+    elseif($status == "Sorted"){
+        return "blueviolet";
     }
     else {
         return "red";

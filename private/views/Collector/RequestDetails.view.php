@@ -96,13 +96,8 @@
                                                 href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted"
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Accept</a>
                                             <a style="background-color: #ff5746;color:white;"
-<<<<<<< HEAD
-                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Accepted">Reject</a>
-=======
                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
                                                 href="<?= ROOT ?>/collector/AcceptJob/<?= $pickup->Job_ID ?>/<?= $pickup->Pickup_ID ?>/Rejected">Reject</a>
->>>>>>> 8a286ca09f538667a68d6f08b64b23c7d88f46e1
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green pull-right"
                                                  href="https://www.google.com/maps/dir/?api=1&origin=My%20location&destination=<?= $pickup->latitude ?? '' ?>,<?= $pickup->longitude ?? '' ?>&travelmode=driving"
                                                 target="_blank">
@@ -113,7 +108,7 @@
                                     <?php if ($pickup->Status == 'Accepted'): ?>
                                         <div class="card__actions">
                                             <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>"
+                                                href="<?= ROOT ?>/collector/form/<?= $pickup->Pickup_ID ?? '' ?>/Accepted"
                                                 style="margin-right: 10px;background-color: #027855; color:white;">Collect</a>
                                             <a style="background-color: #ff5746;color:white;"
                                                 class="button js-button button--raised js-ripple-effect button--colored-green"
