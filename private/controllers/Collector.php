@@ -38,7 +38,7 @@ class collector extends Controller
     }
 
     function AcceptJob($jobid, $id, $status)
-    {
+    { 
         $pickup = $this->load_model('PickUpRequestModel');
         if ($status == 'Accepted') {
             $pickup->update($id, ['Status' => $status], 'Pickup_ID');
@@ -89,11 +89,23 @@ class collector extends Controller
     }
 
 
-    function jobs($id, $type, $pid)
+    function jobs($id,$pid,$type,)
     {
         $pickup = $this->load_model('PickUpRequestModel');
-        $data = $pickup->query("UPDATE pickup_request SET Status = '" . $type . "' WHERE Pickup_ID = '" . $pid . "'");
-        $this->details($pid);
+        // Get pickup requests with the specified ID
+        // Auth::getCollector_ID
+        $arr = [];
+        $arr['jobstatus'] = $type;
+        $data = $pickup->Update($id, $arr, "Inventory_ID");
+        $temp = $pickup->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $pid . "' AND Status = 'Accepted'");
+       
+        if ($temp == null) {
+         
+           
+            $this->redirect('collector');
+            return;
+        }
+        $this->redirect('collector/details/' . $pid . '/Accepted');
     }
 
     function statusupdate($id, $type)
@@ -127,14 +139,14 @@ class collector extends Controller
         $this->start($pid);
 
     }
-    function store($id, $type, $jobid)
+     function store($id, $type, $jobid)
     {
         $in = $this->load_model('PickUpRequestModel');
         $inventory = $this->load_model('InventoryModel');
 
         $arr = [];
         $invenarray = [];
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
             // Assuming you have the relevant validation and sanitation in place
             if ($type == "Accepted") {
                 $_POST['Status'] = "Collected";

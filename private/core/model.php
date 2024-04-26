@@ -41,7 +41,7 @@ class Model extends Database
 				}
 			}
 		}
-
+ 
 		if (is_array($data)) {
 			$data = $data[0];
 		}

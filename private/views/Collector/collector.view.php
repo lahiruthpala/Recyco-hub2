@@ -121,7 +121,41 @@ $collector = new collector(); ?>
     </main>
 
     </div>
-    <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
+    <script>
+        function loadComponent(component, id = "") {
+    console.log(component);
+    var sections = document.getElementsByClassName('card__supporting-text no-padding');
+    // Hide all sections
+    console.log("Inside the load component");
+    for (var i = 0; i < sections.length; i++) {
+        sections[i].style.display = 'none';
+        if (typeof isScannerActive !== 'undefined' && isScannerActive) {
+            scanner.stop();
+        }
+    }
+    console.log("All are hidden");
+    if (id.length != 0) {
+        createcomponent(id)
+    }
+    var partnerTableSection = document.getElementById(component);
+    partnerTableSection.style.display = 'block';
+    console.log("Done");
+
+    // Get all child elements in the div
+    var button = document.getElementById("buttonToggle");
+    var childElements = button.children;
+    for (var i = 0; i < childElements.length; i++) {
+        if (childElements[i].id && childElements[i].id.endsWith("_Button")) {
+            if (childElements[i].id != component + "_Button") {
+                childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-smoke";
+            } else {
+                childElements[i].className = "button js-button button--raised js-ripple-effect button--colored-green";
+            }
+        }
+    }
+}
+
+    </script>
 
 
 

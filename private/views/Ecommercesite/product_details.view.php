@@ -30,7 +30,7 @@ $quantity = 0;
                                                 <!-- Text content -->
                                                 <h2 style="color: black; text-transform: capitalize;"><?= ($row->product_name) ?></h2>
 
-                                                <br>
+                                                
                                                 <div style="margin-top: 20px;">
                                                     <?php
                                                         $discountedPrice = $row->price - $row->price * ($row->discount / 100);
