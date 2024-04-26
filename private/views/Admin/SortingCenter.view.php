@@ -2,7 +2,7 @@
 global $activeTab;
 $activeTab = 3;
 $this->view('include/head');
-require_once(APP_ROOT . "/controllers/Admin.php");
+require_once (APP_ROOT . "/controllers/Admin.php");
 $admin = new Admin();
 ?>
 
@@ -24,13 +24,17 @@ $admin = new Admin();
                                     id="SortingCenter_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-green">Sorting
                                     Center</Button>
+                                <button onclick="loadComponent('WasteTypesTable')" style="margin: 4px 10px 4px 4px;"
+                                    id="WasteTypesTable_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">Waste
+                                    Types</Button>
                                 <button onclick="loadComponent('MachineTable')" style="margin: 4px 10px 4px 4px;"
                                     id="MachineTable_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">Machines</Button>
-                                <button onclick="loadComponent('AddNewMachine')" style="margin: 4px 10px 4px 4px;"
-                                    id="AddNewMachine_Button"
-                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">Add
-                                    New Machine</Button>
+                                <button onclick="loadComponent('Sectors')" style="margin: 4px 10px 4px 4px;"
+                                    id="Sectors_Button"
+                                    class="button js-button button--raised js-ripple-effect button--colored-smoke">
+                                    Sectors</Button>
                                 <button onclick="loadComponent('Automation')" style="margin: 4px 10px 4px 4px;"
                                     id="Automation_Button"
                                     class="button js-button button--raised js-ripple-effect button--colored-smoke">
@@ -41,6 +45,10 @@ $admin = new Admin();
                             $admin->showAllMachines();
                             $admin->SortingCenterInfo();
                             $admin->Automation();
+                            $admin->SectorsView();
+                            $admin->WasteType();
+                            $admin->AddNewSectors();
+                            $this->view('Admin/SortingCenter/AddNewWasteType');
                             ?>
                         </div>
                     </div>
@@ -50,7 +58,6 @@ $admin = new Admin();
         </main>
 
     </div>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php $this->view('include/footer') ?>

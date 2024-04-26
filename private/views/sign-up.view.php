@@ -101,8 +101,8 @@
             var pwd2 = document.getElementById('pwd2').value;
             var pwderror2 = document.getElementById('pwderror2');
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
+            var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            console.log(pwd1, pwd2);
             if (email.trim() === '' || pwd1.trim() === '') {
                 if (email.trim() === '') {
                     emialerror.style.visibility = "visible";
@@ -115,7 +115,7 @@
                     count++;
                 }
             }
-            if (username.length < 4 || username.length > 10){
+            if (username.length < 4 || username.length > 10) {
                 usernameerror.style.visibility = "visible";
                 usernameerror.innerHTML = "Username must be between 4 and 10 characters";
                 count++;
@@ -125,26 +125,22 @@
                 emialerror.innerHTML = "Enter a valid email";
                 count++;
             }
-            if(pwd1.length < 6){
+            if (pwd1.length < 6) {
                 pwderror1.style.visibility = "visible";
                 pwderror1.innerHTML = "Password must be at least 6 characters long";
                 count++;
             }
-            if(pwd1 != pwd2){
+            if (pwd1 != pwd2) {
                 pwderror2.style.visibility = "visible";
                 pwderror2.innerHTML = "Password does not match";
                 count++;
             }
-            if(pwd1 != pwd2){
-                pwderror2.style.visibility = "visible";
-                pwderror2.innerHTML = "Password does not match";
-                count++;
-            }if (!passwordRegex.test(pwd)) {
-                pwderror.style.visibility = "visible";
-                pwderror.innerHTML = "Enter a valid password";
-                count++;
-            }
-            if(count == 0){
+            // if (!passwordRegex.test(pwd1)) {
+            //     pwderror1.style.visibility = "visible";
+            //     pwderror1.innerHTML = "Enter a valid password";
+            //     count++;
+            // }
+            if (count == 0) {
                 form.submit();
             }
         }

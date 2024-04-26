@@ -1,7 +1,7 @@
 <?php
-
-define('ROOT', 'http://localhost:8380/Recyco-HUB2/public/');
+define('ROOT', $_ENV['ROOT_URL']);
 define("APP_ROOT", "../private");
+define("IMAGES", "../public/images/");
 define('DBDRIVER', 'mysql');
 define('DBHOST', 'localhost');
 define('DBNAME', 'recyco-hub');

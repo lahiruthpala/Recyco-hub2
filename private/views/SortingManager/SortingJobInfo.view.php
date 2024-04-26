@@ -66,20 +66,20 @@
                         </div>
                         <div style="margin-left: 10vw;">
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
-                                <h6 style="margin: 0px;">Description</h6>
+                                <h6 style="margin: 0px;">Waste Type</h6>
                                 <h6 style="margin: 0px;">
-                                    <?= $data->Description ?? "Routing Sort process"; ?>
+                                    <?= $data->waste_type ?? "Routing Sort process"; ?>
                                 </h6>
                             </div>
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
-                                <h6 style="margin: 0px;">Assigned Machine</h6>
+                                <h6 style="margin: 0px;">Machine Type</h6>
                                 <h6 style="margin: 0px;">
-                                    <?= $data->Line_No ?? "Not assigned"; ?>
+                                    <?= $data->Machine_Type ?? "Not assigned"; ?>
                                 </h6>
                             </div>
                         </div>
                     </div>
-                    <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
+                    <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;padding: 0;">
                         <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
                             <thead>
                                 <tr>
@@ -88,24 +88,27 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">Sorting Inventories</h6     >
+                            <h6 class="card__title-text" id="tableTitle"
+                                style="color: black;margin: 15px;font-size: 15px;">Sorting Inventories</h6>
                             <?php
                             if (is_array($rows) && !empty($rows)) {
                                 $id = 1; // Initialize ID counter
                                 foreach ($rows as $row) {
-                                    ?>
-                                    <tr onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
-                                        <td class="data-table__cell--non-numeric" name="Inventory_ID" id="batch<?= $id ?>">
-                                            <?= $row->Inventory_ID ?>
-                                        </td>
-                                        <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                            <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
-                                                <?= $row->Status ?>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $id++; // Increment ID for the next row
+                                    if ($row->Status == "Sorting") {
+                                        ?>
+                                        <tr onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
+                                            <td class="data-table__cell--non-numeric" name="Inventory_ID" id="batch<?= $id ?>">
+                                                <?= $row->Inventory_ID ?>
+                                            </td>
+                                            <td class="data-table__cell--non-numeric" style="text-align: center;">
+                                                <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
+                                                    <?= $row->Status ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $id++;
+                                    } // Increment ID for the next row
                                 }
                             } else {
                                 echo "No data available.";
@@ -123,24 +126,27 @@
                             </th>
                         </tr>
                     </thead>
-                    <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">Inventories generated form the sorting</h6>
+                    <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">
+                        Inventories generated form the sorting</h6>
                     <?php
                     if (is_array($rows) && !empty($rows)) {
                         $id = 1; // Initialize ID counter
                         foreach ($rows as $row) {
-                            ?>
-                            <tr onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
-                                <td class="data-table__cell--non-numeric" name="Inventory_ID" id="batch<?= $id ?>">
-                                    <?= $row->Inventory_ID ?>
-                                </td>
-                                <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                    <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
-                                        <?= $row->Status ?>
-                                    </span>
-                                </td>
-                            </tr>
-                            <?php
-                            $id++; // Increment ID for the next row
+                            if ($row->Status == "Sorting_To") {
+                                ?>
+                                <tr onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
+                                    <td class="data-table__cell--non-numeric" name="Inventory_ID" id="batch<?= $id ?>">
+                                        <?= $row->Inventory_ID ?>
+                                    </td>
+                                    <td class="data-table__cell--non-numeric" style="text-align: center;">
+                                        <span class="label label--mini color--<?= statuscolor($row->Status) ?>">
+                                            <?= $row->Status ?>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <?php
+                                $id++;
+                            } // Increment ID for the next row
                         }
                     } else {
                         echo "No data available.";
@@ -155,7 +161,6 @@
     </div>
     </main>
     </div>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/progress.js"></script>
 </body>

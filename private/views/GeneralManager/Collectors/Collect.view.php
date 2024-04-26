@@ -35,7 +35,7 @@
                 <div style="width: auto; height: auto; margin: 25px;">
                     <div class="card shadow--2dp trending" style="margin: 0 0 20px 0;background-color: #444;">
                         <div class="card__title" style="display: flex;justify-content: space-between;">
-                            <h2 class="card__title-text"> Inventories</h2>
+                            <h2 class="card__title-text">Collected Inventories</h2>
                         </div>
                         <div class="card__supporting-text" style="min-height: 110px;">
                             <ul class="list" id="ScanJobs">
@@ -46,7 +46,7 @@
                 <div style="width: auto; height: auto; margin: 0 25px 25px 25px;">
                     <div class="card shadow--2dp trending" style="margin: 0 0 20px 0;background-color: #444;">
                         <div class="card__title" style="display: flex;justify-content: space-between;">
-                            <h2 class="card__title-text"> Inventories</h2>
+                            <h2 class="card__title-text">Pending Inventories</h2>
                         </div>
                         <div class="card__supporting-text" style="min-height: 110px;">
                             <ul class="list" id="jobs">

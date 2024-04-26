@@ -1,16 +1,18 @@
 <div class="card__supporting-text no-padding" id="FinishedJobs" style="display: none;">
-    <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
-        <thead>
-            <tr>
-                <th class="data-table__cell--header">Pickup ID</th>
-                <th class="data-table__cell--header">Assigned Date</th>
-                <th class="data-table__cell--header">Status</th>
-                <th class="data-table__cell--header"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (is_array($rows) && !empty($rows)) {
+    <?php
+    if (is_array($rows) && !empty($rows)) {
+        ?>
+        <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th class="data-table__cell--header">Pickup ID</th>
+                    <th class="data-table__cell--header">Assigned Date</th>
+                    <th class="data-table__cell--header">Status</th>
+                    <th class="data-table__cell--header"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                 foreach ($rows as $row) {
                     ?>
                     <tr>
@@ -20,8 +22,6 @@
                         <td class="data-table__cell--non-numeric">
                             <?= $row->Assigned_Date ?? '' ?>
                         </td>
-
-
                         <td class="data-table__cell--non-numeric">
                             <?php
                             $statusClass = ''; // Default class
@@ -72,27 +72,24 @@
                             <td class="data-table__cell--non-numeric">
                                 <a class="button js-button button--raised js-ripple-effect button--colored-green"
                                     href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>" style="margin-right: 10px;">View</a>
-
                             </td>
-
-
                             <?php
                         }
                         ?>
-
-
                     </tr>
+                </tbody>
 
-                    <?php
+                <?php
                 }
-            } else {
-                // If $rows is not an array or is empty
-                echo "No data available.";
-            }
-            ?>
-
-
-        </tbody>
-    </table>
-
+                ?>
+        </table>
+        <?php
+    } else {
+        ?>
+        <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
+            <img src="<?= ROOT ?>/images/NoTask.jpg" alt="No data found" style="width: 400px;">
+        </div>
+        <?php
+    }
+    ?>
 </div>

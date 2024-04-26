@@ -116,7 +116,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
     <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="<?= ROOT ?>/js/progress.js"></script>
 </body>

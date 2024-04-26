@@ -1,4 +1,8 @@
-<?php $this->view('include/head') ?>
+<?php global $activeTab;
+$activeTab = 3;
+$this->view('include/head');
+require_once (APP_ROOT . "/controllers/Partner.php");
+$partner = new Partner(); ?>
 
 <body>
     <div class="layout js-layout layout--fixed-header">
@@ -9,57 +13,26 @@
             <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
                 <div class="card shadow--2dp">
                     <div id="buttonToggle" class="buttonToggle">
-                        <button onclick="window.location.href = '<?= ROOT ?>/Partner/Articles'"
-                            class="button js-button button--raised js-ripple-effect button--colored-green"
-                            style="margin: 4px 10px 4px 4px;">Upcomming Events</Button>
-                        <button onclick="window.location.href = '<?= ROOT ?>/Partner/Articles'"
-                            class="button js-button button--raised js-ripple-effect button--colored-green"
-                            style="margin: 4px 10px 4px 4px;">OnGoing Events</Button>
-                        <button id="stock" onclick="window.location.href = '<?= ROOT ?>/Partner/addnew'"
-                            class="button js-button button--raised js-ripple-effect button--colored-green"
-                            style="margin: 4px 10px 4px 4px;"> Finished Events</Button>
-                        <button id="stock" onclick="window.location.href = '<?= ROOT ?>/Partner/addnew'"
-                            class="button js-button button--raised js-ripple-effect button--colored-green"
-                            style="margin: 4px 10px 4px 4px;"> + New Events</Button>
+                        <button onclick="loadComponent('UpcomingEvents')" style="margin: 4px 10px 4px 4px;"
+                            id="UpcomingEvents_Button"
+                            class="button js-button button--raised js-ripple-effect button--colored-green">Upcoming
+                            Events</Button>
+                        <button onclick="loadComponent('OnGoingEvents')" style="margin: 4px 10px 4px 4px;"
+                            id="OnGoingEvents_Button"
+                            class="button js-button button--raised js-ripple-effect button--colored-smoke">OnGoing
+                            Events</Button>
+                        <button onclick="loadComponent('FinishedEvents')" style="margin: 4px 10px 4px 4px;"
+                            id="FinishedEvents_Button"
+                            class="button js-button button--raised js-ripple-effect button--colored-smoke">Finished
+                            Events</Button>
+                        <button id="stock" onclick="window.location.href = '<?= ROOT ?>/Partner/AddNewEvent'"
+                            style="margin: 4px 10px 4px 4px;"
+                            class="button js-button button--raised js-ripple-effect button--colored-smoke">New
+                            Events</Button>
                     </div>
-                    <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
-                        <?php
-                        if (is_array($articles) && !empty($articles)) {
-                            foreach ($articles as $article) {
-                                // Your table row generation code here
-                                ?>
-                                <div class="cell cell--4-col-desktop cell--4-col-tablet cell--2-col-phone">
-                                    <div class="card shadow--2dp" style="background-color: #444;">
-                                        <div class="card__title">
-                                            <h2 class="card__title-text">
-                                                <?= $article->Event_Title ?>
-                                            </h2>
-                                        </div>
-                                        <div class="card__supporting-text card--expand">
-                                            <?= $article->Description ?><br><br>
-                                        </div>
-                                        <div class="card__actions">
-                                            <a style="background-color: #16C784; border-radius: 20px; margin-left: 10px;"
-                                                class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/Partner/addNew/<?= $article->Event_ID ?>">
-                                                Edit
-                                            </a>
-                                            <a style="background-color: #16C784; border-radius: 20px;"
-                                                class="button js-button button--raised js-ripple-effect button--colored-green"
-                                                href="<?= ROOT ?>/Partner/ArticleDelete/<?= $article->Event_ID ?>">
-                                                Delete
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                            }
-                        } else {
-                            // If $rows is not an array or is empty
-                            echo "No data available.";
-                        }
-                        ?>
-                    </div>
+                    <?php
+                    $partner->UpcomingEvents();
+                    ?>
                 </div>
             </div>
         </main>

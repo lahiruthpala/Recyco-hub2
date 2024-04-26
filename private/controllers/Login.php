@@ -48,7 +48,9 @@ class Login extends Controller
 			if (password_verify($_POST['pwd'], $verify['pwd']) && $id == $verify['code']) {
 				$temp['Status'] = 'Active';
 				$user->update($_POST['Email'], $temp, 'Email');
-				$this->passwordReset($id);
+				$data = $user->first('Email', $_POST['Email']);
+				$this->load_model('CollectorModel')->update($data->User_ID, $temp, 'User_ID');
+				$this->redirect('login/passwordReset/'.$id);
 			} else {
 				$errors['email'] = "Wrong email or password";
 			}
@@ -81,9 +83,7 @@ class Login extends Controller
 			}
 		} else {
 			$errors['verification'] = "Your verification link is no longer valid";
-			message(['User Added successfully','success']);
-			
-			die;
+			message(['User Added successfully', 'success']);
 			$this->redirect('login');
 		}
 	}
@@ -95,9 +95,9 @@ class Login extends Controller
 			$row = $row[0];
 			if (password_verify($_POST['pwd'], $row->pwd)) {
 				Auth::authenticate($row);
-				if(Auth::getStatus() == 'Active'){
+				if (Auth::getStatus() == 'Active') {
 					$this->userHome();
-				}else{
+				} else {
 					$this->redirect('login');
 				}
 			}
@@ -117,10 +117,10 @@ class Login extends Controller
 				$_POST['UserName'] = $user->UserName;
 				$verify = $this->load_model('Verify');
 				$verify = $verify->insert($_POST);
-				message(['Reset link has sent check your email','success']);
+				message(['Reset link has sent check your email', 'success']);
 				$this->redirect('login');
-			}else{
-				message(['Email not found','error']);
+			} else {
+				message(['Email not found', 'error']);
 			}
 		}
 		$this->view("ForgotPassword");
@@ -129,17 +129,25 @@ class Login extends Controller
 	function passwordReset($id)
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$VerifyModel = $this->load_model('Verify');
-			$verify = $VerifyModel->where('code', $id);
-			if ($verify) {
-				$verify = (array) $verify[0];
-				$user = $this->load_model('User');
-				$user->update($verify['Email'], ['pwd' => password_hash($_POST['pwd1'], PASSWORD_DEFAULT)], 'Email');
-				$VerifyModel->delete($verify['Email'], 'Email');
-				$this->redirect('login');
-			} else {
-				message(['Verification link expired', 'error']);
-				$this->redirect(login);
+
+			if (isset($_POST['Action']) && $_POST['Action'] == 'Reset') {
+				if($_POST['pwd1'] != $_POST['pwd2']) {
+					message(['Passwords do not match', 'error']);
+					$this->redirect($_SERVER['REQUEST_URI']);
+				}
+				$VerifyModel = $this->load_model('Verify');
+				$verify = $VerifyModel->where('code', $id);
+				if ($verify) {
+					$verify = (array) $verify[0];
+					$user = $this->load_model('User');
+					$user->update($verify['Email'], ['pwd' => password_hash($_POST['pwd1'], PASSWORD_DEFAULT)], 'Email');
+					$VerifyModel->delete($verify['Email'], 'Email');
+					message(['Password successfully renewed', 'error']);
+					$this->redirect('login');
+				} else {
+					message(['Verification link expired', 'error']);
+					$this->redirect('login');
+				}
 			}
 		}
 		$this->view("NewPassword");

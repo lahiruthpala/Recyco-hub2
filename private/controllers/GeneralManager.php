@@ -92,6 +92,8 @@ class GeneralManager extends Controller
     {
         $Partners = $this->load_model('PartnerModel');
         $partners = $Partners->findAll(1, 10, "Partner_ID");
+        $events = $this->load_model('Event');
+        $events = $events->query("SELECT * FROM events WHERE CURDATE() BETWEEN Event_Finish_Data AND Event_Finish_Data");
         $this->view('GeneralManager/Partner/PartnerTable', ['rows' => $partners]);
     }
 
@@ -150,10 +152,7 @@ class GeneralManager extends Controller
     function collector()
     {
         $collectorModel = $this->load_model('CollectorModel');
-        $userModel = $this->load_model('User');
-        $collectors = $collectorModel->findAll(1, 10, "Collector_ID");
-        $data = $userModel->where('Role', 'Collector');
-        $collectors[0]->Collector_Name = $data[0]->FirstName . " " . $data[0]->LastName;
+        $collectors = $collectorModel->query("SELECT *, CONCAT(U.FirstName,' ', U.LastName) AS Collector_Name FROM collector_details C JOIN reg_users U ON C.User_ID=U.User_ID JOIN sectors S ON C.sector_ID=S.sector_ID WHERE U.Role='Collector';");
         $this->view('GeneralManager/Collector', ['collectors' => $collectors]);
     }
 
@@ -174,11 +173,17 @@ class GeneralManager extends Controller
         $this->view('GeneralManager/Partner/NewPartershipreview', ['rows' => $NewPartnership]);
     }
 
-    function collections()
+    function PendingRequests()
     {
         $Pickups = $this->load_model('PickUpRequestModel');
-        $data = $Pickups->query("SELECT COUNT(*) AS Count, DATE(Completed_Date) AS Date FROM pickup_request WHERE Status != 'Completed' GROUP BY DATE(Completed_Date)");
-        $this->view('GeneralManager/Collectors/Collections', ['rows' => $data]);
+        $data = $Pickups->query("SELECT COUNT(*) AS num, P.Collection_Date, S.SectorName FROM pickup_request P JOIN sectors S ON S.sector_ID=P.sector_ID WHERE P.Status='Pending' GROUP BY DATE(P.Collection_Date), P.sector_ID;");
+        $this->view('GeneralManager/Collectors/PendingRequests', ['rows' => $data]);
+    }
+
+    function PendingRequestDetails($Sector, $Date){
+        $Pickups = $this->load_model('PickUpRequestModel');
+        $data = $Pickups->query("SELECT * FROM pickup_request P JOIN sectors S ON S.sector_ID= P.sector_ID WHERE P.Status='Pending' AND S.SectorName='" . $Sector . "' AND P.Collection_Date = '" . $Date . "';");
+        $this->view('GeneralManager/Collectors/RequestDetails', ['rows' => $data]);
     }
 
     function PendingPickups()
@@ -203,5 +208,21 @@ class GeneralManager extends Controller
 
     function Dashboard(){
         $this->view('GeneralManager/Dashboard');
+    }
+
+    function ArticleDashboard(){
+        $articles = $this->load_model('Articles');
+        $data = $articles->findall(1, 10, "Published_Date");
+        $this->view('GeneralManager/Partner/DashboardArticles', ['articles' => $data]);
+    }
+    function EventDashboard(){
+        $articles = $this->load_model('Event');
+        $data = $articles->findall(1, 10, "Publish_Date");
+        $this->view('GeneralManager/Partner/Dashboardevents', ['events' => $data]);
+    }
+    function PartnerRemark(){
+        $remarks = $this->load_model('Remarks');
+        $data = $remarks->insert($_POST);
+        $this->redirect('GeneralManager/partner?id=' . $_POST['Partner_ID']);
     }
 }
