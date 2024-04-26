@@ -95,8 +95,8 @@ class collector extends Controller
         // Get pickup requests with the specified ID
         // Auth::getCollector_ID
         $arr = [];
-        $arr['jobstatus'] = $type;
-        $data = $pickup->Update($id, $arr, "Inventory_ID");
+      
+        $data = $pickup->query("UPDATE pickup_request SET Status = ' ".$type."' WHERE  Inventory_ID= '" . $id . "'");
         $temp = $pickup->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $pid . "' AND Status = 'Accepted'");
        
         if ($temp == null) {

@@ -1,7 +1,10 @@
 <div class="card__supporting-text no-padding" id="AcceptedJobs" style="display: none;">
-    <?php
+
+
+   <?php
     if (is_array($rows) && !empty($rows)) {
         ?>
+
         <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
             <thead>
                 <tr>
