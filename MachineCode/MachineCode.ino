@@ -308,7 +308,7 @@ void CreateSortingJob(DynamicJsonDocument &doc)
     lcd.clear();
     lcd.print("Sorting Job ID:");
     lcd.setCursor(0, 1);
-    lcd.print(JobId);
+    lcd.print(Sorting_Job_ID);
 }
 
 void CreateInventories(String InventoryTypesNeeded)

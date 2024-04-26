@@ -74,16 +74,21 @@
                                     <li class="dropdown"><a href="#">Events</a></li>
                                     <li class="dropdown"><a href="#">Articles</a>
                                     </li>
+                                    <?php if(Auth::logged_in()) {?>
+                                    <li class="dropdown"><a href="<?=ROOT?>/Customer/CreatePickups">Create a pickup request</a>
+                                    <?php } ?>
                                     <li><a href="contact-info">Contact Us</a></li>
                                 </ul>
                             </div>
                         </nav>
+                        <?php if(!Auth::logged_in()) {?>
                         <div>
                             <a href="<?= ROOT ?>/login" class="theme-btn btn-donate" data-toggle="modal"
                                 style="position: relative;">Login Now!</a>
                             <a href="<?= ROOT ?>/signup" class="theme-btn btn-donate" data-toggle="modal"
                                 style="position: relative;">Register Now!</a>
                         </div>
+                        <?php } ?>
                         <!-- Main Menu End-->
 
                     </div>

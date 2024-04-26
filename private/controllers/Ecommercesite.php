@@ -68,6 +68,4 @@ class Ecommercesite extends Controller
         $data['hash'] = "dvsdcsdcsdc";
         $this->view('Ecommercesite/Payment', ['data' => $data]);
     }
-
-
 }
