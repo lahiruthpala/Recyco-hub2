@@ -69,6 +69,8 @@ class Login extends Controller
 				if ($verify['Role'] == "Customer") {
 					$verify['Status'] = "Active";
 					$data = $user->insert($verify);
+					$data['Customer_ID'] = $data['User_ID'];
+					$customer = $this->load_model('CustomerModel')->insert($data);
 					$verifyModle->delete($verify['Email'], 'Email');
 					$row = $user->where('Email', $_POST['Email'])[0];
 					Auth::authenticate($row);

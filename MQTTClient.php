@@ -8,7 +8,7 @@ $dotenv->load();
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
 
-$server = 'xf6e8811.ala.asia-southeast1.emqxsl.com';
+$server = 'cfdcd9bc.ala.asia-southeast1.emqxsl.com';
 // TLS port
 $port = 8883;
 $clientId = rand(5, 15);
