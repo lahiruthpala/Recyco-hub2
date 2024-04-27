@@ -16,6 +16,8 @@ class Machine extends Controller
             $result = $this->UpdateSortingJobStatus($message);
         } elseif ($message['Action'] == "SortingJobInventoryUpdate") {
             $result = $this->SortingJobInventoryUpdate($message);
+        } elseif ($message['Action'] == "GetHistory") {
+            $result = $this->GetHistory($message);
         }
         echo $result; //Return empty to keep the connection
     }
@@ -109,7 +111,6 @@ class Machine extends Controller
         $Credit_History = json_encode($Credit_History, true);
         //return(var_dump($User_ID,$_POST, $sum, $data));
         $query = "UPDATE customer SET Credit_History = '$Credit_History',Credits = $sum WHERE Customer_ID = '$User_ID';";
-        
         $customer = $customer->query($query);
         //var_dump($query, $User_ID);
         $temp = array();
@@ -118,6 +119,39 @@ class Machine extends Controller
         $inventory = $this->load_model("InventoryModel");
         $data = $inventory->update($data["Inventory_ID"], $temp, "Inventory_ID");
         return("Successfully updated");
+    }
+
+    function GetHistory1($data){
+        $temp = array();
+        $temp['Machine_ID'] = $data;
+        $this->GetHistory($temp);
+    }
+
+    function GetHistory($data){
+        $SortingJob = $this->load_model('SortingJobModel');
+        $SortingJob = $SortingJob->query("SELECT * FROM sorting_job WHERE Machine_ID ='" . $data['Machine_ID'] . "' AND Status = 'In_Progress'")[0];
+        $SortedInventory = $this->load_model('SortedInventory');
+        $SortedInventory = $SortedInventory->where('Sorting_Job_ID', $SortingJob->Sorting_Job_ID);
+        $Inventory = $this->load_model('InventoryModel');
+        $Inventory = $Inventory->where('Sorting_Job_ID', $SortingJob->Sorting_Job_ID);
+        $Inventory_IDs = array();
+        foreach($Inventory as $inv){
+            $Inventory_IDs[] = $inv->Inventory_ID;
+        }
+        $SortingTo = array();
+        foreach($SortedInventory as $inv){
+            $SortingTo[] = $inv->Inventory_ID;
+        }
+        $payload = array(
+            'Action' => 'UpdateHistory',
+            'Inventory_IDs' => $Inventory_IDs,
+            'Sorting_Job_ID' => $SortingJob->Sorting_Job_ID,
+            'SortingTo'=> $SortingTo
+        );
+        var_dump($payload);
+        $mqttController = new MqttController();
+        $mqttController->publish('Recycohub', json_encode($payload));
+        $mqttController->disconnect();
     }
 }
 ?>
