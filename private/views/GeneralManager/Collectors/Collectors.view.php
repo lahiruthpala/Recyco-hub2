@@ -19,7 +19,7 @@
                         $result = '[]';
                     }
                     ?>
-                    <tr onclick="loadScreen2('/Profile/viewProfile/<?=$row->Collector_ID?>')">
+                    <tr onclick="loadScreen2('/Profile/viewProfile/<?=$row->User_ID?>')">
                         <td class="data-table__cell--non-numeric">
                             <?= $row->Collector_Name ?? '' ?>
                         </td>

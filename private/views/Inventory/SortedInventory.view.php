@@ -4,24 +4,25 @@
         <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
             <thead>
                 <tr>
-                    <th class="data-table__cell--header">Inventory ID</th>
+                    <th class="data-table__cell--header"></th>
                     <th class="data-table__cell--header">Type</th>
-                    <th class="data-table__cell--header">Location</th>
+                    <th class="data-table__cell--header">Weight</th>
                     <th class="data-table__cell--header">Status</th>
                 </tr>
             </thead>
             <?php
+            $i = 0;
             foreach ($rows as $row) {
                 ?>
-                <tr>
+                <tr onclick="loadScreen2('<?= '/SortingManager/SortedInventorySell?id=' . $row->Inventory_ID?>')">
                     <td class="data-table__cell--non-numeric">
-                        <?= $row->Inventory_ID ?>
+                        <?= '#. ' . $i ?>
                     </td>
                     <td class="data-table__cell--non-numeric">
-                        <?= $row->waste_type ?>
+                        <?= $row->Type ?>
                     </td>
                     <td class="data-table__cell--non-numeric">
-                        <?= $row->waste_type ?>
+                        <?= $row->Weight . ' Kg' ?>
                     </td>
                     <td class="data-table__cell--non-numeric"><span class="label label--mini color--green">
                             <?= $row->Status ?>
@@ -29,6 +30,7 @@
                     </td>
                 </tr>
                 <?php
+                $i += 1;
             }
     } else {
         ?>

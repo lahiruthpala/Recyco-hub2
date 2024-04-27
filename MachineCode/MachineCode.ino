@@ -393,6 +393,8 @@ void UpdateSortingJobStatus()
     serializeJson(updateStatusDoc, updateStatusJson);
     Serial.println(updateStatusJson);
     publishMessage("Recycohub", updateStatusJson, false);
+    lcd.clear();
+    lcd.print("Sorting Completed");
 }
 
 void UpdateInventoryStatus(String Inventory_ID, String Model)
@@ -407,6 +409,8 @@ void UpdateInventoryStatus(String Inventory_ID, String Model)
     serializeJson(updateStatusDoc, updateStatusJson);
     Serial.println(updateStatusJson);
     publishMessage("Recycohub", updateStatusJson, false);
+    lcd.clear();
+    lcd.print("Inventory Updated");
 }
 
 void DisplaySortingToInventories()
@@ -414,11 +418,33 @@ void DisplaySortingToInventories()
     Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>       Display Sorting To Inventories     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     int numRows = sizeof(SortingTo) / sizeof(SortingTo[0]);
     Serial.println("Select the inventory ID");
+    lcd.clear();
+    lcd.print("Inventory ID -> ");
     for (int i = 0; i < numRows; i++)
     {
+        lcd.setCursor(0, 1);
+        lcd.print(i + 1);
         Serial.print(SortingTo[i][2]);
         Serial.print(" - ");
+        lcd.print(" - ");
         Serial.println(i + 1);
+        lcd.print(SortingTo[i][2]);
+        while (true)
+        {
+            char customKey = customKeypad.getKey();
+            if (customKey)
+            {
+                if (customKey == '#')
+                {
+                    break;
+                }
+            }
+        }
+        lcd.clear();
+        lcd.print(i + 1);
+        lcd.print(" -> ");
+        lcd.print(SortingTo[i][2]);
+        lcd.setCursor(0, 1);
     }
     int temp = 0;
     while (temp == 0)
@@ -429,6 +455,7 @@ void DisplaySortingToInventories()
             Serial.println(customKey);
             int num = customKey;
             Serial.println(num);
+            lcd.print(num - 48);
             if (num == 0)
             {
                 temp = 1;
@@ -448,11 +475,32 @@ void DisplaySortingInventories()
     Serial.println("Select the inventory ID");
     for (int i = 0; i < SortingInventory_IDs.size(); i++)
     {
+        lcd.setCursor(0, 1);
+        lcd.print(i + 1);
         Serial.print(SortingInventory_IDs.at(i));
         Serial.print(" - ");
+        lcd.print(" - ");
         Serial.println(i + 1);
+        lcd.print(SortingInventory_IDs.at(i));
+        while (true)
+        {
+            char customKey = customKeypad.getKey();
+            if (customKey)
+            {
+                if (customKey == '#')
+                {
+                    break;
+                }
+            }
+        }
+        lcd.clear();
+        lcd.print(i + 1);
+        lcd.print(" -> ");
+        lcd.print(SortingInventory_IDs.at(i));
+        lcd.setCursor(0, 1);
     }
     int temp = 0;
+    lcd.print("Inven ID -> ");
     while (temp == 0)
     {
         char customKey = customKeypad.getKey();
@@ -461,6 +509,7 @@ void DisplaySortingInventories()
             Serial.println(customKey);
             int num = customKey;
             Serial.println(num);
+            lcd.print(num - 48);
             if (num - 48 == 0)
             {
                 temp = 1;
@@ -474,7 +523,7 @@ void DisplaySortingInventories()
     }
 }
 
-//working
+// working
 void SortingJobInventoryUpdate()
 {
     lcd.clear();

@@ -33,6 +33,13 @@
                     </ul>
                 </div>
             </div>
+            <!-- <div class="loading">
+                <div class="percent">100%</div>
+                <div class="text">Completed!</div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div> -->
             <div class="cell cell--12-col-desktop cell--12-col-tablet cell--4-col-phone">
                 <h6 class="card__title-text" id="tableTitle" style="color: black;margin: 15px;font-size: 15px;">
                     Sorting Job Details

@@ -1,4 +1,4 @@
-<?php $this->view('include/head') ?>
+<?php $this->view('include/head'); ?>
 
 <head>
     <link rel="stylesheet" href="<?= ROOT ?>/css/progress.css">
@@ -35,54 +35,49 @@
                         <div style="margin: 0 15px 20px 40px;">
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
                                 <h6 style="margin: 0px;">Inventory_ID</h6>
-                                <h6  style="margin: 0;font-weight: bold;">
+                                <h6 style="margin: 0;font-weight: bold;">
                                     <?= $data->Inventory_ID ?>
                                 </h6>
                             </div>
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
                                 <h6 style="margin: 0px;">Created BY</h6>
-                                <a class="linkinfo" href="<?= ROOT ?>/ProfileInfo?id=<?= $data->Creator_ID; ?>">
-                                    <h6  style="margin: 0;font-weight: bold;">
-                                        <?= $data->Machine_ID; ?>
-                                    </h6>
-                                </a>
-                            </div>
-                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
-                                <h6 style="margin: 0px;">Created Date</h6>
-                                <h6  style="margin: 0;font-weight: bold;">
-                                    <?= $data->Created_Date; ?>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?= $data->Machine_ID; ?>
                                 </h6>
                             </div>
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
-                                <h6 style="margin: 0px;">Description</h6>
-                                <h6  style="margin: 0;font-weight: bold;">
-                                    <?= $data->Description; ?>
+                                <h6 style="margin: 0px;">Created Date</h6>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?= $data->Start_Date; ?>
+                                </h6>
+                            </div>
+                            <div style="display: flex;flex-direction: column;margin-top: 27px;">
+                                <h6 style="margin: 0px;">Type</h6>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?= $data->Type; ?>
                                 </h6>
                             </div>
                         </div>
                         <div style="margin-left: 10vw;">
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
-                                <h6 style="margin: 0px;">Assigned to</h6>
-                                <a class="linkinfo"
-                                    href="<?= isset($data->Collector_ID) ? ROOT . '/ProfileInfo?id=' . $data->Collector_ID : 'javascript:void(0)'; ?>">
-                                    <h6  style="margin: 0;font-weight: bold;">
-                                        <?= $data->Collector_Name ?? "Not assigned"; ?>
-                                    </h6>
-                                </a>
+                                <h6 style="margin: 0px;">Status</h6>
+                                <h6 style="margin: 0;font-weight: bold;">
+                                    <?= $data->Status ?? "Error"; ?>
+                                </h6>
                             </div>
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
-                                <h6 style="margin: 0px;">Collected From</h6>
+                                <h6 style="margin: 0px;">Sorting_Job_ID</h6>
                                 <a class="linkinfo"
-                                    href="<?= isset($data->Customer_ID) ? ROOT . '/ProfileInfo?id=' . $data->Customer_ID : 'javascript:void(0)'; ?>">
-                                    <h6  style="margin: 0;font-weight: bold;">
-                                        <?= $data->customer_Name ?? "Not assigned"; ?>
+                                    href="<?= isset($data->Sorting_Job_ID) ? ROOT . 'SortingManager/SortingJobProgress?id=' . $data->Sorting_Job_ID : 'javascript:void(0)'; ?>">
+                                    <h6 style="margin: 0;font-weight: bold;">
+                                        <?= $data->Sorting_Job_ID ?? "Not assigned"; ?>
                                     </h6>
                                 </a>
                             </div>
 
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
                                 <h6 style="margin: 0px;">Waste weight</h6>
-                                <h6  style="margin: 0;font-weight: bold;">
+                                <h6 style="margin: 0;font-weight: bold;">
                                     <?= $data->Weight . "Kg" ?? "Not assigned"; ?>
                                 </h6>
                             </div>
@@ -90,12 +85,46 @@
                                 <h6 style="margin: 0px;">Sorting Job</h6>
                                 <a class="linkinfo"
                                     href="<?= isset($data->Sorting_Job_ID) ? ROOT . '/SortingManager/SortingJobProgress?id=' . $data->Sorting_Job_ID : 'javascript:void(0)'; ?>">
-                                    <h6  style="margin: 0;font-weight: bold;">
+                                    <h6 style="margin: 0;font-weight: bold;">
                                         <?= $data->Sorting_Job_ID ?? "Not assigned"; ?>
                                     </h6>
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
+                        <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="data-table__cell--header">Inventory_ID</th>
+                                    <th class="data-table__cell--header" style="text-align: center;">Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <?php
+                            if (is_array($inventory) && !empty($inventory)) {
+                                $id = 1; // Initialize ID counter
+                                foreach ($inventory as $row) {
+                                    ?>
+                                    <tr onclick="loadScreen('Inventory/InventoryProgress', '<?= $row->Inventory_ID ?>')">
+                                        <td class="data-table__cell--non-numeric" name="Inventory_ID" id="batch<?= $id ?>">
+                                            <?= $row->Inventory_ID ?>
+                                        </td>
+                                        <td class="data-table__cell--non-numeric" style="text-align: center;">
+                                            <span class="label label--mini"
+                                                style="background-color: <?= statuscolor($row->Status) ?>">
+                                                <?= $row->Status ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    $id++; // Increment ID for the next row
+                                }
+                            } else {
+                                echo "No data available.";
+                            }
+                            ?>
+                        </table>
                     </div>
                 </form>
                 </section>

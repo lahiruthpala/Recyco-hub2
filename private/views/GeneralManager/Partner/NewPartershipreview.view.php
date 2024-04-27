@@ -18,7 +18,7 @@
                         <div class="card__title" style="border-radius: 20px 20px 0 0;">
                             <h1 id="tableTitle" class="card__title-text">Info</h1>
                         </div>
-                        <div class="card__supporting-text no-padding" style="margin: 20px;" id="info">
+                        <div class="card__supporting-text" style="margin: 20px;color: black;" id="info">
                             <div class="form__article">
                                 <h3>Company Infomation</h3>
 
@@ -143,14 +143,14 @@
                                 </div>
                                 <div >
                                     <button data-modal-target="#modal"
-                                        class="button js-button button--raised js-ripple-effect button--colored-green"
-                                        style="border-radius: 99px; margin-left: 20px;">Accept</button>
+                                        class="button js-button button--raised js-ripple-effect"
+                                        style="border-radius: 99px; margin-left: 20px;background-color: green;color: white;">Accept</button>
                                     <button data-modal-target="#modal"
-                                        class="button js-button button--raised js-ripple-effect button--colored-red"
-                                        style="border-radius: 99px;">Decline</button>
+                                        class="button js-button button--raised js-ripple-effect"
+                                        style="border-radius: 99px;background-color: red;">Decline</button>
                                     <button data-modal-target="#modal"
-                                        class="button js-button button--raised js-ripple-effect button--colored-yellow"
-                                        style="border-radius: 99px; margin-left: 20px;">Comment</button>
+                                        class="button js-button button--raised js-ripple-effect"
+                                        style="border-radius: 99px; margin-left: 20px;background-color: teal;">Comment</button>
                                 </div>
                             </div>
                         </div>

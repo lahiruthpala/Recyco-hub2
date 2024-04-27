@@ -56,6 +56,10 @@ class Machine extends Controller
     function UpdateInventoryStatus($data)
     {
         $InventoryModel = $this->load_model($data['Model']);
+        if($data['Model'] == 'SortedInventory')
+        {
+            $data['Weight'] = 50;
+        }
         $InventoryModel->update($data['Inventory_ID'], ['Status' => $data['Status']], 'Inventory_ID');
         return "UpdateInventoryStatus";
     }
