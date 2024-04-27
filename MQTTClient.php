@@ -60,7 +60,7 @@ $mqtt->subscribe('Recycohub', function ($topic, $message) {
         printf("\nReceived message on topic [%s]: %s\n", $topic, $message);
         // Write message and topic to a log file
         $logFilePath = '/var/www/html/Recyco-hub2/MQTTClient.log';
-        $logMessage = sprintf("[%s] Topic: %s, Message: %s\n", date('Y-m-d H:i:s'), $topic, $message);
+        $logMessage = sprintf("[%s] Topic: %s, Message: %s, Response:%s\n", date('Y-m-d H:i:s'), $topic, $message, $response);
         file_put_contents($logFilePath, $logMessage, FILE_APPEND);
     }
 }, 0);
