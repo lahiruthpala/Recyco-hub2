@@ -1,8 +1,7 @@
 <?php
 $this->view('include/head');
 
-// Define initial quantity
-$quantity = 0;
+
 ?>
 
 <body>
@@ -20,7 +19,7 @@ $quantity = 0;
                                     <h5 class="card__title-text text-color--white"></h5>
                                 </div>
                                 <div class="card__supporting-text">
-                                    <form class= "form form--basic" action="<?= ROOT ?>/Ecommercesite/pay/<?= $row->product_Id ?>" method="POST">
+                                    <form class= "form form--basic" action="<?= ROOT ?>/Ecommercesite/quantitycheck/<?= $row->product_Id ?>" method="POST">
                                         <div class="grid">
                                             <div class="cell cell--6-col-desktop cell--6-col-tablet cell--1-col-phone">
                                                 <!-- Image -->
@@ -79,33 +78,6 @@ $quantity = 0;
         <?php $this->view('include/footer') ?>
     </div>
 
-    <script>
-        let quantityDisplay = document.getElementById('quantity');
-
-
-let quantity = localStorage.getItem('quantity');
-if (quantity === null) {
-
-    quantity = 0;
-} else {
-    
-    quantity = parseInt(quantity);
-}
-quantityDisplay.innerText = quantity; 
-
-function changeQuantity(amount) {
-    quantity += amount;
-    if (quantity < 0) {
-        quantity = 0;
-    }
-
-  
-    quantityDisplay.innerText = quantity;
-
-    
-    localStorage.setItem('quantity', quantity);
-}
-
-    </script>
+   
 </body>
 </html>

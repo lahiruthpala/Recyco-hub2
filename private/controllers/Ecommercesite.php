@@ -55,6 +55,32 @@ class Ecommercesite extends Controller
     }
 }
     
+  
+function quantitycheck($id)
+{
+    $user = $this->load_model('ProductDetailsModel');
+   
+    $data = $user->where('product_Id',$id);
+   
+    $product = $data[0];
+   
+    if( $_POST['quantity']<=$product->available_amount)
+    {
+            message(['Payment Proceed','success']);
+            $this->redirect('Ecommercesite'); 
+
+    }
+    else
+    {
+      
+        message(['Payment cannot be Proceed Insufficient stock place a order','success']);
+        $this->view('Ecommercesite/order', ['row' => $data]);
+
+
+    }
+    
+}   
+    
 
 
 
