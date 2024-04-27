@@ -1,6 +1,9 @@
 <?php
 
 require (__DIR__.'/vendor/autoload.php');
+require_once __DIR__ . '/vendor/autoload.php'; // Load Composer's autoloader
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/private/core');
+$dotenv->load();
 
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
@@ -32,7 +35,7 @@ $mqtt->subscribe('Recycohub', function ($topic, $message) {
         printf("Received message on topic [%s]: %s\n", $topic, $message);
     } else {
         // URL to which you want to send the POST request
-        $url = 'http://localhost:8380/Recyco-hub2/public/Machine';
+        $url = $_ENV['ROOT_URL'].'/Machine';
 
         // Data to be sent in the POST request
         $data = array (

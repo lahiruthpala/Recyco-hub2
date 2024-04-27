@@ -10,7 +10,7 @@
                     style="border-radius: 0 15px 15px 0;max-width: 450px;color: black;"">
                         <div class=" grid" style="display: flex;flex-direction: column;">
                     <div class="cell cell--12-col cell--4-col-phone">
-                        <span class="login-name" style="color:Green;font-weight: bold;">RecycoHUB</span>
+                    <a href="<?=ROOT?>"><span class="login-name" style="color:Green;font-weight: bold;">RecycoHUB</span></a>
                     </div>
                     <div class="cell cell--12-col cell--4-col-phone" style="width: 93%;">
                         <span class="login-name">Hi!!! There 👋</span>

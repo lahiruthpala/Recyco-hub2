@@ -102,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
             <div class="grid ui-cards" style="display: flex; flex-wrap: wrap;margin-left: 130px;">
                 <?php if (is_array($rows) && !empty($rows)):
                     foreach ($rows as $data): ?>
@@ -173,4 +174,5 @@
         updateContent();
     }
 </script>
+
 <?php view('include/footer') ?>

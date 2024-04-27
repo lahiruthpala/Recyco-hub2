@@ -115,7 +115,7 @@
                                                     </div>
 
                                                     <div style="display: flex; ">
-                                                        <h6>Contact Number</h6>
+                                                        <h6>Contact Number(+94)</h6>
                                                         <h6 style="margin-left:10vw;">
                                                             <input type="text" placeholder="Phone Number" id="Phone"
                                                                 name="Phone" class="textfield__input">
@@ -190,7 +190,7 @@
 
                                     <button data-modal-target="#modal"
                                         class="button js-button button--raised js-ripple-effect button--colored-green"
-                                        style="border-radius: 99px; margin-left: auto; background-color:green;">Create</button>
+                                        style="border-radius: 99px; margin-left: auto; color:white; background-color:green;">Create</button>
                                 </form>
                             </div>
                         </div>

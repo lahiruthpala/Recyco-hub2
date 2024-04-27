@@ -28,7 +28,7 @@
                 <input type="date" id="Collection_Date" name="Collection_Date" required min="<?= date('Y-m-d') ?>">
 
                 <label for="pickup_address">Address:</label>
-                <input type="text" id="pickup_address" name="pickup_address" required>
+                <input type="text" id="pickup_address" value="<?=Auth::getAddress()?>" name="pickup_address" required>
 
                 <label for="Note">Note:</label>
                 <input type="text" id="Note" name="Note" required>

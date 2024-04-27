@@ -103,25 +103,25 @@
                     <div style="margin-left: 30px">
                         <div style="display: flex; ">
                             <h6>Email</h6>
-                            <h6 style="margin-left:10vw;">
+                            <h6 style="margin-left:160px;">
                                 <input type="text" placeholder="Official Mail" id="OfficialMail" name="OfficialMail"
                                     class="textfield__input" style="margin-left: 5.2vw;width: auto;">
                                 <label class="textfield__error" id="PEmailError" for="OfficialMail"></label>
                             </h6>
-                            <h6 style="margin-left:10vw;">
+                            <h6 style="margin-left:160px;">
                                 <input type="text" placeholder="Secondary Mail" id="SecondaryMail" name="SecondaryMail"
                                     class="textfield__input">
                             </h6>
                         </div>
 
                         <div style="display: flex; ">
-                            <h6>Contact Number</h6>
-                            <h6 style="margin-left:10vw;">
+                            <h6>Contact Number(+94)</h6>
+                            <h6 style="margin-left:110px;">
                                 <input type="text" placeholder="Official Number" id="OfficialNumber"
                                     name="OfficialNumber" class="textfield__input">
                                 <label class="textfield__error" id="PNumberError" for="OfficialMail"></label>
                             </h6>
-                            <h6 style="margin-left:10vw;">
+                            <h6 style="margin-left:160px;"">
                                 <input type="text" placeholder="Secondary Number" id="SecondaryNumber"
                                     name="SecondaryNumber" class="textfield__input">
                             </h6>
