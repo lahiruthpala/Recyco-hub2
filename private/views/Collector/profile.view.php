@@ -6,9 +6,9 @@
         <div class="layout js-layout layout--fixed-header is-small-screen">
             <?php
             if (Auth::getRole() == "Admin") {
-                $this->view('include/Adminheader');
+                $this->view('include/AdminHeader');
             } elseif (Auth::getRole() == "Collector") {
-                $this->view('include/Collectorheader');
+                $this->view('include/CollectorHeader');
             } else {
                 $this->view('include/header');
             }
