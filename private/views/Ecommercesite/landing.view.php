@@ -9,8 +9,8 @@
 <div class="cell cell--6-col-desktop cell--6-col-tablet cell--1-col-phone" style="position: relative;">
    <div style="position: relative; display: inline-block;">
         <img id="image" src="<?=ROOT?>/images/ecommercesite_images/glass.jpg" alt="Image" style="width: 600px; height: 400px; margin-top: 10px; margin-left: 40px;">
-        <button onclick="changeImage('prev')" style="position: absolute; top: 50%; left: 40px; transform: translateY(-50%);"><i class="material-icons">chevron_left</i></button>
-        <button onclick="changeImage('next')" style="position: absolute; top: 50%; right: 0px; transform: translateY(-50%);"><i class="material-icons">chevron_right</i></button>
+        <button onclick="changeImage('prev')" style="position: absolute; top: 50%; left: 40px; "><i class="material-icons">chevron_left</i></button>
+        <button onclick="changeImage('next')" style="position: absolute; top: 50%; right: 0px; "><i class="material-icons">chevron_right</i></button>
         <div id="product-info" style="position: absolute; bottom: 10px; left: 40px; color: #333; font-size: 18px; font-weight: bold; background-color: green; padding: 10px;">
             <h2 id="product-name" style="display: inline; margin-right: 10px;color:black"></h2>
             <h2 style="display: inline;"> <span id="product-discount" style="color: white;"></span></h2>
@@ -80,7 +80,7 @@
 </div>
 </div>
 </div>
-<div class="grid ui-cards" style="display: flex; flex-wrap: wrap;">
+<div class="grid ui-cards" style="display: flex; flex-wrap: wrap;margin-left:110px;">
 <?php if (is_array($rows) && !empty($rows)){
         foreach ($rows as $data){?>
             <div class="cell cell--4-col-desktop cell--4-col-tablet cell--4-col-phone">
@@ -136,6 +136,10 @@
         }
         updateContent();
     }
+    setInterval(function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateContent();
+    }, 2000);
 </script>
 
 <?php $this->view('include/footer') ?>
