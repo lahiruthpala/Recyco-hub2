@@ -148,7 +148,6 @@ class Machine extends Controller
             'Sorting_Job_ID' => $SortingJob->Sorting_Job_ID,
             'SortingTo'=> $SortingTo
         );
-        var_dump($payload);
         $mqttController = new MqttController();
         $mqttController->publish('Recycohub', json_encode($payload));
         $mqttController->disconnect();
