@@ -27,7 +27,7 @@
                                     <li class="menu__item" onclick="SetForm('Machine_Type','Optical sorter')">Optical
                                         sorter
                                     </li>
-                                    <li class="menu__item" onclick="SetForm('Machine_Type','Metallic sorter')">Push tray
+                                    <li class="menu__item" onclick="SetForm('Machine_Type','Push tray')">Push tray
                                     </li>
                                 </ul>
 
