@@ -109,10 +109,15 @@ $collector = new collector(); ?>
                             id="FinishedJobs_Button"
                             class="button js-button button--raised js-ripple-effect button--colored-smoke">Finished
                             Jobs</Button>
+                            <button onclick="loadComponent('check')" style="margin: 4px 10px 4px 4px;"
+                            id="check_Button"
+                            class="button js-button button--raised js-ripple-effect button--colored-smoke">Availability set
+                            </Button>
                     </div>
                     <?php $collector->PendingJobs(); ?>
                     <?php $collector->AcceptedJobs(); ?>
                     <?php $collector->FinishedJobs(); ?>
+                    <?php $collector->availability(); ?>
                 </div>
             </div>
     </div>

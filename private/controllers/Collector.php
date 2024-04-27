@@ -20,6 +20,24 @@ class collector extends Controller
     {
         $this->view('Collector/collector');
     }
+    function availability()
+    {
+        $data = $this->load_model('CollectorModel');
+        $row = $data->query("SELECT * FROM collector_details WHERE Collector_ID='" . Auth::getUser_ID() . "'");
+        $this->view('Collector/availabilitycheck',['rows' => $row]);
+    }
+    function setstatus($status)
+    {
+        
+        $pickup = $this->load_model('CollectorModel');
+        // Auth::getCollector_ID
+        $data = $pickup->query("UPDATE collector_details SET Status = '" . $status . "' WHERE Collector_ID = '" . Auth::getUser_ID(). "'");
+        message(['Successfully Updated the status', 'success']);
+        $this->redirect('collector');
+        
+          
+    }
+  
 
     function PendingJobs()
     {
@@ -79,7 +97,7 @@ class collector extends Controller
         $this->view('Collector/RequestDetails', ['rows' => $data]);
     }
 
-    public function inventory()
+   function inventory()
     {
         $pickup = $this->load_model('RawInvnetoryModel');
         $pickup = $pickup->where("Collector_ID", "25435");
@@ -221,7 +239,7 @@ class collector extends Controller
 
     }
 
-    public function updateProfile($id)
+   function updateProfile($id)
     {
 
         $in = $this->load_model('CollectorModel');
@@ -289,3 +307,4 @@ class collector extends Controller
         }
     }
 }
+
