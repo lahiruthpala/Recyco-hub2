@@ -70,16 +70,15 @@
                         ?>
                     </tr>
                 </tbody>
-                <?php
-                } ?>
-                </table>
-<?php
+            </table>
+            <?php
+        }
     } else {
         ?>
-            <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
-                    <img src=" <?= ROOT ?>/images/NoTask.jpg" alt="No data found" style="width: 400px;">
-                           </div>
-                <?php
+        <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
+            <img src="<?= ROOT ?>/images/NoTask.jpg" alt="No data found" style="width: 400px;">
+        </div>
+        <?php
     }
     ?>
-        </div>
+</div>

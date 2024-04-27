@@ -91,6 +91,8 @@
                         <div class="card__supporting-text card--expand" style="padding: 0; text-align: center; margin-bottom: 10px;">
                             <h4 style="color: black;"><?= $data->product_name ?></h4>
                             <b><h5 style="color: black;"><?= $data->price ?> /Kg</h5></b>
+                            <br>
+                                    <span class="label label--mini color--light-blue"><?= $data->status ?></span>
                             <?php if ($data->discount){?>
                                 <b><h4 style="color: red;"><?= $data->discount ?>% Off</h4></b>
                             <?php } ?>
