@@ -18,7 +18,7 @@ class Home extends Controller
 	function Article()
 	{
 		$articles = $this->load_model('Articles');
-		$data = $articles->findAll(1, 10, "Article_ID");
+		$data = $articles->query("SELECT A.*, P.Company_Name FROM articles A JOIN partner P ON A.Partner_ID=P.Partner_ID ORDER BY A.Published_Date DESC LIMIT 10 OFFSET 0;");
 		$this->view('/Home/Article', ['articles' => $data]);
 	}
 

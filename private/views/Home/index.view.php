@@ -20,103 +20,7 @@
         <!-- <a href="#" class="google-plus img-circle"><span class="fa fa-google-plus"></span></a> -->
         <!-- Preloader -->
         <div class="preloader"></div>
-
-        <!-- Main Header -->
-        <header class="main-header">
-            <div class="top-bar">
-                <div class="top-container">
-                    <!--Info Outer-->
-                    <div class="info-outer">
-                        <!--Info Box-->
-                        <ul class="info-box clearfix">
-                            <li><span class="icon flaticon-interface"></span><a href="#"
-                                    class="google-plus img-circle">Recycohub@mail.com</a></li>
-                            <li><span class="icon flaticon-technology-5"></span><a href="#">(+94) 76846992</a></li>
-                            <li class="social-links-one">
-                                <a href="#" class="facebook img-circle"><span class="fa fa-facebook-f"></span></a>
-                                <a href="#" class="twitter img-circle"><span class="fa fa-twitter"></span></a>
-                                <a href="#" class="google-plus img-circle"><span class="fa fa-google-plus"></span></a>
-                                <a href="#" class="linkedin img-circle"><span class="fa fa-linkedin"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- Header Upper -->
-            <div class="header-upper">
-                <div class="auto-container clearfix"
-                    style="margin-left: 110px;display: flex;flex-direction: row;width: 100%;max-width: 1500px;">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <a href="index.html"><img src="images/logo-1.png" alt="Greenture"
-                                style="border-radius: 30px;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);"></a>
-                    </div>
-
-                    <!--Nav Outer-->
-
-                    <div class="nav-outer clearfix" style="display: flex;align-items: center;margin-left: auto;">
-                        <!-- Main Menu -->
-                        <nav class="main-menu">
-
-                            <div class="navbar-header">
-                                <!-- Toggle Button -->
-                                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target=".navbar-collapse">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-
-                            <div class="navbar-collapse collapse clearfix">
-                                <ul class="navigation">
-
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-
-
-                                    <li><a href="#">Events</a>
-                                        <!-- <ul>
-                                            <li><a href="events-list.html">Events List View</a></li>
-                                            <li><a href="events-grid.html">Events Grid View</a></li>
-                                            <li><a href="event-single.html">Single Event</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li><a href="#">Blog</a>
-                                        <!-- <ul>
-                                            <li><a href="blog.html">Blog Classic</a></li>
-                                            <li><a href="blog-three-column.html">Blog Three Column</a></li>
-                                            <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <?php if (Auth::logged_in()) { ?>
-                                        <li class="dropdown"><a href="<?= ROOT ?>/Customer/CreatePickups">Create a pickup
-                                                request</a>
-                                        <?php } ?>
-                                    <li><a href="contact-info">Contact Us</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                        <?php if (!Auth::logged_in()) { ?>
-                            <div>
-                                <a href="<?= ROOT ?>/login" class="theme-btn btn-donate" data-toggle="modal"
-                                    style="position: relative;">Login Now!</a>
-                                <a href="<?= ROOT ?>/signup" class="theme-btn btn-donate" data-toggle="modal"
-                                    style="position: relative;">Register Now!</a>
-                            </div>
-                        <?php } ?>
-                        <!-- Main Menu End-->
-
-                    </div>
-
-                </div>
-            </div>
-            <!-- Header Top End -->
-
-        </header>
-        <!--End Main Header -->
-
-
+<?php $this->view("include/homeheader")?>
         <!--Main Slider-->
         <section class="main-slider revolution-slider">
 
@@ -152,10 +56,12 @@
                                 data-voffset="110" data-speed="1500" data-start="2000" data-easing="easeOutExpo"
                                 data-splitin="none" data-splitout="none" data-elementdelay="0.01"
                                 data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <div class="text" style="color: black;">Lorem ipsum dolor sit amet, debet dolore mollis
-                                    his ad, ea usu <br>soleat detraxit.In vix agam moderatius. Modo partiendo.</div>
-                            <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="90" data-y="center" data-voffset="110" data-speed="1500" data-start="2000" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                            </div>
+                                <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="90"
+                                    data-y="center" data-voffset="110" data-speed="1500" data-start="2000"
+                                    data-easing="easeOutExpo" data-splitin="none" data-splitout="none"
+                                    data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200"
+                                    data-endeasing="Power4.easeIn">
+                                </div>
 
                         </li>
 
@@ -191,12 +97,7 @@
                         </li>
                         <div class="tp-bannertimer"
                             style="visibility:visible;width:auto;transform:translate3d(0px,0px,0px,0px)"></div>
-
-
-
-
                     </ul>
-
                 </div>
             </div>
         </section>
@@ -397,26 +298,7 @@
                                         <li><span class="icon fa fa-map-marker"></span> UCSC, Reid avenue, colombo.</li>
                                         <li><span class="icon fa fa-phone"></span> (94) 12345678</li>
                                         <li><span class="icon fa fa-envelope-o"></span> recycohub@gmail.com</li>
-                                    </ul>
-
-                                    <div class="social-links-two clearfix">
-                                        <a href="#" class="facebook img-circle"><span
-                                                class="fa fa-facebook-f"></span></a>
-                                        <a href="#" class="twitter img-circle"><span class="fa fa-twitter"></span></a>
-                                        <a href="#" class="google-plus img-circle"><span
-                                                class="fa fa-google-plus"></span></a>
-                                        <a href="#" class="linkedin img-circle"><span
-                                                class="fa fa-pinterest-p"></span></a>
-                                        <a href="#" class="linkedin img-circle"><span class="fa fa-linkedin"></span></a>
-                                    </div>
-
-                                    <ul class="contact-info"
-                                        style="display: inline-flex;align-items: center;justify-content: space-between;flex-direction: row;width:100%">
-                                        <li><span class="icon fa fa-map-marker"></span> UCSC, Reid avenue, colombo.</li>
-                                        <li><span class="icon fa fa-phone"></span> (94) 12345678</li>
-                                        <li><span class="icon fa fa-envelope-o"></span> recycohub@gmail.com</li>
-                                    </ul>
-
+                                </ul>
                                     <div class="social-links-two clearfix">
                                         <a href="#" class="facebook img-circle"><span
                                                 class="fa fa-facebook-f"></span></a>
