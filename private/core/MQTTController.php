@@ -7,7 +7,7 @@ class MqttController {
     private $mqtt;
 
     public function __construct() {
-        $server   = 'xf6e8811.ala.asia-southeast1.emqxsl.com';
+        $server   = 'cfdcd9bc.ala.asia-southeast1.emqxsl.com';
         $port     = 8883;
         $clientId = rand(5, 15);
         $username = 'lahiruthpala';

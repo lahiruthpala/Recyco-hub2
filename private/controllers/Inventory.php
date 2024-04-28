@@ -32,7 +32,7 @@ class Inventory extends Controller
 
     function SortedInventory()
     {
-        $batch = $this->load_model('InventoryModel');
+        $batch = $this->load_model('SortedInventory');
         $data = $batch->where("Status", "Sorted");
         $this->view('Inventory/SortedInventory', ['rows' => $data]);
     }
@@ -223,6 +223,7 @@ GROUP BY waste_type;
                 }
                 message(['Batch Created Successfully!', 'success']);
                 $this->redirect('Inventory/BatchProgress/?id='.$data['Batch_ID']);
+                return;
             } else {
                 $errors = $batch->errors;
             }

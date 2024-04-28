@@ -130,7 +130,7 @@ class SortingManager extends Controller
 		$inventories = $this->load_model('InventoryModel');
 		$data->inventories = $inventories->where("Sorting_Job_ID", $id);
 		$data->statusint = statustoint($data->Status);
-		$inventory = $this->load_model('InventoryModel');
+		$inventory = $this->load_model('SortedInventory');
 		$inventory = $inventory->where("Sorting_Job_ID ", $id);
 		$this->view('SortingManager/SortingJobInfo', ['data' => $data, 'rows' => $inventory]);
 	}
@@ -152,5 +152,19 @@ class SortingManager extends Controller
 		} else {
 			echo json_encode($machine);
 		}
+	}
+
+	function SortedInventorySell(){
+		$id = 0;
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+		} else {
+			echo "ID parameter is not set in the URL.";
+		}
+		$inventory = $this->load_model("SortedInventory");
+		$SI = $inventory->query("SELECT * FROM sorted_inventory SI JOIN sorting_job S ON SI.Sorting_Job_ID=S.Sorting_Job_ID WHERE SI.Inventory_ID = '" . $id ."'")[0];
+		$inventory = $inventory->query("SELECT Inventory_ID, Status FROM inventory where Sorting_Job_ID='" . $SI->Sorting_Job_ID ."'");
+		$SI->statusint = statustointselling($SI->Status);
+		$this->view('Inventory/SortedInventorySell', ['data' => $SI, 'inventory' => $inventory]);
 	}
 }

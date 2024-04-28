@@ -152,7 +152,7 @@ class GeneralManager extends Controller
     function collector()
     {
         $collectorModel = $this->load_model('CollectorModel');
-        $collectors = $collectorModel->query("SELECT *, CONCAT(U.FirstName,' ', U.LastName) AS Collector_Name FROM collector_details C JOIN reg_users U ON C.User_ID=U.User_ID JOIN sectors S ON C.sector_ID=S.sector_ID WHERE U.Role='Collector';");
+        $collectors = $collectorModel->query("SELECT *, CONCAT(U.FirstName,' ', U.LastName) AS Collector_Name FROM collector_details C JOIN reg_users U ON C.Collector_ID=U.User_ID JOIN sectors S ON C.sector_ID=S.sector_ID WHERE U.Role='Collector';");
         $this->view('GeneralManager/Collector', ['collectors' => $collectors]);
     }
 

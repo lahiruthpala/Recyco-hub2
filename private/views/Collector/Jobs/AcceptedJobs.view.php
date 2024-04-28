@@ -1,7 +1,10 @@
 <div class="card__supporting-text no-padding" id="AcceptedJobs" style="display: none;">
-    <?php
+
+
+   <?php
     if (is_array($rows) && !empty($rows)) {
         ?>
+
         <table class="data-table js-data-table" id="assignedTable" style="width: 100%; table-layout: fixed;">
             <thead>
                 <tr>
@@ -26,25 +29,13 @@
 
 
                         <td class="data-table__cell--non-numeric">
-                            <?php
-                            $statusClass = ''; // Default class
-                            if ($row->Status == 'Assigned') {
-                                $statusClass = 'color--light-blue'; // Set class for Accepted status
-                            } elseif ($row->Status == 'Completed') {
-                                $statusClass = 'color--green'; // Set class for Completed status
-                            } elseif ($row->Status == 'Accepted') {
-                                $statusClass = 'color--green'; // Set class for Completed status
-                            } elseif ($row->Status == 'Rejected') {
-                                $statusClass = 'color--red'; // Set class for Completed status
-                            }
-
-                            ?>
-                            <span class="label label--mini <?= $statusClass ?>">
+                        
+                            <span class="label label--mini color--light-blue">
                                 <?= $row->Status ?? '' ?>
                             </span>
                         </td>
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->waste_type ?? '' ?>
+                             <?= $row->waste_type ?? '' ?>
                         </td>
                         <?php
 

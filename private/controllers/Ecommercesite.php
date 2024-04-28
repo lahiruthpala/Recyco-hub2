@@ -18,6 +18,69 @@ class Ecommercesite extends Controller
         $data = $user->where('product_Id', $id);
         $this->view('Ecommercesite/product_details', ['row' => $data]);
     }
+    function orderform($id)
+    {
+		$user = $this->load_model('ProductDetailsModel');
+       
+		$data = $user->where('product_Id',$id);
+        $this->view('Ecommercesite/order', ['row' => $data]);
+    }
+  function order($id)
+    {
+        
+        $productorders = $this->load_model('Order');
+    
+       
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+            $productName = $_POST['product-name'] ?? ''; 
+          
+            $quantity = $_POST['quantity'] ?? 0;
+           
+          
+            $data = [
+                
+                'product_Id' => $id,
+                'product_name' => $productName,
+                
+                'quantity' => $quantity,
+              
+            ];
+            $result = $productorders->insert($data); 
+            message(['Sucessfully placed the order', 'success']);
+            $this->redirect('Ecommercesite');
+
+           
+        
+    }
+}
+    
+  
+function quantitycheck($id)
+{
+    $user = $this->load_model('ProductDetailsModel');
+   
+    $data = $user->where('product_Id',$id);
+   
+    $product = $data[0];
+   
+    if( $_POST['quantity']<=$product->available_amount)
+    {
+            message(['Payment Proceed','success']);
+            $this->redirect('Ecommercesite'); 
+
+    }
+    else
+    {
+      
+        message(['Payment cannot be Proceed Insufficient stock place a order','success']);
+        $this->view('Ecommercesite/order', ['row' => $data]);
+
+
+    }
+    
+}   
+    
 
 
 

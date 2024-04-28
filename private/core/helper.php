@@ -10,7 +10,7 @@ function get_var($key, $default = "")
 	return $default;
 }
 
-//popup message
+//popup message t
 //message[] consists of message and the type of message
 //$msg=['this is the message','success']
 //$msg=['this is the message','danger']
@@ -43,7 +43,7 @@ function get_select($key, $value)
 		if ($_POST[$key] == $value) {
 			return "selected";
 		}
-	}
+	} 
 
 	return "";
 }
@@ -115,6 +115,24 @@ function statustoint($status)
             return 6;
         case "Sold":
             return 7;
+        default:
+            // Handle unknown status
+            return -1;
+    }
+}
+
+function statustointselling($status){
+	switch ($status) {
+        case "Sorting":
+			return 0;
+        case "Sorted":
+            return 1;
+        case "Approved to sell":
+			return 2;
+        case "Posted":
+            return 3;
+        case "Sold":
+            return 4;
         default:
             // Handle unknown status
             return -1;

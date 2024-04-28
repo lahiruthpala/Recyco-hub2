@@ -18,7 +18,7 @@ const char *ssid = "DESKTOP-QC0EJRU 8105";
 const char *password = "Lahiru@28";
 
 //---- MQTT Broker settings
-const char *mqtt_server = "xf6e8811.ala.asia-southeast1.emqxsl.com"; // replace with your broker url
+const char *mqtt_server = "cfdcd9bc.ala.asia-southeast1.emqxsl.com"; // replace with your broker url
 const char *mqtt_username = "lahiruthpala";
 const char *mqtt_password = "Lahiru@28";
 const int mqtt_port = 8883;
@@ -94,6 +94,10 @@ void callback(char *topic, byte *payload, unsigned int length)
         Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>InventoriesCreated if condition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         InventoriesCreated(doc);
     }
+    else if (doc["Action"].as<String>() == "UpdateHistory")
+    {
+        UpdateHistory(doc);
+    }
 }
 
 void reconnect()
@@ -110,7 +114,8 @@ void reconnect()
             Serial.println("connected");
             lcd.clear();
             lcd.print("Connected!");
-            ;
+            String temp = "{\"Action\":\"GetHistory\",\"Machine_ID\":\"MID1712542744n5eZ\"}";
+            publishMessage("Recycohub", temp, false);
             // SUBSCRIBE TO TOPIC HERE
 
             client.subscribe("Recycohub");
@@ -125,8 +130,9 @@ void reconnect()
     }
 }
 //============================================ADD USER VARIABLE HERE====================================
-
+int set = 0;
 int in_use = 0;
+String Machine_ID = "MID1712542744n5eZ";
 String Sorting_Job_ID = "";
 String waste_type = "";
 char *defaultInventorID = "0000000000000000000";
@@ -183,7 +189,10 @@ void setup()
     client.setServer(mqtt_server, mqtt_port);
     client.setCallback(callback);
     delay(1000);
+    String temp = "{\"Action\":\"GetHistory\",\"Machine_ID\":\"MID1712542744n5eZ\"}";
+    publishMessage("Recycohub", temp, false);
     //==================================ADD USER SETUP HERE===================================================
+    // Create JSON object
 }
 
 void loop()
@@ -255,6 +264,7 @@ void loop()
 //======================================= publising as string
 void publishMessage(const char *topic, String payload, boolean retained)
 {
+    Serial.println(payload);
     if (client.publish(topic, payload.c_str(), retained))
         Serial.println("Message publised [" + String(topic) + "]: " + payload);
 }
@@ -393,6 +403,8 @@ void UpdateSortingJobStatus()
     serializeJson(updateStatusDoc, updateStatusJson);
     Serial.println(updateStatusJson);
     publishMessage("Recycohub", updateStatusJson, false);
+    lcd.clear();
+    lcd.print("Sorting Completed");
 }
 
 void UpdateInventoryStatus(String Inventory_ID, String Model)
@@ -407,6 +419,8 @@ void UpdateInventoryStatus(String Inventory_ID, String Model)
     serializeJson(updateStatusDoc, updateStatusJson);
     Serial.println(updateStatusJson);
     publishMessage("Recycohub", updateStatusJson, false);
+    lcd.clear();
+    lcd.print("Inventory Updated");
 }
 
 void DisplaySortingToInventories()
@@ -414,11 +428,33 @@ void DisplaySortingToInventories()
     Serial.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>       Display Sorting To Inventories     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     int numRows = sizeof(SortingTo) / sizeof(SortingTo[0]);
     Serial.println("Select the inventory ID");
+    lcd.clear();
+    lcd.print("Inventory ID -> ");
     for (int i = 0; i < numRows; i++)
     {
+        lcd.setCursor(0, 1);
+        lcd.print(i + 1);
         Serial.print(SortingTo[i][2]);
         Serial.print(" - ");
+        lcd.print(" - ");
         Serial.println(i + 1);
+        lcd.print(SortingTo[i][2]);
+        while (true)
+        {
+            char customKey = customKeypad.getKey();
+            if (customKey)
+            {
+                if (customKey == '#')
+                {
+                    break;
+                }
+            }
+        }
+        lcd.clear();
+        lcd.print(i + 1);
+        lcd.print(" -> ");
+        lcd.print(SortingTo[i][2]);
+        lcd.setCursor(0, 1);
     }
     int temp = 0;
     while (temp == 0)
@@ -429,6 +465,7 @@ void DisplaySortingToInventories()
             Serial.println(customKey);
             int num = customKey;
             Serial.println(num);
+            lcd.print(num - 48);
             if (num == 0)
             {
                 temp = 1;
@@ -448,11 +485,32 @@ void DisplaySortingInventories()
     Serial.println("Select the inventory ID");
     for (int i = 0; i < SortingInventory_IDs.size(); i++)
     {
+        lcd.setCursor(0, 1);
+        lcd.print(i + 1);
         Serial.print(SortingInventory_IDs.at(i));
         Serial.print(" - ");
+        lcd.print(" - ");
         Serial.println(i + 1);
+        lcd.print(SortingInventory_IDs.at(i));
+        while (true)
+        {
+            char customKey = customKeypad.getKey();
+            if (customKey)
+            {
+                if (customKey == '#')
+                {
+                    break;
+                }
+            }
+        }
+        lcd.clear();
+        lcd.print(i + 1);
+        lcd.print(" -> ");
+        lcd.print(SortingInventory_IDs.at(i));
+        lcd.setCursor(0, 1);
     }
     int temp = 0;
+    lcd.print("Inven ID -> ");
     while (temp == 0)
     {
         char customKey = customKeypad.getKey();
@@ -461,6 +519,7 @@ void DisplaySortingInventories()
             Serial.println(customKey);
             int num = customKey;
             Serial.println(num);
+            lcd.print(num - 48);
             if (num - 48 == 0)
             {
                 temp = 1;
@@ -474,6 +533,7 @@ void DisplaySortingInventories()
     }
 }
 
+// working
 void SortingJobInventoryUpdate()
 {
     lcd.clear();
@@ -552,5 +612,50 @@ void SortingJobInventoryUpdate()
                 lcd.print("Inventory Updated");
             }
         }
+    }
+}
+
+void UpdateHistory(DynamicJsonDocument &doc)
+{
+    if (doc.containsKey("Sorting_Job_ID"))
+    {
+        Sorting_Job_ID = doc["Sorting_Job_ID"].as<String>();
+    }
+    if (doc.containsKey("Inventory_IDs"))
+    {
+        JsonArray array = doc["Inventory_IDs"].as<JsonArray>();
+
+        // Convert JSON array to string
+        for (size_t i = 0; i < array.size(); i++)
+        {
+            SortingInventory_IDs.push_back(array[i].as<String>());
+        }
+    }
+    if (doc.containsKey("SortingTo"))
+    {
+        JsonArray inventoryIds = doc["SortingTo"].as<JsonArray>();
+        int i = 0;
+        for (const auto &inventory : inventoryIds)
+        {
+            String inventoryId = inventory[0].as<String>();
+            String type = inventory[1].as<String>();
+            // Assign the values to pre-defined variables here
+            // For example:
+            Serial.println(inventoryId);
+            strcpy(SortingTo[i][2], inventoryId.c_str());
+            i++;
+        }
+    }
+    lcd.clear();
+    lcd.print("History Updated");
+    lcd.setCursor(0, 1);
+    set = 1;
+    if (doc.containsKey("Sorting_Job_ID"))
+    {
+        lcd.print("Sorting");
+    }
+    else
+    {
+        lcd.print("No Sorting Job");
     }
 }
