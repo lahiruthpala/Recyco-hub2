@@ -4,8 +4,6 @@
 
 <body>
     <div class="page-wrapper">
-
-        <!-- Preloader -->
         <!-- <div class="preloader"></div> -->
         <?php $this->view("include/homeheader")?>
         <!--Page Title-->
