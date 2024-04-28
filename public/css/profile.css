@@ -266,7 +266,7 @@ Description: This Template is created for web template
   
   /* ===================================== Resume Template CSS ================================== */
   .top-cover {
-    /* background-image: url(../images/bg.jpg); */
+    background-image: url(../images/resource/bg.png);
     background-size: cover;
     width: 100%; }
   

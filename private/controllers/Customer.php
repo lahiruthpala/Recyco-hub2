@@ -32,14 +32,16 @@ class Customer extends Controller
 	{
 		
 		$user = $this->load_model('User');
-		$data = $user->where('UserName', Auth::getUser_ID());
+		$data = $user->where('User_ID', Auth::getUser_ID());
+		
 		$this->view('/Customer/Profile',['user'=>$data]);
 	}
 
 	function UpdateUser(){
+		
         $data = $this->load_model("User");
         $data->update(Auth::getUser_ID(),$_POST,"User_ID");
-
+		message(["successfully updated" , "success"]);
         $this->redirect("/Customer/info");
     }
 }

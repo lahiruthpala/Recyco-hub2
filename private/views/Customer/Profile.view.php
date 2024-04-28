@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> Account </title>
 
-    <link rel="shortcut icon" href="assets/images/fav.jpg">
-    <link rel="stylesheet" href="assets/css/profile.min.css">
-    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/profile.css" />
+    <link rel="shortcut icon" href="<?=ROOT?>/images/fav.jpg">
+    <link rel="stylesheet" href="<?=ROOT?>/css/profile.min.css">
+    <link rel="stylesheet" href="<?=ROOT?>/css/fontawsom-all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT?>/css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
     <div class="container-fluid overcover">
         <div class="container profile-box">
-            <div class="top-cover" style="background-image: <?=ROOT?>images/resource/bg.png;">
+            <div class="top-cover" style="background-image:<?=ROOT?>/images/resource/bg.png;">
                 <div class="covwe-inn">
                     <div class="row no-margin">
                         <div class="col-md-3 img-c">
                             <img src="<?= ROOT ?>/images/Users/<?= $user[0]->User_ID ?>" alt="">
-                            <div class="change-icon">
+                            <div class="change-icon" onclick="inputchangepropic()">
                                 <img src="<?=ROOT?>/images/icons/change-icon.png" alt="Change Profile Picture" style="height: auto;">
+                                <input type="file" id="profileImage" name="profileImage" style="display: none;"
+                                onchange="displayImage(this)">
+
+                                
                             </div>
                         </div>
                         
@@ -48,29 +53,34 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <form method="POST" action="<?=ROOT?>/Customer/UpdateUser">
                 <table id="user-data">
                     <tr>
                         <td style="left: 20px;">First Name</td>
-                        <td><input type="text" placeholder="Enter Name"></td>
+                        <td><input type="text" value="<?=$user[0]->FirstName?>" id="FirstName" name="FirstName" placeholder="Enter Name"></td>
                     </tr>
                     <tr>
                         <td style="left: 20px">Last Name</td>
-                        <td><input type="text" placeholder="Enter Name"></td>
+                        <td><input type="text" value="<?=$user[0]->LastName?>" id="LastName" name="LastName"placeholder="Enter Name"></td>
                     </tr>
                     <tr>
                         <td style="left: 20px">Current Address</td>
-                        <td><input type="text" placeholder="Enter Address"></td>
+                        <td><input type="text"value="<?=$user[0]->Address?>" id="Address" name="Address" placeholder="Enter Address"></td>
                     </tr>
                     <tr>
                         <td style="left: 20px">Contact Number</td>
-                        <td><input type="text" placeholder="Enter Number"></td>
+                        <td><input type="text" value="<?=$user[0]->Phone?>" id="Phone" name="Phone"placeholder="Enter Number"></td>
                     </tr>
                     <tr>
                         <td style="left: 20px">Email Address</td>
-                        <td><input type="text" placeholder="Enter address"></td>
+                        <td><input type="text" value="<?=$user[0]->Email?>" id="Email" name="Email"placeholder="Enter address"></td>
                     </tr>
 
                 </table>
+                <button type="submit"  > edit</button>
+
+                </form>
+                
                 </div>
             
               <div class="tab-pane fade exp-cover" id="review" role="tabpanel" aria-labelledby="contact-tab">
@@ -139,10 +149,42 @@
     </div>
 </body>
 
-<script src="assets/js/profileview.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/profile.min.js"></script>
-<script src="assets/js/profileformat.js"></script>
+<!-- change-icon -->
+<script>
+                            function displayImage(input) {
+                                if (input.files && input.files[0]) {
+                                    var fileSize = input.files[0].size; // Get the file size in bytes
+                                    var maxSize = 1 * 1024 * 1024; // 1MB in bytes
+                                    var fileExtension = input.files[0].name.split('.').pop().toLowerCase(); // Get the file extension
 
+                                    if (fileSize > maxSize) {
+                                        SideNotification(["Error: The uploaded image size exceeds the maximum allowed size of 1MB.", 'error']);
+                                        return;
+                                    }
 
-</html>
+                                    if (!['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+                                        SideNotification(["Error: Only image files (JPG, JPEG, PNG, GIF) are allowed.", 'error']);
+                                        return;
+                                    }
+
+                                    var reader = new FileReader();
+
+                                    reader.onload = function (e) {
+                                        document.getElementById('Image').src = e.target.result;
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+
+                            function changepropic(){
+                                document.getElementById("profileImage").click;
+                            }
+ </script>
+
+<script src="<?=ROOT?>/js/profileview.min.js"></script>
+<script src="<?=ROOT?>/js/popper.min.js"></script>
+<script src="<?=ROOT?>/js/profile.min.js"></script>
+<script src="<?=ROOT?>/js/profileformat.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<?php $this->view("include/footer");
