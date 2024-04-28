@@ -35,15 +35,17 @@ class Customer extends Controller
 
 	function info()
 	{
-		
 		$user = $this->load_model('User');
 		$data = $user->where('User_ID', Auth::getUser_ID());
-		
-		$this->view('/Customer/Profile',['user'=>$data]);
+		$customers = $this->load_model('CustomerModel')->first('Customer_ID', Auth::getUser_ID());
+		$earnings = array();
+		if($customers != false){
+			$earnings = json_decode($customers->Credit_History, true);
+		}
+		$this->view('/Customer/Profile',['customers'=>$customers, 'earnings'=>$earnings, 'user'=>$data]);
 	}
 
 	function UpdateUser(){
-		
         $data = $this->load_model("User");
         $data->update(Auth::getUser_ID(),$_POST,"User_ID");
 		message(["successfully updated" , "success"]);
