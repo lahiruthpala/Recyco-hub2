@@ -237,4 +237,23 @@ GROUP BY waste_type;
         echo (json_encode($data));
         return;
     }
+
+    function UpdateStatusSortedItems($Status, $id)
+	{
+		$inventory = $this->load_model("SortedInventory");
+		$inventory->update($id, ["Status" => $Status], "Inventory_ID");
+		$inventory = $inventory->first('Inventory_ID', $id);
+		$Product = $this->load_model("ProductModel");
+		$data = $Product->first("product_name", $inventory->Type);
+		if ($data == false) {
+			message(["Product not found First create a product in E-commerces site", "error"]);
+		} else {
+			if ($Status == 'Approved to sell') {
+				$Product->update($data->product_name, ["available_amount" => $data->available_amount + $inventory->Weights], "product_name");
+			} else {
+				$Product->update($data->product_name, ["available_amount" => $data->available_amount - $inventory->Weights], "product_name");
+			}
+		}
+		$this->redirect("SortingManager/SortedInventorySell?id='" . $id . "'");
+	}
 }

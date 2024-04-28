@@ -617,11 +617,11 @@ void SortingJobInventoryUpdate()
 
 void UpdateHistory(DynamicJsonDocument &doc)
 {
-    if (doc.containsKey("Sorting_Job_ID"))
+    if (doc.containsKey("Sorting_Job_ID") && !doc["Sorting_Job_ID"].isNull())
     {
         Sorting_Job_ID = doc["Sorting_Job_ID"].as<String>();
     }
-    if (doc.containsKey("Inventory_IDs"))
+    if (doc.containsKey("Inventory_IDs") && !doc["Inventory_IDs"].isNull())
     {
         JsonArray array = doc["Inventory_IDs"].as<JsonArray>();
 
@@ -631,7 +631,7 @@ void UpdateHistory(DynamicJsonDocument &doc)
             SortingInventory_IDs.push_back(array[i].as<String>());
         }
     }
-    if (doc.containsKey("SortingTo"))
+    if (doc.containsKey("SortingTo") && !doc["SortingTo"].isNull())
     {
         JsonArray inventoryIds = doc["SortingTo"].as<JsonArray>();
         int i = 0;
@@ -650,7 +650,7 @@ void UpdateHistory(DynamicJsonDocument &doc)
     lcd.print("History Updated");
     lcd.setCursor(0, 1);
     set = 1;
-    if (doc.containsKey("Sorting_Job_ID"))
+    if (doc.containsKey("Sorting_Job_ID") && !doc["Sorting_Job_ID"].isNull())
     {
         lcd.print("Sorting");
     }

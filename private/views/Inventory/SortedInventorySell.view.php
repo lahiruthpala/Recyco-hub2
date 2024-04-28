@@ -31,7 +31,8 @@
                     Inventory Details
                 </h6>
                 <form class="form form--basic" method="POST">
-                    <div class="grid" style="background-color: white;color: black;border-radius: 20px;">
+                    <div class="grid"
+                        style="background-color: white;color: black;border-radius: 20px;justify-content: space-between;">
                         <div style="margin: 0 15px 20px 40px;">
                             <div style="display: flex;flex-direction: column;margin-top: 27px;">
                                 <h6 style="margin: 0px;">Inventory_ID</h6>
@@ -90,6 +91,23 @@
                                     </h6>
                                 </a>
                             </div>
+                        </div>
+                        <div style="margin-left: 10vw;display: flex;align-items: end;">
+                            <?php if ($data->statusint == 1) { ?>
+                                <a href="<?=ROOT?>/Inventory/UpdateStatusSortedItems/Approved to sell/<?= $data->Inventory_ID ?>"><button type="button"
+                                        class="button js-button button--raised js-ripple-effect button--colored-teal"
+                                        style="border-radius: 99px;align-self: end;margin: 0 25px 25px auto;background-color: #027855;"
+                                        id="publishbutton" readonly>
+                                        <img style="padding: 2px 10px 6px 0;" src="<?= ROOT ?>/images/Printer.svg">Ready to
+                                        sell</button></a>
+                            <?php } ?>
+                            <?php if ($data->statusint >= 2) { ?>
+                                <a href="<?=ROOT?>/Inventory/UpdateStatusSortedItems/Sorted/<?= $data->Inventory_ID ?>"><button type="button"
+                                        class="button js-button button--raised js-ripple-effect button--colored-teal"
+                                        style="border-radius: 99px;align-self: end;margin: 0 25px 25px auto;background-color: red;"
+                                        id="Recallbutton" readonly>
+                                        <img style="padding: 2px 10px 6px 0;" src="<?= ROOT ?>/images/Printer.svg">Re-call</button></a>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
