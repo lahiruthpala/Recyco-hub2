@@ -6,16 +6,14 @@
                     <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
                 </div>
                 <div style="display: flex; margin-right:auto; gap:30px">
-                    <a href = "<?=ROOT?>/Partner/Dashboard" <?= setActiveTab(1) ?>>Dashboard</a>
                     <a href = "<?=ROOT?>/Partner/Articles" <?= setActiveTab(2) ?>>Articals</a>
                     <a href = "<?=ROOT?>/Partner/Events" <?= setActiveTab(3) ?>>Events</a>
-                    <a href = "<?=ROOT?>/Partner/Contribution" <?= setActiveTab(4) ?>>Contribution</a>
                 </div>
                 <div></div>
 
                 <div class="avatar-dropdown" id="icon">
                     <span><?=Auth::getUserName()?></span>
-                    <img src="<?=ROOT?>/images/Icon_header.png">
+                    <img src="<?= ROOT ?>/images/Users/<?=Auth::getUser_ID()?>.jpg" style="border-radius: 90px;">
                 </div>
                 <!-- Account dropdawn-->
                 <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown"

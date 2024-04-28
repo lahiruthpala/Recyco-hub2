@@ -9,7 +9,7 @@
             <span>
                 <?= Auth::getUserName() ?>
             </span>
-            <img src="<?= ROOT ?>/images/Icon_header.png">
+            <img src="<?= ROOT ?>/images/Users/<?=Auth::getUser_ID()?>.jpg" style="border-radius: 90px;">
         </div>
         <!-- Account dropdawn-->
         <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown"

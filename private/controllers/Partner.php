@@ -2,6 +2,20 @@
 class Partner extends Controller
 {
 
+    function __construct()
+    {
+        $this->verify();
+    }
+
+    function verify()
+    {
+        $allowedRoles = ["Partner"];
+        if (in_array(Auth::getRole(), $allowedRoles)) {
+            return true;
+        } else {
+            $this->redirect('login');
+        }
+    }
     function index()
     {
         // code...
