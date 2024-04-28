@@ -1,7 +1,0 @@
-In Sorting Job completion
-matchine will get the list of inventoies
-when one sorting of inventory is done it will send a request that has inventory id and the weight of the inventory after the sorting
-$_POST = 'Inventory_ID', 'Weight_After_Sorting', 'Status'
-
-
-Customer need to get the need to have the 

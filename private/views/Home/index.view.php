@@ -130,11 +130,10 @@
                             </div>
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="90" data-y="center" data-voffset="40" data-speed="1500" data-start="1500" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <h3 class="bg-color">Save the world by planting tree</h3>
+                                <h3 class="bg-color">Be a part of the sollution Not part in the pollution</h3>
                             </div>
 
                             <div class="tp-caption sfl sfb tp-resizeme" data-x="left" data-hoffset="90" data-y="center" data-voffset="110" data-speed="1500" data-start="2000" data-easing="easeOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.3" data-endspeed="1200" data-endeasing="Power4.easeIn">
-                                <div class="text" style="color: black;">Lorem ipsum dolor sit amet, debet dolore mollis his ad, ea usu <br>soleat detraxit.In vix agam moderatius. Modo partiendo.</div>
                             </div>
 
                         </li>
