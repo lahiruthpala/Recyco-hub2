@@ -14,7 +14,7 @@
             if (is_array($rows) && !empty($rows)) {
                 foreach ($rows as $row) {
                     ?>
-                    <tr>
+                    <tr onclick="loadScreen2('/Admin/UpdateAutomation/<?= $row->Automation_ID?>')">
                         <td class="data-table__cell--non-numeric">
                             <?= $row->Automation_ID ?? '' ?>
                         </td>
@@ -22,10 +22,10 @@
                             <?= $row->Name ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->Repeat_on ?? '' ?>
+                            <?= $row->Repeat ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric">
-                            <?= $row->Date." ".$row->Time ?? '' ?>
+                            <?= $row->hour.":".$row->min ?? '' ?>
                         </td>
                         <td class="data-table__cell--non-numeric" style="padding-left: 70px;">
                             <span

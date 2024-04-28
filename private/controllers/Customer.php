@@ -5,18 +5,21 @@ class Customer extends Controller
 	{
 		$this->view('Customer/LandingPage');
 	}
-
+      
 	function CreatePickups()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$pickup = $this->load_model("PickUpRequestModel");
 			$data = $pickup->validate($_POST);
 			if ($data != false) {
-				message(["Pickup request successfully placed","success"]);
+	 			message(["Pickup request successfully placed","success"]);
 				$data = $pickup->insert($data);
+				$this->redirect('Home');
+				return;
 			}
 		}
-		$this->view("Customer/PickupRequest");
+		$data = $this->load_model('WasteType')->findAll(1,10,"Waste_ID");
+		$this->view("Customer/PickupRequest",['data'=>$data]);
 	}
 
 	function newrequest()

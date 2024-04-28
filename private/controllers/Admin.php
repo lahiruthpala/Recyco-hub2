@@ -17,7 +17,7 @@ class Admin extends Controller
 
     function index()
     {
-        $this->view('Admin/AdminHome');
+        $this->view('Admin/AccountManagement');
     }
 
     function AccountManagement()
@@ -61,7 +61,7 @@ class Admin extends Controller
             $errors = array();
             $user = $this->load_model('User');
             $verify = $this->load_model('Verify');
-            require_once(APP_ROOT . "/controllers/FileManager.php");
+            require_once (APP_ROOT . "/controllers/FileManager.php");
             $file = new FileManager();
             if (!empty($_FILES['profileImage']['name'])) { //checking for a file upload
                 if ($_FILES['profileImage']['error'] == 0) {
@@ -70,26 +70,30 @@ class Admin extends Controller
                     $_POST['Phone'] = $_POST['OfficialNumber'];
                     $_POST['UserName'] = $_POST['FirstName'];
                     $_POST['Status'] = "Pending";
-                    if(!isset($_POST['Address'])){
+                    if (!isset($_POST['Address'])) {
                         $_POST['Address'] = "Colombo Sorting Center";
                     }
                     $_POST['Creator_ID'] = Auth::getUser_ID();
-                    if($user->where('Email',$_POST['Email'])){
-                        message(['Email already exists','error']);
-                    }
-                    elseif($user->where('Phone',$_POST['Phone'])) {
-                        message(['Phone number already exists','error']);
-                    }
-                    else{
+                    if ($user->where('Email', $_POST['Email'])) {
+                        message(['Email already exists', 'error']);
+                    } elseif ($user->where('Phone', $_POST['Phone'])) {
+                        message(['Phone number already exists', 'error']);
+                    } else {
                         $verifyData = $verify->insert($_POST);
                         $_POST['pwd'] = $verifyData['pwd'];
                         $UserData = $user->insert($_POST);
+                        if ($_POST['Role']) {
+                            $_POST['User_ID'] = $UserData['User_ID'];
+                            $_POST['Collector_ID'] = $UserData['User_ID'];
+                            $_POST['sector_ID'] = $this->load_model('Sectors')->first('SectorName', $_POST['SectorName'])->sector_ID;
+                            $collector = $this->load_model('CollectorModel');
+                            $collector->insert($_POST);
+                        }
                         if ($UserData) { //successful insertion
-                            $folder = APP_ROOT . "/Uploads/ProfilePIC/";
-                            $_FILES['profileImage']['name'] = $UserData['User_ID'];
-
+                            $folder = IMAGES . '/Users';
+                            $_FILES['profileImage']['name'] = $UserData['User_ID'] . ".jpg";
                             $destination = $file->uploadFile($_FILES['profileImage'], $folder);
-                            message(['User Added successfully','success']);
+                            message(['User Added successfully', 'success']);
                             $this->redirect('Admin/AccountManagement');
                         } else { //didnt inserted to db
                             message(['Error occurred ! Try again', "error"]);
@@ -97,40 +101,259 @@ class Admin extends Controller
                         }
                     }
                 } else {
-                    message(["Couldn't upload the file",'error']);
+                    message(["Couldn't upload the file", 'error']);
                     $this->redirect('Admin/AccountManagement');
                 }
             }
         }
-        $this->redirect('Admin/AccountManagement');
+        $sectors = $this->load_model('Sectors');
+        $sectors = $sectors->query("SELECT * FROM sectors;");
+        $this->view("Admin/NewAccountCreation", ['sectors' => $sectors]);
     }
 
-    function showAllMachines(){
+    function showAllMachines()
+    {
         $machine = $this->load_model("MachineModel");
-        $data = $machine->findAll(1,10,"Machine_ID");
-        $this->view("Admin/SortingCenter/MachineTable", ['rows'=>$data]);
+        $data = $machine->findAll(1, 10, "Machine_ID");
+        $this->view("Admin/SortingCenter/MachineTable", ['rows' => $data]);
     }
 
     function AddMachine()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $machine = $this->load_model('MachineModel');
-            $machine->insert($_POST);
-            message(['Machine Added successfully','success']);
-            $this->redirect('Admin/SortingCenter');
+            if ($_POST['Action'] == 'Edit') {
+                $machine = $this->load_model('MachineModel');
+                $machine->update($_POST['Machine_ID'], $_POST, 'Machine_ID');
+                message(['Machine Updated successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            } else {
+                $machine = $this->load_model('MachineModel');
+                $machine->insert($_POST);
+                message(['Machine Added successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            }
         }
-        $this->view("Admin/SortingCenter/AddNewMachine");
+        $watetype = $this->load_model("WasteType");
+        $waste = $watetype->findAll(1, 10, "Waste_ID");
+        $this->view("Admin/SortingCenter/AddNewMachine", ['waste' => $waste]);
     }
 
-    function SortingCenterInfo(){
+    function SortingCenterInfo()
+    {
         $machine = $this->load_model("SortingCenter");
-        $data = $machine->findAll(1,10,"SortingCenter_ID")[0];
-        $this->view("Admin/SortingCenter/SortingCenterInfo", ['row'=>$data]);
+        $data = $machine->findAll(1, 10, "SortingCenter_ID")[0];
+        $this->view("Admin/SortingCenter/SortingCenterInfo", ['row' => $data]);
     }
-    function Automation(){
+    function Automation()
+    {
         $machine = $this->load_model("AutomationModel");
-        $data = $machine->findAll(1,10,"Automation_ID");
-        $this->view("Admin/SortingCenter/Automation", ['rows'=>$data]);
+        $data = $machine->findAll(1, 10, "Automation_ID");
+        foreach ($data as $key => $value) {
+            if ($data[$key]->day_of_the_week != '*') {
+                $data[$key]->Repeat = 'Weekly';
+            }
+            if ($data[$key]->day_of_the_month != '*') {
+                $data[$key]->Repeat = 'Monthly';
+            }
+            if ($data[$key]->month != '*') {
+                $data[$key]->Repeat = 'Yearly';
+            }
+            if ($data[$key]->day_of_the_week == '*' && $data[$key]->day_of_the_month == '*') {
+                $data[$key]->Repeat = 'Daily';
+            }
+        }
+        $this->view("Admin/SortingCenter/Automation", ['rows' => $data]);
     }
+
+    function UpdateAutomation($id)
+    {
+        $machine = $this->load_model('AutomationModel');
+        $data = $machine->first('Automation_ID', $id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_POST['Creator_ID'] = Auth::getUser_ID();
+            $_POST['Status'] = 'Active';
+            // Get SLT hour and minute values from $_POST
+            $hour = intval($_POST['hour']);
+            $min = intval($_POST['min']);
+
+            // Subtract 5 hours and 30 minutes from SLT to get UTC
+            $utc_hour = $hour - 5;
+            $utc_min = $min - 30;
+
+            // Adjust if the result goes below 0
+            if ($utc_min < 0) {
+                $utc_hour -= 1;
+                $utc_min += 60;
+            }
+
+            // Adjust if the result goes below 0 or above 23
+            if ($utc_hour < 0) {
+                $utc_hour += 24;
+            } elseif ($utc_hour > 23) {
+                $utc_hour -= 24;
+            }
+            $Code = sprintf("%02d", $utc_min) . " " . sprintf("%02d", $utc_hour) . ' ' . $_POST['day_of_the_month'] . ' ' . $_POST['month'] . ' ' . $_POST['day_of_the_week'] . ' ' . $data->Code;
+            $temp = "sudo crontab -l | grep -v \"" . $data->Code . "\" | crontab -";
+            $output1 = shell_exec($temp);
+            //var_dump($temp,$output1);
+            $temp2 = "(crontab -l; echo \"" . $Code . "\") | crontab -";
+            $output2 = shell_exec($temp2);
+            //var_dump($temp2,$output2);
+            //die;
+            $machine->update($id, $_POST, 'Automation_ID');
+            message(['Automation Updated successfully', 'success']);
+            $this->redirect('Admin/SortingCenter');
+        }
+        switch (true) {
+            case $data->day_of_the_week != '*':
+                $data->Repeat = 'Weekly';
+                break;
+            case $data->day_of_the_month != '*':
+                $data->Repeat = 'Monthly';
+                break;
+            case $data->month != '*':
+                $data->Repeat = 'Yearly';
+                break;
+            case $data->day_of_the_week == '*' && $data->day_of_the_month == '*':
+                $data->Repeat = 'Daily';
+                break;
+        }
+        $this->view("Admin/SortingCenter/UpdateAutomation", ['data' => $data]);
+    }
+
+    function MachineRemove($id)
+    {
+        $machine = $this->load_model('MachineModel');
+        $machine->delete($id, 'Machine_ID');
+        message(['Machine Removed successfully', 'success']);
+        $this->redirect('Admin/SortingCenter');
+    }
+
+    function WasteType()
+    {
+        $waste = $this->load_model("WasteType");
+        $data = $waste->findAll(1, 10, "Waste_ID");
+        $this->view("Admin/SortingCenter/WasteTypesTable", ['rows' => $data]);
+    }
+
+    function NewWasteTypeCreation()
+    {
+        $waste = $this->load_model('WasteType');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_POST['Action'] == 'Edit') {
+                $waste->update($_POST['Waste_ID'], $_POST, 'Waste_ID');
+                message(['Waste Type successfully Edited', 'success']);
+                $this->redirect('Admin/SortingCenter');
+                return;
+            } else {
+                $temp = $waste->first('Name', $_POST['Name']);
+                if (!empty($temp)) {
+                    message(['Waste Type already exists', 'error']);
+                    $this->redirect('Admin/SortingCenter');
+                    return;
+                }
+                $waste = $waste->insert($_POST);
+                //require_once (APP_ROOT . "/controllers/FileManager.php");
+                //$file = new FileManager();
+                //$folder = ROOT . "images/WasteTypes/";
+                //$_FILES['profileImage']['name'] = $waste['Waste_ID'];
+                //$destination = $file->uploadFile($_FILES['profileImage'], $folder, $waste['Waste_ID']);
+                message(['Waste Type Added successfully', 'success']);
+                $this->redirect('Admin/SortingCenter');
+            }
+        }
+        $this->view("Admin/SortingCenter/NewWasteType");
+    }
+
+    function WasteTypeDelete($Waste_ID)
+    {
+        $waste = $this->load_model('WasteType');
+        $waste->delete($Waste_ID, 'Waste_ID');
+        message(['Waste Type Removed successfully', 'success']);
+        $this->redirect('Admin/SortingCenter');
+    }
+
+    function WasteTypeEdit($Waste_ID)
+    {
+        $waste = $this->load_model('WasteType');
+        $data = $waste->first('Waste_ID', $Waste_ID);
+        $data->Action = 'Edit';
+        echo json_encode($data);
+    }
+
+    function MachineEdit($Machine_ID)
+    {
+        $machine = $this->load_model('MachineModel');
+        $data = $machine->first('Machine_ID', $Machine_ID);
+        $data->Action = 'Edit';
+        unset($data->Is_Sorting);
+        unset($data->Next_Service);
+        echo json_encode($data);
+    }
+
+    function SectorsView()
+    {
+        $sectors = $this->load_model("Sectors");
+        $data = $sectors->query("SELECT S.sector_ID,S.SectorName,S.latitude,S.longitude,S.radius,COALESCE(GROUP_CONCAT(C.Collector_ID  ORDER BY C.Collector_ID  ASC SEPARATOR ','), '') AS Collector_ID FROM sectors S Left JOIN collector_details C ON C.sector_ID=S.sector_ID GROUP BY S.sector_ID;");
+        $this->view("Admin/SortingCenter/Sectors", ['rows' => $data]);
+    }
+
+    function AddNewSectors()
+    {
+        $sectors = $this->load_model('Sectors');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sectors->insert($_POST);
+            message(['Sector Added successfully', 'success']);
+            $this->redirect('Admin/SortingCenter');
+            return;
+        }
+        $data = $sectors->query("SELECT * FROM sectors;");
+        $this->view("Admin/SortingCenter/NewSector", ['data' => $data]);
+    }
+
+    function profile($id)
+    {
+        // code...
+
+        $collector = $this->load_model('CollectorModel');
+        $user = $this->load_model('User');
+        $user = $user->first("User_ID", $id);
+        // Auth::getCollector_ID
+        $data = $collector->first("Collector_ID", $id);
+        $data->firstname = $user->FirstName;
+        $data->lastname = $user->LastName;
+        $data->Phone = $user->Phone;
+        $data->Email = $user->Email;
+        $data->Address = $user->Address;
+        $this->view('Collector/profile', ['row' => $data]);
+    }
+
+    function ViewSectorDetails($id){
+        $sectors = $this->load_model('Sectors');
+        $data = $sectors->where('sector_ID', $id);
+        $this->view('Admin/SortingCenter/SectorMap', ['sector' => $data]);
+    }
+
+    function EditSector($id){
+        $sectors = $this->load_model('Sectors');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sectors->update($id, $_POST, 'sector_ID');
+            message(['Sector updated successfully', 'success']);
+            $this->redirect('Admin/SortingCenter');
+            return;
+        }
+        $data = $sectors->where('sector_ID', $id);
+        $this->view('Admin/SortingCenter/EditSector', ['sector' => $data]);
+    }
+
+    function SectorDelete($id){
+        $sectors = $this->load_model('Sectors');
+        $sectors->delete($id, 'sector_ID');
+        message(['Sector deleted successfully', 'success']);
+        $this->redirect('Admin/SortingCenter');
+    }
+
 }
 ?>

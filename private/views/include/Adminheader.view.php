@@ -6,39 +6,12 @@
             <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
         </div>
         <div style="display: flex; margin-right:auto; gap:30px">
-            <a href="<?= ROOT ?>/Admin/Dashboard" <?= setActiveTab(1) ?>>Dashboard</a>
             <a href="<?= ROOT ?>/Admin/AccountManagement" <?= setActiveTab(2) ?>>Account Management</a>
             <a href="<?= ROOT ?>/Admin/SortingCenter" <?= setActiveTab(3) ?>>Sorting Center Management</a>
             <a href="<?= ROOT ?>/GeneralManager/collector" <?= setActiveTab(4) ?>>Complaint Management</a>
             <a href="<?= ROOT ?>/Dashboard" <?= setActiveTab(5) ?>>Other</a>
         </div>
         <div></div>
-        <!-- Search-->
-        <!-- <div class="textfield js-textfield textfield--expandable">
-                    <label class="button js-button button--icon" for="search">
-                        <i class="material-icons">search</i>
-                    </label>
-
-                    <div class="textfield__expandable-holder">
-                        <input class="textfield__input" type="text" id="search" />
-                        <label class="textfield__label" for="search">Enter your query...</label>
-                    </div>
-                </div> -->
-
-        <div class="material-icons badge badge--overlap button--icon notification" id="notification"
-            data-badge="4">
-            notifications_none
-        </div>
-        <!-- Notifications dropdown-->
-        <ul class="menu list js-menu js-ripple-effect menu--bottom-right shadow--2dp notifications-dropdown"
-            for="notification">
-            <ul id="notificationList" style="padding: 1px;"></ul>
-            <li class="list__item list__item--border-top">
-                <button href="#" class="button js-button js-ripple-effect">ALL
-                    NOTIFICATIONS</button>
-            </li>
-        </ul>
-
         <div class="avatar-dropdown" id="icon">
             <span>
                 <?= Auth::getUserName() ?>

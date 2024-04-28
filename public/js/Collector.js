@@ -36,7 +36,7 @@ function getInfo(content) {
     var xhr = new XMLHttpRequest();
 
     // Define the PHP file URL and the request method (POST in this example)
-    var url = ROOT + '/GeneralManager/PendingPickups';
+    var url = ROOT + '/Inventory/PendingInventory';
     var method = 'POST';
     // Set up the request
     xhr.open(method, url, true);
@@ -61,11 +61,16 @@ function getInfo(content) {
 
 function setData(data) {
     console.log("--------->>>>>>>>", data);
+    if(data == false){
+        SideNotification([`No inventory found for this collector`, 'error']);
+        return;
+    }
     for (var i = 0; i < data.length; i++) {
-        if (data[i].InventoryId != null) {
-            inventory.push(data[i].InventoryId);
+        console.log("-->>>>",data[i]);
+        if (data[i].Inventory_ID != null) {
+            inventory.push(data[i].Inventory_ID);
         }
-        document.getElementById('jobs').innerHTML += "<li class='list__item' style='display: flex;justify-content: space-between;' id=" + data[i].InventoryId + "><div name='" + data[i].Pickup_ID + "'>" + data[i].Pickup_ID + "</div><div>" + (data[i].InventoryId ? data[i].InventoryId : "Rejected") + "</div></li>";
+        document.getElementById('jobs').innerHTML += "<li class='list__item' style='display: flex;justify-content: space-between;' id=" + data[i].Inventory_ID + "><div name='" + data[i].Inventory_ID + "'>" + data[i].Inventory_ID + "</div><div>" + data[i].waste_type + "</div></li>";
     }
 }
 
@@ -87,7 +92,7 @@ function scanInventory(content) {
 
 function submit() {
     if(inventory.length != count){
-        alert("All inventory are not yet saned");
+        SideNotification([`All inventory are not yet scanned`, 'error']);
         return;
     }
     const form = document.createElement('form');

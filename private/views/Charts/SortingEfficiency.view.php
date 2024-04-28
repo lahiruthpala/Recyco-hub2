@@ -27,22 +27,22 @@
     <div class="card__supporting-text"
         style="border-radius: 15px;background-image: linear-gradient(to bottom right, #007552, #90B897);margin-top: 30px;">
         <div style="display: flex;">
-            <h6 style="margin-top: 0;">Inventory Conversion Ratio</h6>
+            <h6 style="margin-top: 0;">Current Machine Utilization</h6>
             <div class="chartIconBlock">
                 <img style="width: 10px;height: 10px;" src="<?= ROOT ?>/images/home.svg" />
             </div>
         </div>
         <div class="pie-chart__container" style="height: 120px;display: flex;">
-            <canvas id="InventoryConversionRatio"></canvas>
+        <h1 style="margin: -12px 6px 10px 7px;font-size: 90px;">25%</h1>
             <label id="InventoryConversionRatioData" hidden>
                 <?php
                 echo json_encode($data[0]); ?>
             </label>
-            <div style="align-self: center; margin-left: 35px;display: flex;flex-direction: row;">
+            <div style="align-self: center;display: flex;flex-direction: row;">
                 <div style="display: flex;flex-direction: column;align-items: center;">
                     <h6 style="margin: 0;" id="text_data"></h6>
                 </div>
-                <h6 id="text_data_upper" style="margin:0 0 0 5px;align-self: center;">Kg</h6>
+                <h6 id="text_data_upper" style="margin:0 0 0 5px;align-self: center;">Machines</h6>
             </div>
         </div>
     </div>
@@ -71,47 +71,6 @@
         }]
     };
     const ctx1 = document.getElementById('WarehouseCapacity').getContext('2d');
-    new Chart(ctx1, {
-        type: 'doughnut',
-        data: WarehouseCapacity,
-        options: {
-            cutout: '70%',
-            height: 151,
-            plugins: {
-                legend: {
-                    display: false,
-                    labels: {
-                        color: 'rgb(255, 255, 255)'
-                    }
-                },
-                tooltip: {
-                    enabled: false // Disable tooltips
-                },
-            },
-            layout: {
-                padding: {
-                    left: 20
-                }
-            },
-            // other options
-        }
-    });
-    var temp2 = JSON.parse(document.getElementById("InventoryConversionRatioData").textContent);
-    
-    for (var i = 0; i < temp2.length; i++) {
-        weight.push(temp[i].total_weight);
-    }
-    const InventoryConversionRatio = {
-        labels: type,
-        datasets: [{
-            label: 'Inventory Breakdown',
-            data: weight,
-            borderWidth: 0,
-            backgroundColor: ['#00FFA3', '#18A976'], // Adjust the colors as needed
-            hoverOffset: 4
-        }]
-    };
-    const ctx2 = document.getElementById('InventoryConversionRatio').getContext('2d');
     new Chart(ctx1, {
         type: 'doughnut',
         data: WarehouseCapacity,

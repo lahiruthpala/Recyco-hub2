@@ -2,7 +2,7 @@
     <div class="card shadow--2dp" style="height: auto;">
         <div class="card__supporting-text">
             <div style="display: flex;">
-                <h6 style="margin-top: 0;color: black;font-weight: bold;">Inventories</h6>
+                <h6 style="margin-top: 0;color: black;font-weight: bold;">Raw Inventories(kgs)</h6>
                 <div class="chartIconBlock">
                     <img style="width: 10px;height: 10px;" src="<?= ROOT ?>/images/home.svg" />
                 </div>
@@ -52,7 +52,7 @@
     type = Array()
     weight = Array()
     for (var i = 0; i < temp.length; i++) {
-        type.push(temp[i].Type);
+        type.push(temp[i].waste_type);
     }
     for (var i = 0; i < temp.length; i++) {
         weight.push(temp[i].total_weight);

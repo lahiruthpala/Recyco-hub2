@@ -1,5 +1,4 @@
-<?php $this->view('include/head');
-var_dump($data)?>
+<?php $this->view('include/head');?>
 
 <body>
     <div class="layout js-layout color--gray is-small-screen login">

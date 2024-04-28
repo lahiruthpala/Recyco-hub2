@@ -17,7 +17,6 @@ class Profile extends Controller
 		$otp = $this->load_model('OTP');
 		if (count($_POST) > 0) {
 			if (count($_POST) > 1) {
-				// var_dump($_POST);
 				$data = $otp->insert($_POST);
 				unset($_POST['Type']);
 				$user->update(Auth::getUser_ID(),$_POST,'User_ID');
@@ -29,9 +28,9 @@ class Profile extends Controller
 					$otpNum = (array) $otpNum[0];
 					$temp['Phone_verify'] = 1;
 					if ($otpNum['OTP'] == $_POST['otp']) {
-						$user->update(Auth::getUser_ID(), $temp, "User_ID");
+						$user->query("UPDATE reg_users SET Phone_verify = 1 WHERE User_ID = '" . Auth::getUser_ID() . "'");
 						$otp->delete(Auth::getUser_ID(), 'User_ID');
-						$this->redirect('login/userHome');
+						$this->redirect('Home');
 						return;
 					}
 				} else {
@@ -45,5 +44,20 @@ class Profile extends Controller
 	
 	function Chat(){
 		$this->view('Chat');
+	}
+
+	function viewProfile($id){
+		$collector = $this->load_model('CollectorModel');
+        $user = $this->load_model('User');
+        $user = $user->first("User_ID", $id);
+        // Auth::getCollector_ID
+        $data = $collector->first("Collector_ID", $id);
+		$data->User_ID = $user->User_ID;
+        $data->firstname = $user->FirstName;
+        $data->lastname = $user->LastName;
+        $data->Phone = $user->Phone;
+        $data->Email = $user->Email;
+        $data->Address = $user->Address;
+        $this->view('Profile', ['row' => $data]);
 	}
 }

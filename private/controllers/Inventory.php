@@ -40,22 +40,22 @@ class Inventory extends Controller
     function RawInventory()
     {
         $batch = $this->load_model('InventoryModel');
-        $data = $batch->query("SELECT Type, SUM(Weight) Weight FROM inventory WHERE Status = 'In_whorehouse' GROUP BY Type;");
+        $data = $batch->query("SELECT waste_type, SUM(Weight) Weight FROM inventory WHERE Status = 'In_Warehouse' GROUP BY waste_type;");
         $this->view('Inventory/RawInventory', ['rows' => $data]);
     }
 
     function RawInventoryInfo()
     {
-        if (isset($_GET['Type'])) {
-            $type = $_GET['Type'];
+        if (isset($_GET['waste_type'])) {
+            $type = $_GET['waste_type'];
         } else {
             echo "parameters are not set";
         }
         $batch = $this->load_model('InventoryModel');
         $inven_type = $this->load_model("InventoryTypes");
         $inven_type = $inven_type->where("Type_Name", $type);
-        $inventory = $batch->query("SELECT * FROM inventory WHERE Type='$type' ORDER BY Batch_ID DESC");
-        $data = $batch->query("SELECT Type, SUM(Weight) Weight FROM inventory WHERE Type='$type' GROUP BY Type");
+        $inventory = $batch->query("SELECT * FROM inventory WHERE waste_type='$type' ORDER BY Batch_ID DESC");
+        $data = $batch->query("SELECT waste_type, SUM(Weight) Weight FROM inventory WHERE waste_type='$type' GROUP BY waste_type");
         if (isset($inven_type) && $inven_type != null) {
             $data[0]->Description = $inven_type[0]->Description;
             $data[0]->Buying_Price = $inven_type[0]->Buying_Price;
@@ -148,7 +148,7 @@ class Inventory extends Controller
 
         //Getting the pickup_ID from the pickup request table
         $pickup = $this->load_model("PickUpRequestModel");
-        $pickup = $pickup->first("InventoryId", $id);
+        $pickup = $pickup->first("Inventory_ID", $id);
 
         //Getting the name of the customer
         if ($pickup != NULL) {
@@ -177,16 +177,17 @@ class Inventory extends Controller
     {
         $inventory = $this->load_model('InventoryModel');
         $data = $inventory->query("
-        SELECT Type, SUM(Weight) AS total_weight
+        SELECT waste_type, SUM(Weight) AS total_weight
 FROM inventory
-WHERE Type <> 'NEW'
-GROUP BY Type;
+WHERE waste_type <> 'NEW'
+GROUP BY waste_type;
 ", $data = []);
         $this->view('Charts/InventoryBreakdown', [$data]);
     }
 
     function UpdateStatus()
     {
+        var_dump($_POST);
         if (count($_POST) > 0) {
             $arr1['Status'] = 'Finished';
             $arr2['Status'] = 'In_Warehouse';
@@ -194,14 +195,45 @@ GROUP BY Type;
             $pickupRequest = $this->load_model('PickUpRequestModel');
             $inventory = $this->load_model('InventoryModel');
             $InventoryIds = explode(",", $_POST["jobs"]);
-            foreach ($InventoryIds as $InventoryId) {
-                $pickupRequest->update($InventoryId, $arr1, "InventoryId");
-                $data = $pickupRequest->query("SELECT Job_ID FROM pickup_request WHERE InventoryId = '" . $InventoryId . "'")[0];
-                $data = $Job->update($data->Job_ID, $arr1, "Job_ID");
-                $data = $inventory->update($InventoryId, $arr2, "Inventory_ID");
+            foreach ($InventoryIds as $Inventory_ID) {
+                $pickupRequest->update($Inventory_ID, $arr1, "Inventory_ID");
+                $data = $pickupRequest->query("SELECT Job_ID FROM pickup_request WHERE Inventory_ID = '" . $Inventory_ID . "'")[0];
+                $temp = $pickupRequest->query("SELECT Job_ID FROM pickup_request WHERE Job_ID = '" . $data->Job_ID . "' AND Status <> 'Finished'");
+                if ($temp == null) {
+                    $Job->query("UPDATE pickup_jobs SET Status = 'Finished' WHERE Job_ID = '" . $data->Job_ID . "'");;
+                }
+                $data = $inventory->update($Inventory_ID, $arr2, "Inventory_ID");
             }
             message("Job Status Updated Successfully!");
+            if($_POST['NewBatch'] == 'true'){
+                $this->inventoryGeneration();
+            }
             $this->redirect("/GeneralManager");
         }
+    }
+
+    function inventoryGeneration(){
+        if (count($_POST) > 0) {
+            $batch = $this->load_model('Batch');
+            $inventory = $this->load_model('InventoryModel');
+            if ($batch->validate($_POST)) {
+                $data = $batch->insert($_POST);
+                for ($i = 0; $i < $_POST['Size']; $i++) {
+                    $inventory->insert($data);
+                }
+                message(['Batch Created Successfully!', 'success']);
+                $this->redirect('Inventory/BatchProgress/?id='.$data['Batch_ID']);
+            } else {
+                $errors = $batch->errors;
+            }
+        }
+    }
+
+    function PendingInventory()
+    {
+        $inventory = $this->load_model('InventoryModel');
+        $data = $inventory->query("SELECT * FROM pickup_request WHERE Collector_ID='" . $_POST['Collector_ID'] . "' AND Status='Collected'");
+        echo (json_encode($data));
+        return;
     }
 }

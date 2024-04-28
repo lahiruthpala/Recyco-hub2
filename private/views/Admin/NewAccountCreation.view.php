@@ -38,7 +38,6 @@
                                     reader.onload = function (e) {
                                         document.getElementById('Image').src = e.target.result;
                                     }
-
                                     reader.readAsDataURL(input.files[0]);
                                 }
                             }
@@ -75,10 +74,13 @@
                                 <input class="textfield__input" name="Role" type="text" id="Role" readonly
                                     tabIndex="-1" />
                                 <ul class="menu menu--bottom-left js-menu dark_dropdown" for="Role">
-                                    <li class="menu__item" onclick="SetForm('General Manager')">General Manager</li>
-                                    <li class="menu__item" onclick="SetForm('Sorting Manager')">Sorting Manager</li>
-                                    <li class="menu__item" onclick="SetForm('Selling Manager')">Selling Manager</li>
-                                    <li class="menu__item" onclick="SetForm('Collector')">Collector</li>
+                                    <li class="menu__item" onclick="SetForm('General Manager', 'Role')">General Manager
+                                    </li>
+                                    <li class="menu__item" onclick="SetForm('Sorting Manager', 'Role')">Sorting Manager
+                                    </li>
+                                    <li class="menu__item" onclick="SetForm('Selling Manager', 'Role')">Selling Manager
+                                    </li>
+                                    <li class="menu__item" onclick="SetForm('Collector', 'Role')">Collector</li>
                                 </ul>
 
                                 <label for="Role">
@@ -97,13 +99,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div id="GeneralManager" style="display: none" class="userform">
-            <div class="form__article">
-                <h3>General Manager</h3>
-                <div class="grid" style="margin-left: 30px;">
+                <div class="grid" style="margin-left: 110px;">
                     <div style="margin-left: 30px">
                         <div style="display: flex; ">
                             <h6>Email</h6>
@@ -134,34 +130,18 @@
                 </div>
             </div>
         </div>
+
+        <div id="GeneralManager" style="display: none" class="userform">
+            <div class="form__article">
+                <h3>General Manager</h3>
+            </div>
+        </div>
         <div id="SortingManager" style="display: none" class="userform">
 
             <div class="form__article">
                 <h3>Sorting Manager</h3>
                 <div class="grid" style="margin-left: 30px;">
-                    <div style="margin-left: 30px">
-                        <div style="display: flex; ">
-                            <h6>Email</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Official Mail" id="OfficialMail" name="OfficialMail"
-                                    class="textfield__input" style="margin-left: 5.2vw;width: auto;">
-                                <h6 style="margin-left:10vw;">
-                                    <input type="text" placeholder="Secondary Mail" id="SecondaryMail"
-                                        name="SecondaryMail" class="textfield__input">
-                                </h6>
-                        </div>
 
-                        <div style="display: flex; ">
-                            <h6>Contact Number</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Official Number" id="OfficialNumber"
-                                    name="OfficialNumber" class="textfield__input">
-                                <h6 style="margin-left:10vw;">
-                                    <input type="text" placeholder="Secondary Number" id="SecondaryNumber"
-                                        name="SecondaryNumber" class="textfield__input">
-                                </h6>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -172,29 +152,6 @@
             <div class="form__article">
                 <h3>Sales Manager</h3>
                 <div class="grid" style="margin-left: 30px;">
-                    <div style="margin-left: 30px">
-                        <div style="display: flex; ">
-                            <h6>Email</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Official Mail" id="OfficialMail" name="OfficialMail"
-                                    class="textfield__input" style="margin-left: 5.2vw;width: auto;">
-                                <h6 style="margin-left:10vw;">
-                                    <input type="text" placeholder="Secondary Mail" id="SecondaryMail"
-                                        name="SecondaryMail" class="textfield__input">
-                                </h6>
-                        </div>
-
-                        <div style="display: flex; ">
-                            <h6>Contact Number</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Official Number" id="OfficialNumber"
-                                    name="OfficialNumber" class="textfield__input">
-                                <h6 style="margin-left:10vw;">
-                                    <input type="text" placeholder="Secondary Number" id="SecondaryNumber"
-                                        name="SecondaryNumber" class="textfield__input">
-                                </h6>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -204,27 +161,6 @@
                 <h3>Collector</h3>
                 <div class="grid" style="margin-left: 30px;">
                     <div style="margin-left: 30px">
-                        <div style="display: flex; ">
-                            <h6>Email</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Official Mail" id="OfficialMail" name="OfficialMail"
-                                    class="textfield__input" style="margin-left: 5.2vw;width: auto;">
-                                <h6 style="margin-left:10vw;">
-                                    <input type="text" placeholder="Secondary Mail" id="SecondaryMail"
-                                        name="SecondaryMail" class="textfield__input">
-                                </h6>
-                        </div>
-
-                        <div style="display: flex; ">
-                            <h6>Contact Number</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Official Number" id="OfficialNumber"
-                                    name="OfficialNumber" class="textfield__input">
-                                <h6 style="margin-left:10vw;">
-                                    <input type="text" placeholder="Secondary Number" id="SecondaryNumber"
-                                        name="SecondaryNumber" class="textfield__input">
-                                </h6>
-                        </div>
                         <div style="display: flex; ">
                             <h6>Address</h6>
                             <h6 style="margin-left:10vw;">
@@ -241,35 +177,56 @@
                         </div>
                         <div style="display: flex; ">
                             <h6>Sector</h6>
-                            <h6 style="margin-left:10vw;">
-                                <input type="text" placeholder="Address" id="Address" name="Address"
-                                    class="textfield__input" style="width: 50vw;margin-left: 5vw;">
+                            <h6 style="margin-left:230px;margin-top: 17px;margin-bottom: 0;">
+                                <div class="textfield js-textfield textfield--floating-label getmdl-select full-size dropdown2"
+                                    style="display: flex;">
+                                    <input class="textfield__input" name="SectorName" type="text" id="SectorName"
+                                        readonly tabIndex="-1" />
+                                    <ul class="menu menu--bottom-left js-menu dark_dropdown" for="SectorName">
+                                        <?php
+                                        foreach ($sectors as $sector) {
+                                            ?>
+                                            <li class="menu__item"
+                                                onclick="SetForm('<?= $sector->SectorName ?>','SectorName')">
+                                                <?= $sector->SectorName ?>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+
+                                    <label for="SectorName">
+                                        <i class="icon-toggle__label material-icons">arrow_drop_down</i>
+                                    </label>
+                                </div>
                             </h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <button data-modal-target="#modal"
-            class="button js-button button--raised js-ripple-effect button--colored-green"
-            style="border-radius: 99px; margin-left: auto;">Create</button>
+        <div style="display:flex;">
+            <button data-modal-target="#modal" class="button js-button button--raised js-ripple-effect"
+                style="border-radius: 99px; margin-left: auto;background-color: green;color: white;">Create</button>
+        </div>
     </form>
 </div>
 
 <script>
-    function SetForm(form) {
+    var ValidForm = "";
+    function SetForm(form, id) {
         form = form.replace(/\s/g, "");
-        toggleFormDisable(form);
-        document.getElementById("Role").value = form;
+        document.getElementById(id).value = form;
         // Get all elements with class "userform"
-        var userFormDivs = document.getElementsByClassName("userform");
+        if (id == 'Role') {
+            toggleFormDisable(form);
+            var userFormDivs = document.getElementsByClassName("userform");
 
-        // Iterate through the collection and set display to "none"
-        for (var i = 0; i < userFormDivs.length; i++) {
-            userFormDivs[i].style.display = "none";
+            // Iterate through the collection and set display to "none"
+            for (var i = 0; i < userFormDivs.length; i++) {
+                userFormDivs[i].style.display = "none";
+            }
+            document.getElementById(form).style.display = "block";
+            ValidForm =form;
         }
-        document.getElementById(form).style.display = "block";
     }
 
     function toggleFormDisable(form) {
@@ -277,7 +234,7 @@
         for (var i = 0; i < divIds.length; i++) {
             var currentDiv = document.getElementById(divIds[i]);
             var inputs = currentDiv.getElementsByTagName('input');
-
+            console.log(inputs);
             for (var j = 0; j < inputs.length; j++) {
                 if (divIds[i] !== form) {
                     inputs[j].disabled = true;
@@ -293,7 +250,7 @@
         console.log('Validating');
         var form = document.getElementById('CreateAccountForm');
         var profileImage = document.getElementById('profileImage');
-        if(profileImage.files.length === 0){
+        if (profileImage.files.length === 0) {
             SideNotification(["Error: Please upload a profile image", 'error']);
             return;
         }
@@ -301,6 +258,7 @@
         var firstnameerror = document.getElementById('FirstNameError');
         var lastname = document.getElementById('LastName');
         var lastnameerror = document.getElementById('LastNameError');
+
         var email = document.getElementById('OfficialMail').value;
         var emialerror = document.getElementById('PEmailError');
         var phone = document.getElementById('OfficialNumber').value;
@@ -310,12 +268,12 @@
         firstnameerror.style.visibility = "hidden";
         lastnameerror.style.visibility = "hidden";
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if(firstname.value.trim() === '' || lastname.value.trim() === ''){
-            if(firstname.value.trim() === ''){
+        if (firstname.value.trim() === '' || lastname.value.trim() === '') {
+            if (firstname.value.trim() === '') {
                 firstnameerror.style.visibility = "visible";
                 firstnameerror.innerHTML = "Enter a valid first name";
             }
-            if(lastname.value.trim() === ''){
+            if (lastname.value.trim() === '') {
                 lastnameerror.style.visibility = "visible";
                 lastnameerror.innerHTML = "Enter a valid last name";
             }

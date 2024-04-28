@@ -2,7 +2,7 @@
     <div class="card shadow--2dp" style="height: auto;">
         <div class="card__supporting-text">
             <div style="display: flex;">
-                <h6 style="margin-top: 0;color: black;font-weight: bold;">Sorting Rate</h6>
+                <h6 style="margin-top: 0;color: black;font-weight: bold;">Sorting Rate(Kg Per Day)</h6>
                 <div class="chartIconBlock">
                     <img style="width: 10px;height: 10px;" src="<?= ROOT ?>/images/home.svg" />
                 </div>
@@ -35,17 +35,25 @@
     const SortingRate_values = {
         labels: labels,
         datasets: [{
-            label: 'Num of Sorting Job',
+            label: '(Kgs Per Day)',
             data: Sorted_values,
             fill: true,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(0, 255, 163)', // Set the desired color value here
+            backgroundColor:'rgba(75, 192, 192, 0.7)', 
             tension: 0.1
         }]
     };
 
     const SortingRateConfig = {
-        type: 'line',
+        type: 'bar',
         data: SortingRate_values,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
     };
 
     const chart = new Chart(document.getElementById('SortingRate'), SortingRateConfig);

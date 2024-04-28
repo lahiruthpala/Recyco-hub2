@@ -82,7 +82,7 @@ $admin = new Admin();
                                 </div>
                             </div>
                             <?php
-                            $this->view("Admin/NewAccountCreation");
+                            $admin->AccountCreation();
                             $admin->GetAccountinfo()
                                 ?>
                         </div>
@@ -93,7 +93,5 @@ $admin = new Admin();
         </main>
 
     </div>
-    <script src="<?= ROOT ?>/js/material.min.js"></script>
-    <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php $this->view('include/footer') ?>

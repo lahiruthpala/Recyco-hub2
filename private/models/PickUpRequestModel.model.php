@@ -14,19 +14,21 @@ class PickUpRequestModel extends Model
 
     protected $allowedColumns = [
         'Pickup_ID',
-        'weight',
+        'Weight',
         'Status',
         'pickup_address',
         'latitude',
         'longitude',
         'waste_type',
         'Requested_Date',
+        'Collection_Date',
+        'Note',
         'Completed_Date',
         'Review',
         'Complaints',
         'Complaints_Status',
         'Job_ID',
-        'InventoryId',
+        'Inventory_ID',
         'Customer_ID',
         'Collector_ID',
         'sector_ID',
@@ -42,7 +44,7 @@ class PickUpRequestModel extends Model
         $result = $this->query($query, ['Pickup_ID' => $Pickup_ID]);
 
         // If there are no jobs with status other than 'Pending' or 'Reject', return true
-        return($result[0]->total_jobs == 0);
+        return ($result[0]->total_jobs == 0);
     }
 
     public function calculateDistance($lat1, $lng1, $lat2, $lng2)
@@ -73,12 +75,13 @@ class PickUpRequestModel extends Model
             $circleRadius = $circle->radius;
 
             $distance = $this->calculateDistance((float) $data['latitude'], (float) $data['longitude'], (float) $circleCenterLat, (float) $circleCenterLng);
-            if ($distance <= $circleRadius) {
+            if ($distance <= $circleRadius/1000) {
                 $data["sector_ID"] = $circle->sector_ID;
                 return $data; // Return the circle that the location belongs to
             }
         }
         // If no circle is found for the location
+        message(['Sorry currently do not provide our service in your aria', 'error']);
         return false;
     }
 
@@ -99,9 +102,9 @@ class PickUpRequestModel extends Model
         $data = $this->findCircleForLocation($data);
         if ($data != false) {
             $temp = 0;
-            if ($data['weight'] <= 0) {
+            if ($data['Weight'] <= 0) {
                 $temp = 1;
-                message(['Weight must be greater than 0','error']);
+                message(['Weight must be greater than 0', 'error']);
             }
             if ($data['latitude'] == '' || $data['longitude'] == '') {
                 $temp = 1;

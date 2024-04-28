@@ -1,16 +1,17 @@
 <div class="card__supporting-text no-padding" id="ArticlesTable" style="display: none;width: 100%;">
-    <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
-        <thead>
-            <tr>
-                <th class="data-table__cell--header">Company Name</th>
-                <th class="data-table__cell--header">Artical Name</th>
-                <th class="data-table__cell--header" style="padding-left: 70px">Publish Date</th>
-                <th class="data-table__cell--header" style="padding-left: 70px">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (is_array($rows) && !empty($rows)) {
+    <?php
+    if (is_array($rows) && !empty($rows)) { ?>
+        <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th class="data-table__cell--header">Company Name</th>
+                    <th class="data-table__cell--header">Artical Name</th>
+                    <th class="data-table__cell--header" style="padding-left: 70px">Publish Date</th>
+                    <th class="data-table__cell--header" style="padding-left: 70px">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                 foreach ($rows as $row) {
                     ?>
                     <tr>
@@ -51,13 +52,16 @@
                             </span>
                         </td>
                     </tr>
-                    <?php
+                </tbody>
+                <?php
                 }
-            } else {
-                // If $rows is not an array or is empty
-                echo "No data available.";
-            }
-            ?>
-        </tbody>
+    } else {
+        ?>
+            <div style="display: flex;width: 100%;justify-content: center;align-content: center;">
+                <img src="<?= ROOT ?>/images/NoEvents.jpg" alt="No data found" style="width: 400px;">
+            </div>
+            <?php
+    }
+    ?>
     </table>
 </div>

@@ -57,7 +57,7 @@
                                 <div class="textfield js-textfield textfield--floating-label full-size"
                                     style="padding: 30px 0 0 0;">
                                     <input class="textfield__input" type="text" value="" name="Name"
-                                        placeholder="Collector Name" id="CollectorID" style="width: 70%;">
+                                        placeholder="Collector Name" id="CollectorID" style="width: 70%;border: 0;">
                                     <button type="button" onclick="collectermanual()"
                                         class="button js-button button--raised js-ripple-effect button--colored-light-blue pull-right"
                                         style="border-radius: 99px;margin-right: 1.5vw; bottom: 35px; position: relative;">Get
