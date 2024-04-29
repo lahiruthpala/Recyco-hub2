@@ -241,19 +241,19 @@ GROUP BY waste_type;
     function UpdateStatusSortedItems($Status, $id)
 	{
 		$inventory = $this->load_model("SortedInventory");
-		$inventory->update($id, ["Status" => $Status], "Inventory_ID");
+        $inventory->query("UPDATE sorted_inventory SET Status = '" . $Status . "' WHERE Inventory_ID = '" . $id . "'");
 		$inventory = $inventory->first('Inventory_ID', $id);
-		$Product = $this->load_model("ProductModel");
+		$Product = $this->load_model("ProductDetailsModel");
 		$data = $Product->first("product_name", $inventory->Type);
 		if ($data == false) {
 			message(["Product not found First create a product in E-commerces site", "error"]);
 		} else {
 			if ($Status == 'Approved to sell') {
-				$Product->update($data->product_name, ["available_amount" => $data->available_amount + $inventory->Weights], "product_name");
+                $Product->query("UPDATE products SET available_amount = available_amount + " . $inventory->Weights . " WHERE product_name = '" . $data->product_name . "'");
 			} else {
-				$Product->update($data->product_name, ["available_amount" => $data->available_amount - $inventory->Weights], "product_name");
+                $Product->query("UPDATE products SET available_amount = available_amount - " . $inventory->Weights . " WHERE product_name = '" . $data->product_name . "'");
 			}
 		}
-		$this->redirect("SortingManager/SortedInventorySell?id='" . $id . "'");
+		$this->redirect("SortingManager/SortedInventorySell?id=" . $id . "");
 	}
 }

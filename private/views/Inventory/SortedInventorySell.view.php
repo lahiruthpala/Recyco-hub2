@@ -98,7 +98,7 @@
                                         class="button js-button button--raised js-ripple-effect button--colored-teal"
                                         style="border-radius: 99px;align-self: end;margin: 0 25px 25px auto;background-color: #027855;"
                                         id="publishbutton" readonly>
-                                        <img style="padding: 2px 10px 6px 0;" src="<?= ROOT ?>/images/Printer.svg">Ready to
+                                        <img style="padding: 2px 10px 6px 0;" src="<?= ROOT ?>/images/sell.png">Ready to
                                         sell</button></a>
                             <?php } ?>
                             <?php if ($data->statusint >= 2) { ?>
@@ -106,11 +106,11 @@
                                         class="button js-button button--raised js-ripple-effect button--colored-teal"
                                         style="border-radius: 99px;align-self: end;margin: 0 25px 25px auto;background-color: red;"
                                         id="Recallbutton" readonly>
-                                        <img style="padding: 2px 10px 6px 0;" src="<?= ROOT ?>/images/Printer.svg">Re-call</button></a>
+                                        <img style="padding: 2px 10px 6px 0;" src="<?= ROOT ?>/images/return.png">Re-call</button></a>
                             <?php } ?>
                         </div>
                     </div>
-                    <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;">
+                    <div class="card__supporting-text no-padding" id="NewInventory" style="display: block;padding: 0;padding-top: 50px;">
                         <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
                             <thead>
                                 <tr>
