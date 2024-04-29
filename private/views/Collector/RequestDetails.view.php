@@ -2,7 +2,7 @@
 
 
 <body>
-    <body>
+   
         <div class="layout js-layout layout--fixed-header is-small-screen">
             <?php $this->view('include/CollectorHeader') ?>
             <main class="layout__content">
@@ -22,31 +22,14 @@
                                         <h4 style="color:black">Pickup Details</h4>
                                         <table class="data-table js-data-table" style="width: 100%;">
                                             <tbody>
-                                                <!-- <tr>
-                                                    <td class="data-table__cell--non-numeric">Job No.</td>
-                                                    <td style="text-align: left;">
-                                                        <?= $pickup->Job_ID ?>
-                                                    </td>
-                                                </tr> -->
-                                                <!-- <tr>
-                                                    <td class="data-table__cell--non-numeric">Request No.</td>
-                                                    <td style="text-align: left;">
-                                                        <?= $pickup->Pickup_ID ?>
-                                                    </td>
-                                                </tr> -->
-
+                                    
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Weight</td>
                                                     <td style="text-align: left;">
                                                         <?= $pickup->Weight ?>
                                                     </td>
                                                 </tr>
-                                                <!-- <tr>
-                                                    <td class="data-table__cell--non-numeric">Inventory_ID</td>
-                                                    <td style="text-align: left;">
-                                                        <?= $pickup->Inventory_ID ?? "Not yet Collected"; ?>
-                                                    </td>
-                                                </tr> -->
+                                               
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Job status</td>
                                                     <td class="data-table__cell--non-numeric">

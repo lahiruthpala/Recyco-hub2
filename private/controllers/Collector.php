@@ -83,12 +83,7 @@ class collector extends Controller
         $this->view('Collector/Jobs/FinishedJobs', ['rows' => $pickup]);
     }
 
-    function table()
-    {
-        $user = $this->load_model('PickUpRequestModel');
-        $data = $user->findAll();
-        $this->view('pickup_table', ['rows' => $data]);
-    }
+   
 
     function details($id, $Status)
     {
@@ -97,35 +92,7 @@ class collector extends Controller
         $this->view('Collector/RequestDetails', ['rows' => $data]);
     }
 
-   function inventory()
-    {
-        $pickup = $this->load_model('RawInvnetoryModel');
-        $pickup = $pickup->where("Collector_ID", "25435");
-
-
-        $this->view('Collector/inventory', ['rows' => $pickup]);
-    }
-
-
-    function jobs($id,$pid,$type,)
-    {
-        $pickup = $this->load_model('PickUpRequestModel');
-        // Get pickup requests with the specified ID
-        // Auth::getCollector_ID
-        $arr = [];
-      
-        $data = $pickup->query("UPDATE pickup_request SET Status = ' ".$type."' WHERE  Inventory_ID= '" . $id . "'");
-        $temp = $pickup->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $pid . "' AND Status = 'Accepted'");
-       
-        if ($temp == null) {
-         
-           
-            $this->redirect('collector');
-            return;
-        }
-        $this->redirect('collector/details/' . $pid . '/Accepted');
-    }
-
+  
     function statusupdate($id, $type)
     {
         $pickup = $this->load_model('PickupJobs');
@@ -165,7 +132,7 @@ class collector extends Controller
         $arr = [];
         $invenarray = [];
         if ($_SERVER ['REQUEST_METHOD'] === 'POST') {
-            // Assuming you have the relevant validation and sanitation in place
+           
             if ($type == "Accepted") {
                 $_POST['Status'] = "Collected";
                 $_POST['Completed_Date'] = date('Y-m-d H:i:s');

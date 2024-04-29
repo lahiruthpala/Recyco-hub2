@@ -143,8 +143,7 @@ $this->view('include/head');
         </main>
 
     </div>
-    <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
     <?php $this->view('include/footer') ?>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
