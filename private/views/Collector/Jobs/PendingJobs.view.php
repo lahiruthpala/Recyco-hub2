@@ -67,7 +67,7 @@
                             <td class="data-table__cell--non-numeric" style="padding:0 0 0 20px">
                                
                                 <a class="button js-button button--raised js-ripple-effect button--colored-green"
-                                href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>/Assigend"
+                                href="<?= ROOT ?>/collector/details/<?= $row->Job_ID ?>/Assigned"
                                 style="margin-right: 10px;background-color: #26AEF4; color:white;">view</a>
                             </td>
 
