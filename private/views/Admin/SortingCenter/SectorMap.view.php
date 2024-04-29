@@ -31,7 +31,7 @@ $this->view('include/head');
                                                     <img src="<?= ROOT ?>/images/locationDefault.jpg" id="Image"
                                                         style="max-width: 100%;">
                                                     <input type="file" id="profileImage" name="profileImage"
-                                                        style="display: none;" onchange="displayImage(this)">
+                                                        style="display: none;" onchange="displayImage(this)" disabled>
                                                 </label>
 
                                                 <script>
@@ -75,7 +75,7 @@ $this->view('include/head');
                                                 <h6 style="margin-left:5.8vw;">
                                                     <input type="text" placeholder="Enter the SectorName"
                                                         id="SectorName" name="SectorName" class="textfield__input"
-                                                        value=<?= $sector[0]->SectorName ?>>
+                                                        value=<?= $sector[0]->SectorName ?> disabled>
                                                     <label class="textfield__error" id="NameError"
                                                         for="SectorName"></label>
                                                 </h6>
@@ -88,7 +88,7 @@ $this->view('include/head');
                                                 <h6 style="margin-left:3vw;">
                                                     <input type="Name" placeholder="Enter a description" id="Price"
                                                         name="Description" class="textfield__input"
-                                                        value="<?= isset($sector[0]->Description) ? $sector[0]->Description : '' ?>">
+                                                        value="<?= isset($sector[0]->Description) ? $sector[0]->Description : '' ?>" disabled>
                                                     <label class="textfield__error" id="PriceError" for="Price"></label>
                                                 </h6>
                                             </div>
@@ -100,11 +100,6 @@ $this->view('include/head');
                                     <?php
                                     echo json_encode($data); ?>
                                 </label>
-                                <div style="display:flex;">
-                                    <button id="CreateButton"
-                                        class="button js-button button--raised js-ripple-effect button--colored-green"
-                                        style="border-radius: 99px; margin-left: auto;">Create</button>
-                                </div>
                             </div>
                             <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
                             <script type="text/javascript"
@@ -147,7 +142,6 @@ $this->view('include/head');
                                             fillOpacity: 0.35,
                                             map,
                                             center: latlng,
-                                            radius: 1000,
                                         });
 
                                         // Listen for changes in the circle
