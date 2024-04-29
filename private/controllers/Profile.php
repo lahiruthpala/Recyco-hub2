@@ -20,7 +20,7 @@ class Profile extends Controller
 				$data = $otp->insert($_POST);
 				unset($_POST['Type']);
 				$user->update(Auth::getUser_ID(), $_POST, 'User_ID');
-				$folder = IMAGES . '/Users';
+				$folder = IMAGES . '/Users/';
 				require_once (APP_ROOT . "/controllers/FileManager.php");
 				$file = new FileManager();
 				$_FILES['profileImage']['name'] = Auth::getUser_ID() . ".jpg";

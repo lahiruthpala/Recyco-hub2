@@ -139,10 +139,7 @@
                                     </thead>
                                     <?php
                                     foreach ($earnings as $earning) {
-                                        if(!isset($earning['Items'])){
-                                            $earning['Items'] = $earning[0];
-                                        }
-                                        if (is_array($earning['Items']) && !empty($earning['Items'])) {
+                                        if (isset($earning['Items']) && is_array($earning['Items']) && !empty($earning['Items'])) {
                                             foreach ($earning['Items'] as $key => $Items) {
                                                 ?>
                                                 <tr>
