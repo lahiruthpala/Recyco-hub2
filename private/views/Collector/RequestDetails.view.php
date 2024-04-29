@@ -26,7 +26,7 @@
                                                 <tr>
                                                     <td class="data-table__cell--non-numeric">Weight</td>
                                                     <td style="text-align: left;">
-                                                        <?= $pickup->Weight ?>
+                                                        <?= $pickup->Weight ?> Kg
                                                     </td>
                                                 </tr>
                                                
@@ -44,7 +44,6 @@
                                                         } elseif ($pickup->Status == 'Rejected') {
                                                             $statusClass = 'color--red'; // Set class for Completed status
                                                         }
-
                                                         ?>
                                                         <span class="label label--mini <?= $statusClass ?>">
                                                             <?= $pickup->Status ?? '' ?>

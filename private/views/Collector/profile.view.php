@@ -6,10 +6,10 @@
         <div class="layout js-layout layout--fixed-header is-small-screen">
             <?php
             if (Auth::getRole() == "Admin") {
-                $this->view('include/Adminheader');
+                $this->view('include/AdminHeader');
             } elseif (Auth::getRole() == "Collector") {
-                $this->view('include/Collectorheader');
-            } else{
+                $this->view('include/CollectorHeader');
+            } else {
                 $this->view('include/header');
             }
             ?>
@@ -147,16 +147,23 @@
                                                         <?= $row->Address ?>
                                                     </span>
                                                 </div>
+                                                <div class="textfield js-textfield textfield--floating-label full-size"
+                                                    style="width: 45%; display: inline-block; margin-right: 5%;">
+                                                    <div id="qrcode"></div>
+                                                </div>
+                                                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                                <script
+                                                    src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+                                                <script>
+                                                    // Get the div where you want to place the QR code
+                                                    var qrcodeDiv = document.getElementById("qrcode");
 
+                                                    // Text you want to encode in the QR code
+                                                    var text = "Hello, world!";
 
-
-
-
-
-
-
-
-
+                                                    // Generate QR code
+                                                    new QRCode(qrcodeDiv, '<?= $row->Collector_ID ?>');
+                                                </script>
                                             </div>
                                         </div>
                                     </form>

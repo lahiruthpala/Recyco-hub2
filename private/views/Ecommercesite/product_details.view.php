@@ -45,7 +45,9 @@ $this->view('include/head');
                                                 <div style="display: flex; align-items: center;">
                                                        <label for="quantity" style="margin-right: 50px; color:black; margin-left: 0px; font-size:20px"><p>Quantity(kg)</p></label>
                                                        <input type="number" id="quantity" name="quantity"  style="font-size:15px" value="" required min="1">
-                                                </div>
+                                                        <input type="text" name="product_name" value="<?=$row->product_name?>" hidden>
+                                                        <input type="text" name="product_Id" value="<?=$row->product_Id?>" hidden>
+                                                    </div>
 
                                                 </div>
                                             

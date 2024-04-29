@@ -3,7 +3,12 @@ class Customer extends Controller
 {
 	function index()
 	{
-		$this->view('Customer/LandingPage');
+		
+		$testimonial = $this->load_model('Testimonial');
+		$testimonials = $testimonial->query("SELECT * FROM testimonial T JOIN reg_users U ON T.User_ID=U.User_ID;");
+		$event = $this->load_model('Event');
+		$data = $event->findAll(1,3,"Event_ID");
+		$this->view('/Home/index',['events'=>$data,'testimonials'=>$testimonials]);
 	}
       
 	function CreatePickups()
@@ -27,4 +32,23 @@ class Customer extends Controller
 		var_dump($_POST['Catogory']);
 		var_dump($_GET);
 	}
+
+	function info()
+	{
+		$user = $this->load_model('User');
+		$data = $user->where('User_ID', Auth::getUser_ID());
+		$customers = $this->load_model('CustomerModel')->first('Customer_ID', Auth::getUser_ID());
+		$earnings = array();
+		if($customers != false){
+			$earnings = json_decode($customers->Credit_History, true);
+		}
+		$this->view('/Customer/Profile',['customers'=>$customers, 'earnings'=>$earnings, 'user'=>$data]);
+	}
+
+	function UpdateUser(){
+        $data = $this->load_model("User");
+        $data->update(Auth::getUser_ID(),$_POST,"User_ID");
+		message(["successfully updated" , "success"]);
+        $this->redirect("/Customer/info");
+    }
 }

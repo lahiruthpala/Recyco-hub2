@@ -5,7 +5,7 @@
         <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
             <thead>
                 <th class="data-table__cell--header">Type</th>
-                <th class="data-table__cell--header">Total Weight</th>
+                <th class="data-table__cell--header">Total Weight(kg)</th>
             </thead>
             <?php
             foreach ($rows as $row) {

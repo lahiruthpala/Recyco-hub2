@@ -237,6 +237,7 @@ class ComposerStaticInitce559b9fbd0e097bccee77e6c3cc8be1
         'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'edjsHTML' => __DIR__ . '/..' . '/sqkhor/editorjs-html/src/edjsHTML.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

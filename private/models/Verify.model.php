@@ -51,7 +51,7 @@ class Verify extends Model
                 $subject = "Email verification";
                 $recipient = $data['Email'];
             } else {
-                $message = "Your verification link is ->" . ROOT .  "/public/login/" . $data['code'];
+                $message = "Your verification link is ->" . ROOT .  "/login/" . $data['code'];
                 $subject = "Email verification";
                 $recipient = $data['Email'];
             }

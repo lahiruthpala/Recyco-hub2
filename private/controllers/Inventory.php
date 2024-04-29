@@ -32,7 +32,7 @@ class Inventory extends Controller
 
     function SortedInventory()
     {
-        $batch = $this->load_model('InventoryModel');
+        $batch = $this->load_model('SortedInventory');
         $data = $batch->where("Status", "Sorted");
         $this->view('Inventory/SortedInventory', ['rows' => $data]);
     }
@@ -223,6 +223,7 @@ GROUP BY waste_type;
                 }
                 message(['Batch Created Successfully!', 'success']);
                 $this->redirect('Inventory/BatchProgress/?id='.$data['Batch_ID']);
+                return;
             } else {
                 $errors = $batch->errors;
             }
@@ -236,4 +237,23 @@ GROUP BY waste_type;
         echo (json_encode($data));
         return;
     }
+
+    function UpdateStatusSortedItems($Status, $id)
+	{
+		$inventory = $this->load_model("SortedInventory");
+		$inventory->update($id, ["Status" => $Status], "Inventory_ID");
+		$inventory = $inventory->first('Inventory_ID', $id);
+		$Product = $this->load_model("ProductModel");
+		$data = $Product->first("product_name", $inventory->Type);
+		if ($data == false) {
+			message(["Product not found First create a product in E-commerces site", "error"]);
+		} else {
+			if ($Status == 'Approved to sell') {
+				$Product->update($data->product_name, ["available_amount" => $data->available_amount + $inventory->Weights], "product_name");
+			} else {
+				$Product->update($data->product_name, ["available_amount" => $data->available_amount - $inventory->Weights], "product_name");
+			}
+		}
+		$this->redirect("SortingManager/SortedInventorySell?id='" . $id . "'");
+	}
 }

@@ -69,9 +69,9 @@ $this->view('include/head');
                                             <div style="margin-left: 30px">
                                                 <div style="display: flex; ">
                                                     <h6>Sector Name</h6>
-                                                    <input id="latitude" name="latitude" hidden>
-                                                    <input id="longitude" name="longitude" hidden>
-                                                    <input id="radius" name="radius" hidden>
+                                                    <input id="latitude" value="<?= $sector[0]->latitude ?>" name="latitude" hidden>
+                                                    <input id="longitude" value="<?= $sector[0]->longitude ?>" name="longitude" hidden>
+                                                    <input id="radius" value="<?= $sector[0]->radius ?>" name="radius" hidden>
                                                     <h6 style="margin-left:5.8vw;">
                                                         <input type="text" placeholder="Enter the SectorName"
                                                             id="SectorName" name="SectorName" class="textfield__input" value=<?= $sector[0]->SectorName?>>
@@ -148,7 +148,7 @@ $this->view('include/head');
                                             fillOpacity: 0.35,
                                             map,
                                             center: latlng,
-                                            radius: 1000,
+                                            radius: <?= $sector[0]->radius ?>,
                                             editable: true,
                                         });
 

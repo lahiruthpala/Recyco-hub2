@@ -16,7 +16,7 @@
             <span>
                 <?= Auth::getUserName() ?>
             </span>
-            <img src="<?= ROOT ?>/images/Icon_header.png">
+            <img src="<?= ROOT ?>/images/Users/<?=Auth::getUser_ID()?>.jpg" style="border-radius: 90px;">
         </div>
         <!-- Account dropdawn-->
         <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown"
@@ -39,28 +39,6 @@
                     My account
                 </span>
             </li>
-            <li class="menu__item list__item">
-                <span class="list__item-primary-content">
-                    <i class="material-icons list__item-icon">check_box</i>
-                    My tasks
-                </span>
-                <span class="list__item-secondary-content">
-                    <span class="label background-color--primary">3 new</span>
-                </span>
-            </li>
-            <li class="menu__item list__item">
-                <span class="list__item-primary-content">
-                    <i class="material-icons list__item-icon">perm_contact_calendar</i>
-                    My events
-                </span>
-            </li>
-            <li class="list__item--border-top"></li>
-            <li class="menu__item list__item">
-                <span class="list__item-primary-content">
-                    <i class="material-icons list__item-icon">settings</i>
-                    Settings
-                </span>
-            </li>
             <a href="<?= ROOT ?>/Logout">
                 <li class="menu__item list__item">
                     <span class="list__item-primary-content">
@@ -74,22 +52,8 @@
         <button id="more" class="button js-button button--icon">
             <i class="material-icons">more_vert</i>
         </button>
-
-        <ul class="menu menu--bottom-right js-menu js-ripple-effect shadow--2dp settings-dropdown"
-            for="more">
-            <li class="menu__item">
-                Settings
-            </li>
-            <a class="menu__item" href="https://github.com/CreativeIT/getmdl-dashboard/issues">
-                Support
-            </a>
-            <li class="menu__item">
-                Log out
-            </li>
-        </ul>
     </div>
 </header>
-<script src="<?= ROOT ?>/js/Notification.js"></script>
 <script>
 
 </script>
