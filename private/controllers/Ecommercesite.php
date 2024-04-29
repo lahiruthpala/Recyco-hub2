@@ -127,7 +127,7 @@ class Ecommercesite extends Controller
         $data['currency'] = "LKR"; // Currency
         $data['amount'] = $_POST['amount']; // Amount
         $data['country'] = 'Srilanka';
-        $data['hash'] = strtoupper(md5("1226569" . $data['order_id'] . number_format($data['amount'], 2, '.', '') . $data['currency'] . strtoupper(md5('MjkwMTg1ODI2MjQxMjg5Mzg2MTUyOTY1NzMwNDcyNDExNDUyMzA0Ng=='))));
+        $data['hash'] = strtoupper(md5("1226569" . $data['order_id'] . number_format($data['amount'], 2, '.', '') . $data['currency'] . strtoupper(md5(PAYHERE))));
         $this->view('Ecommercesite/Payment', ['data' => $data]);
     }
 }

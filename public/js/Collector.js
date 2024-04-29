@@ -78,7 +78,7 @@ function scanInventory(content) {
     console.log(inventory, content);
     if (inventory.includes(content)) {
         if (document.getElementById('jobs').childElementCount == 0) {
-            alert("Inventory already scanned");
+            SideNotification(["Inventory already scanned", 'error']);
         } else {
             count += 1;
             let temp = document.getElementById(content).outerHTML;
@@ -86,7 +86,7 @@ function scanInventory(content) {
             document.getElementById('ScanJobs').innerHTML += temp;
         }
     } else {
-        alert("Inventory not found in the list. Please check your input.");
+        SideNotification(["Inventory not found in the list. Please check your input.", 'error']);
     }
 }
 

@@ -47,9 +47,10 @@
 
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation">
-                                    <li><a href="#">Home</a></li>
+                                    <li><a href="<?=ROOT?>">Home</a></li>
                                     <li><a href="<?=ROOT?>/Home/Article">Articles</a></li>
                                     <li><a href="<?=ROOT?>/Home/Events">Events</a></li>
+                                    <li><a href="<?=ROOT?>/Ecommercesite">Store</a></li>
                                     <?php if (Auth::logged_in()) { ?>
                                         <li><a href="<?= ROOT ?>/Customer/CreatePickups">Create a pickup
                                                 request</a></li>

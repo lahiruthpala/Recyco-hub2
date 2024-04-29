@@ -3,7 +3,7 @@
         <div
             style="display: flex; justify-content: center; align-items: center; margin-right: auto; height: 100%; align:center">
             <img src="<?= ROOT ?>/images/RecycoHub.png" style="height: 80%; border-radius: 99px; ">
-            <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
+            <a href="<?=ROOT?>"><span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span></a>
         </div>
         <div class="avatar-dropdown" id="icon">
             <span>

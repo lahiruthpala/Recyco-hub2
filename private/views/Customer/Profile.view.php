@@ -132,10 +132,10 @@
                                 <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
                                     <thead>
                                         <th class="data-table__cell--header" style="width: 20%">Date</th>
-                                        <th class="data-table__cell--header" style="width: 20%">Wate Type</th>
-                                        <th class="data-table__cell--header">Weight</th>
-                                        <th class="data-table__cell--header" style="text-align: center;">Price</th>
-                                        <th class="data-table__cell--header" style="text-align: center;">Earning</th>
+                                        <th class="data-table__cell--header" style="width: 20%">Waste Type</th>
+                                        <th class="data-table__cell--header">Weight(kg)</th>
+                                        <th class="data-table__cell--header" style="text-align: center;">Price(RS)</th>
+                                        <th class="data-table__cell--header" style="text-align: center;">Earning(Rs)</th>
                                     </thead>
                                     <?php
                                     foreach ($earnings as $earning) {
@@ -153,13 +153,13 @@
                                                         <?= $key ?>
                                                     </td>
                                                     <td class="data-table__cell--non-numeric">
-                                                        <?= $Items['Weight'] ?>
+                                                        <?= $Items['Weight'].' Kg' ?>
                                                     </td>
                                                     <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                                        <?= $Items['Price'] ?>
+                                                        <?= 'Rs' . $Items['Price'] ?>
                                                     </td>
                                                     <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                                        <?= floatval($Items['Price']) * floatval($Items['Weight']) ?>
+                                                        Rs <?= floatval($Items['Price']) * floatval($Items['Weight']) ?>
                                                     </td>
                                                 </tr>
                                                 <?php

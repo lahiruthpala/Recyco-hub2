@@ -249,9 +249,9 @@ GROUP BY waste_type;
 			message(["Product not found First create a product in E-commerces site", "error"]);
 		} else {
 			if ($Status == 'Approved to sell') {
-                $Product->query("UPDATE products SET available_amount = available_amount + " . $inventory->Weights . " WHERE product_name = '" . $data->product_name . "'");
+                $Product->query("UPDATE products SET available_amount = available_amount + " . $inventory->Weight . " WHERE product_name = '" . $data->product_name . "'");
 			} else {
-                $Product->query("UPDATE products SET available_amount = available_amount - " . $inventory->Weights . " WHERE product_name = '" . $data->product_name . "'");
+                $Product->query("UPDATE products SET available_amount = available_amount - " . $inventory->Weight . " WHERE product_name = '" . $data->product_name . "'");
 			}
 		}
 		$this->redirect("SortingManager/SortedInventorySell?id=" . $id . "");

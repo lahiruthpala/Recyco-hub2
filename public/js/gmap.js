@@ -28,10 +28,10 @@ function getInitialLocation() {
             var initialLocation = [lat, lng];
             initialize_map(initialLocation);
         }, function (error) {
-            alert('Error getting current position: ' + error.message);
+            SideNotification(['Error getting current position: ' + error.message, 'error']);
         });
     } else {
-        alert('Geolocation is not supported by this browser.');
+        SideNotification(['Geolocation is not supported by this browser.', 'error']);
         return false;
     }
 }
