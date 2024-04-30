@@ -20,67 +20,64 @@ class Ecommercesite extends Controller
     }
     function orderform($id)
     {
-		$user = $this->load_model('ProductDetailsModel');
-       
-		$data = $user->where('product_Id',$id);
+        $user = $this->load_model('ProductDetailsModel');
+
+        $data = $user->where('product_Id', $id);
         $this->view('Ecommercesite/order', ['row' => $data]);
     }
-  function order($id)
+    function order($id)
     {
-        
+
         $productorders = $this->load_model('Order');
-    
-       
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-            $productName = $_POST['product-name'] ?? ''; 
-          
+
+            $productName = $_POST['product-name'] ?? '';
+
             $quantity = $_POST['quantity'] ?? 0;
-           
-          
+
+
             $data = [
-                
+
                 'product_Id' => $id,
                 'product_name' => $productName,
-                
+
                 'quantity' => $quantity,
-              
+
             ];
-            $result = $productorders->insert($data); 
+            $result = $productorders->insert($data);
             message(['Sucessfully placed the order', 'success']);
             $this->redirect('Ecommercesite');
 
-           
-        
+
+
+        }
     }
-}
-    
-  
-function quantitycheck($id)
-{
-    $user = $this->load_model('ProductDetailsModel');
-   
-    $data = $user->where('product_Id',$id);
-   
-    $product = $data[0];
-   
-    if( $_POST['quantity']<=$product->available_amount)
+
+
+    function quantitycheck($id)
     {
-            message(['Payment Proceed','success']);
-            $this->redirect('Ecommercesite'); 
+        $user = $this->load_model('ProductDetailsModel');
+
+        $data = $user->where('product_Id', $id);
+        $_POST['amount'] = $_POST['quantity'] * $data[0]->price;
+        $_POST['Price'] = $data[0]->price;
+        $product = $data[0];
+
+        if ($_POST['quantity'] <= $product->available_amount) {
+            message(['Payment Proceed', 'success']);
+            $this->payment();
+        } else {
+
+            message(['Payment cannot be Proceed Insufficient stock place a order', 'success']);
+            $this->view('Ecommercesite/order', ['row' => $data]);
+
+
+        }
 
     }
-    else
-    {
-      
-        message(['Payment cannot be Proceed Insufficient stock place a order','success']);
-        $this->view('Ecommercesite/order', ['row' => $data]);
 
-
-    }
-    
-}   
-    
 
 
 
@@ -113,22 +110,24 @@ function quantitycheck($id)
 
     function payment()
     {
-        $payment = $this->load_model('PaymentModel');
+        //$payment = $this->load_model('PaymentModel');
+        $order = $this->load_model('Order');
+        $_POST['User_ID'] = Auth::getUser_ID();
+        $order = $order->insert($_POST);
         $data = array();
-        $data['merchantID'] = "1212121"; // Replace your Merchant ID
-        $data['order_id'] = "123456"; // Replace with your transaction id or unique order id
-        $data['items'] = "Payment for Task"; // Item name or Order
+        $data['merchantID'] = "1226569"; // Replace your Merchant ID
+        $data['order_id'] = $order['order_Id']; // Replace with your transaction id or unique order id
+        $data['items'] = array(
+            (object) array(
+                'product_name' => $_POST['product_name'],
+                'Price' => $_POST['Price'],
+                'quantity' => $_POST['quantity']
+            )
+        );
         $data['currency'] = "LKR"; // Currency
-        $data['amount'] = "1000"; // Amount
-        $data['first_name'] = "John"; // First Name
-        $data['last_name'] = "Doe"; // Last Name
-        $data['email'] = "john.doe@example.com"; // Email
-        $data['phone'] = "0771234567"; // Phone Number
-        $data['taskVal'] = "1000"; // Task Value
-        $data['address'] = "hello";
-        $data['commission'] = "100";
+        $data['amount'] = $_POST['amount']; // Amount
         $data['country'] = 'Srilanka';
-        $data['hash'] = "dvsdcsdcsdc";
+        $data['hash'] = strtoupper(md5("1226569" . $data['order_id'] . number_format($data['amount'], 2, '.', '') . $data['currency'] . strtoupper(md5(PAYHERE))));
         $this->view('Ecommercesite/Payment', ['data' => $data]);
     }
 }

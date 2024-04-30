@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "620861410c031f50325b75334c495717",
+    "content-hash": "2390f6451a17319c6023ed14d66e4d92",
     "packages": [
         {
             "name": "bluerhinos/phpmqtt",
@@ -1475,6 +1475,59 @@
                 }
             ],
             "time": "2022-08-01T00:52:05+00:00"
+        },
+        {
+            "name": "sqkhor/editorjs-html",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shuqikhor/editorjs-html-php.git",
+                "reference": "65fd0147f456a602f310587965e75912b8aaaeec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shuqikhor/editorjs-html-php/zipball/65fd0147f456a602f310587965e75912b8aaaeec",
+                "reference": "65fd0147f456a602f310587965e75912b8aaaeec",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/edjsHTML.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavittar Singh",
+                    "email": "pavittarx@gmail.com",
+                    "homepage": "https://github.com/pavittarx"
+                },
+                {
+                    "name": "Shuqi Khor",
+                    "email": "hello@sqkhor.com",
+                    "homepage": "https://sqkhor.com"
+                }
+            ],
+            "description": "A utility to parse editorjs clean data to HTML. Based on editorjs-html by Pavittar Singh",
+            "keywords": [
+                "editorjs",
+                "editorjs-html",
+                "html",
+                "json",
+                "parsing"
+            ],
+            "support": {
+                "source": "https://github.com/shuqikhor/editorjs-html-php/tree/v1.0.0"
+            },
+            "time": "2023-12-18T19:37:06+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

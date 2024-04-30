@@ -1,5 +1,5 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src="<?= ROOT ?>/js/Toastify"></script>
+<script src="<?= ROOT ?>/js/Toastify.js"></script>
 <script src="<?= ROOT ?>/js/material.min.js"></script>
 <script src="<?= ROOT ?>/js/loadcomponent.js"></script>
 <script src="<?= ROOT ?>/js/helper.js"></script>

@@ -15,7 +15,6 @@
                                         src="<?= ROOT ?>/images/template/logo-2.png" class="img-responsive"
                                         alt=""></a></div>
                             <div class="text">
-                                <p>Lorem ipsum dolor sit amet, eu me.</p>
                             </div>
 
                             <ul class="contact-info">

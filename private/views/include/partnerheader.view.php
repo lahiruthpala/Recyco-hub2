@@ -3,26 +3,23 @@
                 <div
                     style="display: flex; justify-content: center; align-items: center; margin-right: auto; height: 100%; align:center">
                     <img src="<?=ROOT?>/images/RecycoHub.png" style="height: 80%; border-radius: 99px; ">
-                    <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
+                    <a href="<?=ROOT?>"><span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span></a>
                 </div>
                 <div style="display: flex; margin-right:auto; gap:30px">
-                    <a href = "<?=ROOT?>/Partner/Dashboard" <?= setActiveTab(1) ?>>Dashboard</a>
                     <a href = "<?=ROOT?>/Partner/Articles" <?= setActiveTab(2) ?>>Articals</a>
                     <a href = "<?=ROOT?>/Partner/Events" <?= setActiveTab(3) ?>>Events</a>
-                    <a href = "<?=ROOT?>/Partner/Contribution" <?= setActiveTab(4) ?>>Contribution</a>
                 </div>
                 <div></div>
 
                 <div class="avatar-dropdown" id="icon">
                     <span><?=Auth::getUserName()?></span>
-                    <img src="<?=ROOT?>/images/Icon_header.png">
+                    <img src="<?= ROOT ?>/images/Users/<?=Auth::getUser_ID()?>.jpg" style="border-radius: 90px;">
                 </div>
                 <!-- Account dropdawn-->
                 <ul class="menu list menu--bottom-right js-menu js-ripple-effect shadow--2dp account-dropdown"
                     for="icon">
                     <li class="list__item list__item--two-line">
                         <span class="list__item-primary-content">
-                            <span class="material-icons list__item-avatar"></span>
                             <span><?=Auth::getUserName()?></span>
                             <span class="list__item-sub-title"><?=Auth::getEmail()?></span>
                         </span>

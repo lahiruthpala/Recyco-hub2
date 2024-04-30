@@ -98,7 +98,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div id="Individual" style="display: none" class="userform">
                                         <div class="form__article">
                                             <h3>Individual Details</h3>
@@ -116,7 +115,7 @@
 
                                                     <div style="display: flex; ">
                                                         <h6>Contact Number(+94)</h6>
-                                                        <h6 style="margin-left:10vw;">
+                                                        <h6 style="margin-left:108px;">
                                                             <input type="text" placeholder="Phone Number" id="Phone"
                                                                 name="Phone" class="textfield__input">
                                                         </h6>
@@ -134,14 +133,13 @@
                                         </div>
                                     </div>
                                     <div id="Company" style="display: none" class="userform">
-
                                         <div class="form__article">
                                             <h3>Company Details</h3>
                                             <div class="grid" style="margin-left: 30px;">
                                                 <div style="margin-left: 30px">
                                                     <div style="display: flex; ">
                                                         <h6>Company Name</h6>
-                                                        <h6 style="margin-left:10vw;">
+                                                        <h6 style="margin-left:74px;">
                                                             <input type="text" placeholder="CompanyName"
                                                                 id="CompanyName" name="CompanyName"
                                                                 class="textfield__input"
@@ -164,8 +162,8 @@
                                                     </div>
 
                                                     <div style="display: flex; ">
-                                                        <h6>Contact Number</h6>
-                                                        <h6 style="margin-left:10vw;">
+                                                        <h6>Contact Number(+94)</h6>
+                                                        <h6 style="margin-left:108px;">
                                                             <input type="text" placeholder="Official Number"
                                                                 id="Phone" name="Phone"
                                                                 class="textfield__input">

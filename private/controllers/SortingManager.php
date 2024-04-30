@@ -28,7 +28,7 @@ class SortingManager extends Controller
 	function SortedJobs()
 	{
 		$jobs = $this->load_model('SortingJobModel');
-		$data = $jobs->where('Status', 'Sorted');
+		$data = $jobs->where('Status', 'Completed');
 		$this->view('SortingManager/SortedJobs', ['rows' => $data]);
 	}
 
@@ -154,7 +154,8 @@ class SortingManager extends Controller
 		}
 	}
 
-	function SortedInventorySell(){
+	function SortedInventorySell()
+	{
 		$id = 0;
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
@@ -162,8 +163,8 @@ class SortingManager extends Controller
 			echo "ID parameter is not set in the URL.";
 		}
 		$inventory = $this->load_model("SortedInventory");
-		$SI = $inventory->query("SELECT * FROM sorted_inventory SI JOIN sorting_job S ON SI.Sorting_Job_ID=S.Sorting_Job_ID WHERE SI.Inventory_ID = '" . $id ."'")[0];
-		$inventory = $inventory->query("SELECT Inventory_ID, Status FROM inventory where Sorting_Job_ID='" . $SI->Sorting_Job_ID ."'");
+		$SI = $inventory->query("SELECT SI.*, S.Sorting_Job_ID, S.Machine_ID, S.Start_Date FROM sorted_inventory SI JOIN sorting_job S ON SI.Sorting_Job_ID=S.Sorting_Job_ID WHERE SI.Inventory_ID = '" . $id . "'")[0];
+		$inventory = $inventory->query("SELECT Inventory_ID, Status FROM inventory where Sorting_Job_ID='" . $SI->Sorting_Job_ID . "'");
 		$SI->statusint = statustointselling($SI->Status);
 		$this->view('Inventory/SortedInventorySell', ['data' => $SI, 'inventory' => $inventory]);
 	}
