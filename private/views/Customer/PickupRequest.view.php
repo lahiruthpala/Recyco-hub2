@@ -91,6 +91,4 @@
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyn3Iymp1NpFUBho-3HfzzMrnJSLKaqgA"></script>
     <script type="text/javascript" src="<?= ROOT ?>/js/gmap.js"></script>
-</body>
-
-</html>
+    <?php $this->view("include/footer") ?>

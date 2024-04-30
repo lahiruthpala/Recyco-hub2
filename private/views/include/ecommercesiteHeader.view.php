@@ -16,7 +16,6 @@
             for="icon">
             <li class="list__item list__item--two-line">
                 <span class="list__item-primary-content">
-                    <span class="material-icons list__item-avatar"></span>
                     <span>
                         <?= Auth::getUserName() ?>
                     </span>
@@ -33,28 +32,6 @@
                         My account
                     </span>
                 </a>
-            </li>
-            <li class="menu__item list__item">
-                <span class="list__item-primary-content">
-                    <i class="material-icons list__item-icon">check_box</i>
-                    My tasks
-                </span>
-                <span class="list__item-secondary-content">
-                    <span class="label background-color--primary">3 new</span>
-                </span>
-            </li>
-            <li class="menu__item list__item">
-                <span class="list__item-primary-content">
-                    <i class="material-icons list__item-icon">perm_contact_calendar</i>
-                    My events
-                </span>
-            </li>
-            <li class="list__item--border-top"></li>
-            <li class="menu__item list__item">
-                <span class="list__item-primary-content">
-                    <i class="material-icons list__item-icon">settings</i>
-                    Settings
-                </span>
             </li>
             <a href="<?= ROOT ?>/Logout">
                 <li class="menu__item list__item">

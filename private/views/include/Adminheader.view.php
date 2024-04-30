@@ -23,7 +23,6 @@
             for="icon">
             <li class="list__item list__item--two-line">
                 <span class="list__item-primary-content">
-                    <span class="material-icons list__item-avatar"></span>
                     <span>
                         <?= Auth::getUserName() ?>
                     </span>
