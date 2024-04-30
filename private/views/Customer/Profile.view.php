@@ -111,20 +111,6 @@
                 <div class="tab-pane fade gallcoo" id="earning" role="tabpanel" aria-labelledby="contact-tab"
                     style="min-height: 400px;">
                     <div class="row no-margin earning" style="margin-top: 10px;">
-
-                        <table style="border-collapse:collapse;width: 100%; max-width: 80%; margin: auto;">
-                            <tr style="display: flex;">
-                                <td
-                                style="padding: 8px;text-align: center;background-color: #85a3f1;padding: 10px;border-radius: 8px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);margin: auto;color: white;">
-                                    Earned points<br><span>
-                                        <?php if (isset($customers->Credits)): ?>
-                                            <h3 style="font-weight: bold;color: #001c3a;"><?= $customers->Credits ?></h3>
-                                        <?php else: ?>
-                                            <h3 style="font-weight: bold;color: #001c3a;">0</h3>
-                                        <?php endif; ?>
-                                    </span></td>
-                            </tr>
-                        </table>
                         <div style="margin-top: 25px;display: flex;width: 100%;">
                             <?php
                             if (is_array($earnings) && !empty($earnings)) {
@@ -132,17 +118,14 @@
                                 <table class="data-table js-data-table" style="width: 100%; table-layout: fixed;">
                                     <thead>
                                         <th class="data-table__cell--header" style="width: 20%">Date</th>
-                                        <th class="data-table__cell--header" style="width: 20%">Wate Type</th>
-                                        <th class="data-table__cell--header">Weight</th>
-                                        <th class="data-table__cell--header" style="text-align: center;">Price</th>
-                                        <th class="data-table__cell--header" style="text-align: center;">Earning</th>
+                                        <th class="data-table__cell--header" style="width: 20%">Waste Type</th>
+                                        <th class="data-table__cell--header">Weight(kg)</th>
+                                        <th class="data-table__cell--header" style="text-align: center;">Price(RS)</th>
+                                        <th class="data-table__cell--header" style="text-align: center;">Earning(Rs)</th>
                                     </thead>
                                     <?php
                                     foreach ($earnings as $earning) {
-                                        if(!isset($earning['Items'])){
-                                            $earning['Items'] = $earning[0];
-                                        }
-                                        if (is_array($earning['Items']) && !empty($earning['Items'])) {
+                                        if (isset($earning['Items']) && is_array($earning['Items']) && !empty($earning['Items'])) {
                                             foreach ($earning['Items'] as $key => $Items) {
                                                 ?>
                                                 <tr>
@@ -153,13 +136,13 @@
                                                         <?= $key ?>
                                                     </td>
                                                     <td class="data-table__cell--non-numeric">
-                                                        <?= $Items['Weight'] ?>
+                                                        <?= $Items['Weight'].' Kg' ?>
                                                     </td>
                                                     <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                                        <?= $Items['Price'] ?>
+                                                        <?= 'Rs' . $Items['Price'] ?>
                                                     </td>
                                                     <td class="data-table__cell--non-numeric" style="text-align: center;">
-                                                        <?= floatval($Items['Price']) * floatval($Items['Weight']) ?>
+                                                        Rs <?= floatval($Items['Price']) * floatval($Items['Weight']) ?>
                                                     </td>
                                                 </tr>
                                                 <?php

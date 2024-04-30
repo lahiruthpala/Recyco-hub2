@@ -15,7 +15,7 @@
                 foreach ($rows as $row) {
                     // Your table row generation code here
                     ?>
-                    <tr>
+                    <tr onclick="loadScreen('SortingManager/SortingJobProgress', '<?= $row->Sorting_Job_ID ?>')">
                         <td class="data-table__cell--non-numeric"><?= $row->Sorting_Job_ID ?? " " ?></td>
                         <td class="data-table__cell--non-numeric"><?= $row->Start_Date ?? " " ?></td>
                         <td class="data-table__cell--non-numeric"><?= $row->Line_No ?? " " ?></td>

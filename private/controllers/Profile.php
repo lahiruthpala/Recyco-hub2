@@ -9,7 +9,7 @@ class Profile extends Controller
 
 	function info()
 	{
-		if(!Auth::logged_in()){
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 			return;
 		}
@@ -19,8 +19,13 @@ class Profile extends Controller
 			if (count($_POST) > 1) {
 				$data = $otp->insert($_POST);
 				unset($_POST['Type']);
-				$user->update(Auth::getUser_ID(),$_POST,'User_ID');
-				$this->view('otpVerify', ['data'=>$_POST]);
+				$user->update(Auth::getUser_ID(), $_POST, 'User_ID');
+				$folder = IMAGES . '/Users/';
+				require_once (APP_ROOT . "/controllers/FileManager.php");
+				$file = new FileManager();
+				$_FILES['profileImage']['name'] = Auth::getUser_ID() . ".jpg";
+				$destination = $file->uploadFile($_FILES['profileImage'], $folder);
+				$this->view('otpVerify', ['data' => $_POST]);
 				return;
 			} else {
 				$otpNum = $otp->where('User_ID', Auth::getUser_ID());
@@ -39,25 +44,27 @@ class Profile extends Controller
 			}
 		}
 		$data = $user->where('User_ID', Auth::getUser_ID());
-		$this->view('info',['data'=>$data]);
+		$this->view('info', ['data' => $data]);
 	}
-	
-	function Chat(){
+
+	function Chat()
+	{
 		$this->view('Chat');
 	}
 
-	function viewProfile($id){
+	function viewProfile($id)
+	{
 		$collector = $this->load_model('CollectorModel');
-        $user = $this->load_model('User');
-        $user = $user->first("User_ID", $id);
-        // Auth::getCollector_ID
-        $data = $collector->first("Collector_ID", $id);
+		$user = $this->load_model('User');
+		$user = $user->first("User_ID", $id);
+		// Auth::getCollector_ID
+		$data = $collector->first("Collector_ID", $id);
 		$data->User_ID = $user->User_ID;
-        $data->firstname = $user->FirstName;
-        $data->lastname = $user->LastName;
-        $data->Phone = $user->Phone;
-        $data->Email = $user->Email;
-        $data->Address = $user->Address;
-        $this->view('Profile', ['row' => $data]);
+		$data->firstname = $user->FirstName;
+		$data->lastname = $user->LastName;
+		$data->Phone = $user->Phone;
+		$data->Email = $user->Email;
+		$data->Address = $user->Address;
+		$this->view('Profile', ['row' => $data]);
 	}
 }

@@ -90,7 +90,7 @@ class Admin extends Controller
                             $collector->insert($_POST);
                         }
                         if ($UserData) { //successful insertion
-                            $folder = IMAGES . '/Users';
+                            $folder = IMAGES . '/Users/';
                             $_FILES['profileImage']['name'] = $UserData['User_ID'] . ".jpg";
                             $destination = $file->uploadFile($_FILES['profileImage'], $folder);
                             message(['User Added successfully', 'success']);

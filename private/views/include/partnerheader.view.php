@@ -3,7 +3,7 @@
                 <div
                     style="display: flex; justify-content: center; align-items: center; margin-right: auto; height: 100%; align:center">
                     <img src="<?=ROOT?>/images/RecycoHub.png" style="height: 80%; border-radius: 99px; ">
-                    <span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span>
+                    <a href="<?=ROOT?>"><span style="font-size: 30px; line-height: 1.5; font-weight: 600; color:green">RecycoHUB</span></a>
                 </div>
                 <div style="display: flex; margin-right:auto; gap:30px">
                     <a href = "<?=ROOT?>/Partner/Articles" <?= setActiveTab(2) ?>>Articals</a>
@@ -20,7 +20,6 @@
                     for="icon">
                     <li class="list__item list__item--two-line">
                         <span class="list__item-primary-content">
-                            <span class="material-icons list__item-avatar"></span>
                             <span><?=Auth::getUserName()?></span>
                             <span class="list__item-sub-title"><?=Auth::getEmail()?></span>
                         </span>

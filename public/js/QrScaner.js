@@ -64,7 +64,7 @@ function callVerifyInventory(content) {
                         document.getElementById('inventory').innerHTML += "<li class='list__item' value=" + content + " style='color: black;'>" + content + "</li>";
                     }
                 } else {
-                    alert('Invalied QR code');
+                    SideNotification(['Invalied QR code', 'error']);
                 }
             } else {
                 console.error('Error: ' + xhr.status);
@@ -82,7 +82,7 @@ function CheckInventoryAlreadyAdded(id) {
     var inventoryArray = Array.from(inventoryList.getElementsByTagName('li')).map(li => li.innerHTML);
     console.log("--->>>>>>>>", inventoryArray)
     if (inventoryArray.includes(String(id))) {
-        alert('ID already exists in inventory list');
+        SideNotification(['ID already exists in inventory list', 'error']);
         return true;
     } else {
         return false;

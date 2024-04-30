@@ -56,14 +56,13 @@ class collector extends Controller
     }
 
     function AcceptJob($jobid, $id, $status)
-    { 
+    {
         $pickup = $this->load_model('PickUpRequestModel');
         if ($status == 'Accepted') {
             $pickup->update($id, ['Status' => $status], 'Pickup_ID');
         }
         if ($status == 'Rejected') {
             $pickup->update($id, ['Status' => 'Pending'], 'Pickup_ID');
-
         }
         $temp = $pickup->query("SELECT * FROM pickup_request WHERE Job_ID = '" . $jobid . "' AND Status = 'Assigned'");
         if ($temp == null) {

@@ -110,7 +110,7 @@ class Machine extends Controller
         }
         $Credit_History = json_encode($Credit_History, true);
         //return(var_dump($User_ID,$_POST, $sum, $data));
-        $query = "UPDATE customer SET Credit_History = '$Credit_History',Credits = $sum WHERE Customer_ID = '$User_ID';";
+        $query = "UPDATE customer SET Credit_History = '$Credit_History',Credits = '$sum' WHERE Customer_ID = '$User_ID';";
         $customer = $customer->query($query);
         //var_dump($query, $User_ID);
         $temp = array();
