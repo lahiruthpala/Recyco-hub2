@@ -111,20 +111,6 @@
                 <div class="tab-pane fade gallcoo" id="earning" role="tabpanel" aria-labelledby="contact-tab"
                     style="min-height: 400px;">
                     <div class="row no-margin earning" style="margin-top: 10px;">
-
-                        <table style="border-collapse:collapse;width: 100%; max-width: 80%; margin: auto;">
-                            <tr style="display: flex;">
-                                <td
-                                style="padding: 8px;text-align: center;background-color: #85a3f1;padding: 10px;border-radius: 8px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);margin: auto;color: white;">
-                                    Earned points<br><span>
-                                        <?php if (isset($customers->Credits)): ?>
-                                            <h3 style="font-weight: bold;color: #001c3a;"><?= $customers->Credits ?></h3>
-                                        <?php else: ?>
-                                            <h3 style="font-weight: bold;color: #001c3a;">0</h3>
-                                        <?php endif; ?>
-                                    </span></td>
-                            </tr>
-                        </table>
                         <div style="margin-top: 25px;display: flex;width: 100%;">
                             <?php
                             if (is_array($earnings) && !empty($earnings)) {
